@@ -1,16 +1,16 @@
 <h1>商品列表</h1>
 
-<%=link_to "新增商品",new_product_path%>
+<%= link_to "新增商品",new_product_path %>
 
 <table>
   <thead>
     <tr>
-      <td>商品名稱</td>
-      <td>商品價錢</td>
-      <td>商品數量</td>
-      <td>商品描述</td>
-      <td>商品類別</td>
-      <td>商品材料</td>
+      <td>商品名稱</td> 
+      <td>價錢</td>
+      <td>數量</td>
+      <td>描述</td>
+      <td>類別</td>
+      <td>材料</td>
       <td>製造方法</td>
       <td>國家</td>
       <td>內容</td>
@@ -19,21 +19,19 @@
   <tbody>
     <% @products.each do |product| %>
     <tr>
-      <td><%=product.name%></td>
-      <td><%=product.price%></td>
-      <td><%=product.quantity%></td>
-      <td><%=product.describtion%></td>
-      <td><%=product.category%></td>
-      <td><%=product.material%></td>
-      <td><%=product.manufacturing_method%></td>
-      <td><%=product.country%></td>
-      <td><%=product.content%></td>
-      <td><%=link_to "修改商品",edit_product_path(product)%></td>
-      <td><%=link_to "刪除商品",product_path(product), 
+      <td><%= product.name %></td>
+      <td><%= product.price %></td>
+      <td><%= product.quantity %></td>
+      <td><%= product.describtion %></td>
+      <td><%= product.category %></td>
+      <td><%= product.material %></td>
+      <td><%= product.manufacturing_method %></td>
+      <td><%= product.country %></td>
+      <td><%= product.content %></td>
+      <td><%= link_to "修改商品",edit_product_path(product) %></td>
+      <td><%= link_to "刪除商品",product_path(product), 
                                method: "DELETE",
-                               data: {confirm: '刪除成功！'}%></td>
-
-
+                               data: {confirm: '刪除成功！'} %></td>
     </tr>
     <% end %>
   </tbody>

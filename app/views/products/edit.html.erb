@@ -1,36 +1,36 @@
 <h1>修改商品</h1>
 
-<%= form_for(@product) do |product| %>
+<%= form_for(@product) do |f| %>
 
-<%= product.label :name, "商品名稱" %>
-<%= product.text_field :name %><br />
+<%= f.label :name, "商品名稱" %>
+<%= f.text_field :name %> <br />
 
-<%= product.label :price, "商品價錢" %>
-<%= product.text_field :price %><br />
+<%= f.label :price, "商品價錢" %>
+<%= f.text_field :price %> <br />
 
-<%= product.label :quantity, "商品數量" %>
-<%= product.text_field :quantity %><br />
+<%= f.label :quantity, "商品數量" %>
+<%= f.text_field :quantity %> <br />
 
-<%= product.label :describtion, "商品描述" %>
-<%= product.text_field :describtion %><br />
+<%= f.label :describtion, "商品描述" %>
+<%= f.text_field :describtion %> <br />
 
-<%= product.label :category, "商品類別" %>
-<%= product.text_field :category %><br />
+<%= f.label :category, "商品類別" %>
+<%= f.text_field :category %> <br />
 
-<%= product.label :material, "商品材料" %>
-<%= product.text_field :material %><br />
+<%= f.label :material, "商品材料" %>
+<%= f.text_field :material %> <br />
 
-<%= product.label :manufacturing_method, "製造方法" %>
-<%= product.text_field :manufacturing_method %><br />
+<%= f.label :manufacturing_method, "製造方法" %>
+<%= f.text_field :manufacturing_method %> <br />
 
-<%= product.label :country, "國家" %>
-<%= product.text_field :country %><br />
+<%= f.label :country, "國家" %>
+<%= f.text_field :country %><br />
 
-<%= product.label :content, "內容" %>
-<%= product.text_field :content %><br />
+<%= f.label :content, "內容" %>
+<%= f.text_field :content %><br />
 
-<%= product.submit %><br />
+<%= f.submit %>
 
 <% end %>
-
-<%=link_to "返回商品列表",products_path %>
+<br />
+<%= link_to "返回商品列表",products_path %>
