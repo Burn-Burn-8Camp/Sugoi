@@ -9,7 +9,7 @@ const Hello = (props) => {
   // 模板
   return (
     <div>
-      <h3>Hello, {name}!</h3>
+      <h1>Hello, {name}!</h1>
       <hr />
       <form>
         <label htmlFor="name">

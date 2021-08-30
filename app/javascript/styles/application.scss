@@ -1,3 +1,31 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+@layer base {
+	// font-size
+	h1 {
+		@apply text-4xl;
+	}
+	h2 {
+		@apply text-2xl;
+	}
+	h3 {
+		@apply text-xl
+	}
+	p {
+		@apply text-base
+	}
+
+	input {
+		@apply border-2 text-black rounded bg-indigo-400 p-1
+	}
+	textarea {
+		@apply border-2 text-black rounded bg-indigo-400
+	}
+
+
+
+
+
+}
