@@ -14,6 +14,6 @@ import Counter from './counter';
 // 類似於 ReactDOM.render() 不用綁標籤
 // 而是輸出一個一個模板實體類似於vue
 ReactOnRails.register({
-  Hello, Counter
+  Hello, Counter, a123
 });
 // 下面命名跟上面要對到pr
