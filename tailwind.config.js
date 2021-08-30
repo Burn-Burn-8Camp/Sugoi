@@ -19,7 +19,10 @@ module.exports = {
   ],
   daisyui: {
     styled: true,
-    themes: true,
+    themes: [
+      'Wireframe',
+      'dark',
+    ],
     base: true,
     utils: true,
     logs: true,
