@@ -23,6 +23,12 @@ gem 'devise'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
+gem "omniauth-rails_csrf_protection"
+
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -33,7 +39,12 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'foreman', '~> 0.87.2'
+
+  gem 'factory_bot_rails', '~> 6.2'
+
   gem 'rspec-rails', '~> 5.0', '>= 5.0.2'
+
+
 end
 
 group :development do
