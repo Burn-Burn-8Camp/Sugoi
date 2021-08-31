@@ -12,6 +12,9 @@ import "styles"
 import "components/react_application"
 // react js 打包
 
+import 'controllers'
+// stimulus.js  打包
+
 
 Rails.start()
 Turbolinks.start()
