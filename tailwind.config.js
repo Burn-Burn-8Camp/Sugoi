@@ -1,3 +1,4 @@
+
 module.exports = {
   mode: 'jit',
   purge: [
@@ -30,3 +31,4 @@ module.exports = {
     rtl: false,
   },
 }
+
