@@ -4,44 +4,24 @@
 
 <%= link_to "新增商品",new_product_path %>
 
-<div class='grid md:grid-cols-3 lg:grid-cols-6 gap-2'>
-  <div class="card bordered">
-    <figure>
-      <img src="https://picsum.photos/id/1005/400/250">
-    </figure> 
-    <div class="card-body">
-      <h2 class="card-title">Top image<div class="badge mx-2 badge-secondary">NEW</div></h2> 
-      <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p> 
+
+
+<div class='grid grid-cols-2 lg:grid-cols-6 gap-3'>
+  <% @products.each do |product| %>
+    <div class="card bordered">
+      <figure>
+        <img src="https://picsum.photos/id/1005/400/250">
+      </figure>
+      <div class="card-body">
+        <h2 class="card-title">品名：<%= product.name %></h2>
+        <p>價錢：<%= product.price %></p>
+        <p>商品描述：<%= product.describtion %></p>
+      </div>
     </div>
-  </div> 
-  <div class="card bordered">
-    <figure>
-      <img src="https://picsum.photos/id/1005/400/250">
-    </figure> 
-    <div class="card-body">
-      <h2 class="card-title">Top image<div class="badge mx-2 badge-secondary">NEW</div></h2> 
-      <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p> 
-    </div>
-  </div> 
-  <div class="card bordered">
-    <figure>
-      <img src="https://picsum.photos/id/1005/400/250">
-    </figure> 
-    <div class="card-body">
-      <h2 class="card-title">Top image<div class="badge mx-2 badge-secondary">NEW</div></h2> 
-      <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p> 
-    </div>
-  </div> 
-  <div class="card bordered">
-    <figure>
-      <img src="https://picsum.photos/id/1005/400/250">
-    </figure> 
-    <div class="card-body">
-      <h2 class="card-title">Top image<div class="badge mx-2 badge-secondary">NEW</div></h2> 
-      <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p> 
-    </div>
-  </div> 
+  <% end %>
 </div>
+
+<%== pagy_nav(@pagy) %>
 
 <table>
   <thead>
@@ -55,6 +35,8 @@
       <td>製造方法</td>
       <td>國家</td>
       <td>內容</td>
+      <td>修改</td>
+      <td>刪除</td>
     </tr>
   </thead>
   <tbody>
@@ -77,7 +59,6 @@
     <% end %>
   </tbody>
 </table>
-
 
 
 

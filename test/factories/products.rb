@@ -7,7 +7,7 @@ FactoryBot.define do
     category { "MyString" }
     material { "MyString" }
     manufacturing_method { "MyString" }
-    country { "MyString" }
+    country { Faker::Nation.nationality }
     content { "MyText" }
   end
 end

@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show]
   
   def index
-    @products = Product.all
+    # @products = Product.all
+    @pagy, @products = pagy(Product.all, items: 6)
   end
 
   def new
