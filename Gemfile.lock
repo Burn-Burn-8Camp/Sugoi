@@ -88,17 +88,14 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.4.4)
     erubi (1.10.0)
-
     execjs (2.8.1)
-
-
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
-
-    execjs (2.8.1)
+    faker (2.19.0)
+      i18n (>= 1.6, < 2)
     faraday (1.7.1)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
@@ -118,8 +115,6 @@ GEM
     faraday-net_http_persistent (1.2.0)
     faraday-patron (1.0.0)
     faraday-rack (1.0.0)
-
-
     ffi (1.15.3)
     foreman (0.87.2)
     globalid (0.5.2)
@@ -129,12 +124,8 @@ GEM
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
       activesupport (>= 5.0.0)
-    libv8-node (15.14.0.1-arm64-darwin-20)
-    libv8-node (15.14.0.1-x86_64-linux)
-
-
     jwt (2.2.3)
-
+    libv8-node (15.14.0.1-arm64-darwin-20)
     listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -155,13 +146,6 @@ GEM
     multipart-post (2.1.1)
     nio4r (2.5.8)
     nokogiri (1.12.4-arm64-darwin)
-
-      racc (~> 1.4)
-    nokogiri (1.12.4-x86_64-linux)
-    nokogiri (1.12.3-x86_64-darwin)
-
-      racc (~> 1.4)
-    nokogiri (1.12.4-x86_64-linux)
       racc (~> 1.4)
     oauth2 (1.4.7)
       faraday (>= 0.8, < 2.0)
@@ -191,14 +175,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.5.2)
     rack (2.2.3)
-
-
-    rack-mini-profiler (2.3.2)
-      rack (>= 1.2.0)
     rack-protection (2.1.0)
       rack
-
-
     rack-proxy (0.7.0)
       rack
     rack-test (1.1.0)
@@ -262,9 +240,7 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
-
     ruby2_keywords (0.0.5)
-
     rubyzip (2.3.2)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -320,27 +296,21 @@ GEM
 
 PLATFORMS
   arm64-darwin-20
-  x86_64-darwin-20
-  x86_64-linux
 
 DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
-
-  factory_bot_rails (~> 6.2)
-
   devise
-
+  factory_bot_rails (~> 6.2)
+  faker (~> 2.19)
   foreman (~> 0.87.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mini_racer
-
   omniauth
   omniauth-google-oauth2
   omniauth-rails_csrf_protection
-
   pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 6.1.4, >= 6.1.4.1)

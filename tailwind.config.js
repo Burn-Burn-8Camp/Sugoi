@@ -20,8 +20,9 @@ module.exports = {
   daisyui: {
     styled: true,
     themes: [
+      'bumblebee',
       'Wireframe',
-      'dark',
+      "dark",
     ],
     base: true,
     utils: true,
