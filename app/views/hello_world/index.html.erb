@@ -4,3 +4,5 @@
 <%# 不綁標籤，改綁標籤小幫手，一個綁一個實體 %>
 <%= react_component("Counter", props: @count) %>
 <%= react_component("Counter") %>
+
+<%= link_to "加入購物車", 'add_cart_index_path(:id)', method: "post" %>

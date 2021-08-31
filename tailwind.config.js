@@ -1,4 +1,7 @@
 module.exports = {
+  presets: [
+    require('./sugoi.config')
+  ],
   mode: 'jit',
   purge: [
     './app/**/*.html',
@@ -9,6 +12,15 @@ module.exports = {
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    screens: {
+      'md' : '375px',
+      'lg' : '678px',
+      'xl' : '1200px',
+      'xxl' : '1400px',
+    },
+    debugScreens: {
+      position: ['top', 'left'],
+    },
     extend: {},
   },
   variants: {
@@ -16,5 +28,7 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/typography'),
+    require('tailwindcss-debug-screens'),
   ],
 }
+

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
+  
+
   resources :cart,only:[:show, :destroy] do
     collection do
       post :add, path: 'add/:id'

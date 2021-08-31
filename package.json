@@ -24,6 +24,7 @@
     "autoprefixer": "^10.3.3",
     "postcss": "^8.3.6",
     "tailwindcss": "^2.2.8",
+    "tailwindcss-debug-screens": "^2.1.0",
     "version": "0.1.0",
     "webpack-dev-server": "^4.0.0"
   }
