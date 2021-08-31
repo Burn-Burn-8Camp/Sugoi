@@ -1,9 +1,9 @@
-<<<<<<< HEAD
+
 #!/usr/bin/env ruby
 require_relative "../config/boot"
 require "rake"
 Rake.application.run
-=======
+
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
@@ -33,4 +33,4 @@ require "rubygems"
 require "bundler/setup"
 
 load Gem.bin_path("rake", "rake")
->>>>>>> 547addc (add cart layout)
+

@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 FactoryBot.define do
   factory :product do
     name { Faker::Name.name }
@@ -12,18 +12,3 @@ FactoryBot.define do
     content { "MyText" }
   end
 end
-=======
-FactoryBot.define do
-  factory :product do
-    name { "MyString" }
-    price { "9.99" }
-    quantity { 1 }
-    describtion { "MyText" }
-    category { "MyString" }
-    material { "MyString" }
-    manufacturing_method { "MyString" }
-    country { "MyString" }
-    content { "MyText" }
-  end
-end
->>>>>>> 547addc (add cart layout)

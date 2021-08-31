@@ -1,9 +1,11 @@
-<<<<<<< HEAD
+
 #!/usr/bin/env ruby
 APP_PATH = File.expand_path('../config/application', __dir__)
 require_relative "../config/boot"
 require "rails/commands"
 =======
+=======
+>>>>>>> fixed_shopping_cart
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
@@ -33,4 +35,4 @@ require "rubygems"
 require "bundler/setup"
 
 load Gem.bin_path("railties", "rails")
->>>>>>> 547addc (add cart layout)
+
