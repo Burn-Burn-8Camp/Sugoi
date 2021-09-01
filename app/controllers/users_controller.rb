@@ -4,6 +4,12 @@ class UsersController < ApplicationController
     def edit
         
     end
+
+    def profile
+      p "========"
+      p current_user
+      p "========"
+    end
       # def home
 
     # end    

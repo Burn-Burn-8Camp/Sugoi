@@ -27,7 +27,12 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem 'omniauth-github'
 gem "omniauth-rails_csrf_protection"
+<<<<<<< HEAD
 gem 'activerecord-session_store'
+=======
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.7'
+
+>>>>>>> 新增分級
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

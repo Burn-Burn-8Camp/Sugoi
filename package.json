@@ -4,29 +4,35 @@
   "dependencies": {
     "@babel/core": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "@rails/actioncable": "^6.0.0",
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.2",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
-    "daisyui": "^1.14.0",
     "autoprefixer": "^10.3.3",
+<<<<<<< HEAD
     "postcss": "^8.3.6",
     "tailwindcss": "^2.2.8",
+=======
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "daisyui": "^1.14.0",
+>>>>>>> 新增分級
     "js-yaml": "^4.1.0",
+    "postcss": "^8.3.6",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-on-rails": "12.3.0",
+    "tailwindcss": "^2.2.8",
     "turbolinks": "^5.2.0",
     "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12"
   },
   "devDependencies": {
-    "version": "0.1.0",
     "autoprefixer": "^10.3.3",
     "postcss": "^8.3.6",
     "tailwindcss": "^2.2.8",
+    "version": "0.1.0",
     "webpack-dev-server": "^4.0.0"
   }
 }
