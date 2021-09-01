@@ -1,0 +1,40 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+.banner {
+	@apply overflow-hidden w-full relative float-left pb-2.5;
+}
+.tab {
+	img {
+		@apply 
+	}
+}
+.lunbo_btn {
+	@apply h-4 w-full mx-auto -mt-10 absolute z-3 text-center;
+
+
+	span {
+		@apply w-4 h-4 inline-block bg-gray-400 rounded-full mx-0.5 cursor-pointer; 
+	}
+}
+.arrow{
+	@apply hidden w-7 h-16 bg-gray-900 absolute top-1/2 -mt-7 z-10; 
+
+	span {
+		@apply block w-2.5 h-2.5 border-b-2 border-l-2 border-white;
+	}
+}
+.slider_left {
+	@apply mt-6 ml-2.5 transform rotate-45;
+}
+.prv {
+	@apply left-0
+}
+.next {
+	@apply r-0
+}
+.slider_right {
+	@apply mt-6 ml-1.5 transform -rotate-45
+}
