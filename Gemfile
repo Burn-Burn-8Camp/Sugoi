@@ -26,6 +26,7 @@ gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.7'
 
 
 # Use Active Storage variant

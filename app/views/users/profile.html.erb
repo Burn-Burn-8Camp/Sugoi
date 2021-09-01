@@ -19,7 +19,8 @@
   </div> 
   <div class="divider divider-vertical"></div> 
   <div class="grid flex-grow h-40  w-60 card  rounded-box place-items-center border">
-    <%= rank_icon(current_user.rank) %>
+    <%= sanitize rank_icon(current_user.rank) %>
+     
   </div>
   <div class="divider divider-vertical"></div> 
   <div class="grid flex-grow h-40  w-60 card  rounded-box place-items-center border ">
