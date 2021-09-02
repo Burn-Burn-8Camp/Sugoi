@@ -1,14 +1,16 @@
 <div class='container '>
   <div class="flex flex-row w-3/4 mt-12 mb-20 mx-auto">
-  <div class="flex flex-grow h-40 w-60   rounded-box  border">
-    <div class='w-15 p-2.5 '>
-      <img class='w-' src="https://picsum.photos/80/80" alt="">
-    </div>
-    <div class='w-30'>
-      <h1 class='text-lg'><%= current_user.email %></h1>
-    <div>
-      <p class='text-sm'><%= "#{current_user.rank},#{current_user.country}"%></p>
-    </div>
+    <div class="flex flex-grow h-40 w-60   rounded-box  border">
+      <div class='w-15 p-2.5 '>
+        <img class='w-' src="https://picsum.photos/80/80" alt="">
+      </div>
+      <div class='w-full p-2.5'>
+        <h1 class='text-lg mb-2'><%= current_user.email %></h1>
+      <div>
+        <a class='text-sm'><%= sanitize "#{now_rank_icon(current_user.rank)}" %><%="#{current_user.rank} #{current_user.country}" %></a> 
+      
+      </div>
+      
       <div>
         <p>current_user.ipoints</p>
       </div>
@@ -17,15 +19,23 @@
       </div>
     </div>
   </div> 
+
   <div class="divider divider-vertical"></div> 
-  <div class="grid flex-grow h-40  w-60 card  rounded-box place-items-center border">
-    <%= sanitize rank_icon(current_user.rank) %>
-     
+
+  <div class=" flex-grow h-40  w-60 card  rounded-box  border">
+      <div class="w-full ">
+        <h2 class="text-lg mt-2 ml-3">當年度升級任務</h2>
+      </div>
+      <div class="w-full">
+        <p class="mt-2 ml-3">完成以下一項條件,可立即升級為<%= sanitize user_rank(current_user.rank) %></p>
+      </div>
+      <div class=" mt-3 ml-8"><%= sanitize up_rank_icon(current_user.rank) %></div>
   </div>
   <div class="divider divider-vertical"></div> 
+
   <div class="grid flex-grow h-40  w-60 card  rounded-box place-items-center border ">
   </div>
-</div>
+  </div>
 </div>
 
 
