@@ -278,6 +278,11 @@ Devise.setup do |config|
                   Rails.application.credentials.dig(:google, :google_client_secret), 
                   scope: 'userinfo.email,userinfo.profile'
 
+  config.omniauth :github, 
+                  Rails.application.credentials.dig(:github, :github_client_id), 
+                  Rails.application.credentials.dig(:github, :github_client_secret), 
+                  scope: 'user'
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.

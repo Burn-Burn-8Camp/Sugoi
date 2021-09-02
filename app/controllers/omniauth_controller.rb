@@ -17,6 +17,20 @@ class OmniauthController < ApplicationController
     redirect_to new_user_registration_url
   end
 
+
+  def github
+    @user = User.create_from_provider_data(request.env['omniauth.auth'])
+
+    if @user.persisted?
+      sign_in_and_redirect @user
+      #set_flash_message(:notice, :success, kind: 'github') if is_navigational_format?
+    else
+      failure
+    end
+  end
+
+
+
   def verify_authenticity_token
     verified_request? || oauth? || raise(ActionController::InvalidAuthenticityToken)
   end
