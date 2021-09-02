@@ -1,31 +1,69 @@
 <div class='container '>
   <div class="flex flex-row w-3/4 mt-12 mb-20 mx-auto">
-  <div class="flex flex-grow h-40 w-60   rounded-box  border">
-    <div class='w-15 p-2.5 '>
-      <img class='w-' src="https://picsum.photos/80/80" alt="">
-    </div>
-    <div class='w-30'>
-      <h1 class='text-lg'><%= current_user.email %></h1>
-    <div>
-      <p class='text-sm'><%= "#{current_user.rank},#{current_user.country}"%></p>
-    </div>
+    <div class="flex flex-grow h-40 w-60   rounded-box  ">
+      <div class='w-15 p-2.5 '>
+        <img class='w-' src="https://picsum.photos/80/80" alt="">
+      </div>
+      <div class='w-full p-2.5'>
+        <h1 class='text-lg mb-2'><%= current_user.name %></h1>
       <div>
-        <p>current_user.ipoints</p>
+        <a href="#" class='text-sm'><%= sanitize "#{now_rank_icon(current_user.accumulated_amount)}" %>
+                                    <%="#{up_user_rake(current_user.accumulated_amount)} 
+                                    #{current_user.country}" %>
+                                    </a> 
+      
+      </div>
+      
+      <div>
+        <a href="#"><i class="fab fa-bitcoin"></i>   <%=current_user.P_coins %></a>
       </div>
       <div>
-        <p>current_user.score</p>
+        <p><i class="fas fa-star">   </i>current_user.score</p>
       </div>
     </div>
   </div> 
+
   <div class="divider divider-vertical"></div> 
-  <div class="grid flex-grow h-40  w-60 card  rounded-box place-items-center border">
-    <%= sanitize rank_icon(current_user.rank) %>
-     
+
+  <div class=" flex-grow h-40  w-60 card  rounded-box  border">
+    <div class="w-full ">
+      <h2 class="text-lg mt-2 ml-3">當年度升級任務</h2>
+    </div>
+    <div class="w-full">
+      <% if current_user.accumulated_amount >= 20000 %>
+        <p class="mt-2 ml-3">您已達成最高等級<%= sanitize user_rank(current_user.accumulated_amount) %></p>
+      <% else %>
+        <p class="mt-2 ml-3">完成以下一項條件,可立即升級為<%= sanitize user_rank(current_user.accumulated_amount) %></p>
+      <% end %>
+    </div>
+    <div class="flex mt-3 ml-8">
+      <div>
+        <p><%= sanitize up_rank_icon(current_user.accumulated_amount) %></p>
+      </div>
+      <div>
+        <p>消費金額還需 NT$<%= still_need(current_user.accumulated_amount) %></p>
+      </div>
+    </div>
   </div>
   <div class="divider divider-vertical"></div> 
-  <div class="grid flex-grow h-40  w-60 card  rounded-box place-items-center border ">
+
+  <div class=" flex-grow h-40  w-60 card  rounded-box  border ">
+    <div class="w-full ">
+      <h2 class="text-lg mt-2 ml-3">下一年度升級任務</h2>
+    </div>
+    <div>
+      <p class="mt-2 ml-3">完成以下一項條件,可在下一個年度升級為<%= sanitize user_rank(current_user.accumulated_amount) %></p>
+    </div>
+    <div class="flex mt-3 ml-8">
+      <div>
+        <p><%= sanitize up_rank_icon(current_user.accumulated_amount) %></p>
+      </div>
+      <div>
+        <p>消費金額還需 NT$<%= still_need(current_user.accumulated_amount) %></p>
+      </div>
+    </div>
   </div>
-</div>
+  
 </div>
 
 
