@@ -1,3 +1,4 @@
+
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
@@ -43,7 +44,7 @@ group :development, :test do
   gem 'faker', '~> 2.19'
   gem 'rspec-rails', '~> 5.0', '>= 5.0.2'
   gem 'rexml'
-
+  gem 'database_cleaner', '~> 1.5', '>= 1.5.3'
 
 end
 
@@ -65,9 +66,10 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-  
+  gem 'timecop', '~> 0.9.4'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'mini_racer', platforms: :ruby
+
