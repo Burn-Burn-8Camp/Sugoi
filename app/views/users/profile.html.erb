@@ -1,21 +1,21 @@
 <div class='container '>
   <div class="flex flex-row w-3/4 mt-12 mb-20 mx-auto">
-    <div class="flex flex-grow h-40 w-60   rounded-box  border">
+    <div class="flex flex-grow h-40 w-60   rounded-box  ">
       <div class='w-15 p-2.5 '>
         <img class='w-' src="https://picsum.photos/80/80" alt="">
       </div>
       <div class='w-full p-2.5'>
-        <h1 class='text-lg mb-2'><%= current_user.email %></h1>
+        <h1 class='text-lg mb-2'><%= current_user.name %></h1>
       <div>
-        <a class='text-sm'><%= sanitize "#{now_rank_icon(current_user.rank)}" %><%="#{current_user.rank} #{current_user.country}" %></a> 
+        <a href="#" class='text-sm'><%= sanitize "#{now_rank_icon(current_user.rank)}" %><%="#{current_user.rank} #{current_user.country}" %></a> 
       
       </div>
       
       <div>
-        <p>current_user.ipoints</p>
+        <a href="#"><i class="fab fa-bitcoin"></i>   <%=current_user.P_coins %></a>
       </div>
       <div>
-        <p>current_user.score</p>
+        <p><i class="fas fa-star">   </i>current_user.score</p>
       </div>
     </div>
   </div> 

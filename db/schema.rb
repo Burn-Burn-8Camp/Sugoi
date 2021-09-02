@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_01_073339) do
+ActiveRecord::Schema.define(version: 2021_09_02_080411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 2021_09_01_073339) do
     t.string "account"
     t.integer "accumulated_amount"
     t.string "country"
+    t.string "name"
+    t.integer "P_coins"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["rank"], name: "index_users_on_rank"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
