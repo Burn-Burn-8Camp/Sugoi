@@ -50,10 +50,6 @@
                       <% end %>
                     </select>
 
-
-
-                   
-
                     <span>庫存:<%= item.quantity %></span>
                     <div class="subtotal"><%= item.product.price %></div>
                   </div>
@@ -71,19 +67,25 @@
               <span>選擇收件地與運送方式</span>
             </div>
         
-            <div class="deliver-to">
+            <!-- <div class="deliver-to">
               <select class="border border-gray-400 inline">
                 <option value disabled>請選擇運送方式</option>
                 <option value="TW">台灣</option>
                 <option value="CN">中國大陸</option>
                 <option value="HK">香港</option>
               </select>
-            </div>
+            </div> -->
         
             <div class="how-to-deliver">
               <select class="border border-gray-400 inline">
                 <option value disabled>請選擇收件國家 / 地區</option>
                 <optgroup label="從 台灣 寄出"></optgroup>
+                <%= 1.upto(Delivery.all.count) do |i| %>
+                  <option value="<%= Delivery.find(2) %>"><%= Delivery.find(i)[:shipping_method] %>
+                  </option>
+                <% end %>
+                
+
                 <option value="seven-eleven">7-11取貨 NT$60</option>
                 <option value="CN">順豐速通 NT$1,000</option>
               </select>
