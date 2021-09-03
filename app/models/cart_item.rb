@@ -18,11 +18,11 @@ class CartItem
     @quantity * price
   end
 
+  
   private
   def price ## 將 BigDecimal 轉成數字
     product.price.to_i
   end
 
-  
 
 end

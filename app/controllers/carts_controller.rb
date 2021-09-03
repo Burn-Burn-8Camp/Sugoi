@@ -3,12 +3,16 @@ class CartsController < ApplicationController
   end
 
   def add
+    
+    current_cart.add_item(params[:id])
+    session[:cart1289] = current_cart.serialize
+    
+    redirect_to tests_path, notice: "已加至購物車"
+  end
 
-    cart = Cart.new
-    cart.add_item(params[:id])
-    session[:cart1298] = cart.serialize
-
-    redirect
+  def destroy
+    session[:cart1289] = nil
+    redirect_to tests_path, notice: "購物車已清除"
   end
 
 end
