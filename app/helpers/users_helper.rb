@@ -13,7 +13,7 @@ module UsersHelper
   def up_rank_icon(accumulated_amount)
     if accumulated_amount <= 2000
       "<i class='fas fa-medal'></i>"
-    elsif accumulated_amount >= 10000
+    elsif accumulated_amount <= 10000
       "<i class='fas fa-trophy'></i>"
     end 
   end
@@ -23,7 +23,7 @@ module UsersHelper
       "白銀會員"
     elsif accumulated_amount <= 10000
       "尊貴會員"
-    elsif accumulated_amount >= 20000
+    # elsif accumulated_amount >= 20000
      
     end
   end
@@ -35,6 +35,14 @@ module UsersHelper
       "白銀會員"
     elsif accumulated_amount >= 20000
       "尊貴會員"  
+    end
+  end
+
+  def still_need(accumulated_amount)
+    if accumulated_amount < 2000
+      2000 - accumulated_amount
+    elsif accumulated_amount < 10000 
+      10000 - accumulated_amount
     end
   end
 end
