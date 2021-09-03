@@ -1,162 +1,132 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-
-
-<body>
-  <body class="debug-screens">
+<div class="container">
+  <div class="input-wrapper">
+    <input type="checkbox" id="select_all">
+    <label for="select_all">選擇全部</label>
+  </div>
+  <%= link_to "清空購物車", cart_path, method: "delete" %>
   
-    <div class="container">
-  
-      <div class="input-wrapper">
-        <input type="checkbox" id="select_all">
-        <label for="select_all">選擇全部</label>
-      </div>
-      <%= link_to "清空購物車", cart_path, method: "delete" %>
-      
-      <% current_cart.items.each do |item| %>
-        <div class="selected-item border border-gray-500">
-          <div class="item-wrapper">
-            <div class="item-header border-b-2 border-gray-500">
-              <input type="checkbox">
-              <a href="#">設計館</a>
+  <% current_cart.items.each do |item| %>
+    <div class="selected-item border border-gray-500">
+      <div class="item-wrapper">
+        <div class="item-header border-b-2 border-gray-500">
+          <input type="checkbox">
+          <a href="#">設計館</a>
+        </div>
+    
+        <div class="item-body-wrap ">
+          <div class="item-body border flex">
+            <div class="item-img border ">
+              <img src="https://picsum.photos/120/120/?random=<%= item.product_id %>">
             </div>
-        
-            <div class="item-body-wrap ">
-              <div class="item-body border flex">
-                <div class="item-img border ">
-                  <img src="https://picsum.photos/120/120/?random=<%= item.product_id %>">
-                </div>
-                <div class="item-name border">
-                  <a href="#"><%= item.product.name %></a>
-                  <!-- <div class="discount">
-                    <span>35折</span>
-                  </div>
-                  <div class="item-color">
-                    <span>銀色 - 純銀</span>
-                  </div> -->
-        
-                  
-                  <div class="item-qantity">
-                
-                    <select class="border border-gray-400 inline">
-                      <%= 1.upto(item.quantity) do |i| %>
-                        <option value="<%= "#{i}" %>"><%= "#{i}" %></option>
-                      <% end %>
-                    </select>
-
-                    <span>庫存:<%= item.quantity %></span>
-                    <div class="subtotal"><%= item.product.price %></div>
-                  </div>
-        
-        
-                </div>
+            <div class="item-name border">
+              <a href="#"><%= item.product.name %></a>
+              <!-- <div class="discount">
+                <span>35折</span>
               </div>
-        
+              <div class="item-color">
+                <span>銀色 - 純銀</span>
+              </div> -->
+    
+              <div class="item-qantity">        
+                <select class="border border-gray-400 inline">
+                  <%= 1.upto(item.quantity) do |i| %>
+                    <option value="<%= "#{i}" %>"><%= "#{i}" %></option>
+                  <% end %>
+                </select>
+
+                <span>庫存:<%= item.quantity %></span>
+                <div class="subtotal"><%= item.product.price %></div>
+              </div>
             </div>
-        
           </div>
-        
-          <div class="deliver-item">
-            <div class="deliver-item-title">
-              <span>選擇收件地與運送方式</span>
-            </div>
-        
-            <!-- <div class="deliver-to">
-              <select class="border border-gray-400 inline">
-                <option value disabled>請選擇運送方式</option>
-                <option value="TW">台灣</option>
-                <option value="CN">中國大陸</option>
-                <option value="HK">香港</option>
-              </select>
-            </div> -->
-        
-            <div class="how-to-deliver">
-              <select class="border border-gray-400 inline">
-                <option value disabled>請選擇收件國家 / 地區</option>
-                <optgroup label="從 台灣 寄出"></optgroup>
-                <%= 1.upto(Delivery.all.count) do |i| %>
-                  <option value="<%= Delivery.find(2) %>"><%= Delivery.find(i)[:shipping_method] %>
-                  </option>
-                <% end %>
-                
-
-                <option value="seven-eleven">7-11取貨 NT$60</option>
-                <option value="CN">順豐速通 NT$1,000</option>
-              </select>
-        
-              <ul class="promo">
-                <li>通知出貨後約 1 - 2 天寄達 | 提供追蹤</li>
-                <li>滿 NT$ 1,000 免運費</li>
-              </ul>
-            </div>
-        
-          </div>
-
-
-
         </div>
-
-        <!-- <tfoot>
-          <tr>
-            <td colspan="3">總計</td>
-            <td>
-              <%= current_cart.total %>
-            </td>
-          </tr>
-        </tfoot> -->
-
-      <% end %>
-
-
-
-      <div class="order-list border border-gray-500 mb-3">
-        <div class="calulate-page-header bg-gray-300">訂單摘要</div>
-        <div class="calulate-page-body">
-          <div class="summary-items flex my-3">
-            <span class="summary-items-title ">商品總計</span>
-            <span class="summary-items-price">NT$<%= current_cart.total %></span>
-          </div>
-  
-          <div class="summary-items-freight my-3">
-            <span class="delivery-fee-title">運費總計</span>
-            <span class="delivery-fee-price">NT$</span>
-          </div>
-  
-          <div>
-            <p>
-              首綁首刷國泰世華卡，滿 NT$1000 現折 NT$100 (限量)！僅限「常用信用卡」結帳
-            </p>
-            <p>
-              實際運費金額以購物車結算或是到貨時收取的金額為準。
-            </p>
-          </div>
-  
-          <div class="coupon">
-            <a href="#">使用優惠券、P Coins 或禮物卡</a>
-          </div>
-  
-        </div>
-  
-        <div class="border-t-2 border-gray-400 my-3">
-          <span class="total-price-title">結帳總金額</span>
-          <span class="total-price">
-            <%= current_cart.total %>               
-          </span>
-        </div>
-        <div class="my-3">
-          <a href="#" class="bg-red-400 p-3 text-white rounded inline-block">前往結帳</a>
-        </div>
-  
       </div>
-  
+    
+      <div class="deliver-item">
+        <div class="deliver-item-title">
+          <span>選擇收件地與運送方式</span>
+        </div>
+    
+        <!-- <div class="deliver-to">
+          <select class="border border-gray-400 inline">
+            <option value disabled>請選擇運送方式</option>
+            <option value="TW">台灣</option>
+            <option value="CN">中國大陸</option>
+            <option value="HK">香港</option>
+          </select>
+        </div> -->
+    
+        <div class="how-to-deliver">
+          <select class="border border-gray-400 inline">
+            <option value disabled>請選擇收件國家 / 地區</option>
+            <optgroup label="從 台灣 寄出"></optgroup>
+            <%= 1.upto(Delivery.all.count) do |i| %>
+              <option value="<%= Delivery.find(2) %>"><%= Delivery.find(i)[:shipping_method] %>
+              </option>
+            <% end %>
+            
+
+            <option value="seven-eleven">7-11取貨 NT$60</option>
+            <option value="CN">順豐速通 NT$1,000</option>
+          </select>
+    
+          <ul class="promo">
+            <li>通知出貨後約 1 - 2 天寄達 | 提供追蹤</li>
+            <li>滿 NT$ 1,000 免運費</li>
+          </ul>
+        </div>
+    
+      </div>
+    </div>
+    <!-- <tfoot>
+      <tr>
+        <td colspan="3">總計</td>
+        <td>
+          <%= current_cart.total %>
+        </td>
+      </tr>
+    </tfoot> -->
+  <% end %>
+
+
+
+  <div class="order-list border border-gray-500 mb-3">
+    <div class="calulate-page-header bg-gray-300">訂單摘要</div>
+    <div class="calulate-page-body">
+      <div class="summary-items flex my-3">
+        <span class="summary-items-title ">商品總計</span>
+        <span class="summary-items-price">NT$<%= current_cart.total %></span>
+      </div>
+
+      <div class="summary-items-freight my-3">
+        <span class="delivery-fee-title">運費總計</span>
+        <span class="delivery-fee-price">NT$</span>
+      </div>
+
+      <div>
+        <p>
+          首綁首刷國泰世華卡，滿 NT$1000 現折 NT$100 (限量)！僅限「常用信用卡」結帳
+        </p>
+        <p>
+          實際運費金額以購物車結算或是到貨時收取的金額為準。
+        </p>
+      </div>
+
+      <div class="coupon">
+        <a href="#">使用優惠券、P Coins 或禮物卡</a>
+      </div>
+
     </div>
 
-</body>
+    <div class="border-t-2 border-gray-400 my-3">
+      <span class="total-price-title">結帳總金額</span>
+      <span class="total-price">
+        <%= current_cart.total %>               
+      </span>
+    </div>
+    <div class="my-3">
+      <a href="#" class="bg-red-400 p-3 text-white rounded inline-block">前往結帳</a>
+    </div>
 
-</html>
+  </div>
+</div>

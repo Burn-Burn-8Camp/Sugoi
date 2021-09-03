@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
- 
+  root 'products#index'
   resources :products
 
   resource :cart, only:[:show, :destroy] do
@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get 'hello_world', to: 'hello_world#index'
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
+
   resource :order, only:[:index, :show] do
     collection do
       

@@ -1,28 +1,16 @@
 class Cart
   attr_reader :items
 
-  def self.from_hash(hash)
-    if hash && hash["items"]
-      items = hash["items"].map { |item|
-        CartItem.new(item["product_id"], item["quantity"])
-      }
-      Cart.new(items)
-    else
-      Cart.new
-    end
-  end
-
   def initialize(items = [])
     @items = items
   end
 
-  def add_item(id)
+  def add_item(id, name)
     found_item = @items.find { |item| item.product_id == id.to_i }
-
     if found_item
       found_item.increment!
     else
-      @items << CartItem.new(id)   
+      @items << CartItem.new(id, name)   
     end
   end
 
@@ -38,9 +26,20 @@ class Cart
 
   def serialize
     t = @items.map { |item|
-      { "product_id" => item.product.id, "quantity" => item.quantity }
+      { "product_id" => item.product.id, "quantity" => item.quantity, "name" => item.name }
     }
     { "items" => t }
+  end
+
+  def self.from_hash(hash)
+    if hash && hash["items"]
+      items = hash["items"].map { |item|
+        CartItem.new(item["product_id"], item["name"], item["quantity"])
+      }
+      Cart.new(items)
+    else
+      Cart.new
+    end
   end
 
   private

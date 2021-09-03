@@ -3,8 +3,7 @@ class CartsController < ApplicationController
   end
 
   def add
-    
-    current_cart.add_item(params[:id])
+    current_cart.add_item(params[:id], params[:name])
     session[:cart1289] = current_cart.serialize
     
     redirect_to tests_path, notice: "已加至購物車"
