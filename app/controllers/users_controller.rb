@@ -1,14 +1,10 @@
 class UsersController < ApplicationController
     before_action  :authenticate_user!
 
-    def edit
-        
+    def edit   
     end
 
     def profile
-      p "========"
-      p current_user
-      p "========"
     end
       # def home
 
