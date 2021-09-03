@@ -36,16 +36,54 @@
 				<div class="rounded-full w-10 h-10 m-1" tabindex="0">
 					<img src="https://i.pravatar.cc/500?img=32">
 				</div>
-				<ul tabindex="0" class="p-2 shadow menu dropdown-content bg-blue-800 rounded-box w-52">
+				<ul tabindex="0" class="p-2 shadow menu dropdown-content bg-white-800 rounded-box w-52">
+					<li class= "flex">
+						<a href="#"><%= sanitize now_rank_icon(current_user.accumulated_amount) %>
+									<%= current_user.name %>						
+						</a>
+		     		</li>
+
 					<li>
-						<a>Item 1</a>
-					</li> 
-					<li>
-						<a>Item 2</a>
-					</li> 
-					<li>
-						<a>Item 3</a>
+						<a href="#">我的信箱</a>
 					</li>
+
+					<li>
+						<a href="#">通知中心</a>
+					</li>
+
+					<li>
+						<a href="#">P_coins</a>
+					</li>
+
+					<li>
+						<a href="#">會員專區</a>
+						<p><%= now_user_rank(current_user.accumulated_amount)%></p>
+					</li>
+
+					<li>
+						<a href="#">優惠卷</a>
+					</li>
+
+					<li>
+						<a href="#">我的獎勵</a>
+					</li>
+
+					<li>
+						<a href="#">購買訂單</a>
+					</li>
+
+					<li>
+						<a href="#">邀朋友獲得獎勵</a>
+					</li>
+
+					<li>
+						<a href="#">帳號設定</a>
+					</li>
+
+					<li>
+						<a href="#">登出</a>
+					</li>
+
 				</ul>
 			</div>
 		</div>

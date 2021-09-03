@@ -8,7 +8,7 @@
         <h1 class='text-lg mb-2'><%= current_user.name %></h1>
       <div>
         <a href="#" class='text-sm'><%= sanitize "#{now_rank_icon(current_user.accumulated_amount)}" %>
-                                    <%="#{up_user_rake(current_user.accumulated_amount)} 
+                                    <%="#{now_user_rank(current_user.accumulated_amount)} 
                                     #{current_user.country}" %>
                                     </a> 
       
@@ -41,7 +41,11 @@
         <p><%= sanitize up_rank_icon(current_user.accumulated_amount) %></p>
       </div>
       <div>
-        <p>消費金額還需 NT$<%= still_need(current_user.accumulated_amount) %></p>
+        <% if current_user.accumulated_amount >= 20000 %>
+          <p>恭喜您已達成任務</p>
+        <% else %>
+          <p>消費金額還需 NT$<%= still_need(current_user.accumulated_amount) %></p>
+        <% end %>
       </div>
     </div>
   </div>
@@ -52,14 +56,22 @@
       <h2 class="text-lg mt-2 ml-3">下一年度升級任務</h2>
     </div>
     <div>
-      <p class="mt-2 ml-3">完成以下一項條件,可在下一個年度升級為<%= sanitize user_rank(current_user.accumulated_amount) %></p>
+      <% if current_user.accumulated_amount >= 20000 %>
+        <p>恭喜您已達成任務</p>
+      <% else %>
+        <p class="mt-2 ml-3">完成以下一項條件,可在下一個年度升級為<%= sanitize user_rank(current_user.accumulated_amount) %></p>
+      <% end %>
     </div>
     <div class="flex mt-3 ml-8">
       <div>
         <p><%= sanitize up_rank_icon(current_user.accumulated_amount) %></p>
       </div>
       <div>
-        <p>消費金額還需 NT$<%= still_need(current_user.accumulated_amount) %></p>
+        <% if current_user.accumulated_amount >= 20000  %>
+          <p>恭喜您在下一年度為尊貴會員</p>
+        <% else %>
+          <p>消費金額還需 NT$<%= still_need(current_user.accumulated_amount) %></p>
+        <% end %>
       </div>
     </div>
   </div>
