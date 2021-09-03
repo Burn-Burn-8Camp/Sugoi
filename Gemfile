@@ -27,8 +27,9 @@ gem 'pagy', '~> 3.5'
 
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
+gem 'omniauth-github'
 gem "omniauth-rails_csrf_protection"
-
+gem 'activerecord-session_store'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -58,6 +59,8 @@ group :development do
   
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+  
+  gem 'pry'
 end
 
 group :test do

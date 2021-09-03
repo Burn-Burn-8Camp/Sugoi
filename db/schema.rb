@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 2021_09_03_082854) do
     t.string "name"
     t.decimal "price"
     t.integer "quantity"
-    t.text "describtion"
     t.string "category"
     t.string "material"
     t.string "manufacturing_method"
@@ -68,6 +67,7 @@ ActiveRecord::Schema.define(version: 2021_09_03_082854) do
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "description"
   end
 
   create_table "users", force: :cascade do |t|
