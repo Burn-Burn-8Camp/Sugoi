@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.all
+    #render html: params
+    
   end
 
   def new
