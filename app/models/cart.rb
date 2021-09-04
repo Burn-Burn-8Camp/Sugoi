@@ -6,7 +6,7 @@ class Cart
   end
 
   def add_item(id, name)
-    found_item = @items.find { |item| item.product_id == id.to_i }
+    found_item = @items.find { |item| item.product_id === id.to_i }
     if found_item
       found_item.increment!
     else
@@ -44,7 +44,7 @@ class Cart
 
   private
   def is_children_day?
-    Time.now.month == 4 && Time.now.day == 4
+    Time.now.month === 4 && Time.now.day === 4
   end
 
 

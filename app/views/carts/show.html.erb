@@ -3,7 +3,7 @@
     <input type="checkbox" id="select_all">
     <label for="select_all">選擇全部</label>
   </div>
-  <%= link_to "清空購物車", cart_path, method: "delete" %>
+ 
   
   <% current_cart.items.each do |item| %>
     <div class="selected-item border border-gray-500">
