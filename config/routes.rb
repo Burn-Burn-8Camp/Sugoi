@@ -15,10 +15,10 @@ Rails.application.routes.draw do
 
   resources :orders, only:[:index, :show, :create] do
     collection do
-      get :payment, to: 'payments#payment'
+      post :response, to: 'payments#notify_response'
     end
     member do
-      
+      get :payment, to: 'payments#payment'
     end
   end
 

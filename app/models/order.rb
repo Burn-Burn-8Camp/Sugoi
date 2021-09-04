@@ -10,6 +10,36 @@ class Order < ApplicationRecord
   validates :address, presence: true
   validates :delivery, presence: true
   
+  include AASM
+  aasm column: 'state' do
+    state :pending, initial: true
+    state :paid, :picked, :in_transit, :arrived, :cancelled, :returned
+  
+    event :pay do
+    transitions from: :pending, to: :paid
+    end
+  
+    event :pick do
+    transitions from: :paid, to: :picked
+    end
+
+    event :transport do
+    transitions from: :picked, to: :in_transit
+    end
+  
+    event :arrive do
+    transitions from: :in_transit, to: :arrived
+    end
+
+    event :cancel do
+    transitions from: [:pending, :paid, :picked], to: :cancelled
+    end
+
+    event :return do
+    transitions from: :arrived, to: :returned
+    end
+  end
+
   private
   def paddingZero(num, digits)
     (("0" * digits) + num.to_s).last(digits)

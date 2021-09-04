@@ -1,11 +1,12 @@
 class OrdersController < ApplicationController
 	before_action  :authenticate_user!, only: [:checkout]
 	before_action :find_order, only: [:show]
+	
 	def index
 		@orders = current_user.orders.all 
 	end
 	def show
-
+		@items = @order.order_items
 	end
 	def checkout
 		@order = Order.new
@@ -28,7 +29,7 @@ class OrdersController < ApplicationController
 
 		if order.save
 			session[:cart1289] = nil
-			redirect_to payment_orders_path, notice: '訂單成立'
+			redirect_to payment_order_path(order.id), notice: '訂單成立'
 		else
 			render html: "Fail"
 		end

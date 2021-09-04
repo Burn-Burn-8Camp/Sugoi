@@ -12,7 +12,7 @@
 		訂單明細
 	  </div>
 	  <div class="collapse-content">
-		<% @order.order_items.each do |item| %>
+		<% @items.each do |item| %>
 			<div class='border rounded m-3'>
 				<p class='p-3'>品名：<%= item.name %></p>
 				<p class='p-3'>單價：<%= item.price.to_i %></p>

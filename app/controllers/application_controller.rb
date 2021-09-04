@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
     include Pagy::Backend
     helper_method :current_cart
 
-    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+    # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
     private
     def configure_permitted_parameters
@@ -15,9 +15,9 @@ class ApplicationController < ActionController::Base
       @cart1289 ||= Cart.from_hash(session[:cart1289])
     end
 
-    def record_not_found
-      render file: 'public/404.html', stats: :not_found
-    end
+    # def record_not_found
+    #   render file: 'public/404.html', stats: :not_found
+    # end
 
 end
 
