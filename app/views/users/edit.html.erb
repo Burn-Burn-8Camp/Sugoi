@@ -1,1 +1,11 @@
-<h1>編輯資料</h1>
+<h1>基本資料</h1>
+
+
+<div class="">
+  <%= form_for(@user) do |f| %>
+
+  <%= f.label :name,"顯示暱稱"%>
+  <%= f.text_field :name %>
+
+  <% end %>
+</div>
