@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_action  :authenticate_user!, only: [:add]
   before_action :find_cart_item, only: [:add]
   def show
   end

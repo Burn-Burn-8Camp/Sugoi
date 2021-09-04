@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resource :cart, only:[:show, :destroy] do
     collection do
       post :add, path:'add/:id'
+      get :checkout, to: 'orders#checkout'
     end
   end
 
@@ -12,8 +13,11 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
 
-  resource :order, only:[:index, :show] do
+  resources :orders, only:[:index, :show, :create] do
     collection do
+      get :payment, to: 'payments#payment'
+    end
+    member do
       
     end
   end

@@ -13,7 +13,7 @@
           <a href="#">設計館</a>
         </div>
     
-        <div class="item-body-wrap ">
+        <div class="item-body-wrap">
           <div class="item-body border flex">
             <div class="item-img border ">
               <img src="https://picsum.photos/120/120/?random=<%= item.product_id %>">
@@ -34,8 +34,8 @@
                   <% end %>
                 </select>
 
-                <span>庫存:<%= item.quantity %></span>
-                <div class="subtotal"><%= item.product.price %></div>
+                <span>商品數量:<%= item.quantity %></span>
+                <div class="subtotal"><%= item.product.price.to_i %></div>
               </div>
             </div>
           </div>
@@ -125,8 +125,9 @@
       </span>
     </div>
     <div class="my-3">
-      <a href="#" class="bg-red-400 p-3 text-white rounded inline-block">前往結帳</a>
+      <button class="bg-red-400 p-3 text-white rounded inline-block">
+        <%= link_to '前往結帳', checkout_cart_path %>
+      </button>
     </div>
-
   </div>
 </div>

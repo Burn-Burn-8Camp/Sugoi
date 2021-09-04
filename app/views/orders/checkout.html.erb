@@ -1,0 +1,68 @@
+<h1>選擇設計館</h1>
+<%= link_to '< 返回購物車', cart_path, class: "text-blue-400" %>
+<% current_cart.items.each do |item| %>
+	<div class="item-body-wrap">
+		<div>館名:??</div>
+		<div class="item-body flex">
+		<div class="item-img border inline-block">
+			<img src="https://picsum.photos/120/120/?random=<%= item.product_id %>">
+		</div>
+		<div class="item-name border">
+			<ul>
+				<li>
+					商品名稱：<%= item.product.name %>
+				</li>
+				<li>
+					商品單價：<%= item.product.price.to_i %>
+				</li>
+				<li>
+					商品數量:<%= item.quantity %>
+				</li>
+			</ul>
+			<div class="subtotal">小計：<%= item.total %></div>
+			</div>
+		</div>
+		</div>
+	</div>
+<% end %>
+
+<div>
+	<p class='font-bold text-xl'>商品總計：<%= current_cart.total %></p>
+	<p class='font-bold text-xl'>商品折抵:</p>
+	<p class='font-bold text-xl'>運費總計:</p>
+	<p class='font-bold text-xl'>結帳總金額：<%= current_cart.total %></p>
+</div>
+
+<%= form_for @order, html: {class: 'border-2 border-black my-5 inline-block p-3 rounded'} do |f| %>
+	<h3 class='text-xl font-bold'>填寫收件人資訊</h3>
+	<div>
+		<%= f.label :recceiver, "收件人姓名：" %>
+		<%= f.text_field :receiver %>
+	</div>
+	<div>
+		<%= f.label :tel, "收件人手機：" %>
+		<%= f.telephone_field :tel %>
+	</div>
+	<div>
+		<%= f.label :email, "購買人電子信箱：" %>
+		<%= f.email_field :email %>
+	</div>
+	<div>
+		<%= f.label :address, "收件人地址：" %>
+		<%= f.text_field :address %>
+	</div>
+	<div>
+		<%= f.label :delivery, "運送方式：" %>
+		<%= f.select(:delivery) do %>
+			<% @deliveries.each do |delivery| %>
+				<%= content_tag(:option, delivery.shipping_method, value: delivery.shipping_method) %>
+			<% end %>
+		<% end %>
+	</div>
+
+
+	<div>
+		<%= f.submit '建立訂單', class: 'btn btn-primary' %>
+	</div>
+<% end %>
+
