@@ -2,9 +2,9 @@ module Newebpay
 	class Mpg
 		attr_accessor :info
 		def initialize(params)
-			@key = "ltke543B1aiqspeHs8GnpJzIC7gVKlYv"
-			@iv = "CIeXRaemiFUxIqzP"
-			@merchant_id = "MS122660684"
+			@key = ENV["merchant_hash_key"]
+			@iv = ENV["merchant_hash_iv"]
+			@merchant_id = ENV["merchant_id"]
 			@info = {}
 			set_info(params)
 		end
@@ -31,8 +31,8 @@ module Newebpay
 			info[:TimeStamp] = Time.now.to_i
 			info[:RespondType] = 'JSON'
 			info[:Version] = '1.6'
-			info[:ReturnURL] = 'https://3180-61-220-182-115.ngrok.io/orders/response'
-			info[:NotifyURL] = 'https://3180-61-220-182-115.ngrok.io/orders/response'
+			info[:ReturnURL] = 'https://d480-220-133-155-141.ngrok.io/orders/response'
+			info[:NotifyURL] = 'https://d480-220-133-155-141.ngrok.io/orders/response'
 			info[:LoginType] = 0
 			info[:CREDIT] = 1
 			info[:VACC] = 1
