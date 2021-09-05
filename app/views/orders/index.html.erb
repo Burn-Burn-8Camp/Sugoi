@@ -14,8 +14,8 @@
 			<tr>
 				<td><%= order.serial %></td>
 				<td><%= order.total %></td>
-				<td><%= order.state %></td>
-				<td class='btn bg-green-400'><%= link_to '前往明細', order_path(order) %></td>
+				<td><%= check_state(order) %></td>
+				<td><%= link_to '前往明細', order_path(order), class: 'border-2 rounded p-3' %></td>
 			</tr>
 			<% end %>
 		</tbody>

@@ -12,6 +12,7 @@ class PaymentsController < ApplicationController
 
 
 	private
+
 	def check_response(params)
 		response = Newebpay::MpgResponse.new(params[:TradeInfo])
 		order = Order.find_by(serial: response.order_no)

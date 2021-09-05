@@ -6,13 +6,9 @@ import "styles"
 // CSS 打包
 import "components/react_application"
 // react js 打包
-
-import "styles"
-// CSS 打包
-import "components/react_application"
-// react js 打包
-
+import "controllers/stateStep"
 
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+

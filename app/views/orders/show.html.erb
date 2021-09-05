@@ -1,4 +1,13 @@
-<h1 class='text-lg'>訂單明細</h1>
+<h1 class='text-lg text-center'>訂單明細</h1>
+
+<ul class="w-full steps order-steps">
+  <li class="step step-primary" id='pending'>待付款</li> 
+  <li class="step" id='paid'>已付款</li> 
+  <li class="step" id='picked'>撿貨中</li> 
+  <li class="step" id='in_transit'>運送中</li>
+  <li class="step" id='arrived'>已送達</li>
+</ul>
+
 <div class='border rounded'>
 	<ul>
 		<li class='text-lg'>訂單編號：<%= @order.serial %></li>
@@ -6,6 +15,7 @@
 		<li class='text-lg'>收件人：<%= @order.receiver %></li>
 		<li class='text-lg'>收件地址：<%= @order.address %></li>
 		<li class='text-lg'>運送方式：<%= @order.delivery %></li>
+		<li class='hidden' id='order-state'><%= @order.state %></li>
 	</ul>
 	<div tabindex="0" class="collapse collapse-arrow">
 	  <div class="collapse-title text-lg font-medium">

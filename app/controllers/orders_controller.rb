@@ -1,11 +1,11 @@
 class OrdersController < ApplicationController
 	before_action  :authenticate_user!, only: [:checkout]
-	before_action :find_order, only: [:show]
 	
 	def index
-		@orders = current_user.orders.all 
+		@orders = current_user.orders.all
 	end
 	def show
+		@order = current_user.orders.find(params[:id])
 		@items = @order.order_items
 	end
 	def checkout
@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
 
 		if order.save
 			session[:cart1289] = nil
-			redirect_to payment_order_path(order.id), notice: '訂單成立'
+			redirect_to payment_order_path(order), notice: '訂單成立'
 		else
 			render html: "Fail"
 		end
@@ -40,7 +40,4 @@ class OrdersController < ApplicationController
 		params.require(:order).permit(:receiver, :tel, :email, :address, :delivery, :user_id)
 	end
 
-	def find_order
-		@order = current_user.orders.find(params[:id])
-	end
 end
