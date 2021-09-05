@@ -5,8 +5,8 @@
 			<tr>
 				<th>訂單序號</th>
 				<th>訂單總金額</th>
-				<th>訂單明細</th>
 				<th>訂單狀態</th>
+				<th>訂單明細</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -14,8 +14,8 @@
 			<tr>
 				<td><%= order.serial %></td>
 				<td><%= order.total %></td>
-				<td class='btn bg-green-400'><%= link_to '前往明細', order_path(order) %></td>
 				<td><%= order.state %></td>
+				<td class='btn bg-green-400'><%= link_to '前往明細', order_path(order) %></td>
 			</tr>
 			<% end %>
 		</tbody>
