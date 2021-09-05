@@ -7,6 +7,7 @@ import "styles"
 import "components/react_application"
 // react js 打包
 import "controllers/stateStep"
+import "controllers/swiftImg"
 
 Rails.start()
 Turbolinks.start()
