@@ -8,15 +8,15 @@ Rails.application.routes.draw do
   root "welcome#index"
 
   resources :member, only: [] do
-    collection do
-      get 'profile', to: 'users#profile'
-       
+    member do
+      get 'profile', to: 'users#profile'   
     end
     member do
       get 'edit', to: 'users#edit'
     end
-    
-
+    member do 
+      get 'about_me', to: 'users#about_me'
+    end
   end 
 
 

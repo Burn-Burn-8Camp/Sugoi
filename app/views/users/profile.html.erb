@@ -75,8 +75,37 @@
       </div>
     </div>
   </div>
-  
 </div>
+<div class="tabs block">
+  <a href="#" class="tab tab-bordered">關於我</a> 
+</div>
+<div class="block">
+  <h3>個人名片</h3>
+  <div class="flex">
+    <div class="">性別</div>
+    <div class=""><%= current_user.gender %></div>
+  </div>
+  <div class="flex">
+    <div class="">現居住地</div>
+    <div class=""><%= current_user.country %></div>
+  </div>
+  <div class="flex">
+    <div class="">加入日期</div>
+    <div class=""><%= current_user.created_at%></div>
+  </div>
+  <div class="flex">
+    <div class="">個人資料設定</div>
+    <div class="">
+      <p><%= link_to "點我更新你的個人介紹", about_me_member_path %></p>
+      <p><%= link_to "點我設定暱稱、大頭貼照、生日...", update_member_path %></p>
+    </div>
+  </div>
+  <div class="block">
+    <div class="">小提醒</div>
+    <div class="">在找你關注的設計館嗎？現在你可以在 慾望清單 裡看到喔。</div>
+  </div>
+</div>
+
 
 
 
