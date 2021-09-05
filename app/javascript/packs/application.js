@@ -3,6 +3,8 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "styles"
+
+import "search/search_log" 
 // CSS 打包
 import "components/react_application"
 // react js 打包
