@@ -1,9 +1,14 @@
 class ProductsController < ApplicationController
+  
   def index
-    @products = Product.all
-    #render html: params
-    
-  end
+    if params[:keyword] 
+      @products = Product.where(["name like '%?%'", params[:keyword]])
+    else
+      @products = Product.all
+    end
+   end
+ 
+
 
   def new
     @product = Product.new
@@ -45,14 +50,11 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
   end 
-  end
+  
 
 
   private
   def product_params
     params.require(:product).permit(:name, :price, :quantity, :describtion, :category, :material, :manufacturing_method, :country, :content)
   end
-
-
-
-
+end
