@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2 ,:github]
   has_many :orders
+  has_one :store
 
   def self.create_from_provider_data(provider_data)
     return nil if provider_data.nil?
