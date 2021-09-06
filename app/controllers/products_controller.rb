@@ -50,7 +50,12 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
   end 
-  
+
+  def search 
+    # @keyword = params[:\bkeyword]
+    render html: params
+  end
+
 
 
   private
@@ -58,3 +63,8 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:name, :price, :quantity, :describtion, :category, :material, :manufacturing_method, :country, :content)
   end
 end
+
+
+
+
+

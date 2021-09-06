@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :products
+  resources :products do
+    collection do
+      get 'search', to: "products#search"
+    end
+  end
 
 
   get 'hello_world', to: 'hello_world#index'
