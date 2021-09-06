@@ -5,6 +5,12 @@ Rails.application.routes.draw do
 
   get 'hello_world', to: 'hello_world#index'
 
+  resource :store, only: [] do
+    collection do
+      get "products/new", to: "products#new"
+    end
+  end
+
 
 
 

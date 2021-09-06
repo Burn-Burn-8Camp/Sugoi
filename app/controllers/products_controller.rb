@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+   # render html: params[:p]
 
     if @product.save
       redirect_to products_path,notice: "新增成功"
@@ -51,7 +52,7 @@ class ProductsController < ApplicationController
   def product_params
     params.require(:product).permit(:name, :price, :quantity, :describtion, :category, :material, :manufacturing_method, :country, :content)
   end
-end
+
 
 
 
