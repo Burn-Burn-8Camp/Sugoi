@@ -1,12 +1,10 @@
-<h1>商品瀏覽頁面</h1>
+<h1>新增商品頁面</h1>
 
 <%= link_to "新增商品",new_product_path %>
 
 
     
-<%= form_for (@product) do |f| %>
-
-
+<%= form_for (@product), url: products_path do |f| %>
   <%= f.label :name %>
   <%= f.text_field :name %><br />
 
@@ -34,9 +32,9 @@
   <%= f.label :content %>
   <%= f.text_field :content %><br />
 
+  <%= f.text_field :store_id, value: current_store.id, type: 'hidden' %>
+
   <%= f.submit "送出" %>
-
-
 <% end%>
 <%= link_to '回首頁', products_path %>
 

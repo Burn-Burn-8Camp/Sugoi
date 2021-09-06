@@ -2,7 +2,6 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
   
   def index
-    # @products = Product.all
     @pagy, @products = pagy(Product.all, items: 6)
   end
 
@@ -13,7 +12,7 @@ class ProductsController < ApplicationController
     @product = Product.new(product_params)
 
     if @product.save
-      redirect_to products_path,notice: "新增成功"
+      redirect_to list_store_products_path, notice: "新增成功"
     else
       render :new
     end
@@ -24,6 +23,7 @@ class ProductsController < ApplicationController
 
   def edit    
   end
+  
   def update
     if @product.update(product_params)
       redirect_to products_path,notice: "修改成功"
@@ -42,7 +42,7 @@ class ProductsController < ApplicationController
 
   private
   def product_params
-    params.require(:product).permit(:name, :price, :quantity, :description, :category, :material, :manufacturing_method, :country, :content)
+    params.require(:product).permit(:name, :price, :quantity, :description, :category, :material, :manufacturing_method, :country, :content, :store_id)
   end
 
   def find_product

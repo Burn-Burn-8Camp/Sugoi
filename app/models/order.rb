@@ -1,16 +1,16 @@
 class Order < ApplicationRecord
+  has_many :order_items
   belongs_to :user
   belongs_to :store
 
-  has_many :order_items
-
-  after_create :order_num_generator
-  
   validates :receiver, presence: true
   validates :tel, presence: true
   validates :email, presence: true
   validates :address, presence: true
   validates :delivery, presence: true
+  
+
+  after_create :order_num_generator
   
   include AASM
   aasm column: 'state' do
