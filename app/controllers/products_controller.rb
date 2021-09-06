@@ -1,8 +1,6 @@
 class ProductsController < ApplicationController
   def index
     @products = Product.all
-    #render html: params
-    
   end
 
   def new
@@ -45,13 +43,20 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
   end 
+
+  def search 
+    # @keyword = params[:\bkeyword]
+    render html: params
   end
+
 
 
   private
   def product_params
     params.require(:product).permit(:name, :price, :quantity, :describtion, :category, :material, :manufacturing_method, :country, :content)
   end
+end
+
 
 
 
