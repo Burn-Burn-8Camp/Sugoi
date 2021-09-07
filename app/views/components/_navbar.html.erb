@@ -40,10 +40,14 @@
 					<li class= "flex">
 					  <%# <a href="#"> %>
 					  	<%# <%= link_to profile_member_path do%> %>
-						  <div>
+						  <%
+=begin%>
+ <div>
 							<%= sanitize now_rank_icon(current_user.accumulated_amount) %>
 							<%= current_user.name %>
-						  </div>
+						  </div> 
+<%
+=end%>
 
 						<%# <% end %> %>
 					  <%# </a> %>
@@ -60,8 +64,12 @@
 					</li>
 
 					<li>
-						<%= link_to "會員專區", profile_member_path %>
-						<p><%= now_user_rank(current_user.accumulated_amount)%></p>
+						<%
+=begin%>
+ <%= link_to "會員專區", profile_member_path %>
+						<p><%= now_user_rank(current_user.accumulated_amount)%></p> 
+<%
+=end%>
 					</li>
 
 					<li>
