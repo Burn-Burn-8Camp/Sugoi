@@ -1,6 +1,10 @@
 class ProductsController < ApplicationController
   def index
+   if params[:keyword]
+    @products = Product.where(["name like '%?%'", params[:keyword]])
+   else
     @products = Product.all
+   end
   end
 
   def new
@@ -45,8 +49,8 @@ class ProductsController < ApplicationController
   end 
 
   def search 
-    # @keyword = params[:\bkeyword]
-    render html: params
+    @keyword = params[:keyword]
+    # render html: params
   end
 
 
