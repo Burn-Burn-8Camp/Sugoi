@@ -38,11 +38,15 @@
 				</div>
 				<ul tabindex="0" class="p-2 shadow menu dropdown-content bg-white-800 rounded-box w-52">
 					<li class= "flex">
-						<a href="#"><%= sanitize now_rank_icon(current_user.accumulated_amount) %>
-									<%= current_user.name %>						
-						</a>
-		     		</li>
+					  <%# <a href="#"> %>
+					  	<%# <%= link_to profile_member_path do%> %>
+						  <div>
+							<%= sanitize now_rank_icon(current_user.accumulated_amount) %>
+							<%= current_user.name %>
+						  </div>
 
+						<%# <% end %> %>
+					  <%# </a> %>
 					<li>
 						<a href="#">我的信箱</a>
 					</li>
@@ -56,7 +60,7 @@
 					</li>
 
 					<li>
-						<a href="#">會員專區</a>
+						<%= link_to "會員專區", profile_member_path %>
 						<p><%= now_user_rank(current_user.accumulated_amount)%></p>
 					</li>
 

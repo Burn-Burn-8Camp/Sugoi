@@ -1,11 +1,45 @@
 <h1>基本資料</h1>
 
-
+<%# <%= @user %> 
 <div class="">
-  <%= form_for(@user) do |f| %>
+  <%= form_for @user, url:edit_member_path do |f| %>
+  <div>
+    <%= f.label :name, '顯示暱稱' %>
+  </div>
+  <div>
+    <%= f.text_field :name %>
+  </div>
 
-  <%= f.label :name,"顯示暱稱"%>
-  <%= f.text_field :name %>
+  <div>
+    <%= f.label :email,"您的電子信箱" %>
+  </div>
+  <div class="">
+    <%= f.text_field :email %>
+  </div>
 
-  <% end %>
+  <div class="">
+    <%= f.label :gender,"性別" %>
+  </div>
+  <div class="">
+    <%# <%= f.select (:gender) %> 
+  </div>
+
+  <div class="">
+    <%= f.label :date, "生日" %>
+  </div>
+  <div class="">
+  </div>
+
+  <div class="">
+    <%= f.label :country, "所在地" %>
+  </div>
+  <div class="">
+    <%= f.text_field :country %>
+  </div>
+<%# 
+  <div class="">
+    <%= f.submit, "更新" %>
+  <%# </div> %> %>
+
+<% end %>
 </div>
