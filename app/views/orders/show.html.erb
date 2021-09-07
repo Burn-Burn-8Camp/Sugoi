@@ -6,6 +6,7 @@
   <li class="step" id='picked'>撿貨中</li> 
   <li class="step" id='in_transit'>運送中</li>
   <li class="step" id='arrived'>已送達</li>
+  <li class="step" id='cancelled'>已取消</li>
 </ul>
 
 <div class='border rounded'>
@@ -24,6 +25,7 @@
 	  <div class="collapse-content">
 		<% @items.each do |item| %>
 			<div class='border rounded m-3'>
+				<p class='p-3'>商店：<%= item.product.store.name %></p>
 				<p class='p-3'>品名：<%= item.name %></p>
 				<p class='p-3'>單價：<%= item.price.to_i %></p>
 				<p class='p-3'>數量：<%= item.quantity %></p>
@@ -32,3 +34,5 @@
 	  </div>
 	</div>
 </div>
+
+<%= @stores %>

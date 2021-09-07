@@ -11,6 +11,8 @@ module OrdersHelper
 				"運送中"
 			when "arrived"
 				"已送達"
+			when "cancelled"
+				"已取消"
 		end
 	end
 end

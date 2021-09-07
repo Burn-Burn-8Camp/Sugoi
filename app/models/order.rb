@@ -1,7 +1,8 @@
 class Order < ApplicationRecord
   has_many :order_items
+  has_many :store_orders
+  has_many :stores, through: :store_orders
   belongs_to :user
-  belongs_to :store
 
   validates :receiver, presence: true
   validates :tel, presence: true
@@ -49,7 +50,7 @@ class Order < ApplicationRecord
   # 補0
   def order_num_generator
     today = Time.now
-    serial = today.strftime("%Y%m%d")
+    serial = today.strftime("%Y%m%d%m%s")
 
     self.serial = "OD#{serial}#{paddingZero(self.id, 6)}"
     self.save

@@ -4,13 +4,13 @@
     <label for="select_all">選擇全部</label>
   </div>
  
-  
+
   <% current_cart.items.each do |item| %>
     <div class="selected-item border border-gray-500">
       <div class="item-wrapper">
         <div class="item-header border-b-2 border-gray-500">
-          <input type="checkbox">
-          <a href="#">設計館</a>
+          <input type="checkbox" id='store'>
+          <label for="store"><%= item.store_name %></label>
         </div>
     
         <div class="item-body-wrap">
@@ -19,13 +19,7 @@
               <img src="https://picsum.photos/120/120/?random=<%= item.product_id %>">
             </div>
             <div class="item-name border">
-              <a href="#"><%= item.product.name %></a>
-              <!-- <div class="discount">
-                <span>35折</span>
-              </div>
-              <div class="item-color">
-                <span>銀色 - 純銀</span>
-              </div> -->
+              <a href="#"><%= item.name %></a>
     
               <div class="item-qantity">        
                 <select class="border border-gray-400 inline">
@@ -33,9 +27,9 @@
                     <option value="<%= "#{i}" %>"><%= "#{i}" %></option>
                   <% end %>
                 </select>
-
+                <%# n + 1 %>
                 <span>商品數量:<%= item.quantity %></span>
-                <div class="subtotal"><%= item.product.price.to_i %></div>
+                <div class="subtotal"><%= item.price.to_i %></div>
               </div>
             </div>
           </div>
@@ -47,15 +41,6 @@
           <span>選擇收件地與運送方式</span>
         </div>
     
-        <!-- <div class="deliver-to">
-          <select class="border border-gray-400 inline">
-            <option value disabled>請選擇運送方式</option>
-            <option value="TW">台灣</option>
-            <option value="CN">中國大陸</option>
-            <option value="HK">香港</option>
-          </select>
-        </div> -->
-    
         <div class="how-to-deliver">
           <select class="border border-gray-400 inline">
             <option value disabled>請選擇收件國家 / 地區</option>
@@ -64,7 +49,7 @@
               <option value="<%= Delivery.find(2) %>"><%= Delivery.find(i)[:shipping_method] %>
               </option>
             <% end %>
-            
+            <%# n + 1 %>
 
             <option value="seven-eleven">7-11取貨 NT$60</option>
             <option value="CN">順豐速通 NT$1,000</option>
@@ -78,14 +63,6 @@
     
       </div>
     </div>
-    <!-- <tfoot>
-      <tr>
-        <td colspan="3">總計</td>
-        <td>
-          <%= current_cart.total %>
-        </td>
-      </tr>
-    </tfoot> -->
   <% end %>
 
 
