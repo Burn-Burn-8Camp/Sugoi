@@ -1,10 +1,11 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  mount_uploader :image, ImageUploader
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2 ,:github]
-
 
   def self.create_from_provider_data(provider_data)
     return nil if provider_data.nil?
