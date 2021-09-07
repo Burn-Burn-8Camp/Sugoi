@@ -1,0 +1,40 @@
+<h1>基本資料</h1>
+
+
+<%= form_for(@user, url: user_password_path) do |f| %>
+
+  <div class="field">
+  <%= f.label :"顯示暱稱" %><br />
+    <%= f.text_field :nickname, autocomplete: "顯示暱稱" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"你的電子郵件" %><br />
+    <%= f.text_field :email, autocomplete: "你的電子郵件" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"性別" %><br />
+    <%= f.text_field :gender, autocomplete: "性別" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"生日" %><br />
+    <%= f.date_field :birth, autocomplete: "生日" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :"所在地" %><br />
+    <%= f.text_field :country, autocomplete: "所在地" %>
+  </div>
+
+<%= f.submit "更新" %>
+<% end %>
+
+<br />
+<%= form_with(model: @user, url: user_password_path, local: true, :html => { multipart: true }) do |form| %>
+  <div class="form-group">
+    <%= form.label :"更換大頭貼" %><br />
+    <%= form.file_field :image, id: :restaurant_image, class: "form-control" %>
+  </div> 
+<% end %>
