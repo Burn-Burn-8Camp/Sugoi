@@ -52,8 +52,8 @@ class ProductsController < ApplicationController
   end 
 
   def search 
-    # @keyword = params[:\bkeyword]
-    render html: params
+    @keyword = params[:keyword]
+    # render html: params
   end
 
 
