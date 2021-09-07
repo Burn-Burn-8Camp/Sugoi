@@ -14,30 +14,31 @@ class OrdersController < ApplicationController
 	end
 
 	def create
-		order = current_user.orders.new(order_params)
+		render html: params
+		# order = current_user.orders.new(order_params)
 
-		current_cart.items.each do |item|
-			oi = OrderItem.new(
-				name: item.name,
-				price: item.product.price,
-				quantity: item.quantity,
-			)
-			order.order_items << oi
-		end
+		# current_cart.items.each do |item|
+		# 	oi = OrderItem.new(
+		# 		name: item.name,
+		# 		price: item.product.price,
+		# 		quantity: item.quantity,
+		# 	)
+		# 	order.order_items << oi
+		# end
 
-		order[:total] = current_cart.total
+		# order[:total] = current_cart.total
 
-		if order.save
-			session[:cart1289] = nil
-			redirect_to payment_order_path(order), notice: '訂單成立'
-		else
-			render html: "Fail"
-		end
+		# if order.save
+		# 	session[:cart1289] = nil
+		# 	redirect_to payment_order_path(order), notice: '訂單成立'
+		# else
+		# 	render html: "Fail"
+		# end
 	end
 
 	private
 	def order_params
-		params.require(:order).permit(:receiver, :tel, :email, :address, :delivery, :user_id)
+		params.require(:order).permit(:receiver, :tel, :email, :address, :delivery, :user_id, :store_id)
 	end
 
 end

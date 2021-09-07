@@ -5,12 +5,12 @@ class Cart
     @items = items
   end
 
-  def add_item(id, name)
+  def add_item(id, name, store_name)
     found_item = @items.find { |item| item.product_id === id.to_i }
     if found_item
       found_item.increment!
     else
-      @items << CartItem.new(id, name)   
+      @items << CartItem.new(id, name, store_name)   
     end
   end
 
@@ -26,7 +26,7 @@ class Cart
 
   def serialize
     t = @items.map { |item|
-      { "product_id" => item.product.id, "quantity" => item.quantity, "name" => item.name }
+      { "product_id" => item.product.id, "name" => item.name, "store" => item.store_name, "quantity" => item.quantity }
     }
     { "items" => t }
   end
@@ -34,7 +34,7 @@ class Cart
   def self.from_hash(hash)
     if hash && hash["items"]
       items = hash["items"].map { |item|
-        CartItem.new(item["product_id"], item["name"], item["quantity"])
+        CartItem.new(item["product_id"], item["name"], item["store"], item["quantity"])
       }
       Cart.new(items)
     else
