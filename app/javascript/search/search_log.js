@@ -11,10 +11,3 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
 })
-
-
-
-
-
-
-
