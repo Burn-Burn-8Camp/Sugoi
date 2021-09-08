@@ -1,4 +1,4 @@
-namespace :items do
+namespace :products do
 	desc "Generate fake products"
 	task :fake => :environment do
 		50.times do |i|

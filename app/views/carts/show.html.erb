@@ -1,46 +1,35 @@
 <div class="container">
-  <!-- <div class="flex justify-end">購物車 <%= current_cart.items %>
-  </div> -->
+  <div class="input-wrapper">
+    <input type="checkbox" id="select_all">
+    <label for="select_all">選擇全部</label>
+  </div>
   <%= link_to "清空購物車" , cart_path, method: "delete" %>
-  
 
-
-  <div class="selected_items">
-
-    <% current_cart.items.each do |item| %>    
-      <div class="selected-item border border-gray-500">
-        <div class="item-wrapper">
-          <div class="item-header border-b-2 border-gray-500">
-            <input type="checkbox">
-            <a href="#">設計館</a>
-          </div>
-      
-          <div class="item-body-wrap">
-            <div class="item-body border flex">
-              <div class="item-img border ">
-                <img src="https://picsum.photos/120/120/?random=<%= item.product_id %>">
-              </div>
-              <div class="item-name border">
-                <a href="#">
-                  <%= item.product.name %>
-                </a>
-               
-                <div class="item-qantity">
-                  <form action="#">
-                    <select class="productID" id="<%= item.product_id %>">
-                      <%= 1.upto(product_storage(item.product_id)) do |i| %>
-                        <option value="<%= " #{i}" %>"><%= "#{i}" %></option>
-                       <% end %>
-                    </select>
-                  </form>
-                  
-                                     
-                  <span>庫存:<%= product_storage(item.product_id) %></span>
-                  <div class="subtotal">
-                    NT$<%= item.total %>
-                  </div>
-
-                </div>
+  <% current_cart.items.each do |item| %>
+    <div class="selected-item border border-gray-500">
+      <div class="item-wrapper">
+        <div class="item-header border-b-2 border-gray-500">
+          <input type="checkbox" id='store'>
+          <label for="store"><%= item.store_name %></label>
+        </div>
+    
+        <div class="item-body-wrap">
+          <div class="item-body border flex">
+            <div class="item-img border ">
+              <img src="https://picsum.photos/120/120/?random=<%= item.product_id %>">
+            </div>
+            <div class="item-name border">
+              <a href="#"><%= item.name %></a>
+    
+              <div class="item-qantity">        
+                <select class="border border-gray-400 inline">
+                  <%= 1.upto(item.quantity) do |i| %>
+                    <option value="<%= "#{i}" %>"><%= "#{i}" %></option>
+                  <% end %>
+                </select>
+                <%# n + 1 %>
+                <span>商品數量:<%= item.quantity %></span>
+                <div class="subtotal"><%= item.price.to_i %></div>
               </div>
             </div>
           </div>
@@ -66,13 +55,8 @@
       
         </div>
       </div>
-      
-
-    <% end %>
-
-
-
-  </div>
+    </div>
+  <% end %>
 
 
 

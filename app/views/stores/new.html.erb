@@ -1,0 +1,17 @@
+<h1>建立商店</h1>
+<%= form_for @store, url: store_path, method: 'POST' do |f| %>
+	<div>
+		<%= f.label :name, "商店名稱" %>
+		<%= f.text_field :name %>
+	</div>
+	<div>
+		<%= f.label :introduction, "商店介紹" %>
+		<%= f.text_area :introduction %>
+	</div>
+	<div>
+		<%= f.text_field :user_id, value: current_user.id, type: 'hidden' %>
+	</div>
+	<div>
+		<%= f.submit %>
+	</div>
+<% end %>

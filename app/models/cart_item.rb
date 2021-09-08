@@ -1,9 +1,11 @@
 class CartItem
-  attr_reader :product_id, :quantity, :name
+  attr_reader :product_id, :quantity, :name, :store_name, :price
 
-  def initialize(product_id, name, quantity = 1)
+  def initialize(product_id, name, store_name, price, quantity = 1)
     @product_id = product_id
     @name = name
+    @store_name = store_name
+    @price = price
     @quantity = quantity
   end
 
@@ -20,15 +22,12 @@ class CartItem
     Product.find(@product_id)
   end
 
-  def total
-    
-    @quantity * price
+  def total 
+    @quantity * @price.to_i
   end
 
-  
-  private
-  def price ## 將 BigDecimal 轉成數字
-    product.price.to_i
+  def store
+    Product.find(@product_id).store
   end
 
 
