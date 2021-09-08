@@ -71,11 +71,11 @@ ActiveRecord::Schema.define(version: 2021_09_07_104303) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "rank"
     t.string "provider"
     t.string "uid"
     t.string "picture"
     t.string "account"
+    t.string "rank"
     t.integer "accumulated_amount", default: 0
     t.string "country"
     t.string "name"
