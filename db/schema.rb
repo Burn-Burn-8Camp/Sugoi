@@ -10,10 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_31_095407) do
+ActiveRecord::Schema.define(version: 2021_09_07_104303) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addressbooks", force: :cascade do |t|
+    t.string "receiver"
+    t.string "tel"
+    t.string "address"
+    t.string "area_code"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_addressbooks_on_user_id"
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.string "name"
+    t.string "price"
+    t.string "quantity"
+    t.bigint "order_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_items_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "serial"
+    t.string "receiver"
+    t.string "tel"
+    t.string "address"
+    t.string "email"
+    t.string "delivery"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
 
   create_table "products", force: :cascade do |t|
     t.string "name"
@@ -37,12 +71,29 @@ ActiveRecord::Schema.define(version: 2021_08_31_095407) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "rank"
     t.string "provider"
     t.string "uid"
     t.string "picture"
     t.string "account"
+    t.integer "accumulated_amount", default: 0
+    t.string "country"
+    t.string "name"
+    t.integer "p_coins", default: 0
+    t.string "gender"
+    t.date "birthday"
+    t.string "self_about"
+    t.string "self_blog"
+    t.string "self_web"
+    t.string "life_shopping"
+    t.string "life_design"
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["rank"], name: "index_users_on_rank"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "addressbooks", "users"
+  add_foreign_key "order_items", "orders"
+  add_foreign_key "orders", "users"
 end
