@@ -1,6 +1,11 @@
 class ProductsController < ApplicationController
+  
   def index
+   if params[:keyword]
+    @products = Product.where([`name like '%?%'`, params[:keyword]])
+   else
     @products = Product.all
+   end
   end
 
   def new
@@ -9,6 +14,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
+   # render html: params[:p]
 
     if @product.save
       redirect_to products_path,notice: "新增成功"
@@ -40,9 +46,20 @@ class ProductsController < ApplicationController
   end
 
   def show
-    # @product = Product.find(params[:id])
-
+    @product = Product.find(params[:id])
   end 
+
+
+  def search 
+    # @keyword = params[:keyword]
+    # render html: params
+    if params[:keyword]
+      @products = Product.where("name LIKE ?", "%#{params[:keyword]}%")
+     else
+      @products = Product.all
+     end
+  end
+
 
 
   private
@@ -50,6 +67,8 @@ class ProductsController < ApplicationController
     params.require(:product).permit(:name, :price, :quantity, :describtion, :category, :material, :manufacturing_method, :country, :content)
   end
 end
+
+
 
 
 
