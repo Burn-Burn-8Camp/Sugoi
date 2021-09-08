@@ -101,11 +101,25 @@ ActiveRecord::Schema.define(version: 2021_09_07_164202) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "rank"
     t.string "provider"
     t.string "uid"
     t.string "picture"
     t.string "account"
+    t.integer "accumulated_amount", default: 0
+    t.string "country"
+    t.string "name"
+    t.integer "p_coins", default: 0
+    t.string "gender"
+    t.date "birthday"
+    t.string "self_about"
+    t.string "self_blog"
+    t.string "self_web"
+    t.string "life_shopping"
+    t.string "life_design"
+    t.string "image"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["rank"], name: "index_users_on_rank"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 

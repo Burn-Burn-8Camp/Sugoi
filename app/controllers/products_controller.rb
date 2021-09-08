@@ -2,7 +2,13 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
   
   def index
-    @pagy, @products = pagy(Product.includes(:store), items: 6)
+    if params[:keyword]
+      @pagy, @products = pagy(Product.where([`name like '%?%'`, params[:keyword]]), items: 6)
+    else
+      @pagy, @products = pagy(Product.all, items: 6)
+    end
+  end
+    
   end
 
   def new
@@ -36,6 +42,18 @@ class ProductsController < ApplicationController
   end
 
 
+  def search 
+    # @keyword = params[:keyword]
+    # render html: params
+    if params[:keyword]
+      @products = Product.where("name LIKE ?", "%#{params[:keyword]}%")
+     else
+      @products = Product.all
+     end
+  end
+
+
+
   private
   def product_params
     params.require(:product).permit(:name, :price, :quantity, :description, :category, :material, :manufacturing_method, :country, :content, :store_id)
@@ -45,6 +63,8 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 end
+
+
 
 
 

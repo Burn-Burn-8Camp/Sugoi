@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'products#index'
+  root "welcome#index"
   resource :store do
     resources :products, only: [] do
       collection do
@@ -11,38 +11,39 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :orders, only: [] do
+    resource :cart, only:[:show, :destroy] do
       collection do
-        get 'list', to: 'stores#orders_list'
+        post :add, path:'add/:id'
+        get :checkout, to: 'orders#checkout'
+      end
+    end
+  
+    resources :orders, only:[:index, :show, :create] do
+      collection do
+        post :response, to: 'payments#notify_response'
       end
       member do
-        get 'detail', to: 'stores#order_detail'
+        get :payment, to: 'payments#payment'
       end
-      
+    end
+  end
+
+  resources :products do
+    collection do
+      get 'search', to: "products#search"
     end
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
-  resources :products
 
-  resource :cart, only:[:show, :destroy] do
+  resources :member, only: [] do
     collection do
-      post :add, path:'add/:id'
-      get :checkout, to: 'orders#checkout'
+      get 'profile', to: 'users#profile'   
+      get 'edit', to: 'users#edit'
+      get 'about', to: 'users#about'
+      patch 'about', to: 'users#about'
+      get 'buy_order', to: 'users#buy_order'
     end
-  end
-
-  resources :orders, only:[:index, :show, :create] do
-    collection do
-      post :response, to: 'payments#notify_response'
-    end
-    member do
-      get :payment, to: 'payments#payment'
-    end
-  end
-
-
-
-  get 'hello_world', to: 'hello_world#index'
+  end 
 end
 

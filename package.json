@@ -10,7 +10,6 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.2",
     "autoprefixer": "^10.3.3",
-    "axios": "^0.21.3",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "daisyui": "^1.14.0",
     "js-yaml": "^4.1.0",
