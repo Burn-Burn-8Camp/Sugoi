@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "welcome#index"
+  root "products#index"
   resource :store do
     resources :products, only: [] do
       collection do
@@ -11,20 +11,29 @@ Rails.application.routes.draw do
       end
     end
 
-    resource :cart, only:[:show, :destroy] do
+    resources :orders, only: [] do
       collection do
-        post :add, path:'add/:id'
-        get :checkout, to: 'orders#checkout'
-      end
-    end
-  
-    resources :orders, only:[:index, :show, :create] do
-      collection do
-        post :response, to: 'payments#notify_response'
+        get 'list', to: 'stores#orders_list'
       end
       member do
-        get :payment, to: 'payments#payment'
+        get 'detail', to: 'stores#order_detail'
       end
+    end
+  end
+
+  resource :cart, only:[:show, :destroy] do
+    collection do
+      post :add, path:'add/:id'
+      get :checkout, to: 'orders#checkout'
+    end
+  end
+
+  resources :orders, only:[:index, :show, :create] do
+    collection do
+      post :response, to: 'payments#notify_response'
+    end
+    member do
+      get :payment, to: 'payments#payment'
     end
   end
 

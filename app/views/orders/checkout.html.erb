@@ -54,9 +54,7 @@
 	<div>
 		<%= f.label :delivery, "運送方式：" %>
 		<%= f.select(:delivery) do %>
-			<% @deliveries.each do |delivery| %>
-				<%= content_tag(:option, delivery.shipping_method, value: delivery.shipping_method) %>
-			<% end %>
+			<%= content_tag(:option, '貨運') %>
 		<% end %>
 	</div>
 

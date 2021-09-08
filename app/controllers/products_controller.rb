@@ -8,12 +8,11 @@ class ProductsController < ApplicationController
       @pagy, @products = pagy(Product.all, items: 6)
     end
   end
-    
-  end
 
   def new
     @product = Product.new
   end
+
   def create
     @product = Product.new(product_params)
     if @product.save
@@ -25,6 +24,7 @@ class ProductsController < ApplicationController
 
   def show  
   end
+
   def edit    
   end
   
@@ -41,7 +41,6 @@ class ProductsController < ApplicationController
       redirect_to products_path,notice: "刪除成功"
   end
 
-
   def search 
     # @keyword = params[:keyword]
     # render html: params
@@ -51,8 +50,6 @@ class ProductsController < ApplicationController
       @products = Product.all
      end
   end
-
-
 
   private
   def product_params

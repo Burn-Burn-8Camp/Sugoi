@@ -4,19 +4,21 @@ class OrdersController < ApplicationController
 	def index
 		@orders = current_user.orders.all
 	end
+
 	def show
 		@order = current_user.orders.find(params[:id])
 		@items = @order.order_items.includes(:product)
 	end
+
 	def checkout
 		@order = Order.new
-		@deliveries = Delivery.all
 		@cart_items = current_cart.items
 	end
 
 	def create
 		order = current_user.orders.new(order_params)
-
+		order[:total] = current_cart.total
+		store_id_list = []
 		# 購物車商品填資料
 		current_cart.items.each do |item|
 			oi = OrderItem.new(
@@ -25,13 +27,13 @@ class OrdersController < ApplicationController
 				quantity: item.quantity,
 				product_id: item.product_id
 			)
-			if !StoreOrder.exists?(order: order, store: item.store)
-				order.stores << item.store
-			end
 			order.order_items << oi
+			store_id_list << item.store
 		end
-		order[:total] = current_cart.total
-
+		
+		store_id_list.uniq!.each{ |id|
+			order.stores << id
+		}
 		
 		if order.save			
 			session[:cart1289] = nil
