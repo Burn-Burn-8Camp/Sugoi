@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action  :authenticate_user!
-    # before_action :current_user
   def index
     @user = current_user
   end

@@ -23,17 +23,17 @@
 
 
 <h2>你是怎麼過生活</h2>
-<%= form_for(@user, url: user_password_path) do |f| %>
+<%= form_for(@user, url:about_member_index_path ) do |f| %>
 
-  <div class="field">
+<div class="field">
   <%= f.label :"你喜歡什麼東西、平常愛買些什麼" %><br />
-    <%= f.text_field :life_shopping, autocomplete: "你喜歡什麼東西、平常愛買些什麼" %>
-  </div>
+  <%= f.text_field :life_shopping, autocomplete: "你喜歡什麼東西、平常愛買些什麼" %>
+</div>
 
-  <div class="field">
-    <%= f.label :"愛逛的市集、設計師、老屋聚落" %><br />
-    <%= f.text_field :life_design, autocomplete: "愛逛的市集、設計師、老屋聚落" %>
-  </div>
+<div class="field">
+  <%= f.label :"愛逛的市集、設計師、老屋聚落" %><br />
+  <%= f.text_field :life_design, autocomplete: "愛逛的市集、設計師、老屋聚落" %>
+</div>
 
 <%= f.submit "更新" %>
 <% end %>

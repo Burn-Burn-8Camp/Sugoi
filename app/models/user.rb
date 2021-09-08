@@ -18,10 +18,6 @@ class User < ApplicationRecord
     end
   end
 
-  # def print_something
-  #   'yayayaya'
-  # end
-
   def self.now_rank_icon(accumulated_amount)
     if accumulated_amount <= 2000 
       "<i class='far fas fa-award '></i>"

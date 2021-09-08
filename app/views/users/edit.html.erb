@@ -17,15 +17,6 @@
   <div class="">
     <%= f.label :gender,"性別" %><br />
     <%= f.text_field :gender, required: true, placeholder: 'Gender', class: 'form-control' %>
-
-    <%
-=begin%>
- <form action="">
-          <input type="radio" name="sex" value="Male">Male<br>
-          <input type="radio" name="sex" value="Memale">Female
-    </form> 
-<%
-=end%>
   </div>
 
   <div class="">
@@ -37,9 +28,7 @@
     <%= f.label :country, "所在地" %><br />
     <%= f.text_field :country %>
   </div>
-
-
-<%end %>
+  <%end %>
 </div>
 
 <br />
@@ -50,8 +39,8 @@
 <%= form_with(model: @user, url: '', local: true, :html => { multipart: true }) do |form| %>
 
   <div class="form-group">
-      <%= form.label :image %>
-      <%= form.file_field :image %>
+    <%= form.label :image %>
+    <%= form.file_field :image %>
   </div> 
   
 <%end %>
