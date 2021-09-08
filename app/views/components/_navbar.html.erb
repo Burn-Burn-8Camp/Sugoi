@@ -1,13 +1,12 @@
-<header>
+<% if current_user %>
+  <header>
 	<div class="navbar mb-2 shadow-lg bg-primary text-primary-content w-full">
-		<div class="px-2 mx-2 lg:flex">
-		<link href="https://unpkg.com/tailwindcss@1.8.10/dist/tailwind.min.css" rel="stylesheet" />
-			<h1 class="text-2xl" link="http://127.0.0.1:3000/products#">Sugoi</h1>
-		</div>
-		<div class="lg:flex-none">
-			<div class="form-control d-flex">
-
-			<form action="/products/search" method="GET">
+	  <div class="px-2 mx-2 lg:flex">
+		<h1 class="text-2xl">Logo</h1>
+	  </div>
+	  <div class="lg:flex-none">
+	    <div class="form-control d-flex">
+		<form action="/products/search" method="GET">
 				<input type="text" name="keyword" placeholder="搜尋好設計、體驗活動" class="input-serarch">
 					<button class="btn btn-square btn-ghost" value="search-icon">
 						<svg xmlns="" fill="none" viewBox="0 0 24 24"class="inline-block w-6 h-6 stroke-current">
@@ -17,67 +16,168 @@
 					 	</svg>
 					</button>
 			</form>					
-				<div class='flex-none hidden lg:flex'>
-					<a href="#" class='mx-2'>安心出貨</a>
-					<a href="#" class='mx-2'>拼圖</a>
-					<a href="#" class='mx-2'>失眠</a>
-					<a href="#" class='mx-2'>ipad保護套</a>
-					<a href="#" class='mx-2'>中秋禮盒</a>
-					<a href="#" class='mx-2'>文具新品</a>
-				</div>
+		    <div class='flex-none hidden lg:flex'>
+			  <a href="#" class='mx-2'>安心出貨</a>
+			  <a href="#" class='mx-2'>拼圖</a>
+			  <a href="#" class='mx-2'>失眠</a>
+			  <a href="#" class='mx-2'>ipad保護套</a>
+			  <a href="#" class='mx-2'>中秋禮盒</a>
+			  <a href="#" class='mx-2'>文具新品</a>
+	    </div>
+	  </div>
+	</div>
+	<div class='flex-1'>
+	  <button class="btn btn-square btn-ghost">
+		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+		  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+		</svg>
+	  </button>
+	</div>
+	<div class='flex-none hidden lg:flex'>
+	  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+		<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+	  </svg>
+	</div>
+	<div class='flex-1 hidden lg:flex'>
+	  <p>我想在sugoi上販售</p>
+	</div>
+	<div class="flex-none">
+	  <div class="avatar dropdown">
+		<div class="rounded-full w-10 h-10 m-1" tabindex="0">
+		  <img src="https://i.pravatar.cc/500?img=32">
+		</div>
+		<ul tabindex="0" class="p-2 shadow menu dropdown-content bg-white-800 rounded-box w-52">
+		  <li class= "flex"> 
+			<%= link_to profile_member_index_path do %>
+			<div>
+ 			  <%= sanitize User.now_rank_icon(current_user.accumulated_amount) %>
+			  <%= current_user.name %>
+			</div> 
+            <% end %>
+		  </li>  
+		  <li>
+			<a href="#">我的信箱</a>
+		  </li>
+
+		  <li>
+			<a href="#">通知中心</a>
+		  </li>
+
+		  <li>
+			<a href="#">P_coins</a>
+		  </li>
+
+		  <li>
+			<a href="#">優惠卷</a>
+		  </li>
+
+		  <li>
+			<a href="#">我的獎勵</a>
+		  </li>
+
+		  <li>
+			<%= link_to '購買訂單', buy_order_member_index_path %>
+		  </li>
+
+		  <li>
+			<a href="#">邀朋友獲得獎勵</a>
+		  </li>
+
+		  <li>
+			<%= link_to '帳號設定', edit_member_index_path %>
+		  </li>
+
+		  <li>
+			<%= link_to('登出', destroy_user_session_path, method: 'delete') %>
+		  </li>
+
+		</ul>
+	  </div>
+	</div>
+	<div class="flex-none">
+	  <button class="btn btn-square btn-ghost">
+		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+		  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+		</svg>
+	  </button>
+	</div>
+	<div class="flex-none">
+	  <button class="btn btn-square btn-ghost">
+	    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+		  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+	    </svg>
+	  </button>
+	</div>
+	<div class="flex-none">
+	  <button class="btn btn-square btn-ghost">
+		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+		  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+		</svg>
+	  </button>
+	</div>
+  </div>
+  </header>
+<% else %>
+  <header>
+	<div class="navbar mb-2 shadow-lg bg-primary text-primary-content w-full">
+	  <div class="px-2 mx-2 lg:flex">
+	    <h1 class="text-2xl">Logo</h1>
+	  </div>
+	  <div class="lg:flex-none">
+		<div class="form-control d-flex">
+		  <input type="text" placeholder="搜尋好設計、體驗活動" class="input input-ghost">
+			<div class='flex-none hidden lg:flex'>
+			  <a href="#" class='mx-2'>安心出貨</a>
+			  <a href="#" class='mx-2'>拼圖</a>
+			  <a href="#" class='mx-2'>失眠</a>
+			  <a href="#" class='mx-2'>ipad保護套</a>
+			  <a href="#" class='mx-2'>中秋禮盒</a>
+			  <a href="#" class='mx-2'>文具新品</a>
 			</div>
 		</div>
-
-<div>
-</div>
-		<div class='flex-1'>
+	  </div>
+	  <div class='flex-1'>
+	    <button class="btn btn-square btn-ghost">
+		  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+		    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+		  </svg>
+		</button>
+	  </div>
+	  <div class='flex-none hidden lg:flex'>
+	    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+		  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+		</svg>
+	  </div>
+	  <div class='flex-1 hidden lg:flex'>
+	    <p>我想在sugoi上販售</p>
+	  </div>
+	  <div class="flex-none">
+	    <div class="avatar dropdown">
+		  <% if current_user %>
+	        <%= link_to('登出', destroy_user_session_path, method: 'delete') %> |
+	        <%= link_to('修改密碼', edit_registration_path(:user)) %>
+          <% else %>
+	        <%= link_to('註冊', new_registration_path(:user)) %> |
+	        <%= link_to('登入', new_session_path(:user)) %>
+          <% end %>
 		</div>
-		<div class='flex-1 hidden lg:flex'>
-		
-			<p>我想在Sugoi上販售</p>
-			
-		</div>
-<%# ------會員中心------ %>
+	  </div>
 		<div class="flex-none">
-			<div class="avatar dropdown">
-				<div class="rounded-full w-10 h-10 m-1" tabindex="0">
-					<img src="https://img.onl/zQrJCa">
-					<!-- 大頭照 -->
-				</div>
-
-			</div>
-		</div>
-<%# -------愛心------- %>
-		<div class="flex-none">
-			<button class="btn btn-square btn-ghost">
-				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
-				</svg>
-			</button>
-		</div>
-
-<%# ------鈴鐺------ %>
-		<div class="flex-none">
-			<button class="btn btn-square btn-ghost">
-				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
-				</svg>
-			</button>
+		  <button class="btn btn-square btn-ghost">
+		    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+			  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+			</svg>
+		  </button>
 		</div>
 
 <%# -----購物車----- %>
 		<div class="flex-none">
-			<a class="cart tab icon-hover" href="/cart">
-				<svg height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
-					<path d="M17.494 4.552a.625.625 0 0 1 .105.546l-1.484 5.364a.625.625 0 0 1-.603.458H7.817l.03.088c.041.119.047.245.015.365l-.385 1.474h8.53v1.25h-9.34a.627.627 0 0 1-.605-.783l.543-2.072-2.603-7.405H2.153v-1.25h2.292c.265 0 .502.167.59.417l.457 1.302h11.505c.195 0 .38.09.497.246zM15.037 9.67l1.139-4.114H5.93L7.377 9.67zm-6.391 6.718a1.25 1.25 0 1 1-2.501 0 1.25 1.25 0 0 1 2.5 0zm7.361 0a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0z" fill="#39393e" class="color">
-					</path>
-				</svg>
-			</a>
+		  <button class="btn btn-square btn-ghost">
+		    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current">
+			  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+			</svg>
+		  </button>
 		</div>
-</header>
-
-
-
-
-
-			
+	</div>
+  </header>
+<% end %>
