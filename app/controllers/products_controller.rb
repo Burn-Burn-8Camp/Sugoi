@@ -10,7 +10,6 @@ class ProductsController < ApplicationController
   end
   def create
     @product = Product.new(product_params)
-
     if @product.save
       redirect_to list_store_products_path, notice: "新增成功"
     else
@@ -20,7 +19,6 @@ class ProductsController < ApplicationController
 
   def show  
   end
-
   def edit    
   end
   
@@ -36,8 +34,6 @@ class ProductsController < ApplicationController
     @product.destroy if @product
       redirect_to products_path,notice: "刪除成功"
   end
-
-
 
 
   private

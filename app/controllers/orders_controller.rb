@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-	before_action  :authenticate_user!, only: [:checkout]
+	before_action  :authenticate_user!, only: [:checkout, :index, :show]
 	
 	def index
 		@orders = current_user.orders.all
@@ -17,6 +17,7 @@ class OrdersController < ApplicationController
 	def create
 		order = current_user.orders.new(order_params)
 
+		# 購物車商品填資料
 		current_cart.items.each do |item|
 			oi = OrderItem.new(
 				name: item.name,
@@ -29,8 +30,9 @@ class OrdersController < ApplicationController
 			end
 			order.order_items << oi
 		end
-
 		order[:total] = current_cart.total
+
+		
 		if order.save			
 			session[:cart1289] = nil
 			redirect_to payment_order_path(order), notice: '訂單成立'

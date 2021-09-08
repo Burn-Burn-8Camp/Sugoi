@@ -1,18 +1,18 @@
 class PaymentsController < ApplicationController
 	skip_before_action :verify_authenticity_token, only: [:notify_response]
+	# 前往付錢
 	def payment
 		@order = current_user.orders.find(params[:id])
 		@form_info = Newebpay::Mpg.new(@order).form_info
 		@form_data = Newebpay::Mpg.new(@order).info
 	end
-
+	# 付錢回來
 	def notify_response
 		check_response(return_params(params))
 	end
 
 
 	private
-
 	def check_response(params)
 		response = Newebpay::MpgResponse.new(params[:TradeInfo])
 		order = Order.find_by(serial: response.order_no)

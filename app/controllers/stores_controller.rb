@@ -1,24 +1,11 @@
 class StoresController < ApplicationController
 	before_action  :authenticate_user!
 	before_action :find_store, except: [:show, :new]
+
 	def show
 
 	end
-	
-	def products_list
-		@products = current_store.products.all
-	end
-	def product_detail
-		@product = current_store.products.find(params[:id])
-	end
 
-	def orders_list
-
-	end
-	def order_detail
-
-	end
-	
 	def new
 		@store = Store.new
 	end
@@ -37,6 +24,23 @@ class StoresController < ApplicationController
 	def update
 
 	end
+	
+	def products_list
+		@products = current_store.products.all
+	end
+	def product_detail
+		@product = current_store.products.find(params[:id])
+	end
+
+	def orders_list
+		@orders = current_store.orders.all
+	end
+	def order_detail
+		@order = current_store.orders.find(params[:id])
+		@items = @order.order_items.includes(:product)
+	end
+	
+
 
 
 
