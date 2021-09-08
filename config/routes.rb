@@ -11,7 +11,7 @@ Rails.application.routes.draw do
     collection do
       get 'profile', to: 'users#profile'   
       get 'edit', to: 'users#edit'
-      get 'about_me', to: 'users#about_me'
+      get 'about', to: 'users#about'
     end
   end 
 

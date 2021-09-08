@@ -12,6 +12,10 @@ class UsersController < ApplicationController
       
     end
 
+    def about
+       @user = current_user
+    end
+
     def profile
     end
 end
