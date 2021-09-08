@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       get 'profile', to: 'users#profile'   
       get 'edit', to: 'users#edit'
       get 'about', to: 'users#about'
+      patch 'about', to: 'users#about'
+      get 'buy_order', to: 'users#buy_order'
     end
   end 
 
