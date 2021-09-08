@@ -14,10 +14,21 @@ class Cart
     end
   end
 
+  def change_item_quantity(id, quantity)
+    found_item = @items.find { |item| item.product_id === id.to_i }
+
+    if  found_item
+      found_item.changement!(quantity)
+  
+    end
+  end
+
+
   def total
     t = @items.reduce(0) { |acc, item| acc + item.total }
     t = t * 0.8 if is_children_day?
     t
+    
   end
 
   def empty?
@@ -25,6 +36,7 @@ class Cart
   end
 
   def serialize
+    
     t = @items.map { |item|
       { "product_id" => item.product.id, "quantity" => item.quantity, "name" => item.name }
     }

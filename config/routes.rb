@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     collection do
       post :add, path:'add/:id'
       get :checkout, to: 'orders#checkout'
+      post :confirmation, to: 'carts#confirm'
     end
   end
 
@@ -22,6 +23,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tests
 end
 

@@ -26,6 +26,12 @@ ActiveRecord::Schema.define(version: 2021_09_04_091934) do
     t.index ["user_id"], name: "index_addressbooks_on_user_id"
   end
 
+  create_table "delievery", force: :cascade do |t|
+    t.string "shipping_method"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "deliveries", force: :cascade do |t|
     t.string "shipping_method"
     t.datetime "created_at", precision: 6, null: false
