@@ -9,13 +9,14 @@ class OrdersController < ApplicationController
 		@order = current_user.orders.find(params[:id])
 		@items = @order.order_items.includes(:product)
 		store_id_list = @items.map { |item| item.store_id }.uniq.sort
+		# 建立重複的商店id陣列
 		@store_items = []
-		
 		store_id_list.each{ |id|
 		  @store_items << @items.select{ |item|
 			item.store_id === id 
 		 }
 		}
+		# 透過 store_id_list 把商品分類
 	end
 
 	def checkout
@@ -37,18 +38,21 @@ class OrdersController < ApplicationController
 				store_id: item.store_id
 			)
 			order.order_items << oi
+			# 建立商品實體塞進order.order_items
 			store_id_list << item.store
+			# 建立商品id序號
 		end
 		
 		store_id_list.uniq.each{ |id|
 			order.stores << id
 		}
-		
+		# 建立store跟order的多對多關聯
 		if order.save			
+			caculate_user_consume(current_user)
 			session[:cart1289] = nil
 			redirect_to payment_order_path(order), notice: '訂單成立'
 		else
-			render html: "Fail"
+			render :checkout
 		end
 	end
 
@@ -57,4 +61,9 @@ class OrdersController < ApplicationController
 		params.require(:order).permit(:receiver, :tel, :email, :address, :delivery)
 	end
 
+	def caculate_user_consume(user)
+		order = user.orders.select{ |order| order.state != "cancelled" }
+		total = order.map{|order| order[:total]}.sum
+		user.update(accumulated_amount: total)
+	end
 end

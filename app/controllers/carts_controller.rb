@@ -10,6 +10,7 @@ class CartsController < ApplicationController
         item.store_id === id 
      }
     }
+    # 相同商城會在同一欄位內
   end
 
   def add

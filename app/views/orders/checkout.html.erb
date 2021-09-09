@@ -33,6 +33,13 @@
 	<p class='font-bold text-xl'>結帳總金額：<%= current_cart.total %></p>
 </div>
 
+<% if @order.errors.any? %>
+  <ul>
+    <% @order.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
 <%= form_for @order, html: {class: 'border-2 border-black my-5 inline-block p-3 rounded'} do |f| %>
 	<h3 class='text-xl font-bold'>填寫收件人資訊</h3>
 	<div>
@@ -57,8 +64,6 @@
 			<%= content_tag(:option, '貨運') %>
 		<% end %>
 	</div>
-
-
 	<div>
 		<%= f.submit '建立訂單', class: 'btn btn-primary' %>
 	</div>

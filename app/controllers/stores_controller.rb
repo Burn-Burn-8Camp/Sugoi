@@ -22,6 +22,12 @@ class StoresController < ApplicationController
 	end
 
 	def update
+		# render html: params
+		if @store.update(store_params)
+			redirect_to store_path, notice: '更新成功'
+		else
+			render :edit, notice: '請重新填寫'
+		end
 	end
 	
 	def products_list

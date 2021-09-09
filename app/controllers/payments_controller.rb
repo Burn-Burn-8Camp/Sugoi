@@ -1,4 +1,5 @@
 class PaymentsController < ApplicationController
+	before_action  :authenticate_user!
 	skip_before_action :verify_authenticity_token, only: [:notify_response]
 	before_action :find_order, only: [:payment]
 	# 前往付錢
