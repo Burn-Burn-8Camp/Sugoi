@@ -3,99 +3,70 @@
   </div>
   <%= link_to "清空購物車" , cart_path, method: "delete" %>
   
-
-  <%= form_with url: confirmation_cart_path do |f| %>
+  <div class="selected_items">
     <% current_cart.items.each do |item| %>
-      <input type="text" name="<%= item.product_id %>[product_id]" value="<%= item.product_id %>" />
-
-      <input type="text" name="<%= item.product_id %>[name]" value="<%= item.product.name %>" />
-
-      <input type="text" name="<%= item.product_id %>[price]" value="<%= item.product.price.to_i %>" />
-
-      <select name="<%= item.product_id %>[quantity]">
-        <%= 1.upto(product_storage(item.product_id)) do |i| %>
-          <option value="<%= "#{i}" %>"><%= "#{i}" %>
-          </option>
-        <% end %>
+     
+      <div class="selected-item border border-gray-500">
+        <div class="item-wrapper">
+          <div class="item-header border-b-2 border-gray-500">
+            <a href="#">設計館:<%= item.store.name %></a>
+          </div>
       
-      </select>
+          <div class="item-body-wrap">
+            <div class="item-body border flex">
 
-    
-    
-
-    <div class="selected-item border border-gray-500">
-      <div class="item-wrapper">
-        <div class="item-header border-b-2 border-gray-500">
-          <input type="checkbox">
-          <a href="#">設計館</a>
-        </div>
-    
-        <div class="item-body-wrap">
-          <div class="item-body border flex">
-            <div class="item-img border ">
-              <img src="https://picsum.photos/120/120/?random=<%= item.product_id %>">
-            </div>
-            <div class="item-name border">
-              <a href="#">
-                <%= item.product.name %>
-              </a>
-    
-              <div class="item-qantity">
-                
-                
-                 
-                 
-                    
-                   
-                <!-- <select class="border border-gray-400 inline">
-                  <%= 1.upto(product_storage(item.product_id)) do |i| %>
-                    <option value="<%= " #{i}" %>"><%= "#{i}" %>
-                    </option>
-                  <% end %>
-                </select> -->
-    
-                <span>商品數量:<%= product_storage(item.product_id) %></span>
-                <div class="subtotal">
-                  <%= item.product.price.to_i %>
-                </div>
-
+              <div class="item-img border ">
+                <img src="https://picsum.photos/120/120/?random=<%= item.product_id %>">
               </div>
+
+              <div class="item-name border">
+                <a href="#">
+                  <%= item.product.name %>
+                </a>   
+                <div class="item-qantity">      
+                  <select class="productID" id="<%= item.product_id %>">
+                    <%= 1.upto(product_storage(item.product_id)) do |i| %>
+                      <option value="<%= " #{i}" %>"><%= "#{i}" %>
+                      </option>
+                      <% end %>
+                  </select>
+                  <span>商品庫存:<%= product_storage(item.product_id) %></span>
+                  <div class="subtotal">
+                    單價NT$<%= item.product.price.to_i %>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
         </div>
-      </div>
-    
-      <div class="deliver-item">
-        <div class="deliver-item-title">
-          <span>選擇收件地與運送方式</span>
+      
+        <div class="deliver-item">
+          <div class="deliver-item-title">
+            <span>選擇收件地與運送方式</span>
+          </div>
+      
+          <div class="how-to-deliver">
+            <select class="border border-gray-400 inline">
+              <option value disabled>請選擇運送方式</option>
+              <optgroup label="從 台灣 寄出"></optgroup>
+              <option value="CN">貨運</option>    
+            </select>
+      
+            <ul class="promo">
+              <li>通知出貨後約 1 - 2 天寄達 | 提供追蹤</li>
+              <li>滿 NT$ 1,000 免運費</li>
+            </ul>
+      
+          </div>
+      
         </div>
-    
-        <div class="how-to-deliver">
-          <select class="border border-gray-400 inline">
-            <option value disabled>請選擇運送方式</option>
-            <optgroup label="從 台灣 寄出"></optgroup>
-            <option value="CN">貨運</option>
-    
-    
-          </select>
-    
-          <ul class="promo">
-            <li>通知出貨後約 1 - 2 天寄達 | 提供追蹤</li>
-            <li>滿 NT$ 1,000 免運費</li>
-          </ul>
-    
-        </div>
-    
       </div>
-    </div>
     
 
     <% end %>
 
-    <%= f.submit "確認" %>
-
-  <% end %>
-
+  </div>
 
 
   <div class="order-list border border-gray-500 mb-3">

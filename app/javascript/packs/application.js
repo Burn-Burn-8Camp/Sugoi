@@ -8,8 +8,7 @@ import "components/react_application"
 // react js 打包
 import "controllers/stateStep"
 import "controllers/swiftImg"
-import 'controllers'
-import 'controllers/items'
+import "controllers/confirmCart"
 
 Rails.start()
 Turbolinks.start()
