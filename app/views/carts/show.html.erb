@@ -3,7 +3,19 @@
     <input type="checkbox" id="select_all">
     <label for="select_all">選擇全部</label>
   </div>
- 
+
+  <% @store_items.each do |item_arr| %>
+    <div>
+      <%= item_arr[0].store_name %>
+    </div>
+    <% item_arr.each do |item| %>
+      <%= item.name %>
+      <%= item.quantity %>
+      <%= item.price.to_i %>
+    <% end %>
+  <% end %>
+  
+
 
   <% current_cart.items.each do |item| %>
     <div class="selected-item border border-gray-500">

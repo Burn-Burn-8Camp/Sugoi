@@ -38,7 +38,7 @@ class StoresController < ApplicationController
 
 	def order_detail
 		@order = current_store.orders.find(params[:id])
-		@items = @order.order_items.includes(:product)
+		@items = @order.order_items.includes(:store).where(store: current_store)
 	end
 	
 

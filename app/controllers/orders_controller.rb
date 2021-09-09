@@ -8,6 +8,14 @@ class OrdersController < ApplicationController
 	def show
 		@order = current_user.orders.find(params[:id])
 		@items = @order.order_items.includes(:product)
+		store_id_list = @items.map { |item| item.store_id }.uniq.sort
+		@store_items = []
+		
+		store_id_list.each{ |id|
+		  @store_items << @items.select{ |item|
+			item.store_id === id 
+		 }
+		}
 	end
 
 	def checkout
@@ -25,7 +33,8 @@ class OrdersController < ApplicationController
 				name: item.name,
 				price: item.price,
 				quantity: item.quantity,
-				product_id: item.product_id
+				product_id: item.product_id,
+				store_id: item.store_id
 			)
 			order.order_items << oi
 			store_id_list << item.store
