@@ -1,14 +1,17 @@
 class Order < ApplicationRecord
-  belongs_to :user
   has_many :order_items
+  has_many :store_orders
+  has_many :stores, through: :store_orders
+  belongs_to :user
 
-  after_create :order_num_generator
-  
   validates :receiver, presence: true
   validates :tel, presence: true
   validates :email, presence: true
   validates :address, presence: true
   validates :delivery, presence: true
+  
+
+  after_create :order_num_generator
   
   include AASM
   aasm column: 'state' do
@@ -47,7 +50,7 @@ class Order < ApplicationRecord
   # 補0
   def order_num_generator
     today = Time.now
-    serial = today.strftime("%Y%m%d")
+    serial = today.strftime("%Y%m%d%m%s")
 
     self.serial = "OD#{serial}#{paddingZero(self.id, 6)}"
     self.save

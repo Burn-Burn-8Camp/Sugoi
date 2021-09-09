@@ -1,8 +1,8 @@
 <h1>選擇設計館</h1>
 <%= link_to '< 返回購物車', cart_path, class: "text-blue-400" %>
-<% current_cart.items.each do |item| %>
+<% @cart_items.each do |item| %>
 	<div class="item-body-wrap">
-		<div>館名:??</div>
+		<div>館名:<%= item.store_name %></div>
 		<div class="item-body flex">
 		<div class="item-img border inline-block">
 			<img src="https://picsum.photos/120/120/?random=<%= item.product_id %>">
@@ -10,10 +10,10 @@
 		<div class="item-name border">
 			<ul>
 				<li>
-					商品名稱：<%= item.product.name %>
+					商品名稱：<%= item.name %>
 				</li>
 				<li>
-					商品單價：<%= item.product.price.to_i %>
+					商品單價：<%= item.price.to_i %>
 				</li>
 				<li>
 					商品數量:<%= item.quantity %>
@@ -54,9 +54,7 @@
 	<div>
 		<%= f.label :delivery, "運送方式：" %>
 		<%= f.select(:delivery) do %>
-			<% @deliveries.each do |delivery| %>
-				<%= content_tag(:option, delivery.shipping_method, value: delivery.shipping_method) %>
-			<% end %>
+			<%= content_tag(:option, '貨運') %>
 		<% end %>
 	</div>
 
