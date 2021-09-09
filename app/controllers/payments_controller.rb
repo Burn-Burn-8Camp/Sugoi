@@ -1,10 +1,14 @@
 class PaymentsController < ApplicationController
 	skip_before_action :verify_authenticity_token, only: [:notify_response]
+	before_action :find_order, only: [:payment]
 	# 前往付錢
 	def payment
-		@order = current_user.orders.find(params[:id])
-		@form_info = Newebpay::Mpg.new(@order).form_info
-		@form_data = Newebpay::Mpg.new(@order).info
+		if @order.may_pay?
+			@form_info = Newebpay::Mpg.new(@order).form_info
+			@form_data = Newebpay::Mpg.new(@order).info
+		else
+			redirect_to orders_path
+		end
 	end
 	# 付錢回來
 	def notify_response
@@ -29,5 +33,9 @@ class PaymentsController < ApplicationController
 
 	def return_params(params)
 		params.permit(:Status, :MerchantID, :Version, :TradeInfo, :TradeSha)
+	end
+
+	def find_order
+		@order = current_user.orders.find(params[:id])
 	end
 end
