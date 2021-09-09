@@ -1,13 +1,11 @@
-<h1>商品瀏覽頁面</h1>
+<h1>新增商品頁面</h1>
 
 <%= link_to "新增商品",new_product_path %>
 
 
     
-<%= form_for (@product) do |f| %>
-
-
-  <%= f.label :name,"姓名"%>
+<%= form_for (@product), url: products_path do |f| %>
+  <%= f.label :name %>
   <%= f.text_field :name %><br />
 
   <%= f.label :price,"價錢" %>
@@ -16,7 +14,7 @@
   <%= f.label :quantity,"數量" %>
   <%= f.text_field :quantity %><br />
 
-  <%= f.label :description,"描述" %>
+  <%= f.label :description %>
   <%= f.text_field :description %><br />
 
   <%= f.label :category,"類別" %>
@@ -34,9 +32,9 @@
   <%= f.label :content,"內容" %>
   <%= f.text_field :content %><br />
 
+  <%= f.text_field :store_id, value: current_store.id, type: 'hidden' %>
+
   <%= f.submit "送出" %>
-
-
 <% end%>
 <%= link_to '回首頁', products_path %>
 

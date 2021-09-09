@@ -8,13 +8,12 @@
       <h2 class="card-title">品名:<%= link_to product.name,product_path(product) %>
         <div class="badge mx-2 badge-secondary">NEW</div>
       </h2> 
-      <p>價錢:<%= product.price %></p>
+      <p>價錢:<%= product.price.to_i %></p>
       <p>商品描述:<%= product.description %></p>
-      <p>Rerum reiciendis beatae tenetur excepturi aut pariatur est eos. Sit sit necessitatibus veritatis sed molestiae voluptates incidunt iure sapiente.</p> 
       <div class="justify-end card-actions">
         <button class="btn btn-secondary">More info</button>
       </div>
    </div>
     </div> 
   <% end %>
-  </div>
+</div>
