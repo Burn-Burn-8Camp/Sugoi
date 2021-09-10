@@ -4,8 +4,8 @@ class PaymentsController < ApplicationController
 	# 前往付錢
 	def payment
 		if @order.may_pay?
-			@form_info = Newebpay::Mpg.new(@order).form_info
-			@form_data = Newebpay::Mpg.new(@order).info
+			# @form_info = Newebpay::Mpg.new(@order).form_info
+			# @form_data = Newebpay::Mpg.new(@order).info
 		else
 			redirect_to orders_path
 		end

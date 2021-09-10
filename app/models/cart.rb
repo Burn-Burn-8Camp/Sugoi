@@ -14,6 +14,14 @@ class Cart
     end
   end
 
+
+  def change_item_quantity(product_id, quantity)
+    found_item = @items.find { |item| item.product_id === product_id }
+    if found_item
+      found_item.changement!(quantity)
+    end
+  end
+
   def total
     t = @items.reduce(0) { |acc, item| acc + item.total }
     is_children_day ? t * 0.8 : t
@@ -45,6 +53,5 @@ class Cart
     def is_children_day
       Time.now.month === 4 && Time.now.day === 4
     end
-
 
 end
