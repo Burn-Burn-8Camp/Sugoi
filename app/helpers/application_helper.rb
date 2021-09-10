@@ -17,4 +17,8 @@ module ApplicationHelper
 				"已取消"
 		end
 	end
+
+	 def product_storage(id)
+    Product.find(id).quantity
+  end
 end

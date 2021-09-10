@@ -29,9 +29,4 @@ class UsersController < ApplicationController
 
   def buy_order
   end
-
-  private
-  # def user_params 
-  #   params.require(:user).permit(:self_blog, :self_about, :self_web, :life_shopping:life_design )
-  # end
 end
