@@ -43,7 +43,7 @@ class StoresController < ApplicationController
 	end
 
 	def order_detail
-		@order = current_store.orders.find(params[:id])
+		@order = current_store.orders.find_by_friendly_id!(params[:id])
 		@items = @order.order_items.includes(:store).where(store: current_store)
 	end
 	
