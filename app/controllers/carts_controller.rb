@@ -17,7 +17,7 @@ class CartsController < ApplicationController
   end
 
   private
-  def find_cart_item
-    @product = Product.find(params[:id])
-  end
+    def find_cart_item
+      @product = Product.find(params[:id])
+    end
 end

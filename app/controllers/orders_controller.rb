@@ -21,13 +21,13 @@ class OrdersController < ApplicationController
 		store_id_list = []
 		# 購物車商品填資料
 		current_cart.items.each do |item|
-			oi = OrderItem.new(
+			order_item = OrderItem.new(
 				name: item.name,
 				price: item.price,
 				quantity: item.quantity,
 				product_id: item.product_id
 			)
-			order.order_items << oi
+			order.order_items << order_item
 			store_id_list << item.store
 		end
 		
@@ -44,8 +44,8 @@ class OrdersController < ApplicationController
 	end
 
 	private
-	def order_params
-		params.require(:order).permit(:receiver, :tel, :email, :address, :delivery)
-	end
+		def order_params
+			params.require(:order).permit(:receiver, :tel, :email, :address, :delivery)
+		end
 
 end

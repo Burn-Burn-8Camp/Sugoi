@@ -16,8 +16,7 @@ class Cart
 
   def total
     t = @items.reduce(0) { |acc, item| acc + item.total }
-    t = t * 0.8 if is_children_day?
-    t
+    is_children_day ? t * 0.8 : t
   end
 
   def empty?
@@ -43,9 +42,9 @@ class Cart
   end
 
   private
-  def is_children_day?
-    Time.now.month === 4 && Time.now.day === 4
-  end
+    def is_children_day
+      Time.now.month === 4 && Time.now.day === 4
+    end
 
 
 end
