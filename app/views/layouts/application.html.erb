@@ -13,10 +13,12 @@
   </head>
 
   <body>
-    <%= notice %>
-    <%= alert %>
     <%= render 'components/login' %>
     <%= render 'components/navbar' %>
+    <div class='bg-yellow-400 text-xl'>
+      <%= notice%>
+      <%= alert %>
+    </div>
     <%= yield %>
     <%= render 'components/footer' %>
   </body>
