@@ -4,14 +4,11 @@ class Order < ApplicationRecord
   has_many :stores, through: :store_orders
   belongs_to :user
 
-  validates :receiver, presence: true
-  validates :tel, presence: true
-  validates :email, presence: true
-  validates :address, presence: true
-  validates :delivery, presence: true
-  
+  validates_presence_of :receiver, :tel, :email, :address, :delivery
+  validates_format_of :email, :with => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
 
   after_create :order_num_generator
+  before_validation :generate_friendly_id, :on => :create
   
   include AASM
   aasm column: 'state' do
@@ -43,6 +40,10 @@ class Order < ApplicationRecord
     end
   end
 
+  def to_param
+    self.friendly_id
+  end
+
   private
   def paddingZero(num, digits)
     (("0" * digits) + num.to_s).last(digits)
@@ -56,4 +57,8 @@ class Order < ApplicationRecord
     self.save
   end
   # 產生訂單序號
+
+  def generate_friendly_id
+    self.friendly_id ||= SecureRandom.uuid
+  end
 end

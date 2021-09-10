@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
 	end
 
 	def show
-		@order = current_user.orders.find(params[:id])
+		@order = current_user.orders.find_by_friendly_id!(params[:id])
 		@items = @order.order_items.includes(:product)
 		store_id_list = @items.map { |item| item.store_id }.uniq.sort
 		# 建立重複的商店id陣列
@@ -25,8 +25,9 @@ class OrdersController < ApplicationController
 	end
 
 	def create
-		order = current_user.orders.new(order_params)
-		order[:total] = current_cart.total
+		@cart_items = current_cart.items
+		@order = current_user.orders.new(order_params)
+		@order[:total] = current_cart.total
 		store_id_list = []
 		# 購物車商品填資料
 		current_cart.items.each do |item|
@@ -37,20 +38,20 @@ class OrdersController < ApplicationController
 				product_id: item.product_id,
 				store_id: item.store_id
 			)
-			order.order_items << oi
+			@order.order_items << oi
 			# 建立商品實體塞進order.order_items
 			store_id_list << item.store
 			# 建立商品id序號
 		end
 		
 		store_id_list.uniq.each{ |id|
-			order.stores << id
+			@order.stores << id
 		}
 		# 建立store跟order的多對多關聯
-		if order.save			
+		if @order.save			
 			caculate_user_consume(current_user)
 			session[:cart1289] = nil
-			redirect_to payment_order_path(order), notice: '訂單成立'
+			redirect_to payment_order_path(@order), notice: '訂單成立'
 		else
 			render :checkout
 		end
