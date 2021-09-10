@@ -1,0 +1,29 @@
+<h1>訂購成功</h1>
+
+訂單成立資訊
+
+購買日期：<%= @order.created_at %>
+
+訂單編號：<%= @order.serial %>
+
+出貨時間：尚未出貨
+
+客戶信箱: <%= @order.email %>
+
+<% @order_items.each do |order_item| %>      
+
+  品名	<%= order_item.name %>
+  數量	<%= order_item.quantity %> 
+  單價	<%= order_item.price %>
+
+  
+
+<% end %>
+
+總金額 <%= @order.total %>
+
+
+
+
+
+
