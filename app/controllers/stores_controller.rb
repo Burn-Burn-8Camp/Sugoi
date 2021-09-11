@@ -47,16 +47,12 @@ class StoresController < ApplicationController
 		@items = @order.order_items.includes(:store).where(store: current_store)
 	end
 	
-
-
-
-
 	private
-	def store_params
-		params.require(:store).permit(:name, :user_id, :introduction)
-	end
-	
-	def find_store
-		@store = current_user.store
-	end
+		def store_params
+			params.require(:store).permit(:name, :user_id, :introduction)
+		end
+		
+		def find_store
+			@store = current_user.store
+		end
 end

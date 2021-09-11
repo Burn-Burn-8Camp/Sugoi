@@ -43,9 +43,7 @@ class Cart
   end
 
   private
-  def is_children_day?
-    Time.now.month === 4 && Time.now.day === 4
-  end
-
-
+    def is_children_day?
+      Time.now.month === 4 && Time.now.day === 4
+    end
 end

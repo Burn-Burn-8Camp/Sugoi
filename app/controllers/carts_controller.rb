@@ -3,6 +3,7 @@ class CartsController < ApplicationController
   before_action :find_cart_item, only: [:add]
 
   def show
+    # 相同商城會在同一欄位內
     store_id_list = current_cart.items.map { |item| item.store_id }.uniq.sort
     @store_items = []
     store_id_list.each{ |id|
@@ -10,7 +11,6 @@ class CartsController < ApplicationController
         item.store_id === id 
      }
     }
-    # 相同商城會在同一欄位內
   end
 
   def add
@@ -25,7 +25,7 @@ class CartsController < ApplicationController
   end
 
   private
-  def find_cart_item
-    @product = Product.find(params[:id])
-  end
+    def find_cart_item
+      @product = Product.find(params[:id])
+    end
 end

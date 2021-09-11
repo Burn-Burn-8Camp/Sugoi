@@ -52,13 +52,13 @@ class ProductsController < ApplicationController
   end
 
   private
-  def product_params
-    params.require(:product).permit(:name, :price, :quantity, :description, :category, :material, :manufacturing_method, :country, :content, :store_id)
-  end
+    def product_params
+      params.require(:product).permit(:name, :price, :quantity, :description, :category, :material, :manufacturing_method, :country, :content, :store_id)
+    end
 
-  def find_product
-    @product = Product.find(params[:id])
-  end
+    def find_product
+      @product = Product.find(params[:id])
+    end
 end
 
 
