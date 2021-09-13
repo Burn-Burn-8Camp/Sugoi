@@ -32,7 +32,7 @@
                   </select>
                   <span>商品庫存:<%= product_storage(item.product_id) %></span>
                   <div class="subtotal">
-                    單價NT$<%= item.product.price.to_i %>
+                    單價NT$<span class="single_price"><%= item.product.price.to_i %></span> 
                   </div>
                 </div>
               </div>
@@ -74,7 +74,7 @@
     <div class="calulate-page-body">
       <div class="summary-items flex my-3">
         <span class="summary-items-title ">商品總計</span>
-        <span class="summary-items-price">NT$<%= current_cart.total %></span>
+        <span class="summary-items-price">NT$<span class="total_price"><%= current_cart.total %></span></span>
       </div>
 
      
@@ -96,7 +96,7 @@
 
     <div class="border-t-2 border-gray-400 my-3">
       <span class="total-price-title">結帳總金額</span>
-      <span class="total-price">
+      <span class="sum">
         <%= current_cart.total %>               
       </span>
     </div>
