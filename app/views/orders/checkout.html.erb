@@ -84,9 +84,7 @@
 	</div>
 	<div>
 		<%= f.label :delivery, "運送方式：" %>
-		<%= f.select(:delivery) do %>
-			<%= content_tag(:option, '貨運') %>
-		<% end %>
+		<%= f.select :delivery, Order.all.collect { |o| o.delivery } %>
 	</div>
 	<div>
 		<%= f.submit '建立訂單', class: 'btn btn-primary' %>

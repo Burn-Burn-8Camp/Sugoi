@@ -10,6 +10,11 @@ class Order < ApplicationRecord
   validates_presence_of :receiver, :tel, :email, :address, :delivery
   validates_format_of :email, :with => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
 
+  enum delivery: {
+    "宅配": "0",
+    "超商取貨": "1"
+  }
+
   include AASM
   aasm column: 'state' do
     state :pending, initial: true
@@ -51,13 +56,12 @@ class Order < ApplicationRecord
     # 補0
     def order_num_generator
       today = Time.now
-      serial = today.strftime("%Y%m%d%H")
+      serial = today.strftime("%Y%m%d")
 
       self.serial = "OD#{serial}#{paddingZero(self.id, 6)}"
       self.save
     end
     # 產生訂單序號
-
     def generate_friendly_id
       self.friendly_id ||= SecureRandom.uuid
     end

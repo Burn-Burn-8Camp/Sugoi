@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
 	before_action  :authenticate_user!
 	before_action :find_orders_by_state, only: [:index, :pending, :processing, :shipped, :completed, :canceled]
 	def index
-		@orders = current_user.orders.where(state: 'pending').order(id: :desc)
+		redirect_to pending_orders_path
 	end
 
 	def show
@@ -41,18 +41,22 @@ class OrdersController < ApplicationController
 		@orders = current_user.orders.where(state: 'pending').order(id: :desc)
 		render :index
 	end
+
 	def processing
 		@orders = current_user.orders.where(state: ['paid', 'picked']).order(id: :desc)
 		render :index
 	end
+
 	def shipped
 		@orders = current_user.orders.where(state: 'in_transit').order(id: :desc)
 		render :index
 	end
+
 	def completed
 		@orders = current_user.orders.where(state: 'arrived').order(id: :desc)
 		render :index
 	end
+	
 	def canceled
 		@orders = current_user.orders.where(state: 'cancelled').order(id: :desc)
 		render :index

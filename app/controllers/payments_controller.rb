@@ -15,7 +15,6 @@ class PaymentsController < ApplicationController
 		check_response(return_params(params))
 	end
 
-
 	private
 		def check_response(params)
 			response = Newebpay::MpgResponse.new(params[:TradeInfo])
