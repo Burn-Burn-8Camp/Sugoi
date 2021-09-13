@@ -5,7 +5,6 @@ class SellersController < ApplicationController
 
   def create
     @seller = Seller.new(seller_params)
-    # render html: params
 		if @seller.save
 			redirect_to root_path, notice: '感謝您的申請'
 		else

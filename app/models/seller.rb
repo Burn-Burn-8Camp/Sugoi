@@ -3,23 +3,15 @@ class Seller < ApplicationRecord
   belongs_to :user
   include AASM
   aasm column: 'state' do
-    state :successful_application, initial: true
-    state :under_review, :pass_through, :cancelled, :Not_qualified 
+    state :application, initial: true
+    state :pass_through, :cancelled 
   
-    event :under_review do
-    transitions from: :successful_application, to: :under_review
-    end
-  
-    event :pass_through do
-    transitions from: :under_review, to: :pass_through
+    event :pass do
+    transitions from: :application, to: :pass_through
     end
 
     event :cancel do
-    transitions from: [:successful_application, :under_review], to: :cancelled
-    end
-  
-    event :Not_qualified do
-    transitions from: :under_review, to: :Not_qualified 
+    transitions from: [:application, :pass_through], to: :cancelled
     end
   end  
 end
