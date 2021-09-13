@@ -4,8 +4,8 @@ class PaymentsController < ApplicationController
 	# 前往付錢
 	def payment
 		if @order.may_pay?
-			# @form_info = Newebpay::Mpg.new(@order).form_info
-			# @form_data = Newebpay::Mpg.new(@order).info
+			@form_info = Newebpay::Mpg.new(@order).form_info
+			@form_data = Newebpay::Mpg.new(@order).info
 		else
 			redirect_to orders_path
 		end
@@ -34,10 +34,6 @@ class PaymentsController < ApplicationController
 		end
 
 		def find_order
-<<<<<<< HEAD
 			@order = current_user.orders.find_by_friendly_id!(params[:id])
-=======
-			@order = current_user.orders.find(params[:id])
->>>>>>> 36b8252e30c994fe83753c5e38f00ba2f4f5a727
 		end
 end

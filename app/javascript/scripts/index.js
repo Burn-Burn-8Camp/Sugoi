@@ -4,3 +4,6 @@ import { definitionsFromContext } from "stimulus/webpack-helpers"
 const application = Application.start()
 const context = require.context(".", true, /\.js$/)
 application.load(definitionsFromContext(context))
+import "./confirmCart"
+import "./swiftImg"
+import '@fortawesome/fontawesome-free/js/all.js'
