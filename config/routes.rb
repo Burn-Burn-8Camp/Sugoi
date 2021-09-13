@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root "products#index"
   resource :store do
+    collection do
+      get 'application', to: 'sellers#new'
+      post 'application', to: 'sellers#create'
+    end
     resources :products, only: [] do
       collection do
         get 'list', to: 'stores#products_list'
@@ -53,6 +57,6 @@ Rails.application.routes.draw do
       patch 'about', to: 'users#about'
       get 'buy_order', to: 'users#buy_order'
     end
-  end 
+  end  
 end
 

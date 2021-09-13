@@ -2,22 +2,24 @@
 	<div class='border-2 border-black mx-auto p-4'>
 		<h1 class='text-4xl'>前往付款</h1>
 		<ul>
-			<li class='text-xl'>訂單編號：<%= @order.serial %></li>
-			<li class='text-xl'>訂單金額：<%= @order.total %></li>
+			<li class='text-xl'>訂單編號：<%= @order.serial %>
+			</li>
+			<li class='text-xl'>訂單金額：<%= @order.total %>
+			</li>
 		</ul>
-		<form name='Mpgateway' method='post' action='https://ccore.newebpay.com/MPG/mpg_gateway'> 
-			<input type="hidden" id='TradeInfo' name='TradeInfo' value= <%= @form_info[:TradeInfo]%> >
-			<input type="hidden" id='TradeSha' name='TradeSha' value= <%= @form_info[:TradeSha]%> >
-			<input type="hidden" id='MerchantID' name='MerchantID' value= <%= @form_data[:MerchantID]%> >
-			<input type="hidden" id='Version' name='Version' value= <%= @form_data[:Version]%> >
-			<input type="hidden" id='MerchantOrderNo' name='MerchantOrderNo' value= <%= @form_data[:MerchantOrderNo]%> >
-			<input type="hidden" id='Amt' name='Amt' value= <%= @form_data[:Amt]%>>
-			<input type="hidden" id='ItemDesc' name='ItemDesc' value=<%= @form_data[:ItemDesc]%> >
-			<input type="hidden" id='Email' name='Email' value= <%= @form_data[:Email]%>>
-			<input type="hidden" id='TimeStamp' name='TimeStamp' value= <%= @form_data[:TimeStamp]%>>
-			<input type="hidden" id='RespondType' name='RespondType' value= <%= @form_data[:ResponseType]%>>
-			<input type="hidden" id='LoginType' name='LoginType' value=<%= @form_data[:LoginType]%>>
-			<input type="hidden" id='ReturnURL' name='ReturnURL' value=<%= @form_data[:ReturnUrl]%>>
+		<form name='Mpgateway' method='post' action='https://ccore.newebpay.com/MPG/mpg_gateway'>
+			<input type="hidden" id='TradeInfo' name='TradeInfo' value=<%=@form_info[:TradeInfo]%> >
+			<input type="hidden" id='TradeSha' name='TradeSha' value=<%=@form_info[:TradeSha]%> >
+			<input type="hidden" id='MerchantID' name='MerchantID' value=<%=@form_data[:MerchantID]%> >
+			<input type="hidden" id='Version' name='Version' value=<%=@form_data[:Version]%> >
+			<input type="hidden" id='MerchantOrderNo' name='MerchantOrderNo' value=<%=@form_data[:MerchantOrderNo]%> >
+			<input type="hidden" id='Amt' name='Amt' value=<%=@form_data[:Amt]%>>
+			<input type="hidden" id='ItemDesc' name='ItemDesc' value=<%=@form_data[:ItemDesc]%> >
+			<input type="hidden" id='Email' name='Email' value=<%=@form_data[:Email]%>>
+			<input type="hidden" id='TimeStamp' name='TimeStamp' value=<%=@form_data[:TimeStamp]%>>
+			<input type="hidden" id='RespondType' name='RespondType' value=<%=@form_data[:ResponseType]%>>
+			<input type="hidden" id='LoginType' name='LoginType' value=<%=@form_data[:LoginType]%>>
+			<input type="hidden" id='ReturnURL' name='ReturnURL' value=<%=@form_data[:ReturnUrl]%>>
 			<input type="submit" value='付款' class='btn btn-primary'>
 		</form>
 	</div>

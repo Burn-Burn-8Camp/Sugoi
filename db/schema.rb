@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_07_164202) do
+ActiveRecord::Schema.define(version: 2021_09_09_110507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,6 +75,18 @@ ActiveRecord::Schema.define(version: 2021_09_07_164202) do
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
+  create_table "sellers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "cellphone"
+    t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.string "state"
+    t.index ["user_id"], name: "index_sellers_on_user_id"
+  end
+
   create_table "store_orders", force: :cascade do |t|
     t.bigint "store_id", null: false
     t.bigint "order_id", null: false
@@ -85,12 +97,12 @@ ActiveRecord::Schema.define(version: 2021_09_07_164202) do
   end
 
   create_table "stores", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.string "name"
     t.text "introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_stores_on_user_id"
+    t.bigint "seller_id"
+    t.index ["seller_id"], name: "index_stores_on_seller_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -101,11 +113,11 @@ ActiveRecord::Schema.define(version: 2021_09_07_164202) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "rank"
     t.string "provider"
     t.string "uid"
     t.string "picture"
     t.string "account"
-    t.string "rank"
     t.integer "accumulated_amount", default: 0
     t.string "country"
     t.string "name"
@@ -128,5 +140,4 @@ ActiveRecord::Schema.define(version: 2021_09_07_164202) do
   add_foreign_key "orders", "users"
   add_foreign_key "store_orders", "orders"
   add_foreign_key "store_orders", "stores"
-  add_foreign_key "stores", "users"
 end

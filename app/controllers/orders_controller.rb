@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
 			store_id_list << item.store
 		end
 		
-		store_id_list.uniq!.each{ |id|
+		store_id_list.uniq.each{ |id|
 			order.stores << id
 		}
 		
