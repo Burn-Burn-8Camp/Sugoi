@@ -18,7 +18,13 @@ module ApplicationHelper
 		end
 	end
 
-	 def product_storage(id)
+	def product_storage(id)
     Product.find(id).quantity
   end
+
+	def cart_items_amount
+		items = current_cart.items.map { |item| item.quantity } 
+		items.sum      
+	end
+
 end
