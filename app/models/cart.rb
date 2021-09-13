@@ -20,6 +20,13 @@ class Cart
     t
   end
 
+  def change_item_quantity(product_id, quantity)
+    found_item = @items.find { |item| item.product_id === product_id }
+    if found_item
+      found_item.changement!(quantity)
+    end
+  end
+  
   def empty?
     @items.empty?
   end

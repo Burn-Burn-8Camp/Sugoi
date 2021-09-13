@@ -14,6 +14,14 @@ class CartItem
     @quantity += n
   end
 
+  def changement!(n)
+    @quantity = n.to_i
+  end
+
+  def product     
+    Product.find(@product_id)
+  end
+  
   def store
     Product.find(@product_id).store
   end
