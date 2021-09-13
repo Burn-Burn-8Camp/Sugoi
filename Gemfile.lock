@@ -339,14 +339,14 @@ DEPENDENCIES
   capybara (>= 3.26)
   carrierwave (~> 1.0)
   database_cleaner (~> 1.5, >= 1.5.3)
-  devise
+  devise (~> 4.8)
   factory_bot_rails (~> 6.2)
   faker (~> 2.19)
-  figaro
+  figaro (~> 1.2)
   foreman (~> 0.87.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)
-  mini_racer
+  mini_racer (~> 0.4.0)
   omniauth
   omniauth-github
   omniauth-google-oauth2
@@ -357,7 +357,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 6.1.4, >= 6.1.4.1)
   react_on_rails (~> 12.3)
-  rexml
+  rexml (~> 3.2, >= 3.2.5)
   rspec-rails (~> 5.0, >= 5.0.2)
   sass-rails (>= 6)
   selenium-webdriver

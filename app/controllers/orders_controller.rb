@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
-	before_action  :authenticate_user!, only: [:checkout, :index, :show]
-	
+	before_action  :authenticate_user!
+	before_action :find_orders_by_state, only: [:index, :pending, :processing, :shipped, :completed, :canceled]
 	def index
-		@orders = current_user.orders.all
+		@orders = current_user.orders.where(state: 'pending').order(id: :desc)
 	end
 
 	def show
@@ -14,7 +14,13 @@ class OrdersController < ApplicationController
 
 	def checkout
 		@order = Order.new
-		@cart_items = current_cart.items
+		store_id_list = current_cart.items.map { |item| item.store_id }.uniq.sort
+    @store_items = []
+    store_id_list.each{ |id|
+      @store_items << current_cart.items.select{ |item|
+        item.store_id === id 
+     }
+    }
 	end
 
 	def create
@@ -29,6 +35,27 @@ class OrdersController < ApplicationController
 		else
 			render :checkout
 		end
+	end
+
+	def pending
+		@orders = current_user.orders.where(state: 'pending').order(id: :desc)
+		render :index
+	end
+	def processing
+		@orders = current_user.orders.where(state: ['paid', 'picked']).order(id: :desc)
+		render :index
+	end
+	def shipped
+		@orders = current_user.orders.where(state: 'in_transit').order(id: :desc)
+		render :index
+	end
+	def completed
+		@orders = current_user.orders.where(state: 'arrived').order(id: :desc)
+		render :index
+	end
+	def canceled
+		@orders = current_user.orders.where(state: 'cancelled').order(id: :desc)
+		render :index
 	end
 
 	private
@@ -73,5 +100,13 @@ class OrdersController < ApplicationController
 				item.store_id === id 
 				}
 			}
+		end
+
+		def find_orders_by_state
+			@pending_orders = current_user.orders.where(state: 'pending').order(id: :desc)
+			@processing_orders = current_user.orders.where(state: ['paid', 'picked']).order(id: :desc)
+			@shipped_orders = current_user.orders.where(state: 'in_transit').order(id: :desc)
+			@completed_orders = current_user.orders.where(state: 'arrived').order(id: :desc)
+			@canceled_orders = current_user.orders.where(state: 'cancelled').order(id: :desc)
 		end
 end

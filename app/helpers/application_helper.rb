@@ -4,7 +4,7 @@ module ApplicationHelper
 	def check_state(order)
 		case order.state
 			when "pending"
-				link_to '前往付款', payment_order_path(order), class: 'btn'
+				link_to '尚未付款，前往付款', payment_order_path(order), class: 'border-2 p-2 border-black rounded font-bold'
 			when "paid"
 				"已付款"
 			when "picked"
@@ -15,6 +15,14 @@ module ApplicationHelper
 				"已送達"
 			when "cancelled"
 				"已取消"
+		end
+	end
+
+	def orders_length(orders)
+		if orders
+			orders.length
+		else
+			0
 		end
 	end
 end

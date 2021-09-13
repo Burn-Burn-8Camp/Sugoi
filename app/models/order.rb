@@ -51,7 +51,7 @@ class Order < ApplicationRecord
     # 補0
     def order_num_generator
       today = Time.now
-      serial = today.strftime("%Y%m%d%m%s")
+      serial = today.strftime("%Y%m%d%H")
 
       self.serial = "OD#{serial}#{paddingZero(self.id, 6)}"
       self.save

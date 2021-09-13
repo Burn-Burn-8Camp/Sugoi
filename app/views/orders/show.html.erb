@@ -1,41 +1,106 @@
-<h1 class='text-lg text-center'>訂單明細</h1>
-
-<ul class="w-full steps order-steps">
-  <li class="step step-primary" id='pending'>待付款</li> 
-  <li class="step" id='paid'>已付款</li> 
-  <li class="step" id='picked'>撿貨中</li> 
-  <li class="step" id='in_transit'>運送中</li>
-  <li class="step" id='arrived'>已送達</li>
-  <li class="step" id='cancelled'>已取消</li>
-</ul>
-
-<div class='border rounded'>
+<div class="breadcrumbs m-2.5">
 	<ul>
-		<li class='text-lg'>訂單編號：<%= @order.serial %></li>
-		<li class='text-lg'>訂單金額：<%= @order.total %></li>
-		<li class='text-lg'>收件人：<%= @order.receiver %></li>
-		<li class='text-lg'>收件地址：<%= @order.address %></li>
-		<li class='text-lg'>運送方式：<%= @order.delivery %></li>
-		<li class='hidden' id='order-state'><%= @order.state %></li>
+		<li class='text-blue-400'><%= check_state(@order) %></li> 
+		<li><%= @order.serial %></li> 
 	</ul>
-	<div tabindex="0" class="collapse collapse-arrow">
-	  <div class="collapse-title text-lg font-medium">
-		訂單明細
-	  </div>
-	  <div class="collapse-content">
+	<p class='hidden' id='order-state'><%= @order.state %></p>
+</div>
+
+<div class="flex justify-between m-5 mt-0">
+	<div>
 		<% @store_items.each do |item_arr| %>
-			<div>
-				<%= item_arr[0].store.name %>
-			</div>
-			<% item_arr.each do |item| %>
-				<div class='border rounded m-3'>
-					<p class='p-3'>商品：<%= item.name %></p>
-					<p class='p-3'>單價：<%= item.price.to_i %></p>
-					<p class='p-3'>數量：<%= item.quantity %></p>
-				</div>
-			<% end %>
+			<p class='inline'><%= item_arr[0].store.name %></p>
 		<% end %>
-	  </div>
+	</div>
+	<p><%= @order.created_at.to_date %></p>
+</div>
+
+<div class="flex">
+	<p id='order-state' class=' bg-gray-500 text-white inline-block border-2 border-gray-500 rounded-full p-2 m-5'><%= check_state(@order) %></p>
+</div>
+
+<div class="rate border roubded px-5 m-5">
+	<h2 class="py-5">已獲評價</h2>
+	<hr>
+	<p class="py-5">thank you so much</p>
+</div>
+
+<div class="delivery border roubded px-5 m-5">		
+	<h2 class="py-5">運送狀態</h2>
+	<hr>
+	<ul class="w-full steps order-steps py-5">
+		<li data-content="✓" class="step step-primary" id='pending'>待付款</li> 
+		<li data-content="✓" class="step" id='paid'>已付款</li> 
+		<li data-content="✓" class="step" id='picked'>撿貨中</li> 
+		<li data-content="✓" class="step" id='in_transit'>運送中</li>
+		<li data-content="✓" class="step" id='arrived'>已送達</li>
+		<li data-content="✓" class="step" id='cancelled'>已取消</li>
+	</ul>
+</div>
+
+<div class="border roubded px-5 m-5">		
+	<h2 class="py-5">訂單內容</h2>
+	<hr>
+	<% @store_items.each do |item_arr| %>
+	<p class='text-xl'><%= item_arr[0].store.name %></p>
+		<% item_arr.each do |item| %>
+		<div class="grid grid-cols-5 my-5">
+			<div class="col pr-3">
+				<img src="http://fakeimg.pl/100x100/ecf0f1/" alt="product_img">
+			</div>
+			<div class='col-span-2'><%= item.name %></div>
+			<div class="col text-right">x <%= item.quantity %></div>
+			<div class="col text-right">NT$ <%= item.price.to_i %></div>
+		</div>
+		<% end %>
+	<% end %>
+	<hr>
+	<div class="grid grid-cols-2 my-2">
+		<div></div>
+		<div>
+			<div class="grid grid-cols-2 py-1">
+				<p class="text-right">小計</p>
+				<p class="text-right"><%= @order.total %></p>
+			</div>
+			<div class="grid grid-cols-2 py-1">
+				<p class="text-right">商品折抵</p>
+				<p class="text-right">0</p>
+			</div>
+			<div class="grid grid-cols-2 py-1">
+				<p class="text-right">運費</p>
+				<p class="text-right">0</p>
+			</div>
+			<hr class="my-2">
+			<div class="grid grid-cols-2 py-1">
+				<p class="text-right">總計</p>
+				<p class="text-right"><%= @order.total %></p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="delivery border roubded px-5 m-5">		
+	<h2 class="py-5">收件人資訊</h2>
+	<hr>
+	<div class='grid grid-cols-8'>
+		<div class="col col-span-3 md:col-span-2 lg:col-span-1">
+			<p class="text-right pr-3">收件人</p>
+		</div>
+		<div class="col col-span-5 md:col-span-6 lg:col-span-7">
+			<p><%= @order.receiver %></p>
+		</div>
+		<div class="col col-span-3 md:col-span-2 lg:col-span-1">
+			<p class="text-right pr-3">收件人地址</p>
+		</div>
+		<div class="col col-span-5 md:col-span-6 lg:col-span-7">
+			<p><%= @order.address %></p>
+		</div>
+		<div class="col col-span-3 md:col-span-2 lg:col-span-1">
+			<p class="text-right pr-3">收件人電話</p>
+		</div>
+		<div class="col col-span-5 md:col-span-6 lg:col-span-7">
+			<p><%= @order.tel %></p>
+		</div>
 	</div>
 </div>
 

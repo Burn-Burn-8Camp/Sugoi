@@ -23,9 +23,9 @@
 		訂單明細
 	  </div>
 	  <div class="collapse-content">
+		<p class='p-3'>商店：<%= @store.name %></p>
 		<% @items.each do |item| %>
 			<div class='border rounded m-3'>
-				<p class='p-3'>商店：<%= item.store.name %></p>
 				<p class='p-3'>品名：<%= item.name %></p>
 				<p class='p-3'>單價：<%= item.price.to_i %></p>
 				<p class='p-3'>數量：<%= item.quantity %></p>
