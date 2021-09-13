@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 	before_action  :authenticate_user!
-	before_action :find_orders_by_state, only: [:index, :pending, :processing, :shipped, :completed, :canceled]
+	before_action :find_orders_by_state, only: [:index, :pending, :processing, :shipped, :completed, :cancelled]
 	def index
 		redirect_to pending_orders_path
 	end
@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
 	def create
 		@cart_items = current_cart.items
 		@order = current_user.orders.new(order_params)
-		@order[:total] = current_cart.total
+		@order.total = current_cart.total
 		create_order_items_data_in_order(@cart_items, @order)
 		if @order.save			
 			caculate_user_consume(current_user)
@@ -57,7 +57,7 @@ class OrdersController < ApplicationController
 		render :index
 	end
 	
-	def canceled
+	def cancelled
 		@orders = current_user.orders.where(state: 'cancelled').order(id: :desc)
 		render :index
 	end
@@ -69,7 +69,7 @@ class OrdersController < ApplicationController
 
 		def caculate_user_consume(user)
 			order = user.orders.select{ |order| order.state != "cancelled" }
-			total = order.map{|order| order[:total]}.sum
+			total = order.map{|order| order.total}.sum
 			user.update(accumulated_amount: total)
 		end
 
@@ -111,6 +111,6 @@ class OrdersController < ApplicationController
 			@processing_orders = current_user.orders.where(state: ['paid', 'picked']).order(id: :desc)
 			@shipped_orders = current_user.orders.where(state: 'in_transit').order(id: :desc)
 			@completed_orders = current_user.orders.where(state: 'arrived').order(id: :desc)
-			@canceled_orders = current_user.orders.where(state: 'cancelled').order(id: :desc)
+			@cancelled_orders = current_user.orders.where(state: 'cancelled').order(id: :desc)
 		end
 end

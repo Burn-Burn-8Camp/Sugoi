@@ -35,7 +35,7 @@ Rails.application.routes.draw do
       get :processing, to: 'orders#processing'
       get :shipped, to: 'orders#shipped'
       get :completed, to: 'orders#completed'
-      get :canceled, to: 'orders#canceled'
+      get :cancelled, to: 'orders#cancelled'
     end
     member do
       get :payment, to: 'payments#payment'

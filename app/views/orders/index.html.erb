@@ -12,8 +12,8 @@
 	<%= link_to completed_orders_path do %>
 		<div class='text-lg p-3 lg:p-5'>已完成<%= orders_length(@completed_orders) %></div>
 	<% end %>
-	<%= link_to canceled_orders_path do %>
-		<div class='text-lg p-3 lg:p-5'>已取消<%= orders_length(@canceled_orders) %></div>
+	<%= link_to cancelled_orders_path do %>
+		<div class='text-lg p-3 lg:p-5'>已取消<%= orders_length(@cancelled_orders) %></div>
 	<% end %>
 </div>
 <hr>

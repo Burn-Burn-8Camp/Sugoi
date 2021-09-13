@@ -3,7 +3,6 @@
 		<li class='text-blue-400'><%= check_state(@order) %></li> 
 		<li><%= @order.serial %></li> 
 	</ul>
-	<p class='hidden' id='order-state'><%= @order.state %></p>
 </div>
 
 <div class="flex justify-between m-5 mt-0">
@@ -29,12 +28,12 @@
 	<h2 class="py-5">運送狀態</h2>
 	<hr>
 	<ul class="w-full steps order-steps py-5">
-		<li data-content="✓" class="step step-primary" id='pending'>待付款</li> 
-		<li data-content="✓" class="step" id='paid'>已付款</li> 
-		<li data-content="✓" class="step" id='picked'>撿貨中</li> 
-		<li data-content="✓" class="step" id='in_transit'>運送中</li>
-		<li data-content="✓" class="step" id='arrived'>已送達</li>
-		<li data-content="✓" class="step" id='cancelled'>已取消</li>
+		<%= content_tag(:li, '待付款', data: {content: "✓"}, class: state_step(@order, 0)) %>
+		<%= content_tag(:li, '已付款', data: {content: "✓"}, class: state_step(@order, 1)) %>
+		<%= content_tag(:li, '撿貨中', data: {content: "✓"}, class: state_step(@order, 2)) %>
+		<%= content_tag(:li, '運送中', data: {content: "✓"}, class: state_step(@order, 3)) %>
+		<%= content_tag(:li, '已送達', data: {content: "✓"}, class: state_step(@order, 4)) %>
+		<%= content_tag(:li, '已取消', data: {content: "✓"}, class: state_step(@order, 5)) %>
 	</ul>
 </div>
 

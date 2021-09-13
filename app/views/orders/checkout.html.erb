@@ -1,93 +1,125 @@
-<div class="breadcrumbs m-2.5">
-	<ul>
-		<%= link_to cart_path do %>
-		<li class='text-blue-400 text-lg'>< 返回購物車</li> 
-		<% end %>
-	</ul>
-</div>
-<hr>
-<div class="border">
+<div class='xl:container m-auto px-5'>
+	<div class="breadcrumbs m-2.5">
+		<ul>
+			<%= link_to cart_path do %>
+			<li class='text-blue-400 text-lg'>< 返回購物車</li>
+			<% end %>
+		</ul>
+	</div>
+	<hr>
 	<% @store_items.each do |item_arr| %>
-	<h1 class="mx-4 my-3"><%= item_arr[0].store.name %></h1>
-	<hr>	
-	<div class="grid grid-cols-1 lg:grid-cols-2">
-		<div class="col p-4">
-			<% item_arr.each do |item| %>
-				<div class="grid grid-cols-4 pb-4 md:grid-cols-5 lg:grid-cols-6">
-					<div>
-						<img src="http://fakeimg.pl/100x100/ecf0f1/" alt="product_img">
-					</div>
-					<div class="col-span-3 md:col-span-4 lg:col-span-5">
-						<h3><%= item.name %></h3>
-						<div class="flex justify-between">
-							<p>x <%= item.quantity %></p>
-							<p>NT$ <%= item.price.to_i %></p>
+	<div class="border mb-4">
+		<h2 class="mx-4 my-3"><%= item_arr[0].store.name %></h2>
+		<hr>
+		<div class="grid grid-cols-1 lg:grid-cols-2">
+			<div class="col p-4">
+				<% item_arr.each do |item| %>
+					<div class="grid grid-cols-4 pb-4 md:grid-cols-5 lg:grid-cols-6">
+						<div class='mr-3'>
+							<img src="http://fakeimg.pl/100x100/ecf0f1/" alt="product_img">
+						</div>
+						<div class="col-span-3 md:col-span-4 lg:col-span-5">
+							<h3><%= item.name %></h3>
+							<div class="flex justify-between">
+								<p>x <%= item.quantity %></p>
+								<p>NT$ <%= item.price.to_i %></p>
+							</div>
 						</div>
 					</div>
-				</div>
+				<% end %>
 				<hr>
 				<div class='flex flex-row-reverse py-5'>
-					<p class="text-right pl-5">NT$ <%= item.total %></p>
+					<p class="text-right pl-5">NT$ <%= store_item_total(item_arr) %></p>
 					<p class="text-right pl-5">商品小計</p>
 				</div>
 				<div class='flex flex-row-reverse pb-5'>
 					<p class="text-right pl-5">NT$ <%= 0 %></p>
 					<p class="text-right pl-5">運費</p>
 				</div>
-			<% end %>
-		</div>
-		<div class="col p-4">
-			<div class="col bg-gray-100 p-6">
-				<h3 class="pb-3">收件資訊</h3>
-				<%= react_component("PumpUpScreen") %>
-				<p class="pb-3">運送方式</p>
-				<p class="pb-3">設計館自行提供發票/收據，開立後將寄至購買人地址</p>
-				<p class="pb-3">給設計師的訊息或注意事項</p>
-				<textarea name="" id="" cols="50" rows="5" placeholder="若你的訂單商品或是體驗活動需要提供客製化細節，請務必於下單時，填寫顏色、尺寸、圖案款式、客製文字等規格"></textarea>
+			</div>
+			<div class="col p-4">
+				<div class="col bg-gray-100 p-6">
+					<h3 class="pb-3">收件資訊</h3>
+					<%= react_component("PumpUpScreen") %>
+					<p class="pb-3">運送方式</p>
+					<p class="pb-3">設計館自行提供發票/收據，開立後將寄至購買人地址</p>
+					<p class="pb-3">給設計師的訊息或注意事項</p>
+					<textarea name="" id="" cols="45" rows="5" placeholder="若你的訂單商品或是體驗活動需要提供客製化細節，請務必於下單時，填寫顏色、尺寸、圖案款式、客製文字等規格"></textarea>
+				</div>
 			</div>
 		</div>
 	</div>
 	<% end %>
-</div>
+	
+	<div class='border'>
+		<div class='bg-gray-100 p-4'>
+			<h3>請選擇付款方式</h3>
+			<p><i class="fas fa-lock mr-2"></i>我們有信用卡結帳與銀行轉帳兩種方式</p>
+		</div>
+		<div class='bg-red-200 p-3'>
+			<p><i class="fas fa-tags mr-2"></i>刷卡滿 NT$1500 即享分期 0 利率！</p>
+		</div>
+		<div class="grid grid-cols-1 lg:grid-cols-2">
+			<div class="col p-4">
+				<div class='flex justify-between'>
+					<p>商品總計：</p>
+					<p><%= current_cart.total %></p>
+				</div>
+				<div class='flex justify-between'>
+					<p>商品折抵:</p>
+					<p>0</p>
+				</div>
+				<div class='flex justify-between'>
+					<p>運費總計:</p>
+					<p>0</p>
+				</div>
+				<div class='flex justify-between'>
+					<p>結帳總金額：</p>
+					<p><%= current_cart.total %></p>
+				</div>
+			</div>
 
-<div>
-	<p class='font-bold text-xl'>商品總計：<%= current_cart.total %></p>
-	<p class='font-bold text-xl'>商品折抵:</p>
-	<p class='font-bold text-xl'>運費總計:</p>
-	<p class='font-bold text-xl'>結帳總金額：<%= current_cart.total %></p>
+			<% if @order.errors.any? %>
+				<ul>
+					<% @order.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+					<% end %>
+				</ul>
+			<% end %>
+			
+			<div class='col p-4'>
+				<div class='bg-gray-100 h-full flex justify-center'>
+					<%= form_for @order, html: {class: 'my-5'} do |f| %>
+					<h3 class='text-xl font-bold'>填寫收件人資訊</h3>
+					<div>
+						<%= f.label :recceiver, "收件人姓名：" %>
+						<%= f.text_field :receiver, class: 'w-full my-2' %>
+					</div>
+					<div>
+						<%= f.label :tel, "收件人手機：" %>
+						<%= f.telephone_field :tel, class: 'w-full my-2' %>
+					</div>
+					<div>
+						<%= f.label :email, "購買人電子信箱：" %>
+						<%= f.email_field :email, class: 'w-full my-2' %>
+					</div>
+					<div>
+						<%= f.label :address, "收件人地址：" %>
+						<%= f.text_field :address, class: 'w-full my-2' %>
+					</div>
+					<div>
+						<%= f.label :delivery, "運送方式：" %>
+						<%= f.select :delivery, class: 'w-full my-2' do %>
+							<%= content_tag(:option, '貨運') %>
+						<% end %>
+					</div>
+					<div>
+						<%= f.submit '建立訂單', class: 'btn btn-primary' %>
+					</div>
+				<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-
-<% if @order.errors.any? %>
-	<ul>
-		<% @order.errors.full_messages.each do |message| %>
-		<li><%= message %></li>
-		<% end %>
-	</ul>
-<% end %>
-<%= form_for @order, html: {class: 'border-2 border-black my-5 inline-block p-3 rounded'} do |f| %>
-	<h3 class='text-xl font-bold'>填寫收件人資訊</h3>
-	<div>
-		<%= f.label :recceiver, "收件人姓名：" %>
-		<%= f.text_field :receiver %>
-	</div>
-	<div>
-		<%= f.label :tel, "收件人手機：" %>
-		<%= f.telephone_field :tel %>
-	</div>
-	<div>
-		<%= f.label :email, "購買人電子信箱：" %>
-		<%= f.email_field :email %>
-	</div>
-	<div>
-		<%= f.label :address, "收件人地址：" %>
-		<%= f.text_field :address %>
-	</div>
-	<div>
-		<%= f.label :delivery, "運送方式：" %>
-		<%= f.select :delivery, Order.all.collect { |o| o.delivery } %>
-	</div>
-	<div>
-		<%= f.submit '建立訂單', class: 'btn btn-primary' %>
-	</div>
-<% end %>
 
