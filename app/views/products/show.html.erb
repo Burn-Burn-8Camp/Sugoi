@@ -1,5 +1,5 @@
 <h1>商品副頁面</h1>
-<div class="flex justify-end">購物車 <%= current_cart.items %></div>
+<div class="flex justify-start">購物車 <%= cart_items_amount %></div>
 <%= link_to "清空購物車", cart_path, method: "delete" %>
 <section>
   <div class="flex">

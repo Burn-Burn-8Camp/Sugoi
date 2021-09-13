@@ -1,109 +1,128 @@
-<div class="container">
-  <div class="flex justify-end">購物車 <%= current_cart.items %>
+<div class="container m-auto">
+  <div class="max-w-screen-lg mx-auto">
+    <div class="flex justify-start">
+      購物車 
+      <%= cart_items_amount %>
+    </div>
+    <%= link_to "清空購物車" , cart_path, method: "delete" %>
   </div>
-  <%= link_to "清空購物車" , cart_path, method: "delete" %>
+
   
-  <div class="selected_items">
-    <% current_cart.items.each do |item| %>
-     
-      <div class="selected-item border border-gray-500">
-        <div class="item-wrapper">
-          <div class="item-header border-b-2 border-gray-500">
-            <a href="#">設計館:<%= item.store.name %></a>
-          </div>
-      
-          <div class="item-body-wrap">
-            <div class="item-body border flex">
+    <div class="selected_items mx-auto max-w-screen-lg md:flex">
+  
+      <div class="selected-item border border-grey-300 md:w-2/3">
+        <% current_cart.items.each do |item| %>
+        <div class="md:flex-col">
+          <div class="item-wrapper">
+            <div class="item-header border-b p-1">
+              <a href="#">設計館:<%= item.store.name %></a>
+            </div>
 
-              <div class="item-img border ">
-                <img src="https://picsum.photos/120/120/?random=<%= item.product_id %>">
-              </div>
+            <div class="item-body-wrap">
+              <div class="item-body flex">
 
-              <div class="item-name border">
-                <a href="#">
-                  <%= item.product.name %>
-                </a>   
-                <div class="item-qantity">      
-                  <select class="productID" id="<%= item.product_id %>">
-                    <%= 1.upto(product_storage(item.product_id)) do |i| %>
-                      <option value="<%= " #{i}" %>"><%= "#{i}" %>
-                      </option>
-                      <% end %>
-                  </select>
-                  <span>商品庫存:<%= product_storage(item.product_id) %></span>
-                  <div class="subtotal">
-                    單價NT$<span class="single_price"><%= item.product.price.to_i %></span> 
+                <div class="item-img p-1">
+                  <img src="https://picsum.photos/120/120/?random=3">
+                </div>
+
+                <div class="item-name w-full flex border-b">
+                  <div class="product-img w-1/2 pl-3 pt-1">
+                    <a class="font-bold" href="#">
+                      <%= item.product.name %>
+                    </a>
+                  </div>
+
+                  <div class="item-qantity w-1/2 pl-3 pt-1 flex justify-between">
+                    <div class="selection-container">
+                      <select class="productID" id="<%= item.product_id %>">
+                        <%= 1.upto(product_storage(item.product_id)) do |i| %>
+                          <option value="<%= " #{i}" %>"><%= "#{i}" %>
+                          </option>
+                          <% end %>
+                      </select>                
+                    </div>
+
+                    <div class="storage_container">
+                      <span>商品庫存:<%= product_storage(item.product_id) %></span>
+                    </div>
+
+                    <div class="subtotal">
+                      單價NT$
+                      <span class="single_price">
+                        <%= item.product.price.to_i %>
+                      </span>
+                    </div>
+
                   </div>
                 </div>
-              </div>
 
+              </div>
             </div>
           </div>
-        </div>
-      
-        <div class="deliver-item">
-          <div class="deliver-item-title">
-            <span>選擇收件地與運送方式</span>
+
+          <div class="deliver-item mt-2 p-2">
+            <div class="deliver-item-title mb-1">
+              <span>選擇收件地與運送方式</span>
+            </div>
+
+            <div class="how-to-deliver ">
+              <select class="border border-gray-300 inline mb-1">
+                <option value disabled>請選擇運送方式</option>
+                <optgroup label="從 台灣 寄出"></optgroup>
+                <option value="CN">貨運</option>
+              </select>
+
+              <ul class="promo">
+                <li>通知出貨後約 1 - 2 天寄達 | 提供追蹤</li>
+                <li>滿 NT$ 1,000 <span class="1">免運費</span></li>
+              </ul>
+
+            </div>
+
           </div>
-      
-          <div class="how-to-deliver">
-            <select class="border border-gray-400 inline">
-              <option value disabled>請選擇運送方式</option>
-              <optgroup label="從 台灣 寄出"></optgroup>
-              <option value="CN">貨運</option>    
-            </select>
-      
-            <ul class="promo">
-              <li>通知出貨後約 1 - 2 天寄達 | 提供追蹤</li>
-              <li>滿 NT$ 1,000 免運費</li>
-            </ul>
-      
-          </div>
-      
         </div>
+        <% end %>
       </div>
-    
+   
+      <div class="order-list md:w-1/3">
+        <div class="calulate-page-container border border-gray-300 md:ml-3">
+          <div class="calulate-page-header bg-gray-300 font-bold p-2">訂單摘要</div>
+          <div class="calulate-page-body pl-2">
+            <div class="summary-items flex my-3">
+              <span class="summary-items-price">NT$<span class="total_price">
+                  <%= current_cart.total %>
+                </span></span>
+            </div>
 
-    <% end %>
+            <div>
+              <p>
+                首綁首刷國泰世華卡，滿 NT$1000 現折 NT$100 (限量)！僅限「常用信用卡」結帳
+              </p>
+              <p>
+                實際運費金額以購物車結算或是到貨時收取的金額為準。
+              </p>
+            </div>
 
-  </div>
+            <div class="coupon">
+              <a href="#">使用優惠券、P Coins 或禮物卡</a>
+            </div>
 
+          </div>
 
-  <div class="order-list border border-gray-500 mb-3">
-    <div class="calulate-page-header bg-gray-300">訂單摘要</div>
-    <div class="calulate-page-body">
-      <div class="summary-items flex my-3">
-        <span class="summary-items-title ">商品總計</span>
-        <span class="summary-items-price">NT$<span class="total_price"><%= current_cart.total %></span></span>
+          <div class="border-t-2 border-gray-400 my-3 pl-2">
+            <span class="total-price-title">結帳總金額</span>
+            <span class="sum">
+              <%= current_cart.total %>
+            </span>
+          </div>
+          <div class="my-3 flex justify-center">
+            <button class="bg-red-400 p-3 text-white rounded inline-block w-11/12">
+              <%= link_to '前往結帳' , checkout_cart_path %>
+            </button>
+          </div>
+        </div>
+
       </div>
-
-     
-
-      <div>
-        <p>
-          首綁首刷國泰世華卡，滿 NT$1000 現折 NT$100 (限量)！僅限「常用信用卡」結帳
-        </p>
-        <p>
-          實際運費金額以購物車結算或是到貨時收取的金額為準。
-        </p>
-      </div>
-
-      <div class="coupon">
-        <a href="#">使用優惠券、P Coins 或禮物卡</a>
-      </div>
-
     </div>
-
-    <div class="border-t-2 border-gray-400 my-3">
-      <span class="total-price-title">結帳總金額</span>
-      <span class="sum">
-        <%= current_cart.total %>               
-      </span>
-    </div>
-    <div class="my-3">
-      <button class="bg-red-400 p-3 text-white rounded inline-block">
-        <%= link_to '前往結帳', checkout_cart_path %>
-      </button>
-    </div>
-  </div>
+ 
 </div>
