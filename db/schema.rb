@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_13_154607) do
+ActiveRecord::Schema.define(version: 2021_09_14_150144) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -75,19 +75,6 @@ ActiveRecord::Schema.define(version: 2021_09_13_154607) do
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
-  create_table "sellers", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.string "cellphone"
-    t.string "image"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.bigint "user_id"
-    t.string "state"
-    t.string "introduction"
-    t.index ["user_id"], name: "index_sellers_on_user_id"
-  end
-
   create_table "store_orders", force: :cascade do |t|
     t.bigint "store_id", null: false
     t.bigint "order_id", null: false
@@ -102,8 +89,8 @@ ActiveRecord::Schema.define(version: 2021_09_13_154607) do
     t.text "introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "seller_id"
-    t.index ["seller_id"], name: "index_stores_on_seller_id"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_stores_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -131,6 +118,7 @@ ActiveRecord::Schema.define(version: 2021_09_13_154607) do
     t.string "life_shopping"
     t.string "life_design"
     t.string "image"
+    t.string "role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["rank"], name: "index_users_on_rank"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
