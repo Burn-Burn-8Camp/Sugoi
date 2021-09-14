@@ -1,6 +1,6 @@
 class Seller < ApplicationRecord
-  has_one :store
-  belongs_to :user
+  # has_one :store
+  # belongs_to :user
   include AASM
   aasm column: 'state' do
     state :application, initial: true

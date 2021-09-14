@@ -1,8 +1,9 @@
 <h1>編輯商店</h1>
 
-<%= form_for @store, url: store_path, method: 'POST' do |f| %>
+<%= form_for @store, url: store_path, method: 'PATCH' do |f| %>
 	<div>
-		<%= @store.name %>
+		<%= f.label :name, "商店名稱" %>
+		<%= f.text_field :name %>
 	</div>
 	<div>
 		<%= f.label :introduction, "商店介紹" %>
