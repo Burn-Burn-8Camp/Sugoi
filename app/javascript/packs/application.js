@@ -6,9 +6,11 @@ import "styles"
 // CSS 打包
 import "components/react_application"
 // react js 打包
-import "controllers/stateStep"
-import "controllers/swiftImg"
-import "controllers/confirmCart"
+// import "controllers/stateStep"
+// import "controllers/swiftImg"
+// import "controllers/confirmCart"
+import "scripts/index.js"
+
 
 Rails.start()
 Turbolinks.start()

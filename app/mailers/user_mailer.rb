@@ -11,15 +11,9 @@ class UserMailer < ApplicationMailer
 
   default :from => "Sugoi 客服 <Sugoi@sugoi.com>"
 
-  def notify_comment(user, comment)
-    @comment = comment
 
-    mail(to: user.email, :subject => "訂單成立") 
-  end
-
-  def order_letter_confirm(order, comment)
-    @comment = comment
-    @order = Order.last
+  def order_letter_confirm(order)
+    @order = order
     @order_items =  @order.order_items
 
     mail(to: order.email, :subject => "訂單成立") 
