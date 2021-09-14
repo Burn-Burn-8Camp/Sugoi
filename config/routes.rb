@@ -45,15 +45,16 @@ Rails.application.routes.draw do
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
-
-  resources :member, only: [] do
-    collection do
-      get 'profile', to: 'users#profile'   
-      get 'edit', to: 'users#edit'
-      get 'about', to: 'users#about'
-      patch 'about', to: 'users#about'
-      get 'buy_order', to: 'users#buy_order'
+  devise_scope :users do
+    resources :member, only: [] do
+      collection do
+        get 'profile', to: 'users#profile'   
+        get 'edit', to: 'users#edit'
+        get 'about', to: 'users#about'
+        patch 'about', to: 'users#about'
+        get 'buy_order', to: 'users#buy_order'
+      end
     end
-  end 
+  end
 end
 
