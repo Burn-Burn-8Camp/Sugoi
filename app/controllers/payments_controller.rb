@@ -3,8 +3,8 @@ class PaymentsController < ApplicationController
 	# 前往付錢
 	def payment
 		@order = current_user.orders.find(params[:id])
-		@form_info = Newebpay::Mpg.new(@order).form_info
-		@form_data = Newebpay::Mpg.new(@order).info
+		# @form_info = Newebpay::Mpg.new(@order).form_info
+		# @form_data = Newebpay::Mpg.new(@order).info
 	end
 	# 付錢回來
 	def notify_response
