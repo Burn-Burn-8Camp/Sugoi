@@ -47,7 +47,10 @@
 			<div class="col pr-3">
 				<img src="http://fakeimg.pl/100x100/ecf0f1/" alt="product_img">
 			</div>
-			<div class='col-span-2'><%= item.name %></div>
+			<div class='col-span-2'>
+				<span class='block'><%= item.name %></span>
+				<%= react_component("PumpUpScreen") %>
+			</div>
 			<div class="col text-right">x <%= item.quantity %></div>
 			<div class="col text-right">NT$ <%= item.price.to_i %></div>
 		</div>

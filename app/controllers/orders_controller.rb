@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-	before_action  :authenticate_user!
+	before_action :authenticate_user!
 	before_action :find_orders_by_state, only: [:index, :pending, :processing, :shipped, :completed, :cancelled]
 	def index
 		redirect_to pending_orders_path

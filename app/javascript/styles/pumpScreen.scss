@@ -16,6 +16,7 @@
   border-radius: 4px;
   outline: none;
   padding: 20px;
+  z-index: 10;
 }
 
 .myoverlay {
@@ -25,6 +26,7 @@
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.75);
+  z-index: 10;
 }
 
 .ReactModal__Overlay--after-open {
@@ -35,6 +37,11 @@
   opacity: 0;
 }
 @media screen and (min-width:768px) {
+  .mymodal {
+    width: 60%;
+  }
+}
+@media screen and (min-width:1024px) {
   .mymodal {
     width: 50%;
   }
