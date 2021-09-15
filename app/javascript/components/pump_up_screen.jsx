@@ -1,12 +1,32 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal'
+import { library } from "@fortawesome/fontawesome-svg-core";
+import { fas } from "@fortawesome/free-solid-svg-icons";
+import { far } from "@fortawesome/free-regular-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+library.add(fas, far);
 
+const Stars = () => {
+  const [isBright, setIsBright] = useState(false);
+  const toggleStar = (e) => {
+    console.log(e.target);
+    setIsBright(!isBright);
+  }
+  return (
+    <div>
+      {isBright ? <FontAwesomeIcon icon={['fas', 'star']} onClick={toggleStar}/> : <FontAwesomeIcon icon={['far', 'star']} onClick={toggleStar}/>}
+    </div>
+  )
+}
 const PumpUpScreen = () =>  {
-  const [isOpen, setIsOpen] = useState(false);
   const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-  function toggleModal() {
+  const [isOpen, setIsOpen] = useState(false);
+  
+  const starIndex = [0, 1, 2, 3, 4]
+  const toggleModal = () => {
     setIsOpen(!isOpen);
   }
+
   return (
     <div className="PumpUpScreen mb-3">
       <button onClick={toggleModal} className='btn btn-primary'>商品評價</button>
@@ -15,9 +35,9 @@ const PumpUpScreen = () =>  {
 				ariaHideApp={false}
         isOpen={isOpen}
         onRequestClose={toggleModal}
-				className="mymodal"
-        overlayClassName="myoverlay"
-        contentLabel="addressForm">
+				className="myModal"
+        overlayClassName="myOverlay"
+        contentLabel="commentForm">
         <h3 className='pb-3'>請填寫對於商品的評價</h3>
 				<hr />
 				<form action="http://localhost:3000/orders/order_form" method='POST'>
@@ -26,7 +46,6 @@ const PumpUpScreen = () =>  {
           </div>
 					<div>
             <label htmlFor="receiver">商品滿意度</label>
-            <input type="text" name='rate' className='w-full my-2'/>
           </div>
 					<div>
             <label htmlFor="content">商品評論</label>

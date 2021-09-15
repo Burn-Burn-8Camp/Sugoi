@@ -3,7 +3,7 @@
   text-align: center;
 }
 
-.mymodal {
+.myModal {
   position: fixed;
   width: 80%;
   top: 50%;
@@ -19,7 +19,7 @@
   z-index: 10;
 }
 
-.myoverlay {
+.myOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -37,12 +37,12 @@
   opacity: 0;
 }
 @media screen and (min-width:768px) {
-  .mymodal {
+  .myModal {
     width: 60%;
   }
 }
 @media screen and (min-width:1024px) {
-  .mymodal {
+  .myModal {
     width: 50%;
   }
 }
