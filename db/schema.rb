@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 2021_09_14_045235) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "description"
     t.bigint "store_id"
+    t.integer "delivery"
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
