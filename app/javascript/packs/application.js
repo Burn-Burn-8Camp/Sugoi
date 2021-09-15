@@ -13,4 +13,5 @@ import "controllers/confirmCart"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+require("channels")
 
