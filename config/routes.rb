@@ -52,6 +52,7 @@ Rails.application.routes.draw do
       collection do
         get 'profile', to: 'users#profile'   
         get 'edit', to: 'users#edit'
+        patch 'edit', to: 'users#update'
         get 'about', to: 'users#about'
         patch 'about', to: 'users#about'
         get 'buy_order', to: 'users#buy_order'

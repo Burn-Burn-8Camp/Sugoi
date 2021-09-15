@@ -9,7 +9,8 @@ class User < ApplicationRecord
   has_many :orders
   has_many :comments
   has_one :store
-  
+  has_one_attached :image
+
   def self.create_from_provider_data(provider_data)
     return nil if provider_data.nil?
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do |user|
