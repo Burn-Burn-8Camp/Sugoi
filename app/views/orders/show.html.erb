@@ -1,7 +1,8 @@
 <div class="breadcrumbs m-2.5">
 	<ul>
 		<li class='text-blue-400'><%= check_state(@order) %></li> 
-		<li><%= @order.serial %></li> 
+		<li><%= @order.serial %></li>
+		<li class='hidden' data-id=<%= @order.friendly_id %> id='order_id'></li> 
 	</ul>
 </div>
 
@@ -40,22 +41,7 @@
 <div class="border roubded px-5 m-5">		
 	<h2 class="py-5">訂單內容</h2>
 	<hr>
-	<% @store_items.each do |item_arr| %>
-	<p class='text-xl'><%= item_arr[0].store.name %></p>
-		<% item_arr.each do |item| %>
-		<div class="grid grid-cols-5 my-5">
-			<div class="col pr-3">
-				<img src="http://fakeimg.pl/100x100/ecf0f1/" alt="product_img">
-			</div>
-			<div class='col-span-2'>
-				<span class='block'><%= item.name %></span>
-				<%= react_component("PumpUpScreen") %>
-			</div>
-			<div class="col text-right">x <%= item.quantity %></div>
-			<div class="col text-right">NT$ <%= item.price.to_i %></div>
-		</div>
-		<% end %>
-	<% end %>
+	<%= react_component('OrderItemsInfo') %>
 	<hr>
 	<div class="grid grid-cols-2 my-2">
 		<div></div>

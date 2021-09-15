@@ -12,6 +12,12 @@ class OrdersController < ApplicationController
 		find_by_smae_store(@store_items, @items)
 	end
 
+	def items_info
+		@order = current_user.orders.find_by_friendly_id!(params[:id])
+		@items = @order.order_items.includes(:product)		
+		render json: @items
+	end
+
 	def checkout
 		@order = Order.new
 		store_id_list = current_cart.items.map { |item| item.store_id }.uniq.sort

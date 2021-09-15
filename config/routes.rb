@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     end
     member do
       get :payment, to: 'payments#payment'
+      post :items_info, to: 'orders#items_info'
     end
   end
 
