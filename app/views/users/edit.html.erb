@@ -3,31 +3,36 @@
 
 <div class="">
   <%= form_for(@user, url:edit_member_index_path) do |f| %>
-  
-  <div>
-    <%= f.label :name, '顯示暱稱' %><br />
-    <%= f.text_field :name %>
-  </div>
+    <div>
+      <%= f.label :name, '顯示暱稱' %><br />
+      <%= f.text_field :name %>
+    </div>
 
-  <div>
-    <%= f.label :email,"您的電子信箱" %><br />
-    <%= f.text_field :email %>
-  </div>
+    <div>
+      <%= f.label :email,"您的電子信箱" %><br />
+      <%= f.text_field :email %>
+    </div>
 
-  <div class="">
-    <%= f.label :gender,"性別" %><br />
-    <%= f.text_field :gender, required: true, placeholder: 'Gender', class: 'form-control' %>
-  </div>
+    <div class="">
+      <%= f.label :gender,"性別" %><br />
+      <%= f.text_field :gender, required: true, placeholder: 'Gender', class: 'form-control' %>
+    </div>
 
-  <div class="">
-    <%= f.label :date, "生日" %><br />
-    <%= date_field(:date, :born_on) %>
-  </div>
+    <div class="">
+      <%= f.label :date, "生日" %><br />
+      <%= date_field(:date, :born_on) %>
+    </div>
 
-  <div class="">
-    <%= f.label :country, "所在地" %><br />
-    <%= f.text_field :country %>
-  </div>
+    <div class="">
+      <%= f.label :country, "所在地" %><br />
+      <%= f.text_field :country %>
+    </div>
+
+    <div class="">
+      <%= f.label :image, "照片" %><br />
+      <%= f.file_field :image %>
+    </div>
+    <%= f.submit "更新" %>
   <%end %>
 </div>
 
@@ -37,12 +42,10 @@
 
 <br />
 <%= form_with(model: @user, url: '', local: true, :html => { multipart: true }) do |form| %>
-
   <div class="form-group">
     <%= form.label :image %>
     <%= form.file_field :image %>
   </div> 
-  
 <%end %>
 
 
