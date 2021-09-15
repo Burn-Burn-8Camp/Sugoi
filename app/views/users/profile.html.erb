@@ -95,6 +95,10 @@
     <div class=""><%= current_user.created_at.to_s.split(' ')[0]%></div>
   </div>
   <div class="flex">
+    <div class="">個人大頭貼</div>
+    <div class=""><%= image_tag current_user.image_url if current_user.image_url.present? %></div>
+  </div>
+  <div class="flex">
     <div class="">個人資料設定</div>
     <div class="">
       <p><%= link_to "點我更新你的個人介紹",about_member_index_path %></p>
