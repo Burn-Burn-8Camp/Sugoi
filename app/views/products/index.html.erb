@@ -1,4 +1,6 @@
-<div id="slide1" class="relative w-full carousel-item pb-5">
+<%
+=begin%>
+ <div id="slide1" class="relative w-full carousel-item pb-5">
   <div id="tab">
     <img class="tabImg hidden" src="http://fakeimg.pl/1440x300/ecf0f1/" />
     <img src="https://picsum.photos/id/500/1440/300" alt="fakePic" class="tabImg hidden"/>
@@ -37,7 +39,9 @@
     </div> 
   <% end %>
   </div>
-<%== pagy_nav(@pagy) %>
+<%== pagy_nav(@pagy) %> 
+<%
+=end%>
 <!-- <table>
   <thead>
     <tr>
