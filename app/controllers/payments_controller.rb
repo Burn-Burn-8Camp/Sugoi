@@ -6,7 +6,7 @@ class PaymentsController < ApplicationController
 		if @order.may_pay?
 			# @form_info = Newebpay::Mpg.new(@order).form_info
 			# @form_data = Newebpay::Mpg.new(@order).info
-		else
+		# else
 			redirect_to orders_path
 		end
 	end
@@ -14,7 +14,6 @@ class PaymentsController < ApplicationController
 	def notify_response
 		check_response(return_params(params))
 	end
-
 
 	private
 		def check_response(params)
@@ -26,7 +25,7 @@ class PaymentsController < ApplicationController
 				order.pay!
 				redirect_to order_path(order), notice: '刷卡成功'
 			else
-				redirect_to order_path(order), notice: '刷卡失敗，訂單取消'
+				redirect_to payment_order_path(order), notice: '刷卡失敗，請重新付款'
 			end
 		end
 
@@ -35,6 +34,6 @@ class PaymentsController < ApplicationController
 		end
 
 		def find_order
-			@order = current_user.orders.find(params[:id])
+			@order = current_user.orders.find_by_friendly_id!(params[:id])
 		end
 end

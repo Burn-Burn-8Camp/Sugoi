@@ -3,11 +3,19 @@ class CartsController < ApplicationController
   before_action :find_cart_item, only: [:add]
 
   def show
+    # 相同商城會在同一欄位內
+    store_id_list = current_cart.items.map { |item| item.store_id }.uniq.sort
+    @store_items = []
+    store_id_list.each{ |id|
+      @store_items << current_cart.items.select{ |item|
+        item.store_id === id 
+     }
+    }
     @cart = current_cart.items
   end
 
   def add
-    current_cart.add_item(params[:id], @product.name, @product.store.name, @product.price)
+    current_cart.add_item(params[:id], @product.name, @product.store.id, @product.store.name, @product.price)
     session[:cart1289] = current_cart.serialize
     redirect_to product_path(params[:id]), notice: "已加至購物車"
   end

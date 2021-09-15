@@ -22,6 +22,11 @@ class StoresController < ApplicationController
 	end
 
 	def update
+		if @store.update(store_params)
+			redirect_to store_path, notice: '更新成功'
+		else
+			render :edit, notice: '請重新填寫'
+		end
 	end
 	
 	def products_list
@@ -37,14 +42,10 @@ class StoresController < ApplicationController
 	end
 
 	def order_detail
-		@order = current_store.orders.find(params[:id])
-		@items = @order.order_items.includes(:product)
+		@order = current_store.orders.find_by_friendly_id!(params[:id])
+		@items = @order.order_items.includes(:store).where(store: current_store)
 	end
 	
-
-
-
-
 	private
 		def store_params
 			params.require(:store).permit(:name, :user_id, :introduction)

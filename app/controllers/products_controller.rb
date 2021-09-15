@@ -2,16 +2,13 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
   
   def index
-    if params[:keyword]
-      @pagy, @products = pagy(Product.where([`name like '%?%'`, params[:keyword]]), items: 6)
-    else
-      @pagy, @products = pagy(Product.all, items: 6)
-    end
+    @pagy, @products = pagy(Product.all, items: 6)
   end
 
   def new
     @product = Product.new
   end
+
   def create
     @product = Product.new(product_params)
     if @product.save

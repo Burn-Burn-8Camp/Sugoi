@@ -1,5 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
+@import "base_environment.scss";
+@import "banner.scss";
+@import "pagy_decoration.scss";
+@import "pumpScreen.scss";
 @import "tailwindcss/utilities";
-
-

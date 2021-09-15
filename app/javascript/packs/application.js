@@ -3,14 +3,8 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import "styles"
-// CSS 打包
-import "components/react_application"
-// react js 打包
-// import "controllers/stateStep"
-// import "controllers/swiftImg"
-// import "controllers/confirmCart"
-import "scripts/index.js"
-
+import "components"
+import "scripts"
 
 Rails.start()
 Turbolinks.start()

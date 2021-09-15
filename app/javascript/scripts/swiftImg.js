@@ -3,7 +3,7 @@ document.addEventListener("turbolinks:load", () => {
 	var imgNumber = document.querySelectorAll('.tabImg').length
 	var images = document.querySelectorAll('.tabImg')
 	var tabBtn = document.querySelectorAll('.tabBtn')
-	var timer = setInterval(imgRun, 2000)
+	setInterval(imgRun, 2000)
 
 	function imgRun() {
 		currentIndex = ++currentIndex === imgNumber ? 0 : currentIndex

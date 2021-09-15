@@ -29,7 +29,6 @@
       </h2> 
       <p>所屬商店：<%= product.store.name %></p>
       <p>價錢：<%= product.price.to_i %></p>
-      <p>商品描述：<%= product.description %></p>
       <div class="justify-end card-actions">
         <button class="btn btn-secondary">More info</button>
       </div>
@@ -38,50 +37,3 @@
   <% end %>
   </div>
 <%== pagy_nav(@pagy) %>
-<!-- <table>
-  <thead>
-    <tr>
-      <td>商品名稱</td> 
-      <td>價錢</td>
-      <td>數量</td>
-      <td>描述</td>
-      <td>類別</td>
-      <td>材料</td>
-      <td>製造方法</td>
-      <td>國家</td>
-      <td>內容</td>
-      <td>修改</td>
-      <td>刪除</td>
-    </tr>
-  </thead>
-  <tbody>
-    <% @products.each do |product| %>
-    <tr>
-      <td><%= link_to product.name,product_path(product) %></td>
-      <td><%= product.name %></td>
-      <td><%= product.price %></td>
-      <td><%= product.quantity %></td>
-      <td><%= product.description %></td>
-      <td><%= product.category %></td>
-      <td><%= product.material %></td>
-      <td><%= product.manufacturing_method %></td>
-      <td><%= product.country %></td>
-      <td><%= product.content %></td>
-      <td><%= link_to "修改商品",edit_product_path(product) %></td>
-      <td><%= link_to "刪除商品",product_path(product), 
-                               method: "DELETE",
-                               data: {confirm: '刪除成功！'} %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table> -->
-
-
-<!-- <div id="slide1" class="relative w-full carousel-item pb-5">
-  <img src="https://picsum.photos/id/500/800/300" class="w-full">
-  <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-    <a href="/components/carousel#slide4" class="btn btn-circle">❮</a>
-    <a href="/components/carousel#slide2" class="btn btn-circle">❯</a>
-  </div>
-</div> -->
-
