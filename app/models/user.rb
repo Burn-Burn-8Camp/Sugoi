@@ -8,6 +8,9 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:google_oauth2 ,:github]
   has_many :orders
   has_one :store
+  has_many :bookmarks
+  has_many :products, 
+            through: :bookmarks
 
   def self.create_from_provider_data(provider_data)
     return nil if provider_data.nil?
