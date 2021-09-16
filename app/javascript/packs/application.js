@@ -13,3 +13,18 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
+function addFavorite(id) {
+    fetch
+
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const btn = document.querySelector("#favorite_icon");
+
+    if (btn) {
+        btn.addEventListener("click", () => {
+            addFavorite(2);
+        });
+    }
+});
+
