@@ -35,7 +35,7 @@
 	  <div class='flex-1 hidden lg:flex'>
 	    <p>我想在sugoi上販售</p>
 	  </div>
-	  <% if current_user.role = "nil" %>
+	  <% if current_user.role != "seller" %>
 	   <div>
 	      <%= link_to '申請成為賣家', application_store_path %>
 	    </div>
