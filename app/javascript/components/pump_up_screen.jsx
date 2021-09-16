@@ -2,29 +2,28 @@ import React, { useState } from 'react'
 import Modal from 'react-modal'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
-import { far } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-library.add(fas, far);
+library.add(fas);
 
-const Stars = () => {
-  const [isBright, setIsBright] = useState(false);
-  const toggleStar = (e) => {
-    console.log(e.target);
-    setIsBright(!isBright);
-  }
-  return (
-    <div>
-      {isBright ? <FontAwesomeIcon icon={['fas', 'star']} onClick={toggleStar}/> : <FontAwesomeIcon icon={['far', 'star']} onClick={toggleStar}/>}
-    </div>
-  )
-}
+
+
 const PumpUpScreen = () =>  {
   const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
   const [isOpen, setIsOpen] = useState(false);
-  
-  const starIndex = [0, 1, 2, 3, 4]
+  const [rateValue, setRateValue] = useState(5);
+
   const toggleModal = () => {
     setIsOpen(!isOpen);
+  }
+  const Star = ({id, starStyle}) => {
+    const toggleStar = () => {
+      setRateValue(id)
+    }
+    return (
+      <span className='inline-block'>
+        <FontAwesomeIcon icon={['fas', 'star']} onClick={toggleStar} className={starStyle} />
+      </span>
+    )
   }
 
   return (
@@ -45,7 +44,14 @@ const PumpUpScreen = () =>  {
             <input type="hidden" value={csrf} name='authenticity_token'/>
           </div>
 					<div>
-            <label htmlFor="receiver">商品滿意度</label>
+            <label htmlFor="rate">商品滿意度</label>
+            <input type="hidden" name='rate' value={rateValue}/>
+            {
+              [1, 2, 3, 4, 5].map((star, index) => {
+                const starStyle = index < rateValue ? 'text-yellow-400' : 'text-gray-200'
+                return <Star id={star} key={star} starStyle={starStyle} />
+              })
+            }
           </div>
 					<div>
             <label htmlFor="content">商品評論</label>
