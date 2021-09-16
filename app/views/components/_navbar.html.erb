@@ -1,36 +1,38 @@
 <% if current_user %>
+	<!-- ===============================登入狀態================================= -->
 	<header>
-		<div class="border-4">
+		<div class="">
 			<div class="navbar mb-2 shadow-lg  text-primary-content w-full">
+				<div>
+					<div class="px-2 mx-2 lg:flex">
+						<h1 class="text-2xl">
+							<%= link_to 'Sugoi' , root_path %>
+						</h1>
+					</div>
 
-				<div class="px-2 mx-2 lg:flex">
-					<h1 class="text-2xl">
-						<%= link_to 'Sugoi' , root_path %>
-					</h1>
-				</div>
+					<div class="lg:flex-none ">
+						<div>
+							<!-- ================================================================ -->
+							<!-- Load icon library -->
+							<link rel="stylesheet"
+								href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-				<div class="lg:flex-none ">
-					<div>
-						<!-- ================================================================ -->
-						<!-- Load icon library -->
-						<link rel="stylesheet"
-							href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+							<!-- The form -->
+							<form action="/products/search" method="GET">
+								<input class="w-4/5" type="text" placeholder="搜尋好設計、體驗活動" name="search">
+								<button type="submit border ">
+									搜尋
+								</button>
+							</form>
 
-						<!-- The form -->
-						<form action="/products/search" method="GET">
-							<input type="text" placeholder="搜尋好設計、體驗活動" name="search">
-							<button type="submit border ">
-								搜尋
-							</button>
-						</form>
-
-						<div class='flex-none hidden lg:flex'>
-							<a href="#" class='text-sm'>安心出貨 /</a>
-							<a href="#" class='text-sm'>拼圖 /</a>
-							<a href="#" class='text-sm'>失眠 /</a>
-							<a href="#" class='text-sm'>ipad保護套 /</a>
-							<a href="#" class='text-sm'>中秋禮盒 /</a>
-							<a href="#" class='text-sm'>文具新品</a>
+							<div class='flex-none hidden lg:flex space-x-3'>
+								<a href="https://astro.5xruby.tw/" class='text-sm'>五倍</a>
+								<a href="https://astro.5xruby.tw/" class='text-sm'>月餅</a>
+								<a href="https://astro.5xruby.tw/" class='text-sm'>和牛</a>
+								<a href="https://astro.5xruby.tw/" class='text-sm'>烤肉</a>
+								<a href="https://astro.5xruby.tw/" class='text-sm'>蘋果</a>
+								<a href="https://astro.5xruby.tw/" class='text-sm'>專題</a>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -121,34 +123,34 @@
 			</div>
 			<nav id="g-navigation" class="g-navigation">
 				<div class="g-wrap-expand ">
-					<ul class="flex  justify-evenly border ">
+					<ul class="flex  justify-evenly ">
 						<li class="nav-first-li campaigns-nav hightlight nav-first-li--0" data-detect="new">
 							<div class="title bold pink  pb-px">
 								<span class="title-inner text-red-500">主題企劃</span>
 							</div>
 						</li>
 						<li class="nav-first-li nav-first-li--1">
-							<a class="title" href="#">配件飾品</a>
+							<a class="title" href="https://astro.5xruby.tw/">配件飾品</a>
 
 						</li>
 						<li class="nav-first-li nav-first-li--2">
-							<a class="title" href="#">包包提袋</a>
+							<a class="title" href="https://astro.5xruby.tw/">包包提袋</a>
 
 						</li>
 						<li class="nav-first-li nav-first-li--3">
-							<a class="title" href="#">居家生活</a>
+							<a class="title" href="https://astro.5xruby.tw/">居家生活</a>
 						</li>
 						<li class="nav-first-li nav-first-li--4">
-							<a class="title" href="#">品味美食</a>
+							<a class="title" href="https://astro.5xruby.tw/">品味美食</a>
 						</li>
 						<li class="nav-first-li nav-first-li--5">
-							<a class="title" href="#">廚房餐桌</a>
+							<a class="title" href="https://astro.5xruby.tw/">廚房餐桌</a>
 						</li>
 						<li class="nav-first-li nav-first-li--6">
-							<a class="title" href="#">創意科技</a>
+							<a class="title" href="https://astro.5xruby.tw/">創意科技</a>
 						</li>
 						<li class="nav-first-li nav-first-li--7">
-							<a class="title bold" href="#">所有分類</a>
+							<a class="title bold" href="https://astro.5xruby.tw/">所有分類</a>
 						</li>
 						<li class="nav-first-li nav-first-li--8" data-detect="new" data-detect-hover="g.navi.see_more">
 							<div class="title bold">
@@ -161,9 +163,9 @@
 	</header>
 	<!-- ==================== -->
 	<% else %>
-		<!-- ==================== -->
+		<!-- ==========登出狀態========== -->
 		<header>
-			<div class="border-4">
+			<div class="">
 				<div class="navbar mb-2 shadow-lg  text-primary-content w-full">
 
 					<div class="px-2 mx-2 lg:flex">
@@ -181,20 +183,22 @@
 
 							<!-- The form -->
 							<form action="/products/search" method="GET">
-								<input type="text" placeholder="搜尋好設計、體驗活動" name="search">
-								<button type="submit border ">
-									搜尋
-								</button>
+								<div>
+									<input class="w-5/6 border-1" type="text" placeholder="搜尋好設計、體驗活動" name="search">
+									<button class="border-1" type="submit">
+										搜尋
+									</button>
+								</div>
 							</form>
 							<!-- ================================ -->
 
-							<div class='flex-none hidden lg:flex'>
-								<a href="#" class='text-sm'>安心出貨 /</a>
-								<a href="#" class='text-sm'>拼圖 /</a>
-								<a href="#" class='text-sm'>失眠 /</a>
-								<a href="#" class='text-sm'>ipad保護套 /</a>
-								<a href="#" class='text-sm'>中秋禮盒 /</a>
-								<a href="#" class='text-sm'>文具新品</a>
+							<div class='flex-none hidden lg:flex space-x-4'>
+								<a href="#" class='text-sm'>五倍</a>
+								<a href="#" class='text-sm'>月餅</a>
+								<a href="#" class='text-sm'>和牛</a>
+								<a href="#" class='text-sm'>烤肉</a>
+								<a href="#" class='text-sm'>蘋果</a>
+								<a href="#" class='text-sm'>專題</a>
 							</div>
 						</div>
 					</div>
@@ -239,34 +243,34 @@
 				</div>
 				<nav id="g-navigation" class="g-navigation">
 					<div class="g-wrap-expand ">
-						<ul class="flex  justify-evenly border ">
+						<ul class="flex  justify-evenly  ">
 							<li class="nav-first-li campaigns-nav hightlight nav-first-li--0" data-detect="new">
 								<div class="title bold pink  pb-px">
 									<span class="title-inner text-red-500">主題企劃</span>
 								</div>
 							</li>
 							<li class="nav-first-li nav-first-li--1">
-								<a class="title" href="#">配件飾品</a>
+								<a class="title" href="https://astro.5xruby.tw/">配件飾品</a>
 
 							</li>
 							<li class="nav-first-li nav-first-li--2">
-								<a class="title" href="#">包包提袋</a>
+								<a class="title" href="https://astro.5xruby.tw/">包包提袋</a>
 
 							</li>
 							<li class="nav-first-li nav-first-li--3">
-								<a class="title" href="#">居家生活</a>
+								<a class="title" href="https://astro.5xruby.tw/">居家生活</a>
 							</li>
 							<li class="nav-first-li nav-first-li--4">
-								<a class="title" href="#">品味美食</a>
+								<a class="title" href="https://astro.5xruby.tw/">品味美食</a>
 							</li>
 							<li class="nav-first-li nav-first-li--5">
-								<a class="title" href="#">廚房餐桌</a>
+								<a class="title" href="https://astro.5xruby.tw/">廚房餐桌</a>
 							</li>
 							<li class="nav-first-li nav-first-li--6">
-								<a class="title" href="#">創意科技</a>
+								<a class="title" href="https://astro.5xruby.tw/">創意科技</a>
 							</li>
 							<li class="nav-first-li nav-first-li--7">
-								<a class="title bold" href="#">所有分類</a>
+								<a class="title bold" href="https://astro.5xruby.tw/">所有分類</a>
 							</li>
 							<li class="nav-first-li nav-first-li--8" data-detect="new"
 								data-detect-hover="g.navi.see_more">
