@@ -8,6 +8,9 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:google_oauth2 ,:github]
   has_many :orders
   has_one :store
+  has_many :bookmarks
+  has_many :products, 
+            through: :bookmarks
 
   # validates :seller_email
   # validates :seller_name

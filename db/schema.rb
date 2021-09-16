@@ -26,6 +26,15 @@ ActiveRecord::Schema.define(version: 2021_09_15_080841) do
     t.index ["user_id"], name: "index_addressbooks_on_user_id"
   end
 
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_bookmarks_on_product_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
   create_table "deliveries", force: :cascade do |t|
     t.string "shipping_method"
     t.datetime "created_at", precision: 6, null: false
@@ -128,6 +137,8 @@ ActiveRecord::Schema.define(version: 2021_09_15_080841) do
   end
 
   add_foreign_key "addressbooks", "users"
+  add_foreign_key "bookmarks", "products"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "store_orders", "orders"
