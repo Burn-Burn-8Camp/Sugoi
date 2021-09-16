@@ -10,6 +10,6 @@ class CommentsController < ApplicationController
 
 	private
 		def comment_params
-			params.permit(:product_id, :rate, :content)
+			params.permit(:order_item_id, :rate, :content)
 		end
 end

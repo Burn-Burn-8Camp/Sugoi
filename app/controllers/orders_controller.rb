@@ -7,15 +7,16 @@ class OrdersController < ApplicationController
 
 	def show
 		@order = current_user.orders.find_by_friendly_id!(params[:id])
-		@items = @order.order_items.includes(:product)
+		@items = @order.order_items.includes(:product).includes(:comment)
 		@store_items = []
 		find_by_smae_store(@store_items, @items)
 	end
 
 	def items_info
 		@order = current_user.orders.find_by_friendly_id!(params[:id])
-		@items = @order.order_items.includes(:product)		
-		render json: @items
+		@items = @order.order_items.includes(:product).includes(:comment)
+		@comment = @items.map{|item| item.comment}
+		render json: [@items, @comment]
 	end
 
 	def checkout

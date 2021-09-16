@@ -5,9 +5,9 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fas);
 
-const PumpUpScreen = ({ productId, orderId }) =>  {
+const PumpUpScreen = ({ itemId, orderId }) =>  {
   const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-  const commentUrl = `http://localhost:3000//products/${productId}/comments`;
+  const commentUrl = `http://localhost:3000/order_items/${itemId}/comment`;
   const starIndex = [1, 2, 3, 4, 5];
   const [isOpen, setIsOpen] = useState(false);
   const [rateValue, setRateValue] = useState(5);
@@ -43,7 +43,6 @@ const PumpUpScreen = ({ productId, orderId }) =>  {
 				<form action={commentUrl} method='POST'>
           <div>
             <input type="hidden" value={csrf} name='authenticity_token'/>
-            <input type="hidden" value={productId} name='product_id'/>
             <input type="hidden" value={orderId} name='order_id'/>
           </div>
 					<div className='p-3'>

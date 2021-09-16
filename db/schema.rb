@@ -10,37 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_14_160039) do
+ActiveRecord::Schema.define(version: 2021_09_16_152421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "addressbooks", force: :cascade do |t|
-    t.string "receiver"
-    t.string "tel"
-    t.string "address"
-    t.string "area_code"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_addressbooks_on_user_id"
-  end
-
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "product_id", null: false
     t.integer "rate"
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["product_id"], name: "index_comments_on_product_id"
+    t.bigint "order_item_id"
+    t.index ["order_item_id"], name: "index_comments_on_order_item_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
-  create_table "deliveries", force: :cascade do |t|
-    t.string "shipping_method"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -79,9 +62,6 @@ ActiveRecord::Schema.define(version: 2021_09_14_160039) do
     t.decimal "price"
     t.integer "quantity"
     t.string "category"
-    t.string "material"
-    t.string "manufacturing_method"
-    t.string "country"
     t.text "content"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -95,8 +75,6 @@ ActiveRecord::Schema.define(version: 2021_09_14_160039) do
     t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "store_order_serial"
-    t.string "state"
     t.index ["order_id"], name: "index_store_orders_on_order_id"
     t.index ["store_id"], name: "index_store_orders_on_store_id"
   end
@@ -140,8 +118,6 @@ ActiveRecord::Schema.define(version: 2021_09_14_160039) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "addressbooks", "users"
-  add_foreign_key "comments", "products"
   add_foreign_key "comments", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
