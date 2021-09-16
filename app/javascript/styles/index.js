@@ -5,5 +5,6 @@ import "./application.scss"
 import "./banner.scss"
 import "./_nav.scss"
 
+
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
