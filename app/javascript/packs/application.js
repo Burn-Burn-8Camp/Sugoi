@@ -14,7 +14,9 @@ Turbolinks.start()
 ActiveStorage.start()
 
 function addFavorite(id) {
-    fetch
+    fetch ...
+    then ...
+
 
 }
 
