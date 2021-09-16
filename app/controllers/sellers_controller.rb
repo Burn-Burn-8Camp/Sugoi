@@ -5,7 +5,6 @@ class SellersController < ApplicationController
   end
 
   def create
-    p "CY好帥"
   end
 
   def update
