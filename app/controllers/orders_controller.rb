@@ -34,9 +34,9 @@ class OrdersController < ApplicationController
 		store_id_list.uniq.each{ |id|
 			order.stores << id
 		}
-		
 		if order.save			
 			session[:cart1289] = nil
+			UserMailer.order_letter_confirm(order).deliver_now
 			redirect_to payment_order_path(order), notice: '訂單成立'
 		else
 			render html: "Fail"

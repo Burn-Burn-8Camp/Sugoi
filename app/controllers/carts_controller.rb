@@ -17,16 +17,12 @@ class CartsController < ApplicationController
     redirect_to root_path, notice: "購物車已清除"
   end
 
-  def confirm
-    
-  #  render json: params
-    
+  def confirm 
     current_cart.change_item_quantity(params[:product_id], params[:quantity])
     # render json: current_cart.items
     session[:cart1289] = current_cart.serialize
-
-    redirect_to cart_path
-    
+    @cart = current_cart.total
+    render json: @cart  
   end
 
   private

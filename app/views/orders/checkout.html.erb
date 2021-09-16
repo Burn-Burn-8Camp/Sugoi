@@ -30,7 +30,7 @@
 	<p class='font-bold text-xl'>商品總計：<%= current_cart.total %></p>
 	<p class='font-bold text-xl'>商品折抵:</p>
 	<p class='font-bold text-xl'>運費總計:</p>
-	<p class='font-bold text-xl'>結帳總金額：<%= current_cart.total %></p>
+	<p class='font-bold text-xl'>結帳總金額：<%= current_cart.total_included_delivery_fee %></p>
 </div>
 
 <%= form_for @order, html: {class: 'border-2 border-black my-5 inline-block p-3 rounded'} do |f| %>

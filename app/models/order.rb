@@ -10,7 +10,6 @@ class Order < ApplicationRecord
   validates :address, presence: true
   validates :delivery, presence: true
   
-
   after_create :order_num_generator
   
   include AASM
