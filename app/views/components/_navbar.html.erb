@@ -35,14 +35,14 @@
 	  <div class='flex-1 hidden lg:flex'>
 	    <p>我想在sugoi上販售</p>
 	  </div>
-	  <% if current_user %>
-	   <div class='btn btn-danger'>
-	    <%= link_to '個人商店', store_path %>
-	  </div>
+	  <% if current_user.role = "nil" %>
+	   <div>
+	      <%= link_to '申請成為賣家', application_store_path %>
+	    </div>
 	  <% else %>
-	  <div>
-	    <%= link_to '申請成為賣家', application_store_path %>
-	  </div>
+	  <div class='btn btn-danger'>
+	    <%= link_to '個人商店', store_path %>
+	   </div>
 	  <% end %>
 	  <div class="flex-none">
 	    <div class="avatar dropdown">
