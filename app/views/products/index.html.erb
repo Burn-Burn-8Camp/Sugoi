@@ -1,17 +1,29 @@
-<div id="slide1" class=" relative w-full carousel-item pb-5 ">
-  <div id="tab" class="border-4">
-    <img class="tabImg hidden " src="http://fakeimg.pl/1440x300/ecf0f1/" />
-    <img src="https://picsum.photos/id/500/1440/300" alt="fakePic" class="tabImg hidden"/>
-    <img class="tabImg hidden " src="http://fakeimg.pl/1440x300/ecf0f1/" />
+<!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+  integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+      aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+      aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+      aria-label="Slide 3"></button>
   </div>
-  <div class="point">
-    <span num="0" class="tabBtn"></span>
-    <span num="1" class="tabBtn"></span>
-    <span num="2" class="tabBtn"></span>
-  </div>  
-  <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-    <span class="btn btn-circle">❮</span>
-    <span class="btn btn-circle">❯</span>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="https://picsum.photos/2000/400?random=1" class="w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="https://picsum.photos/2000/400?random=2" class="w-100">
+    </div>
+    <div class="carousel-item">
+      <img src="https://picsum.photos/2000/400?random=3" class="w-100">
+    </div>
   </div>
 </div> 
 
@@ -62,3 +74,76 @@
 
 <%== pagy_nav(@pagy) %>
 
+    <div class="container py-20 mx-auto">
+      <div class="m-auto sm:text-2xl text-center mb-2">
+        <span class="border-b-2 pb-px ">最近熱門</span>
+      </div>
+      <div class="flex flex-wrap mx-auto justify-center">
+        <div class="p-1">
+          <a class="block relative h-48 rounded ">
+            <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=1">
+          </a>
+          <div class="mt-4">
+            <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
+            <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+            <span class="mt-1 text-gray-800 text-lg">$16.00</span>
+          </div>
+        </div>
+        <!-- ================================================================ -->
+        <div class="p-1">
+          <a class="block relative h-48 rounded ">
+            <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
+          </a>
+          <div class="mt-4">
+            <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
+            <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+            <span class="mt-1 text-gray-800 text-lg">$16.00</span>
+          </div>
+        </div>
+        <!-- ================================================================ -->
+        <div class="p-1">
+          <a class="block relative h-48 rounded ">
+            <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
+          </a>
+          <div class="mt-4">
+            <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
+            <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+            <span class="mt-1 text-gray-800 text-lg">$16.00</span>
+          </div>
+        </div>
+        <!-- ================================================================ -->
+        <div class="p-1">
+          <a class="block relative h-48 rounded ">
+            <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
+          </a>
+          <div class="mt-4">
+            <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
+            <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+            <span class="mt-1 text-gray-800 text-lg">$16.00</span>
+          </div>
+        </div>
+        <!-- ================================================================ -->
+        <div class="p-1">
+          <a class="block relative h-48 rounded ">
+            <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=3">
+          </a>
+          <div class="mt-4">
+            <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
+            <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+            <span class="mt-1 text-gray-800 text-lg">$16.00</span>
+          </div>
+        </div>
+        <!-- ================================================================ -->
+        <div class="p-1">
+          <a class="block relative h-48 rounded ">
+            <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=4">
+          </a>
+          <div class="mt-4">
+            <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
+            <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
+            <span class="mt-1 text-gray-800 text-lg">$16.00</span>
+          </div>
+        </div>
+        <!-- ================================================================ -->
+      </div>
+</section>
