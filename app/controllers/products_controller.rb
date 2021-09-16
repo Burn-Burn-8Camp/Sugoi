@@ -2,16 +2,20 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
   
   def index
-    if params[:keyword]
-      @pagy, @products = pagy(Product.where([`name like '%?%'`, params[:keyword]]), items: 6)
-    else
-      @pagy, @products = pagy(Product.all, items: 6)
-    end
+    @pagy, @products = pagy(Product.all, items: 6)
+    @foods = Product.where(category: 'food')
+    @books = Product.where(category: 'book')
+    @movies = Product.where(category: 'movie')
+    @animals = Product.where(category: 'animal')
+    @dragonBalls = Product.where(category: 'dragonBall')
+
+
   end
 
   def new
     @product = Product.new
   end
+
   def create
     @product = Product.new(product_params)
     if @product.save
@@ -29,7 +33,7 @@ class ProductsController < ApplicationController
   
   def update
     if @product.update(product_params)
-      redirect_to products_path,notice: "修改成功"
+      redirect_to products_path, notice: "修改成功"
     else
       render :edit
     end
@@ -37,25 +41,25 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy if @product
-      redirect_to products_path,notice: "刪除成功"
+      redirect_to products_path, notice: "刪除成功"
   end
 
   def search 
     if params[:keyword]
       @products = Product.where("name LIKE ?", "%#{params[:keyword]}%")
-     else
+    else
       @products = Product.all
-     end
+    end
   end
 
   private
-    def product_params
-      params.require(:product).permit(:name, :price, :quantity, :description, :category, :material, :manufacturing_method, :country, :content, :store_id)
-    end
+  def product_params
+    params.require(:product).permit(:name, :price, :quantity, :description, :category, :material, :manufacturing_method, :country, :content, :store_id)
+  end
 
-    def find_product
-      @product = Product.find(params[:id])
-    end
+  def find_product
+    @product = Product.find(params[:id])
+  end
 end
 
 

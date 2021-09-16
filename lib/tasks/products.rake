@@ -1,9 +1,9 @@
 namespace :products do
 	desc "Generate fake products"
 	task :fake => :environment do
-		50.times do |i|
+		10.times do |i|
 			product = FactoryBot.create(:product)
-			puts "create product: #{i + 1} - #{product.name}"
+			puts "create product: #{i + 1} - #{product.name} - #{product.category}"
 		end
 	puts "done!"
 	end

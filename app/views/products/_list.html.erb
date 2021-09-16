@@ -1,19 +1,18 @@
-<div class="grid grid-cols-6 lg:grid-clos-6 gap-3 ">
-  <% products.each do |product| %>
-    <div class="card bordered">
-    <figure>
-      <img src="https://picsum.photos/id/1005/400/250">
-    </figure> 
-    <div class="card-body">
-      <h2 class="card-title">品名:<%= link_to product.name,product_path(product) %>
-        <div class="badge mx-2 badge-secondary">NEW</div>
-      </h2> 
-      <p>價錢:<%= product.price.to_i %></p>
-      <p>商品描述:<%= product.description %></p>
-      <div class="justify-end card-actions">
-        <button class="btn btn-secondary">More info</button>
+<div class="border-4">
+  <div class=" grid grid-cols-6 md: gap-8 border-4 bg-white m-40 p-8">
+    <h1 class="border-4 col-span-6">編輯嚴選</h1>
+    <% products.each do |product| %>
+      <div class="border-4">
+        <img class = "" src="https://picsum.photos/id/200/1000/800">
+        <div class=" ">
+          <h2 class="card-title flex border-4 ">品名:<%= link_to product.name,product_path(product) %></h2> 
+          <p class="border-4 ">所屬商店：<%= product.store.name %></p>
+          <p class="border-4">價錢：<%= product.price.to_i %></p>
+            <div class="justify-end card-actions border-4 ">
+              <button class="btn btn-secondary ">More info</button>
+            </div>
+        </div>
       </div>
-   </div>
-    </div> 
-  <% end %>
+    <% end %>
+  </div>
 </div>
