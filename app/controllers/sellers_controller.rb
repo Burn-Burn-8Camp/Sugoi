@@ -11,19 +11,19 @@ class SellersController < ApplicationController
     if current_user.update(seller_params)
       UserMailer.current_user_to_seller_letter_confirm(current_user).deliver_now
 			redirect_to root_path, notice: '感謝您的申請'
-      current_user.update(role:"seller")
 		else
 			render :new, notice: '請重新填寫'
 		end
   end
 
-  # def seller_verify
-  #   if current_user.role != "seller"
-  #     current_user.update(role:"seller")
-  #   else
-  #     redirect_to root_path, notice: "您已經是賣家"
-  #   end
-  # end
+  def seller_verify
+    if  current_user.update(:...) === 55688
+      current_user.update(role:"seller")
+      redirect_to root_path, notice: "恭喜您成為賣家"
+    else
+      render :...., notice: "驗證碼錯誤"
+    end
+  end
 
   private
     def seller_params
