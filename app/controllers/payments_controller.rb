@@ -10,7 +10,7 @@ class PaymentsController < ApplicationController
 			redirect_to orders_path
 		end
 
-
+	end
 	private
 		def check_response(params)
 			response = Newebpay::MpgResponse.new(params[:TradeInfo])

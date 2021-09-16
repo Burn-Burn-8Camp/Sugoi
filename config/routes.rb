@@ -4,6 +4,11 @@ Rails.application.routes.draw do
   get 'pages/index'
   root "products#index"
   resource :store do
+    collection do
+      get 'application', to: 'sellers#new'
+      patch 'seller_apply', to: 'sellers#update'
+      patch "seller_verify", to: 'sellers#seller_verify'
+    end
     resources :products, only: [] do
       collection do
         get 'list', to: 'stores#products_list'

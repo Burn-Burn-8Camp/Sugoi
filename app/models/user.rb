@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_one :store
   has_one_attached :image
 
+  # validates :seller_email
+  # validates :seller_name
+
   def self.create_from_provider_data(provider_data)
     return nil if provider_data.nil?
 

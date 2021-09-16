@@ -1,4 +1,3 @@
-
 class OrdersController < ApplicationController
 	before_action  :authenticate_user!, only: [:checkout, :index, :show]
 	
@@ -18,7 +17,7 @@ class OrdersController < ApplicationController
 
 	def create
 		order = current_user.orders.new(order_params)
-		order[:total] = current_cart.total_included_delivery_fee
+		order[:total] = current_cart.total
 		store_id_list = []
 		# 購物車商品填資料
 		current_cart.items.each do |item|
@@ -35,12 +34,10 @@ class OrdersController < ApplicationController
 		store_id_list.uniq.each{ |id|
 			order.stores << id
 		}
-		
 		if order.save			
 			session[:cart1289] = nil
 			UserMailer.order_letter_confirm(order).deliver_now
 			redirect_to payment_order_path(order), notice: '訂單成立'
-		
 		else
 			render html: "Fail"
 		end
@@ -50,3 +47,5 @@ class OrdersController < ApplicationController
 		def order_params
 			params.require(:order).permit(:receiver, :tel, :email, :address, :delivery)
 		end
+
+end
