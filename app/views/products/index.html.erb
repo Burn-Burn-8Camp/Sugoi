@@ -15,11 +15,43 @@
   </div>
 </div> 
  
-<%= render 'list', products: @foods %>
-<%= render 'list', products: @books %>
-<%= render 'list', products: @movies %>
-<%= render 'list', products: @animals %>
-<%= render 'list', products: @dragonBalls %>
+
+<div class="border-4">
+  <div class=" grid grid-cols-6 md: gap-8 border-4 bg-white m-40 p-8">
+    <h1 class="border-4 col-span-6">編輯嚴選</h1>
+    <%= render 'list', products: @foods %>
+  </div>
+</div>
+
+<div class="border-4">
+  <div class=" grid grid-cols-6 md: gap-8 border-4 bg-white m-40 p-8">
+    <h1 class="border-4 col-span-6">品牌旗艦店</h1>
+    <%= render 'list', products: @books %>
+  </div>
+</div>
+
+<div class="border-4">
+  <div class=" grid grid-cols-6 md: gap-8 border-4 bg-white m-40 p-8">
+    <h1 class="border-4 col-span-6">最近熱門</h1>
+    <%= render 'list', products: @movies %>
+  </div>
+</div>
+
+<div class="border-4">
+  <div class=" grid grid-cols-6 md: gap-8 border-4 bg-white m-40 p-8">
+    <h1 class="border-4 col-span-6">新品上架</h1>
+    <%= render 'list', products: @animals %>
+    </div>
+</div>
+
+<div class="border-4">
+  <div class=" grid grid-cols-6 md: gap-8 border-4 bg-white m-40 p-8">
+    <h1 class="border-4 col-span-6">免運專區</h1>
+    <%= render 'list', products: @dragonBalls %>
+    </div>
+</div>
+
+
 
  
 
