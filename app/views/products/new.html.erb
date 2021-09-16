@@ -1,0 +1,41 @@
+<h1>新增商品頁面</h1>
+
+<%= link_to "新增商品",new_product_path %>
+
+
+    
+<%= form_for (@product), url: products_path do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %><br />
+
+  <%= f.label :price,"價錢" %>
+  <%= f.text_field :price %><br />
+
+  <%= f.label :quantity,"數量" %>
+  <%= f.text_field :quantity %><br />
+
+  <%= f.label :description %>
+  <%= f.text_field :description %><br />
+
+  <%= f.label :category,"類別" %>
+  <%= f.text_field :category %><br />
+
+  <%= f.label :material,"材料" %>
+  <%= f.text_field :material %><br />
+
+  <%= f.label :manufacturing_method,"製造方法" %>
+  <%= f.text_field :manufacturing_method %><br />
+
+  <%= f.label :country,"國家" %>
+  <%= f.text_field :country %><br />
+
+  <%= f.label :content,"內容" %>
+  <%= f.text_field :content %><br />
+
+  <%= f.text_field :store_id, value: current_store.id, type: 'hidden' %>
+
+  <%= f.submit "送出" %>
+<% end%>
+<%= link_to '回首頁', products_path %>
+
+

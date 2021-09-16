@@ -1,0 +1,25 @@
+<h1>我的商品列表</h1>
+
+
+<table>
+	<thead>
+		<tr>
+			<th>商品名稱</th>
+			<th>單價</th>
+			<th>數量</th>
+			<th>明細</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @products.each do |product| %>
+		<tr>
+			<td><%= product.name %></td>
+			<td><%= product.price.to_i %></td>
+			<td><%= product.quantity %></td>
+			<td><%= link_to '細項', detail_store_product_path(product), class: 'btn' %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+
+

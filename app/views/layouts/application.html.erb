@@ -6,11 +6,20 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%# normal js & react js%>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%# tailwindCSS %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <%= render 'components/login' %>
+    <%= render 'components/navbar' %>
+    <div class='bg-yellow-400 text-xl'>
+      <%= notice%>
+      <%= alert %>
+    </div>
     <%= yield %>
+    <%= render 'components/footer' %>
   </body>
 </html>
