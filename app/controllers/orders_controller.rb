@@ -14,9 +14,9 @@ class OrdersController < ApplicationController
 
 	def checkout
 		@order = Order.new
-		store_id_list = current_cart.items.map { |item| item.store_id }.uniq.sort
+		@store_id_list = current_cart.items.map { |item| item.store_id }.uniq.sort
     @store_items = []
-    store_id_list.each{ |id|
+    @store_id_list.each{ |id|
       @store_items << current_cart.items.select{ |item|
         item.store_id === id 
      }
@@ -26,7 +26,7 @@ class OrdersController < ApplicationController
 	def create
 		@cart_items = current_cart.items
 		@order = current_user.orders.new(order_params)
-		@order.total = current_cart.total
+		@order.total = current_cart.total_included_delivery_fee
 		create_order_items_data_in_order(@cart_items, @order)
 		if @order.save			
 			caculate_user_consume(current_user)

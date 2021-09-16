@@ -91,8 +91,14 @@
           <div class="calulate-page-header bg-gray-300 font-bold p-2">訂單摘要</div>
           <div class="calulate-page-body pl-2">
             <div class="summary-items flex my-3">
-              <span class="summary-items-price">NT$<span class="total_price">
+              <span class="summary-items-price">商品金額 NT$<span class="total_price">
                   <%= current_cart.total %>
+                </span></span>
+            </div>
+
+            <div class="summary-items flex my-3">
+              <span class="summary-delivery-price">運費金額 NT$<span class="total_price">
+                  <%= total_delivery_fee %>
                 </span></span>
             </div>
 

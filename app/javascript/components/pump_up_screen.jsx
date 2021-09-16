@@ -10,7 +10,7 @@ const PumpUpScreen = () =>  {
 
   return (
     <div className="PumpUpScreen mb-3">
-      <button onClick={toggleModal} class='btn btn-primary'>請填寫收件人與購買人資料</button>
+      <button onClick={toggleModal} className='btn btn-primary'>請填寫收件人與購買人資料</button>
 
       <Modal
 				ariaHideApp={false}
