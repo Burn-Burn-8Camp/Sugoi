@@ -48,8 +48,8 @@ Rails.application.routes.draw do
     collection do
       get 'search', to: "products#search"
     end
-    resources :comments do
-      get 'new', to: 'comments#new'
+
+    resource :comments do
     end
   end
 

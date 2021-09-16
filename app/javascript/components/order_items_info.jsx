@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Rails from '@rails/ujs'
 import PumpUpScreen from './pump_up_screen'
 
-const OrderItem = ({name, quantity, price}) => {
+const OrderItem = ({ id, name, quantity, price, orderId }) => {
 	return (
 		<div className="grid grid-cols-5 my-5">
 			<div className="col pr-3">
@@ -10,7 +10,7 @@ const OrderItem = ({name, quantity, price}) => {
 			</div>
 			<div className='col-span-2'>
 				<span className='block'>{name}</span>
-				<PumpUpScreen />
+				<PumpUpScreen productId={id} orderId={orderId}/>
 			</div>
 			<div className="col text-right">x {quantity}</div>
 			<div className="col text-right">NT$ {parseInt(price)}</div>
@@ -20,7 +20,7 @@ const OrderItem = ({name, quantity, price}) => {
 
 const OrderItemsInfo = () => {
 	const[items, setItems] = React.useState([])
-	const url = window.location.pathname
+	const orderUrl = window.location.pathname
 	const orderId = document.querySelector("#order_id")
 	
 	let params = new URLSearchParams()
@@ -28,7 +28,7 @@ const OrderItemsInfo = () => {
 
 	React.useEffect(() => {
 		Rails.ajax({
-			url: `${url}/items_info`,
+			url: `${orderUrl}/items_info`,
 			type: 'post',
 			data: params,
 			success:  (res) => {
@@ -47,6 +47,8 @@ const OrderItemsInfo = () => {
 				return (
 					<OrderItem
 					key={item.id}
+					id={item.id}
+					orderId={orderId.dataset.id}
 					name={item.name}
 					quantity={item.quantity}
 					price={item.price} />	
