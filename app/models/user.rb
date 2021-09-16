@@ -52,6 +52,3 @@ class User < ApplicationRecord
   end
   #判斷要完成任務還差多少消費金額
 end
-
-
-

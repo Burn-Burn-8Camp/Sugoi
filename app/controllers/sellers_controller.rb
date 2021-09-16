@@ -5,7 +5,6 @@ class SellersController < ApplicationController
   end
 
   def create
-    p "CY好帥"
   end
 
   def update
@@ -30,7 +29,5 @@ class SellersController < ApplicationController
     def seller_params
       params.require(:user).permit(:seller_email, :seller_name)
     end
-
-
 end
   

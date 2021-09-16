@@ -28,5 +28,4 @@ class CartItem
   def total
     @quantity * @price.to_i
   end
-
 end

@@ -4,13 +4,12 @@ class Order < ApplicationRecord
   has_many :stores, through: :store_orders
   belongs_to :user
 
-  # validates :receiver, presence: true
-  # validates :tel, presence: true
-  # validates :email, presence: true
-  # validates :address, presence: true
-  # validates :delivery, presence: true
+  validates :receiver, presence: true
+  validates :tel, presence: true
+  validates :email, presence: true
+  validates :address, presence: true
+  validates :delivery, presence: true
   
-
   after_create :order_num_generator
   
   include AASM
