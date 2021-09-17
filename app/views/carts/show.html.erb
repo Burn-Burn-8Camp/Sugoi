@@ -5,18 +5,9 @@
       <%= cart_items_amount %>
     </div>
     <%= link_to "清空購物車" , cart_path, method: "delete" %>
+
   </div>
-  <% @store_items.each do |item_arr| %>
-  <div>
-      <%= item_arr[0].store_name %>
-    </div>
-    <% item_arr.each do |item| %>
-      <%= item.name %>
-      <%= item.quantity %>
-      <%= item.price.to_i %>
-    <% end %>
-  <% end %>
-  
+
     <div class="selected_items mx-auto max-w-screen-lg md:flex">
   
       <div class="selected-item border border-grey-300 md:w-2/3">
@@ -78,7 +69,9 @@
               <select class="border border-gray-300 inline mb-1">
                 <option value disabled>請選擇運送方式</option>
                 <optgroup label="從 台灣 寄出"></optgroup>
-                <option value="CN">貨運</option>
+                <% Product.deliveries.each do |delivery| %>
+                  <option value="<%= delivery[1] %>"><%= delivery[0] %></option>
+                <% end %>
               </select>
 
               <ul class="promo">
@@ -121,7 +114,7 @@
           <div class="border-t-2 border-gray-400 my-3 pl-2">
             <span class="total-price-title">結帳總金額</span>
             <span class="sum">
-              <%= current_cart.total %>
+              <%= current_cart.total_included_delivery_fee %>
             </span>
           </div>
           <div class="my-3 flex justify-center">

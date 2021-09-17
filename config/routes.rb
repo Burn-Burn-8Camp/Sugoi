@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   root "products#index"
   resource :store do
+    collection do
+      get 'application', to: 'sellers#new'
+      patch 'seller_apply', to: 'sellers#update'
+      patch "seller_verify", to: 'sellers#seller_verify'
+    end
     resources :products, only: [] do
       collection do
         get 'list', to: 'stores#products_list'
@@ -50,6 +55,7 @@ Rails.application.routes.draw do
     end
   end
 
+<<<<<<< HEAD
   resources :order_items, only: [] do
     resource :comment, only: [:create]
   end
@@ -67,3 +73,18 @@ Rails.application.routes.draw do
   end 
 end
 
+=======
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
+  devise_scope :users do
+    resources :member, only: [] do
+      collection do
+        get 'profile', to: 'users#profile'   
+        get 'edit', to: 'users#edit'
+        get 'about', to: 'users#about'
+        patch 'about', to: 'users#about'
+        get 'buy_order', to: 'users#buy_order'
+      end
+    end
+  end  
+end
+>>>>>>> 7c993625de904fc4671c34def05614dba85fe217

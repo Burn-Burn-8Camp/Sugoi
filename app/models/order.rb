@@ -10,11 +10,6 @@ class Order < ApplicationRecord
   validates_presence_of :receiver, :tel, :email, :address, :delivery
   validates_format_of :email, :with => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
 
-  # enum delivery: {
-  #   "宅配": "0",
-  #   "超商取貨": "1"
-  # }
-
   include AASM
   aasm column: 'state' do
     state :pending, initial: true

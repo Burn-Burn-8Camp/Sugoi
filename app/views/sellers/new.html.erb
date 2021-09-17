@@ -1,0 +1,32 @@
+<h1>申請成為賣家</h1>
+
+<div class="">
+  <%= form_for(current_user, url:seller_apply_store_path) do |f| %>
+  <%= f.text_field :user_id, value: current_user.id, type: "hidden"%>
+  <div>
+    <%= f.label :seller_name, '真實姓名' %><br />
+    <%= f.text_field :seller_name %>
+  </div>
+     
+  <div>
+    <%= f.label :seller_email,"您的賣家電子信箱" %><br />
+    <%= f.text_field :seller_email %>
+  </div>
+  <div>
+    <%= f.submit '送出'%>
+  </div>
+</div>
+<% end %>
+
+
+<%# <h2>上載大頭貼</h2>
+
+<br />
+<%= form_with(model: @user, url: '', local: true, :html => { multipart: true }) do |form| %>
+
+  <%# <div class="form-group">
+    <%= form.label :image %>
+    <%# <%= form.file_field :image %>
+  <%# </div> 
+  
+<%end %>
