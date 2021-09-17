@@ -6,13 +6,11 @@ class ApplicationController < ActionController::Base
     helper_method :current_cart, :current_store
     helper_method :user_signed_in?, :current_user
 
-
-    
     private
     
     def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname])
-        devise_parameter_sanitizer.permit(:account_update, keys: [:nickname])
+        devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname,])
+        devise_parameter_sanitizer.permit(:account_update, keys: [:nickname,:name,:contury,:birthdy,:gender,:self_about,:self_blog,:self_web])
     end
 
     def current_cart

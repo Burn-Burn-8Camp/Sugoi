@@ -6,7 +6,6 @@
 			<tr>
 				<th>訂單序號</th>
 				<th>訂單總金額</th>
-				<th>訂單狀態</th>
 				<th>訂單明細</th>
 			</tr>
 		</thead>
@@ -15,7 +14,6 @@
 			<tr>
 				<td><%= order.serial %></td>
 				<td><%= order.total %></td>
-				<td><%= check_state(order) %></td>
 				<td><%= link_to '前往明細', detail_store_order_path(order), class: 'border-2 rounded p-3' %></td>
 			</tr>
 			<% end %>

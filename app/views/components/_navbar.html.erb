@@ -53,7 +53,7 @@
 								<li class="flex">
 									<%= link_to profile_member_index_path do %>
 										<div>
-											<%= sanitize User.now_rank_icon(current_user.accumulated_amount) %>
+											<%= sanitize now_rank_icon(current_user.accumulated_amount) %>
 												<%= current_user.name %>
 										</div>
 										<% end %>

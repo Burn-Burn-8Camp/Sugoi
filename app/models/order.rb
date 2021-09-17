@@ -10,7 +10,6 @@ class Order < ApplicationRecord
   validates :address, presence: true
   validates :delivery, presence: true
   
-
   after_create :order_num_generator
   
   include AASM
@@ -44,16 +43,16 @@ class Order < ApplicationRecord
   end
 
   private
-  def paddingZero(num, digits)
-    (("0" * digits) + num.to_s).last(digits)
-  end
-  # 補0
-  def order_num_generator
-    today = Time.now
-    serial = today.strftime("%Y%m%d%m%s")
+    def paddingZero(num, digits)
+      (("0" * digits) + num.to_s).last(digits)
+    end
+    # 補0
+    def order_num_generator
+      today = Time.now
+      serial = today.strftime("%Y%m%d%m%s")
 
-    self.serial = "OD#{serial}#{paddingZero(self.id, 6)}"
-    self.save
-  end
-  # 產生訂單序號
+      self.serial = "OD#{serial}#{paddingZero(self.id, 6)}"
+      self.save
+    end
+    # 產生訂單序號
 end

@@ -1,3 +1,6 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
+@import "./base_environment.scss";
+@import "./pagy_decoration.scss";
+@import "./banner.scss";
 @import "tailwindcss/utilities";
