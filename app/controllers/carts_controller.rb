@@ -3,7 +3,6 @@ class CartsController < ApplicationController
   before_action :find_cart_item, only: [:add]
 
   def show
-    # 相同商城會在同一欄位內
     store_id_list = current_cart.items.map { |item| item.store_id }.uniq.sort
     @store_items = []
     store_id_list.each{ |id|
@@ -27,7 +26,6 @@ class CartsController < ApplicationController
 
   def confirm 
     current_cart.change_item_quantity(params[:product_id], params[:quantity])
-    # render json: current_cart.items
     session[:cart1289] = current_cart.serialize
     @cart = current_cart.total
     render json: @cart  

@@ -2,7 +2,6 @@
 	<ul>
 		<li class='text-blue-400'><%= check_state(@order) %></li> 
 		<li><%= @order.serial %></li>
-		<li class='hidden' data-id=<%= @order.friendly_id %> id='order_id'></li> 
 	</ul>
 </div>
 
@@ -39,7 +38,8 @@
 </div>
 
 <div class="border roubded px-5 m-5">		
-	<h2 class="py-5">訂單內容</h2>	
+	<h2 class="py-5">訂單內容</h2>
+	<p class='hidden' data-id=<%= @order.friendly_id %> id='order_id'></p> 
 	<hr>
 	<%= react_component('OrderItemsInfo') %>
 	<hr>

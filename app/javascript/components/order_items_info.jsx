@@ -1,16 +1,27 @@
 import React, { useState } from 'react'
 import Rails from '@rails/ujs'
 import PumpUpScreen from './pump_up_screen'
+import RateStar from './star_rate'
 
-const OrderItem = ({ itemId, name, quantity, price, orderId }) => {
+const StarList = ({ rate }) => {
+	const starIndex = [1, 2, 3, 4, 5]
+	return (
+		starIndex.map((star, index) => {
+			const starStyle = index < rate ? 'text-yellow-400' : 'text-gray-200'
+			return <RateStar key={star} starStyle={starStyle} />
+		})
+	)
+}
+
+const OrderItem = ({ itemId, name, quantity, price, orderId, rate }) => {
 	return (
 		<div className="grid grid-cols-5 my-5">
 			<div className="col pr-3">
 				<img src="http://fakeimg.pl/100x100/ecf0f1/" alt="product_img" />
 			</div>
 			<div className='col-span-2'>
-				<span className='block'>{name}</span>
-				<PumpUpScreen itemId={itemId} orderId={orderId}/>
+				<span className='block'>{name}</span>				
+				{ rate == 0 ? <PumpUpScreen itemId={itemId} orderId={orderId}/> : <StarList rate={rate} /> }
 			</div>
 			<div className="col text-right">x {quantity}</div>
 			<div className="col text-right">NT$ {parseInt(price)}</div>
@@ -18,17 +29,8 @@ const OrderItem = ({ itemId, name, quantity, price, orderId }) => {
 	)
 }
 
-const Comment = ({ rate }) => {
-	return (
-		<div>
-			
-		</div>
-	)
-}
-
 const OrderItemsInfo = () => {
 	const[items, setItems] = React.useState([])
-	const[comments, setComments] = React.useState([])
 	const orderUrl = window.location.pathname
 	const orderId = document.querySelector("#order_id")
 	
@@ -41,8 +43,8 @@ const OrderItemsInfo = () => {
 			type: 'post',
 			data: params,
 			success:  (res) => {
-				setItems(res[0])
-				setComments(res[1])
+				// console.log(res);
+				setItems(res)
 			},
 			error: function(err) {
 				console.log(err);
@@ -61,7 +63,8 @@ const OrderItemsInfo = () => {
 					orderId={orderId.dataset.id}
 					name={item.name}
 					quantity={item.quantity}
-					price={item.price} />	
+					price={item.price}
+					rate={item.rate} />	
 				)
 			})
 			}

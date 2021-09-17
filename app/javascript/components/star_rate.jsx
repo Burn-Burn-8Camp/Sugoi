@@ -1,15 +1,15 @@
+import React from 'react'
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fas);
 
-const Rate = ({ id, starStyle }) => {
-	const [rateValue, setRateValue] = useState(5);
+const RateStar = ({ starStyle }) => {
 	return (
 		<span className='inline-block'>
-			<FontAwesomeIcon icon={['fas', 'star']} onClick={toggleStar} className={starStyle} />
+			<FontAwesomeIcon icon={['fas', 'star']} className={starStyle} />
 		</span>
 	)
 }
 
-export default Rate
+export default RateStar
