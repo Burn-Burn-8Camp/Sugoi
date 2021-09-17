@@ -25,7 +25,7 @@
 					<li class= "flex"> 
 					<%= link_to profile_member_index_path do %>
 					<div>
-						<%= sanitize User.now_rank_icon(current_user.accumulated_amount) %>
+						<%= sanitize now_rank_icon(current_user.accumulated_amount) %>
 						<%= current_user.name %>
 					</div> 
 								<% end %>
@@ -89,7 +89,6 @@
   </header>
 <% else %>
   <header>
-	<%# <div> %>
 	  <div class="navbar mb-2 shadow-lg bg-primary text-primary-content w-full">
 	    <div class="px-2 mx-2 lg:flex">
 	      <h1 class="text-2xl"><%= link_to 'LOGO', root_path %></h1>
@@ -149,6 +148,5 @@
 		  </button>
 		</div>
 	  </div>
-	<%# </div> %>
   </header>
 <% end %>
