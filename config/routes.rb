@@ -46,6 +46,9 @@ Rails.application.routes.draw do
     collection do
       get 'search', to: "products#search"
     end
+    member do
+      post :favorite
+    end
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }

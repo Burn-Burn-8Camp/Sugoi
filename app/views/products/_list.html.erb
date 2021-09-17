@@ -1,10 +1,10 @@
 
 <% products.each do |product| %>
 <div class="border-4">
-  <img class = "" src="https://picsum.photos/id/200/1000/800">
-  <div class=" ">
-    <h2 class="card-title flex border-4 ">品名:<%= link_to product.name,product_path(product) %></h2> 
-    <p class="border-4 ">所屬商店：<%= product.store.name %></p>
+  <img src="https://picsum.photos/id/200/1000/800">
+  <div>
+    <h2 class="card-title flex border-4">品名:<%= link_to product.name,product_path(product) %></h2> 
+    <p class="border-4">所屬商店：<%= product.store.name %></p>
     <p class="border-4">價錢：<%= product.price.to_i %></p>
       <div class="justify-end card-actions border-4 ">
         <button class="btn btn-secondary ">More info</button>

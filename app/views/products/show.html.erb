@@ -1,4 +1,8 @@
 <h1>商品副頁面</h1>
+<span id="heart"><i class="far fa-heart" ></i></span>
+
+# <i class="fas fa-heart"id="fullheart"></i>
+
 <div class="flex justify-start">購物車 <%= cart_items_amount %></div>
 <%= link_to "清空購物車", cart_path, method: "delete" %>
 <section>
@@ -6,7 +10,7 @@
       <div class="border-2 p-3 m-auto" style="width: 18rem;">
         <img class="m-auto" src="https://picsum.photos/200/200/?=1">
         <div class="card-body">
-          <h3 class="card-title">商品名稱：<%= @product.name %></h3>
+          <h3 class="card-title" id="productId" data-id=<%=@product.id%>>商品名稱：<%= @product.name %></h3>
           <p class="card-text text-xl">價錢：<%= @product.price.to_i %>
           </p>
           <div class="btn btn-success mb-2">

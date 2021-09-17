@@ -11,6 +11,8 @@ class UserMailer < ApplicationMailer
 
   def current_user_to_seller_letter_confirm(current_user)
     @user = current_user
+    @vaild_code = "123456"
+    session[:vaild_code] = @vaild_code
     # @order_items =  @order.order_items
 
     mail(to: current_user.seller_email, :subject => "申請成為賣家驗證信") 

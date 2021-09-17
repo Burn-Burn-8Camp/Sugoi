@@ -17,6 +17,14 @@ class SellersController < ApplicationController
 		end
   end
 
+  def sellers_verify
+  end
+
+  def verify
+    if session[:user_id] = current_user.id
+    end
+  end
+
   # def seller_verify
   #   if current_user.role != "seller"
   #     current_user.update(role:"seller")

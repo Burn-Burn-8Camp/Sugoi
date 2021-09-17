@@ -52,6 +52,10 @@ class ProductsController < ApplicationController
     end
   end
 
+  def favorite  
+    if
+  end
+
   private
   def product_params
     params.require(:product).permit(:name, :price, :quantity, :description, :category, :material, :manufacturing_method, :country, :content, :store_id)
