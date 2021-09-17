@@ -6,6 +6,8 @@ class ApplicationController < ActionController::Base
     helper_method :current_cart, :current_store
     helper_method :user_signed_in?, :current_user
 
+    
+
     private
     
     def configure_permitted_parameters

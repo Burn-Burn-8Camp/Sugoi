@@ -1,6 +1,9 @@
  <div class="text-center"><h1>恭喜您已成為賣家</h1></div>
   <%= @user.seller_name %>
-  <button><%= link_to '點選連結回首頁', root_url%></button>
+  <h1>驗證碼</h1>
+  <h2><%= @valid_code%></h2>
+  <button><%= link_to '點選連結填入驗證碼', verify_store_url %></button>
+
     <p>
       To login to the site, just follow this link: <%= @url %>.
     </p>
