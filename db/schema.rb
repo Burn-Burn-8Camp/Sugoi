@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_14_095708) do
+ActiveRecord::Schema.define(version: 2021_09_15_080841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,11 +90,11 @@ ActiveRecord::Schema.define(version: 2021_09_14_095708) do
   end
 
   create_table "stores", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.string "name"
     t.text "introduction"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_stores_on_user_id"
   end
 
@@ -106,11 +106,11 @@ ActiveRecord::Schema.define(version: 2021_09_14_095708) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "rank"
     t.string "provider"
     t.string "uid"
     t.string "picture"
     t.string "account"
-    t.string "rank"
     t.integer "accumulated_amount", default: 0
     t.string "country"
     t.string "name"
@@ -123,6 +123,9 @@ ActiveRecord::Schema.define(version: 2021_09_14_095708) do
     t.string "life_shopping"
     t.string "life_design"
     t.string "image"
+    t.string "role"
+    t.string "seller_email"
+    t.string "seller_name"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["rank"], name: "index_users_on_rank"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -133,5 +136,4 @@ ActiveRecord::Schema.define(version: 2021_09_14_095708) do
   add_foreign_key "orders", "users"
   add_foreign_key "store_orders", "orders"
   add_foreign_key "store_orders", "stores"
-  add_foreign_key "stores", "users"
 end
