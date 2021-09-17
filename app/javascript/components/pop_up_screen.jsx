@@ -5,7 +5,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fas);
 
-const PumpUpScreen = ({ itemId, orderId }) =>  {
+const PopUpScreen = ({ itemId, orderId }) =>  {
   const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
   const commentUrl = `http://localhost:3000/order_items/${itemId}/comment`;
   const starIndex = [1, 2, 3, 4, 5];
@@ -28,7 +28,7 @@ const PumpUpScreen = ({ itemId, orderId }) =>  {
   }
 
   return (
-    <div className="PumpUpScreen mb-3">
+    <div className="PopUpScreen mb-3">
       <button onClick={toggleModal} className='btn btn-primary'>商品評價</button>
 
       <Modal
@@ -46,17 +46,17 @@ const PumpUpScreen = ({ itemId, orderId }) =>  {
             <input type="hidden" value={orderId} name='order_id'/>
           </div>
 					<div className='p-3'>
-            <label htmlFor="rate" className='mr-2'>商品滿意度</label>
+            <label htmlFor="rate" className='mr-2 text-lg'>商品滿意度</label>
             <input type="hidden" name='rate' value={rateValue}/>
             {
               starIndex.map((star, index) => {
-                const starStyle = index < rateValue ? 'text-yellow-400' : 'text-gray-200'
+                const starStyle = index < rateValue ? 'text-yellow-400 text-xl' : 'text-gray-200 text-xl'
                 return <Star id={star} key={star} starStyle={starStyle} />
               })
             }
           </div>
 					<div className='p-3'>
-            <label htmlFor="content">商品評論</label>
+            <label htmlFor="content" className='text-lg'>商品評論</label>
             <textarea name="content" cols="20" rows="5" placeholder='我很滿意這個商品' className='w-full my-2 border-2 rounded'></textarea>
           </div>
 					<div className='flex flex-row-reverse'>
@@ -69,4 +69,4 @@ const PumpUpScreen = ({ itemId, orderId }) =>  {
   );
 }
 
-export default PumpUpScreen;
+export default PopUpScreen;

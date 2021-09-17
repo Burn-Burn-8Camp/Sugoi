@@ -5,13 +5,8 @@
 	</ul>
 </div>
 
-<div class="flex justify-between m-5 mt-0">
-	<div>
-		<% @store_items.each do |item_arr| %>
-			<p class='inline'><%= item_arr[0].store.name %></p>
-		<% end %>
-	</div>
-	<p><%= @order.created_at.to_date %></p>
+<div class="m-5 mt-0">
+	<p class='text-right'><%= @order.created_at.to_date %></p>
 </div>
 
 <div class="flex">

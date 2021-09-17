@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import Rails from '@rails/ujs'
-import PumpUpScreen from './pump_up_screen'
+import PopUpScreen from './pop_up_screen'
 import RateStar from './star_rate'
 
 const StarList = ({ rate }) => {
 	const starIndex = [1, 2, 3, 4, 5]
 	return (
 		starIndex.map((star, index) => {
-			const starStyle = index < rate ? 'text-yellow-400' : 'text-gray-200'
+			const starStyle = index < rate ? 'text-yellow-400 text-xl' : 'text-gray-200 text-xl'
 			return <RateStar key={star} starStyle={starStyle} />
 		})
 	)
@@ -21,7 +21,7 @@ const OrderItem = ({ itemId, name, quantity, price, orderId, rate }) => {
 			</div>
 			<div className='col-span-2'>
 				<span className='block'>{name}</span>				
-				{ rate == 0 ? <PumpUpScreen itemId={itemId} orderId={orderId}/> : <StarList rate={rate} /> }
+				{ rate == 0 ? <PopUpScreen itemId={itemId} orderId={orderId}/> : <StarList rate={rate} /> }
 			</div>
 			<div className="col text-right">x {quantity}</div>
 			<div className="col text-right">NT$ {parseInt(price)}</div>
@@ -43,7 +43,6 @@ const OrderItemsInfo = () => {
 			type: 'post',
 			data: params,
 			success:  (res) => {
-				// console.log(res);
 				setItems(res)
 			},
 			error: function(err) {
