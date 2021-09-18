@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       patch 'seller_apply', to: 'sellers#update'
       patch "seller_verify", to: 'sellers#seller_verify'
     end
+    
     resources :products, only: [] do
       collection do
         get 'list', to: 'stores#products_list'
