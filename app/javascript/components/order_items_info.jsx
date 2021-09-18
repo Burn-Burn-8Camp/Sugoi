@@ -13,6 +13,14 @@ const StarList = ({ rate }) => {
 	)
 }
 
+const Store = ({storeName}) => {
+	return (
+		<>
+			<h3 className='mt-2'>{storeName}</h3>
+		</>
+	)
+} 
+
 const OrderItem = ({ itemId, name, quantity, price, orderId, rate }) => {
 	return (
 		<div className="grid grid-cols-5 my-5">
@@ -30,7 +38,7 @@ const OrderItem = ({ itemId, name, quantity, price, orderId, rate }) => {
 }
 
 const OrderItemsInfo = () => {
-	const[items, setItems] = React.useState([])
+	const[storeItems, setStoreItems] = React.useState([])
 	const orderUrl = window.location.pathname
 	const orderId = document.querySelector("#order_id")
 	
@@ -43,7 +51,7 @@ const OrderItemsInfo = () => {
 			type: 'post',
 			data: params,
 			success:  (res) => {
-				setItems(res)
+				setStoreItems(res)
 			},
 			error: function(err) {
 				console.log(err);
@@ -52,22 +60,32 @@ const OrderItemsInfo = () => {
 	}, [])
 
 	return (
-		<div>
+		<>
 			{
-			items.map((item) => {
+			storeItems.map((item_arr, index) => {
 				return (
-					<OrderItem
-					key={item.id}
-					itemId={item.id}
-					orderId={orderId.dataset.id}
-					name={item.name}
-					quantity={item.quantity}
-					price={item.price}
-					rate={item.rate} />	
+					<div key={index}>
+						<Store
+						storeName={item_arr.store_name} />
+						{
+							item_arr.items.map((item, index) => {
+								return (
+									<OrderItem
+									key={index}
+									itemId={item.id}
+									orderId={orderId.dataset.id}
+									name={item.name}
+									quantity={item.quantity}
+									price={item.price}
+									rate={item.rate} />
+								)
+							})
+						}
+					</div>
 				)
 			})
 			}
-		</div>
+		</>
 	)
 }
 

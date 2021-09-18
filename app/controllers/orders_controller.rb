@@ -11,6 +11,7 @@ class OrdersController < ApplicationController
 
 	def items_info
 		@items = @order.order_items.includes(:comment)
+		find_by_smae_store(@store_items = [], @items)
 		render './orders/items_info.json.jbuilder'
 	end
 

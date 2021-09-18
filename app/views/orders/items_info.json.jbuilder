@@ -1,7 +1,11 @@
-json.array! @items do |item|
-	json.id item.id
-	json.name item.name
-	json.price item.price
-	json.quantity item.quantity
-	json.rate item.comment ? item.comment.rate : 0
+json.array! @store_items do |item_arr|
+	json.store_name item_arr.first.store.name
+	json.items item_arr do |item|
+		json.id item.id
+		json.name item.name
+		json.price item.price
+		json.quantity item.quantity
+		json.rate item.comment ? item.comment.rate : 0
+	end
 end
+
