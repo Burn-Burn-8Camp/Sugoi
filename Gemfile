@@ -34,6 +34,7 @@ gem "omniauth-rails_csrf_protection"
 gem 'activerecord-session_store'
 gem 'figaro', '~> 1.2'
 gem 'paranoia', '~> 2.4', '>= 2.4.3'
+gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

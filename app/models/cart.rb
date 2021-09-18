@@ -29,7 +29,7 @@ class Cart
 
   def total_included_delivery_fee   
     total = @items.reduce(0) { |acc, item| acc + item.total }
-    is_children_day ? total * 0.8 : total
+    is_children_day? ? total * 0.8 : total
     delivery_fee = Product.deliveries["貨運 NT$100"]
     total += delivery_fee
   end

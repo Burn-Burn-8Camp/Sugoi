@@ -36,7 +36,7 @@ module ApplicationHelper
 	end
 	
 	def product_storage(id)
-    Product.find(id).quantity
+    Product.friendly.find(id).quantity
   end
 
 	def cart_items_amount

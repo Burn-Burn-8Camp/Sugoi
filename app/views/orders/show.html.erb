@@ -34,7 +34,7 @@
 
 <div class="border roubded px-5 m-5">		
 	<h2 class="py-5">訂單內容</h2>
-	<p class='hidden' data-id=<%= @order.friendly_id %> id='order_id'></p> 
+	<p class='hidden' data-id=<%= @order.slug %> id='order_id'></p> 
 	<hr>
 	<%= react_component('OrderItemsInfo') %>
 	<hr>

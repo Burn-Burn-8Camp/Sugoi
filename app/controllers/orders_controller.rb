@@ -68,7 +68,7 @@ class OrdersController < ApplicationController
 		end
 
 		def find_order_by_friendly_id
-			@order = current_user.orders.find_by_friendly_id!(params[:id])
+			@order = current_user.orders.friendly.find(params[:id])
 		end
 
 		def caculate_user_consume(user)

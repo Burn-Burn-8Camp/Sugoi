@@ -33,6 +33,6 @@ class CartsController < ApplicationController
 
   private
     def find_cart_item
-      @product = Product.find(params[:id])
+      @product = Product.friendly.find(params[:id])
     end
 end

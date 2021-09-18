@@ -36,7 +36,7 @@ class StoresController < ApplicationController
 	end
 
 	def product_detail
-	  @product = current_store.products.find(params[:id])
+	  @product = current_store.products.friendly.find(params[:id])
 	end
 
 	def orders_list
@@ -44,7 +44,7 @@ class StoresController < ApplicationController
 	end
 
 	def order_detail
-	  @order = current_store.orders.find(params[:id])
+	  @order = current_store.orders.friendly.find(params[:id])
 	  @items = @order.order_items.includes(:product)
 	end
 
