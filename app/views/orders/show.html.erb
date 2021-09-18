@@ -6,11 +6,11 @@
 </div>
 
 <div class="m-5 mt-0">
-	<p class='text-right'><%= @order.created_at.to_date %></p>
+	<p><%= @order.created_at.to_date %></p>
 </div>
 
 <div class="flex">
-	<p id='order-state' class=' bg-gray-500 text-white inline-block border-2 border-gray-500 rounded-full p-2 m-5'><%= check_state(@order) %></p>
+	<p id='order-state' class='bg-gray-500 text-white inline-block border-2 border-gray-500 rounded-full p-2 m-5'><%= check_state(@order) %></p>
 </div>
 
 <div class="rate border roubded px-5 m-5">
@@ -35,8 +35,8 @@
 <div class="border roubded px-5 m-5">		
 	<h2 class="py-5">訂單內容</h2>
 	<p class='hidden' data-id=<%= @order.slug %> id='order_id'></p> 
-	<hr>
-	<%= react_component('OrderItemsInfo') %>
+	<hr> 
+	<%= react_component 'OrderItemsInfo', props: {order_id: @order.slug} %>
 	<hr>
 	<div class="grid grid-cols-2 my-2">
 		<div class='col-start-2'>

@@ -18,8 +18,9 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show  
+  def show
     items = OrderItem.joins(:product, :comment).where(product_id: @product).select(:id)
+    @users = items.map{ |item| item.comment.user}
     @comments = items.map{ |item| item.comment }
   end
 
@@ -56,8 +57,3 @@ class ProductsController < ApplicationController
       @product = Product.friendly.find(params[:id])
     end
 end
-
-
-
-
-

@@ -10,7 +10,7 @@ class Order < ApplicationRecord
   validates_format_of :email, :with => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
 
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :receiver, use: :slugged
 
   include AASM
   aasm column: 'state' do

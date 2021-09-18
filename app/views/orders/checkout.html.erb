@@ -6,7 +6,7 @@
 			<% end %>
 		</ul>
 	</div>
-	<hr>
+
 	<% @store_items.each do |item_arr| %>
 	<div class="border mb-4">
 		<h2 class="mx-4 my-3"><%= item_arr[0].store.name %></h2>
@@ -47,7 +47,6 @@
 				</div>
 			</div>
 		</div>
-		</div>
 	</div>
 	<% end %>
 
@@ -56,9 +55,11 @@
 			<h3>請選擇付款方式</h3>
 			<p><i class="fas fa-lock mr-2"></i>我們有信用卡結帳與銀行轉帳兩種方式</p>
 		</div>
+
 		<div class='bg-red-200 p-3'>
 			<p><i class="fas fa-tags mr-2"></i>刷卡滿 NT$1500 即享分期 0 利率！</p>
 		</div>
+
 		<div class="grid grid-cols-1 lg:grid-cols-2">
 			<div class="col p-4">
 				<div class='flex justify-between'>
@@ -79,14 +80,6 @@
 				</div>
 			</div>
 
-			<% if @order.errors.any? %>
-				<ul>
-					<% @order.errors.full_messages.each do |message| %>
-					<li><%= message %></li>
-					<% end %>
-				</ul>
-			<% end %>
-			
 			<div class='col p-4'>
 				<div class='bg-gray-100 h-full flex justify-center'>
 					<%= form_for @order, html: {class: 'my-5'} do |f| %>
@@ -116,10 +109,9 @@
 					<div>
 						<%= f.submit '建立訂單', class: 'btn btn-primary' %>
 					</div>
-				<% end %>
+					<% end %>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-

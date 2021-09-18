@@ -1,17 +1,7 @@
 import React, { useState } from 'react'
 import Rails from '@rails/ujs'
 import PopUpScreen from './pop_up_screen'
-import RateStar from './star_rate'
-
-const StarList = ({ rate }) => {
-	const starIndex = [1, 2, 3, 4, 5]
-	return (
-		starIndex.map((star, index) => {
-			const starStyle = index < rate ? 'text-yellow-400 text-xl' : 'text-gray-200 text-xl'
-			return <RateStar key={star} starStyle={starStyle} />
-		})
-	)
-}
+import StarList from './star_list'
 
 const Store = ({storeName}) => {
 	return (
@@ -37,13 +27,12 @@ const OrderItem = ({ itemId, name, quantity, price, orderId, rate }) => {
 	)
 }
 
-const OrderItemsInfo = () => {
-	const[storeItems, setStoreItems] = React.useState([])
+const OrderItemsInfo = ({ order_id }) => {
+	const [storeItems, setStoreItems] = React.useState([])
 	const orderUrl = window.location.pathname
-	const orderId = document.querySelector("#order_id")
 	
 	let params = new URLSearchParams()
-	params.append('order_id', orderId.dataset.id)
+	params.append('order_id', order_id)
 
 	React.useEffect(() => {
 		Rails.ajax({
@@ -73,7 +62,7 @@ const OrderItemsInfo = () => {
 									<OrderItem
 									key={index}
 									itemId={item.id}
-									orderId={orderId.dataset.id}
+									orderId={order_id}
 									name={item.name}
 									quantity={item.quantity}
 									price={item.price}
