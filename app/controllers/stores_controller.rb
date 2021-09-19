@@ -46,12 +46,15 @@ class StoresController < ApplicationController
 	def order_detail
 	  @order = current_store.orders.friendly.find(params[:id])
 	  @items = @order.order_items.includes(:product)
+		@store_order = @order.store_orders.find_by(store_id: current_store.id)
+		@order.transport! if @order.may_transport? &&	@order.store_orders.any? {|order| order.shipment_confirm != false}	
 	end
 
 	def shipment
-		@order = current_store.orders.friendly.find(params[:id])
-		if @order.may_transport?
-			@order.transport!
+		order = current_store.orders.friendly.find(params[:id])
+		store_order = order.store_orders.find_by(store_id: current_store.id)
+		if order.may_transport?
+			store_order.update(shipment_confirm: true)
 			redirect_to detail_store_order_path, notice: "成功出貨"
 		else
 			redirect_to detail_store_order_path, notice: "訂單尚未付款，請勿出貨"

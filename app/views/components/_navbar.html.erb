@@ -44,15 +44,7 @@
 		</div>
 		<% else %>
 		<div class="flex-none">
-			<div class="avatar dropdown">
-			<% if current_user %>
-				<%= link_to('登出', destroy_user_session_path, method: 'delete') %> |
-				<%= link_to('修改密碼', edit_registration_path(:user)) %>
-			<% else %>
-				<%= link_to('註冊', new_registration_path(:user)) %> |
-				<%= link_to('登入', new_session_path(:user)) %>
-			<% end %>
-			</div>
+			<%= render 'components/login' %>
 		</div>
 		<% end %>
 
@@ -61,13 +53,21 @@
 				<i class="far fa-heart text-xl"></i>
 			</button>
 		</div>
+
+		<div class="flex-none">
+			<%= link_to store_path do %>
+			<button class="btn btn-square btn-ghost">
+				<i class="fas fa-store text-xl text-blue-900"></i>
+			</button>
+			<% end %>
+		</div>
 			
 		<div class="flex-none">
+			<%= link_to cart_path do %>
 			<button class="btn btn-square btn-ghost">
-				<%= link_to cart_path do %>
-					<i class="fas fa-shopping-cart text-xl text-blue-900"></i>
-				<% end %>
+				<i class="fas fa-shopping-cart text-xl text-blue-900"></i>
 			</button>
+			<% end %>
 		</div>
 	</div>
 </header>

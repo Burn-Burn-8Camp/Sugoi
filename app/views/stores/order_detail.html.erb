@@ -9,18 +9,23 @@
 </ul>
 
 <div class='border rounded'>
-	<ul>
-		<li class='text-lg'>訂單編號：<%= @order.serial %></li>
-		<li class='text-lg'>訂單金額：<%= @order.total %></li>
-		<li class='text-lg'>收件人：<%= @order.receiver %></li>
-		<li class='text-lg'>收件地址：<%= @order.address %></li>
-		<li class='text-lg'>運送方式：<%= @order.delivery %></li>
-		<li class='hidden' id='order-state'><%= @order.state %></li>
-	</ul>
-	<%= form_with model: @order, url: shipment_store_order_path(@order), method: 'GET' do |f| %>
-		<%= f.submit '出貨', class: 'btn btn-success' %>
-	<% end %>
-	
+	<div>
+		<ul>
+			<li class='text-lg'>訂單編號：<%= @order.serial %></li>
+			<li class='text-lg'>訂單金額：<%= @order.total %></li>
+			<li class='text-lg'>收件人：<%= @order.receiver %></li>
+			<li class='text-lg'>收件地址：<%= @order.address %></li>
+			<li class='text-lg'>運送方式：<%= @order.delivery %></li>
+			<li class='hidden' id='order-state'><%= @order.state %></li>
+		</ul>
+		<% if @store_order.shipment_confirm %>
+			<p class='px-3'>您已出貨</p>
+		<% else %>
+			<%= form_with model: @order, url: shipment_store_order_path(@order), method: 'GET' do |f| %>
+				<%= f.submit '出貨', class: 'btn btn-success' %>
+			<% end %>
+		<% end %>
+	</div>
 	
 	<div tabindex="0" class="collapse collapse-arrow">
 	  <div class="collapse-title text-lg font-medium">

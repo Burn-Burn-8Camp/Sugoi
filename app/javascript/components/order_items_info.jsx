@@ -18,8 +18,8 @@ const OrderItem = ({ itemId, name, quantity, price, orderId, rate }) => {
 				<img src="http://fakeimg.pl/100x100/ecf0f1/" alt="product_img" />
 			</div>
 			<div className='col-span-2'>
-				<span className='block'>{name}</span>				
-				{ rate == 0 ? <PopUpScreen itemId={itemId} orderId={orderId}/> : <StarList rate={rate} /> }
+				<span className='block pb-3'>{name}</span>
+				{rate == 0 ? <PopUpScreen itemId={itemId} orderId={orderId}/> : <StarList rate={rate} />}
 			</div>
 			<div className="col text-right">x {quantity}</div>
 			<div className="col text-right">NT$ {parseInt(price)}</div>
