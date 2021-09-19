@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :messages
+  resources :messages, only: %i[create index]
   resources :rooms
   
   root "products#index"

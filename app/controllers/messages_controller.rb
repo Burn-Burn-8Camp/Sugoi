@@ -26,7 +26,8 @@ class MessagesController < ApplicationController
     @message.user = current_user
     @message.save
 
-    ActionCable.server.broadcast "room_channel_#{@message.room_id}", { message: @message.content, user_name: current_user.name }
+    ActionCable.server.broadcast "room_channel_#{@message.room_id}", { message: @message.content, user_name: current_user.name, datetime: @message.created_at}
+    # ActionCable.server.broadcast "room_channel_1", message: "hello"
   end
 
   # PATCH/PUT /messages/1 or /messages/1.json
