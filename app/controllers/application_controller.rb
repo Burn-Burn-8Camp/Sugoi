@@ -5,8 +5,7 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
   helper_method :current_cart, :current_store
   helper_method :user_signed_in?, :current_user
-
-
+  helper_method :current_user
     
   private
   
