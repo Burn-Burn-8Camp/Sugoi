@@ -18,13 +18,15 @@
       <div class="col-9">
         <% if @room.present? %>
           <div class="chat-room">
-          <p><%= @room.name %></p>
-          <% @room.messages.each do |message| %>
-            <p><%= message.content %> - <%= message.user.name %></p>
-          <% end %>
-          <div class="chat-box">
-            <%= render 'messages/form',message: Message.new,room: @room %>
-          </div>
+            <div id="chat-room-content">
+              <p><%= @room.name %></p>
+              <% @room.messages.each do |message| %>
+                <p><%= message.content %> - <%= message.user.name %></p>
+              <% end %>
+            </div>
+            <div class="chat-box">
+              <%= render 'messages/form',message: Message.new,room: @room %>
+            </div>
           <p><%= @room.name %></p>
         <% end %>
       </div>
