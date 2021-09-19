@@ -7,8 +7,6 @@ module ApplicationHelper
 				'尚未付款'
 			when "paid"
 				"已付款"
-			when "picked"
-				"撿貨中"
 			when "in_transit"
 				"運送中"
 			when "arrived"
@@ -27,7 +25,7 @@ module ApplicationHelper
 	end
 
 	def state_step(order, n)
-		state_arr = ['pending', 'paid', 'picked', 'in_transit', 'arrived', 'cancelled']
+		state_arr = ['pending', 'paid', 'in_transit', 'arrived', 'cancelled']
 		state_arr.index(order.state) < n ? 'step' : 'step step-primary'
 	end
 

@@ -3,6 +3,7 @@
   user.email = "#{i}@gmail.com"
   user.password = "password"
   user.password_confirmation = "password"
+  user.role = "seller"
   user.save!
   store = Store.new
   store.user_id = i

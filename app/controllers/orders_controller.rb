@@ -43,7 +43,7 @@ class OrdersController < ApplicationController
 	end
 
 	def processing
-		@orders = current_user.orders.where(state: ['paid', 'picked']).order(id: :desc)
+		@orders = current_user.orders.where(state: 'paid').order(id: :desc)
 		render :index
 	end
 
@@ -108,7 +108,7 @@ class OrdersController < ApplicationController
 
 		def find_orders_by_state
 			@pending_orders = current_user.orders.where(state: 'pending').order(id: :desc)
-			@processing_orders = current_user.orders.where(state: ['paid', 'picked']).order(id: :desc)
+			@processing_orders = current_user.orders.where(state: 'paid').order(id: :desc)
 			@shipped_orders = current_user.orders.where(state: 'in_transit').order(id: :desc)
 			@completed_orders = current_user.orders.where(state: 'arrived').order(id: :desc)
 			@cancelled_orders = current_user.orders.where(state: 'cancelled').order(id: :desc)

@@ -15,18 +15,14 @@ class Order < ApplicationRecord
   include AASM
   aasm column: 'state' do
     state :pending, initial: true
-    state :paid, :picked, :in_transit, :arrived, :cancelled, :returned
+    state :paid, :in_transit, :arrived, :cancelled, :returned
   
     event :pay do
     transitions from: :pending, to: :paid
     end
   
-    event :pick do
-    transitions from: :paid, to: :picked
-    end
-
     event :transport do
-    transitions from: :picked, to: :in_transit
+    transitions from: :paid, to: :in_transit
     end
   
     event :arrive do
@@ -34,7 +30,7 @@ class Order < ApplicationRecord
     end
 
     event :cancel do
-    transitions from: [:pending, :paid, :picked], to: :cancelled
+    transitions from: [:pending, :paid], to: :cancelled
     end
 
     event :return do

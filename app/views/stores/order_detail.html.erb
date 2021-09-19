@@ -1,12 +1,11 @@
 <h1 class='text-lg text-center'>訂單明細</h1>
 
-<ul class="w-full steps order-steps">
-  <li class="step step-primary" id='pending'>待付款</li> 
-  <li class="step" id='paid'>已付款</li> 
-  <li class="step" id='picked'>撿貨中</li> 
-  <li class="step" id='in_transit'>運送中</li>
-  <li class="step" id='arrived'>已送達</li>
-  <li class="step" id='cancelled'>已取消</li>
+<ul class="w-full steps order-steps py-5">
+	<%= content_tag(:li, '待付款', data: {content: "✓"}, class: state_step(@order, 0)) %>
+	<%= content_tag(:li, '已付款', data: {content: "✓"}, class: state_step(@order, 1)) %>
+	<%= content_tag(:li, '運送中', data: {content: "✓"}, class: state_step(@order, 2)) %>
+	<%= content_tag(:li, '已送達', data: {content: "✓"}, class: state_step(@order, 3)) %>
+	<%= content_tag(:li, '已取消', data: {content: "✓"}, class: state_step(@order, 4)) %>
 </ul>
 
 <div class='border rounded'>
@@ -18,6 +17,11 @@
 		<li class='text-lg'>運送方式：<%= @order.delivery %></li>
 		<li class='hidden' id='order-state'><%= @order.state %></li>
 	</ul>
+	<%= form_with model: @order, url: shipment_store_order_path(@order), method: 'GET' do |f| %>
+		<%= f.submit '出貨', class: 'btn btn-success' %>
+	<% end %>
+	
+	
 	<div tabindex="0" class="collapse collapse-arrow">
 	  <div class="collapse-title text-lg font-medium">
 		訂單明細

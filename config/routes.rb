@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       end
       member do
         get 'detail', to: 'stores#order_detail'
+        get 'shipment', to: 'stores#shipment'
       end
     end
   end

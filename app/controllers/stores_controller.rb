@@ -48,6 +48,16 @@ class StoresController < ApplicationController
 	  @items = @order.order_items.includes(:product)
 	end
 
+	def shipment
+		@order = current_store.orders.friendly.find(params[:id])
+		if @order.may_transport?
+			@order.transport!
+			redirect_to detail_store_order_path, notice: "成功出貨"
+		else
+			redirect_to detail_store_order_path, notice: "訂單尚未付款，請勿出貨"
+		end
+	end
+
 	private
 	  def store_params
 			params.require(:store).permit(:name, :user_id, :introduction)
