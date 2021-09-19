@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_message, only: %i[ show edit update destroy ]
 
   # GET /messages or /messages.json
@@ -25,7 +26,7 @@ class MessagesController < ApplicationController
     @message.user = current_user
     @message.save
 
-    redirect_to request.referrer
+    ActionCable.server.broadcast "room_channel_#{@message.room_id}", { message: @message.content, user_name: current_user.name }
   end
 
   # PATCH/PUT /messages/1 or /messages/1.json
