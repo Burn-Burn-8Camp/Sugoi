@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
-  get '/rooms/:id' => 'room#show'
-  get 'pages/index'
+  resources :messages
+  resources :rooms
+  
   root "products#index"
   resource :store do
     resources :products, only: [] do

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_14_045235) do
+ActiveRecord::Schema.define(version: 2021_09_19_002708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,6 +60,16 @@ ActiveRecord::Schema.define(version: 2021_09_14_045235) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_messages_on_room_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "order_items", force: :cascade do |t|
     t.string "name"
     t.string "price"
@@ -101,6 +111,12 @@ ActiveRecord::Schema.define(version: 2021_09_14_045235) do
     t.string "description"
     t.bigint "store_id"
     t.index ["store_id"], name: "index_products_on_store_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "store_orders", force: :cascade do |t|
@@ -154,6 +170,8 @@ ActiveRecord::Schema.define(version: 2021_09_14_045235) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addressbooks", "users"
+  add_foreign_key "messages", "rooms"
+  add_foreign_key "messages", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
   add_foreign_key "store_orders", "orders"
