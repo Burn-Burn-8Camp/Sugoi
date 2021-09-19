@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   has_many :order_items
   has_many :store_orders
   has_many :stores, through: :store_orders
+  has_many :seller_comments
   belongs_to :user
 
   after_create :order_num_generator
