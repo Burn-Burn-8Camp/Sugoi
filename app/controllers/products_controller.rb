@@ -20,8 +20,9 @@ class ProductsController < ApplicationController
 
   def show
     items = OrderItem.joins(:product, :comment).where(product_id: @product).select(:id)
-    @users = items.map{ |item| item.comment.user}
+    users = items.map{ |item| item.comment.user}
     @comments = items.map{ |item| item.comment }
+    @comments_with_users = @comments.zip(users)
   end
 
   def edit    
