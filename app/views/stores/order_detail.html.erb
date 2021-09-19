@@ -25,6 +25,7 @@
 				<%= f.submit '出貨', class: 'btn btn-success' %>
 			<% end %>
 		<% end %>
+		<%= react_component 'SellerCommentForm', props: {order_id: @order.slug} %>
 	</div>
 	
 	<div tabindex="0" class="collapse collapse-arrow">

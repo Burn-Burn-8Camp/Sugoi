@@ -6,6 +6,7 @@ json.array! @store_items do |item_arr|
 		json.price item.price
 		json.quantity item.quantity
 		json.rate item.comment ? item.comment.rate : 0
+		json.content item.comment ? item.comment.content : ''
 	end
 end
 

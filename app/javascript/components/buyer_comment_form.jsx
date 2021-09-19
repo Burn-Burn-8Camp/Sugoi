@@ -5,9 +5,9 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fas);
 
-const PopUpScreen = ({ itemId, orderId }) =>  {
+const BuyerCommentForm = ({ itemId, orderId }) =>  {
   const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-  const commentUrl = `http://localhost:3000/order_items/${itemId}/comment`;
+  const commentUrl = `http://localhost:3000/order_items/${itemId}/comment/create`;
   const starIndex = [1, 2, 3, 4, 5];
   const [isOpen, setIsOpen] = useState(false);
   const [rateValue, setRateValue] = useState(5);
@@ -28,7 +28,7 @@ const PopUpScreen = ({ itemId, orderId }) =>  {
   }
 
   return (
-    <div className="PopUpScreen mb-3">
+    <div className="BuyerCommentForm mb-3">
       <button onClick={toggleModal} className='btn btn-primary'>商品評價</button>
 
       <Modal
@@ -69,4 +69,4 @@ const PopUpScreen = ({ itemId, orderId }) =>  {
   );
 }
 
-export default PopUpScreen;
+export default BuyerCommentForm;

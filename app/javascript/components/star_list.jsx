@@ -12,16 +12,19 @@ const StarRate = ({ starStyle }) => {
 	)
 }
 
-const StarList = ({ rate }) => {
+const StarList = ({ rate, content }) => {
 	const starIndex = [1, 2, 3, 4, 5]
 	return (
 		<div>
 			{
 			starIndex.map((star, index) => {
 				const starStyle = index < rate ? 'text-yellow-400 text-xl' : 'text-gray-200 text-xl'
-				return <StarRate key={star} starStyle={starStyle} />
+				return (
+					<StarRate key={star} starStyle={starStyle} />
+				)
 			})
 			}
+			<p>{content}</p>
 		</div>
 	)
 }

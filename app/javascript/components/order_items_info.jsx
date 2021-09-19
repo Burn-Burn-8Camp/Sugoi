@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Rails from '@rails/ujs'
-import PopUpScreen from './pop_up_screen'
+import BuyerCommentForm from './buyer_comment_form'
 import StarList from './star_list'
 
 const Store = ({storeName}) => {
@@ -11,7 +11,7 @@ const Store = ({storeName}) => {
 	)
 } 
 
-const OrderItem = ({ itemId, name, quantity, price, orderId, rate }) => {
+const OrderItem = ({ itemId, name, quantity, price, orderId, rate, content }) => {
 	return (
 		<div className="grid grid-cols-5 my-5">
 			<div className="col pr-3">
@@ -19,7 +19,7 @@ const OrderItem = ({ itemId, name, quantity, price, orderId, rate }) => {
 			</div>
 			<div className='col-span-2'>
 				<span className='block pb-3'>{name}</span>
-				{rate == 0 ? <PopUpScreen itemId={itemId} orderId={orderId}/> : <StarList rate={rate} />}
+				{rate == 0 ? <BuyerCommentForm itemId={itemId} orderId={orderId}/> : <StarList rate={rate} content={content} />}
 			</div>
 			<div className="col text-right">x {quantity}</div>
 			<div className="col text-right">NT$ {parseInt(price)}</div>
@@ -66,7 +66,8 @@ const OrderItemsInfo = ({ order_id }) => {
 									name={item.name}
 									quantity={item.quantity}
 									price={item.price}
-									rate={item.rate} />
+									rate={item.rate}
+									content={item.content} />
 								)
 							})
 						}

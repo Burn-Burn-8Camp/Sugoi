@@ -25,6 +25,9 @@ Rails.application.routes.draw do
         get 'detail', to: 'stores#order_detail'
         get 'shipment', to: 'stores#shipment'
       end
+      resource :comment, only: [] do
+        post 'create', to: 'comments#seller_comment'
+      end
     end
   end
 
@@ -58,7 +61,9 @@ Rails.application.routes.draw do
   end
 
   resources :order_items, only: [] do
-    resource :comment, only: [:create]
+    resource :comment, only: [] do
+      post 'create', to: 'comments#buyer_comment'
+    end
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
