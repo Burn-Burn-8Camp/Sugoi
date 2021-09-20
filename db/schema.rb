@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_17_101442) do
+ActiveRecord::Schema.define(version: 2021_09_18_104322) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -148,9 +148,9 @@ ActiveRecord::Schema.define(version: 2021_09_17_101442) do
     t.string "life_design"
     t.string "image"
     t.string "role"
-    t.string "seller_email"
-    t.string "seller_name"
-    t.integer "captcha"
+    t.string "seller_email", default: "", null: false
+    t.string "seller_name", default: "", null: false
+    t.bigint "captcha"
     t.datetime "valid_at"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["rank"], name: "index_users_on_rank"

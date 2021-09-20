@@ -5,19 +5,12 @@ class UserMailer < ApplicationMailer
   def order_letter_confirm(order)
     @order = order
     @order_items =  @order.order_items
-
     mail(to: order.email, :subject => "訂單成立") 
   end
 
   def current_user_to_seller_letter_confirm(current_user)
     @user = current_user
     @valid_code = "123456"
-    # aa = current_user.find session[:user_id]
-    # p aa
-    # current_user.find 
-    # cookie[:valid_code] = @valid_code
-    # @order_items =  @order.order_items
-
-    mail(to: current_user.seller_email, :subject => "申請成為賣家驗證信") 
+    mail(to: current_user.seller_email, :subject => "SUGOII 申請成為賣家驗證信") 
   end
 end

@@ -32,7 +32,4 @@ class UsersController < ApplicationController
 
   def profile
   end
-
-  def buy_order
-  end
 end
