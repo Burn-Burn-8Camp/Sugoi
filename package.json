@@ -13,6 +13,8 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "5.4.2",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "chart.js": "^3.5.1",
+    "chartkick": "^4.0.5",
     "daisyui": "^1.14.0",
     "js-yaml": "^4.1.0",
     "prop-types": "^15.7.2",
