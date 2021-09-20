@@ -65,7 +65,9 @@ class OrdersController < ApplicationController
 
 	private
 		def order_params
-			params.require(:order).permit(:receiver, :tel, :email, :address, :delivery)
+			pm = params.require(:order).permit(:receiver, :tel, :email, :address, :delivery, :message)
+			pm[:message].delete!("\r\n")
+			pm
 		end
 
 		def find_order_by_friendly_id

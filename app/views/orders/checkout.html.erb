@@ -39,11 +39,8 @@
 			</div>
 			<div class="col p-4">
 				<div class="col bg-gray-100 p-6">
-					<h3 class="pb-3">收件資訊</h3>
-					<p class="pb-3">運送方式</p>
+					<h3 class="pb-3">商店資訊</h3>
 					<p class="pb-3">設計館自行提供發票/收據，開立後將寄至購買人地址</p>
-					<p class="pb-3">給設計師的訊息或注意事項</p>
-					<textarea name="" id="" cols="45" rows="5" placeholder="若你的訂單商品或是體驗活動需要提供客製化細節，請務必於下單時，填寫顏色、尺寸、圖案款式、客製文字等規格"></textarea>
 				</div>
 			</div>
 		</div>
@@ -100,11 +97,15 @@
 						<%= f.label :address, "收件人地址：" %>
 						<%= f.text_field :address, class: 'w-full my-2' %>
 					</div>
-					<div>
+					<div class='my-2'>
 						<%= f.label :delivery, "運送方式：" %>
-						<%= f.select :delivery, class: 'w-full my-2' do %>
+						<%= f.select :delivery do %>
 							<%= content_tag(:option, '貨運') %>
 						<% end %>
+					</div>
+					<div>
+						<%= f.label :message, "給設計師的訊息或注意事項" %>
+						<%= f.text_area :message, class: 'w-full my-2', size: "20x5", placeholder: '若你的訂單商品或是體驗活動需要提供客製化細節，請務必於下單時，填寫顏色、尺寸、圖案款式、客製文字等規格' %>
 					</div>
 					<div>
 						<%= f.submit '建立訂單', class: 'btn btn-primary' %>
