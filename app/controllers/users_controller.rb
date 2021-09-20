@@ -29,4 +29,8 @@ class UsersController < ApplicationController
 
   def buy_order
   end
+
+  def user_coupons
+    @coupons = current_user.user_coupons
+  end
 end

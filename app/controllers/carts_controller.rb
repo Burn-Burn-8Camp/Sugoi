@@ -4,12 +4,13 @@ class CartsController < ApplicationController
 
   def show
     # 相同商城會在同一欄位內
+    @coupons = current_user.user_coupons
     store_id_list = current_cart.items.map { |item| item.store_id }.uniq.sort
     @store_items = []
     store_id_list.each{ |id|
       @store_items << current_cart.items.select{ |item|
         item.store_id === id 
-     }
+      }
     }
     @cart = current_cart.items
   end
@@ -33,8 +34,20 @@ class CartsController < ApplicationController
     render json: @cart  
   end
 
+  def redeem
+    found_coupon
+    @total = current_cart.use_coupon(params[:coupon_id], params[:value])
+    session[:cart1289] = current_cart.serialize
+    render json: { total: @total, value: params[:value].to_i }
+  end
+  
   private
     def find_cart_item
       @product = Product.find(params[:id])
+    end
+
+    def found_coupon
+      @coupons = current_user.user_coupons
+      found_coupon = @coupons.find { |coupon| coupon.id === params[:coupon_id] }
     end
 end

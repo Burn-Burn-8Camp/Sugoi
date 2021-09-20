@@ -3,6 +3,8 @@
     <div class="flex justify-start">
       購物車 
       <%= cart_items_amount %>
+      <%= current_cart.items %>
+      <%= current_cart.coupon %>
     </div>
     <%= link_to "清空購物車" , cart_path, method: "delete" %>
 
@@ -102,6 +104,12 @@
                 </span></span>
             </div>
 
+            <div class="summary-items flex my-3">
+              <span class="summary-coupon-redeem">優惠券折抵 NT$<span class="coupon_value">
+                  0
+                </span></span>
+            </div>
+
             <div>
               <p>
                 首綁首刷國泰世華卡，滿 NT$1000 現折 NT$100 (限量)！僅限「常用信用卡」結帳
@@ -113,6 +121,19 @@
 
             <div class="coupon">
               <a href="#">使用優惠券、P Coins 或禮物卡</a>
+            </div>
+
+            <div class="user-coupon">
+              <% @coupons.each do |coupon| %>
+                <div class="coupon">
+                  <%= coupon.coupon.name %>
+                  <%= coupon.coupon.value %>
+                  <%= coupon.coupon.description %>
+                  <%= coupon.status %>           
+                  <label for="<%= coupon.id %>"><%= coupon.coupon.name %></label> 
+                  <input id="<%= coupon.id %>" name="coupon" type="radio" value="<%= coupon.coupon.value %>" />
+                </div>
+              <% end %>
             </div>
 
           </div>

@@ -52,6 +52,14 @@ module ApplicationHelper
 		delivery_fee * store_amount
 	end
 
+	def coupon_value
+		current_cart.coupon.reduce(0) { |acc, coupon | acc + coupon.coupon_value.to_i }
+	end
+
+	def shopping_cart_sum
+		current_cart.total_included_delivery_fee - coupon_value
+	end
+
 	def store_amount
     store_id_list = current_cart.items.map { |item| item.store_id }.uniq.sort
     @store_items = []

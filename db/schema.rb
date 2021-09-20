@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_14_095708) do
+ActiveRecord::Schema.define(version: 2021_09_17_101730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,14 @@ ActiveRecord::Schema.define(version: 2021_09_14_095708) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_addressbooks_on_user_id"
+  end
+
+  create_table "coupons", force: :cascade do |t|
+    t.string "name"
+    t.float "value"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "deliveries", force: :cascade do |t|
@@ -59,6 +67,7 @@ ActiveRecord::Schema.define(version: 2021_09_14_095708) do
     t.integer "total"
     t.string "state"
     t.string "friendly_id"
+    t.string "coupon_name", default: "未使用"
     t.index ["friendly_id"], name: "index_orders_on_friendly_id", unique: true
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -98,6 +107,16 @@ ActiveRecord::Schema.define(version: 2021_09_14_095708) do
     t.index ["user_id"], name: "index_stores_on_user_id"
   end
 
+  create_table "user_coupons", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "coupon_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
+    t.index ["coupon_id"], name: "index_user_coupons_on_coupon_id"
+    t.index ["user_id"], name: "index_user_coupons_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -134,4 +153,6 @@ ActiveRecord::Schema.define(version: 2021_09_14_095708) do
   add_foreign_key "store_orders", "orders"
   add_foreign_key "store_orders", "stores"
   add_foreign_key "stores", "users"
+  add_foreign_key "user_coupons", "coupons"
+  add_foreign_key "user_coupons", "users"
 end

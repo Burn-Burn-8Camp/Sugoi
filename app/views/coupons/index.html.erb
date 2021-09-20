@@ -1,0 +1,8 @@
+<% @coupons.each do |coupon| %> 
+  <div>
+    <%= coupon.name %>
+    <%= coupon.value %>
+    <%= coupon.description %>
+    <%= link_to "按我", get_coupon_path(coupon.id), method: "post" %>
+  </div>
+<% end %>

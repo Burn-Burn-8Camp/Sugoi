@@ -9,6 +9,7 @@ document.addEventListener("turbolinks:load", () => {
   if(selectedItems) {
     const dropDownMenu = document.querySelector(".productID")
     const deliveryFee = Number(delivery.textContent)
+    let couponValue = document.querySelector(".summary-coupon-redeem .coupon_value")
   
     selectedItems.addEventListener("change", (e) => {   
       if(e.target.classList.value.includes("productID")) {
@@ -31,7 +32,7 @@ document.addEventListener("turbolinks:load", () => {
           data: params,
           success: (itemsPrice) => {
             totalPrice.textContent = itemsPrice
-            sum.textContent = itemsPrice + deliveryFee   
+            sum.textContent = itemsPrice + deliveryFee - Number(couponValue.textContent)
           },
           error: function (err) {
             console.log(err);
