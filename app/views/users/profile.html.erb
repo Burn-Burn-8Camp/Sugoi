@@ -1,8 +1,8 @@
 <div class='container '>
   <div class="flex flex-row w-3/4 mt-12 mb-20 mx-auto">
     <div class="flex flex-grow h-40 w-60   rounded-box  ">
-      <div class='w-15 p-2.5 '>
-        <img class='w-' src="https://picsum.photos/80/80" alt="">
+      <div class='w-15 p-2.5 ' style="width: 200px; height: 100px;">
+        <%= image_tag current_user.image_url if current_user.image_url.present? %>
       </div>
       <div class='w-full p-2.5'>
         <h1 class='text-lg mb-2'><%= current_user.name %></h1>
@@ -11,7 +11,6 @@
                                     <%="#{User.now_user_rank(current_user.accumulated_amount)} 
                                     #{current_user.country}" %>
                                     </a> 
-      
       </div>
       
       <div>
@@ -77,40 +76,69 @@
   </div>
 </div>
 
-<div class="tabs block">
-  <a href="#" class="tab tab-bordered">關於我</a> 
-</div>
-<div class="block">
-  <h3>個人名片</h3>
-  <div class="flex">
-    <div class="">性別</div>
-    <div class=""><%= current_user.gender %></div>
-  </div>
-  <div class="flex">
-    <div class="">現居住地</div>
-    <div class=""><%= current_user.country %></div>
-  </div>
-  <div class="flex">
-    <div class="">加入日期</div>
-    <div class=""><%= current_user.created_at.to_s.split(' ')[0]%></div>
-  </div>
-  <div class="flex">
-    <div class="">個人大頭貼</div>
-    <div class=""><%= image_tag current_user.image_url if current_user.image_url.present? %></div>
-  </div>
-  <div class="flex">
-    <div class="">個人資料設定</div>
-    <div class="">
-      <p><%= link_to "點我更新你的個人介紹",about_member_index_path %></p>
-      <p><%= link_to "點我設定暱稱、大頭貼照、生日...", edit_member_index_path %></p>
+<div>
+  <div class="">
+    <a href="#" class="tab tab-bordered">關於我</a>
+    <div class="flex">
+      <div class="">
+        <h3>個人名片</h3>
+
+          <div class="flex" >
+            <div class=""> 性別 : &emsp; </div>
+            <div class=""><%= current_user.gender %></div>
+          </div>
+
+        <div class="flex">
+          <div class=""> 現居住地 : &emsp; </div>
+          <div class=""><%= current_user.country %></div>
+        </div>
+
+        <div class="flex">
+          <div class=""> 加入日期 : &emsp; </div>
+          <div class=""><%= current_user.created_at.to_s.split(' ')[0]%></div>
+        </div>
+
+        <div class="flex">
+          <div class="block"> 個人資料設定 : &emsp; </div>
+          <div class="">
+            <p><%= link_to "點我更新你的個人介紹",about_member_index_path %></p>
+            <p><%= link_to "點我設定暱稱、大頭貼照、生日...", edit_member_index_path %></p>
+          </div>             
+      </div>
+    </div>   
+  <div class="">
+    <a href="#" class="tab tab-bordered">自我介紹</a> 
+    <div class="flex">
+      <div class="">
+      
+        <div class="flex">
+          <div class=""> 你是怎樣的一個人 : &emsp; </div>
+          <div class=""><%= current_user.self_about %></div>
+        </div>
+
+        <div class="flex">
+          <div class=""> 部落格 : &emsp; </div>
+          <div class=""><%= current_user.self_web %></div>
+        </div>
+
+        <div class="flex">
+          <div class=""> 個人網站 : &emsp; </div>
+          <div class=""><%= current_user.self_about %></div>
+        </div>
+
+        <div class="flex">
+          <div class=""> 你是怎樣的一個人 : &emsp; </div>
+          <div class=""><%= current_user.self_about %></div>
+        </div>
+
+      </div>
     </div>
   </div>
-  <div class="block">
-    <div class="">小提醒</div>
-    <div class="">在找你關注的設計館嗎？現在你可以在 慾望清單 裡看到喔。</div>
-  </div>
 </div>
 
-
-
+<div class="block">
+        <div class="">小提醒</div>
+        <div class="">在找你關注的設計館嗎？現在你可以在 慾望清單 裡看到喔。</div>
+      </div>
+</div>
 
