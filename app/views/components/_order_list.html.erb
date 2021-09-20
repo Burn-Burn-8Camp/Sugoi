@@ -6,7 +6,9 @@
 	<div class="col grid grid-cols-2 justify-center">
 		<p class="p-2 md:text-right mr-4 text-xl">狀態</p>
 		<% if order.state == 'pending' %>
-			<p class="p-2 btn btn-info w-36"><%= link_to '尚未付款，前往付款', payment_order_path(order) %></p>
+			<%= link_to payment_order_path(order) do %>
+			<p class="p-2 btn btn-info w-40">尚未付款，前往付款</p>
+			<% end %>
 		<% else %>
 			<p class="p-2"><%= check_state(order) %></p>
 		<% end %>
