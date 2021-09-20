@@ -21,12 +21,12 @@
 			<div class="rounded-full w-10 h-10 m-1" tabindex="0">
 				<img src="https://i.pravatar.cc/500?img=32">
 			</div>
-			<ul tabindex="0" class="p-2 shadow menu dropdown-content bg-white-800 rounded-box w-52">
-				<li class= "flex"> 
+			<ul tabindex="0" class="p-2 shadow menu dropdown-content bg-white rounded-box w-52">
+				<li> 
 					<%= link_to profile_member_index_path do %>
 					<div>
 						<%= sanitize now_rank_icon(current_user.accumulated_amount) %>
-						<%= current_user.name %>
+						<%= current_user.email %>
 					</div> 
 					<% end %>
 				</li>  

@@ -5,9 +5,9 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fas);
 
-const SellerCommentForm = ({ order_id }) =>  {
+const SellerCommentForm = ({ order_id, order_friendly_id }) =>  {
   const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-  const commentUrl = `http://localhost:3000/store/orders/${order_id}/comment/create`;
+  const commentUrl = `http://localhost:3000/store/orders/${order_friendly_id}/comment/create`;
   const starIndex = [1, 2, 3, 4, 5];
   const [isOpen, setIsOpen] = useState(false);
   const [rateValue, setRateValue] = useState(5);
@@ -43,7 +43,7 @@ const SellerCommentForm = ({ order_id }) =>  {
 				<form action={commentUrl} method='POST'>
           <div>
             <input type="hidden" value={csrf} name='authenticity_token'/>
-            <input type="hidden" value={order_id} name='order_id'/>
+            <input type="hidden" value={order_id} name='order_real_id'/>
           </div>
 					<div className='p-3'>
             <label htmlFor="rate" className='mr-2 text-lg'>滿意度</label>

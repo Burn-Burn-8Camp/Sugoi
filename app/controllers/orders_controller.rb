@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
 	end
 
 	def show
+		@comments = @order.seller_comments.includes(:store)
 	end
 
 	def items_info

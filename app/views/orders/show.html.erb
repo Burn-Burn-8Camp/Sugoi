@@ -14,9 +14,22 @@
 </div>
 
 <div class="rate border roubded px-5 m-5">
-	<h2 class="py-5">已獲評價</h2>
-	<hr>
-	<p class="py-5">thank you so much</p>
+	<% if @comments.length === 0 %>
+		<h2 class="py-5">尚未評價</h2>
+	<% else %>
+		<h2 class="py-5">已獲評價</h2>
+		<hr>
+		<div class='flex'>
+			<%= react_component 'StarList', props: {rate: calculate_star_average(@comments)} %>
+			<span class='mx-3'>(<%= @comments.length %>)</span>
+		</div> 
+	<% end %>
+	<% @comments.each do |comment| %>
+	<div class="py-5">
+		<span>商店：<%= comment.store.name %></span>
+		<span>內容：<%= comment.content %></span>
+	</div>
+	<% end %>
 </div>
 
 <div class="delivery border roubded px-5 m-5">		
