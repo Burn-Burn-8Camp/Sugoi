@@ -55,7 +55,7 @@ Rails.application.routes.draw do
         get 'edit', to: 'users#edit'
         patch 'edit', to: 'users#update'
         get 'about', to: 'users#about'
-        patch 'about', to: 'users#about'
+        patch 'about', to: 'users#update'
         get 'buy_order', to: 'users#buy_order'
       end
     end

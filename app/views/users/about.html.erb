@@ -1,36 +1,24 @@
 <h1>關於我</h1>
 
-<h2>讓朋友認識你</h2>
-<%= form_for(@user, url: about_member_index_path) do |f| %>
+<div>
+  <h2>讓朋友認識你</h2>
+  <%= form_for(@user, url: about_member_index_path) do |f| %>
 
-  <div class="field">
-  <%= f.label :"你是怎樣的一個人" %><br />
-    <%= f.text_field :self_about, autocomplete: "你是怎樣的一個人" %>
-  </div>
+    <div class="field">
+      <%= f.label :self_about, "你是怎樣的一個人" %><br />
+      <%= f.text_field :self_about, autocomplete: "你是怎樣的一個人" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :"部落格" %><br />
-    <%= f.text_field :self_blog, autocomplete: "部落格" %>
-  </div>
+    <div class="field">
+      <%= f.label :self_blog, "部落格" %><br />
+      <%= f.text_field :self_blog, autocomplete: "部落格" %>
+    </div>
 
-  <div class="field">
-    <%= f.label :"個人網站" %><br />
-    <%= f.text_field :self_web, autocomplete: "個人網站" %>
-  </div>
+    <div class="field">
+      <%= f.label :self_web, "個人網站" %><br />
+      <%= f.text_field :self_web, autocomplete: "個人網站" %>
+    </div>
 
-<%= f.submit "更新" %>
-
-<h2>你是怎麼過生活</h2>
-
-<div class="field">
-  <%= f.label :"你喜歡什麼東西、平常愛買些什麼" %><br />
-  <%= f.text_field :life_shopping, autocomplete: "你喜歡什麼東西、平常愛買些什麼" %>
+  <%= f.submit "更新" %>
+  <% end %>
 </div>
-
-<div class="field">
-  <%= f.label :"愛逛的市集、設計師、老屋聚落" %><br />
-  <%= f.text_field :life_design, autocomplete: "愛逛的市集、設計師、老屋聚落" %>
-</div>
-
-<%= f.submit "更新" %>
-<% end %>
