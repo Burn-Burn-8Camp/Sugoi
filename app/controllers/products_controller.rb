@@ -19,9 +19,9 @@ class ProductsController < ApplicationController
   end
 
   def show
-    items = OrderItem.joins(:product, :comment).where(product_id: @product).select(:id)
-    users = items.map{ |item| item.comment.user}
-    @comments = items.map{ |item| item.comment }
+    item = OrderItem.joins(:product, :comment).where(product_id: @product).select(:id)
+    users = item.map{ |i| i.comment.user}.reverse
+    @comments = item.map{ |i| i.comment }.reverse
     @comments_with_users = @comments.zip(users)
   end
 

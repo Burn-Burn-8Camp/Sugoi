@@ -41,6 +41,14 @@ class StoresController < ApplicationController
 
 	def orders_list
 	  @orders = current_store.orders
+		
+		if params[:start_on].present?
+			@orders = @orders.where( "orders.created_at >= ?", "#{Date.parse(params[:start_on]).beginning_of_day}" )
+  	end
+			
+		if params[:end_on].present?
+			@orders = @orders.where( "orders.created_at <= ?", "#{Date.parse(params[:end_on]).end_of_day}" )
+		end
 	end
 
 	def order_detail
