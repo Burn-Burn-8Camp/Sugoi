@@ -3,8 +3,6 @@
     <div class="flex justify-start">
       購物車 
       <%= cart_items_amount %>
-      <%= current_cart.items %>
-      <%= current_cart.coupon %>
     </div>
     <%= link_to "清空購物車" , cart_path, method: "delete" %>
 
@@ -126,12 +124,13 @@
             <div class="user-coupon">
               <% @coupons.each do |coupon| %>
                 <div class="coupon">
-                  <%= coupon.coupon.name %>
-                  <%= coupon.coupon.value %>
+                  <label for="<%= coupon.coupon_id %>">
+                    <%= coupon.coupon.name %>
+                  </label>
                   <%= coupon.coupon.description %>
                   <%= coupon.status %>           
-                  <label for="<%= coupon.id %>"><%= coupon.coupon.name %></label> 
-                  <input id="<%= coupon.id %>" name="coupon" type="radio" value="<%= coupon.coupon.value %>" />
+                   
+                  <input id="<%= coupon.coupon_id %>" name="coupon" type="radio" value="<%= coupon.coupon.value %>" />
                 </div>
               <% end %>
             </div>
