@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     end
     member do
       get :payment, to: 'payments#payment'
+      post :items_info, to: 'orders#items_info'
     end
   end
 
@@ -54,6 +55,10 @@ Rails.application.routes.draw do
     collection do
       get 'search', to: "products#search"
     end
+  end
+
+  resources :order_items, only: [] do
+    resource :comment, only: [:create]
   end
 
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }

@@ -19,6 +19,8 @@ class ProductsController < ApplicationController
   end
 
   def show  
+    items = OrderItem.joins(:product, :comment).where(product_id: @product).select(:id)
+    @comments = items.map{ |item| item.comment }
   end
 
   def edit    

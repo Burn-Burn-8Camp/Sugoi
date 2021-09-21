@@ -19,67 +19,11 @@
       </div>
   </div>
 </section>
-<div class="bg-white">
-  <div class="pt-6">
-    <nav aria-label="Breadcrumb">
-      <ol role="list" class="max-w-2xl mx-auto px-4 flex items-center space-x-2 sm:px-6 lg:max-w-7xl lg:px-8">
-        <li>
-          <div class="flex items-center">
-            <a href="#" class="mr-2 text-sm font-medium text-gray-900"> 買設計 </a>
-            <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-4 h-5 text-gray-300">
-              <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-            </svg>
-          </div>
-        </li>
-        <li>
-          <div class="flex items-center">
-            <a href="#" class="mr-2 text-sm font-medium text-gray-900"> 衣著良品 </a>
-            <svg width="16" height="20" viewBox="0 0 16 20" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="w-4 h-5 text-gray-300">
-              <path d="M5.697 4.34L8.98 16.532h1.327L7.025 4.341H5.697z" />
-            </svg>
-          </div>
-        </li>
-        <li class="text-sm">
-          <a href="#" aria-current="page" class="font-medium text-gray-500 hover:text-gray-600"> 裙子/長裙 其他人造纖維 </a>
-        </li>
-      </ol>
-    </nav>
-    <!-- Image gallery -->
-    <div class="mt-6 max-w-2xl mx-auto sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:gap-x-8">
-      <div class="hidden aspect-w-3 aspect-h-4 rounded-lg overflow-hidden lg:block">
-        <img src="https://tailwindui.com/img/ecommerce-images/product-page-02-secondary-product-shot.jpg" alt="Two each of gray, white, and black shirts laying flat." class="w-full h-full object-center object-cover">
-      </div>
-      <div>
-        <h1>卡其色高腰百褶A字半身裙|裙子|夏秋款|Sora-801</h1>
-        <h2>NT$ 1,480</h2>
-        
-        <select class="select select-bordered w-full max-w-xs border-2">
-          <option disabled="" selected="">請選擇尺碼</option>
-          <option>S</option>
-          <option>M</option>
-          <option>L</option>
-          <option>XL</option>
-          <option>2XL</option>
-          <option>3XL</option>
-        </select>
-        <p class="p-2">數量</p>
 
-        <select class="select select-bordered  max-w-xs border-2">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option>8</option>
-          <option>9</option>
-          <option>10+</option>
-        </select>
 
-        <button class="btn btn-primary no-animation">放入購物車</button>
-        <button class="btn btn-primary no-animation">收藏商品</button>
-        <p>付款後，從備貨到寄出商品為 5 個工作天。（不包含假日）</p>
-        <p>優惠活動</p>
-        <p>8/30 - 9/14 全站消費滿 NT$899 折 NT$60（每帳號限用一次）</p>
-      </div>
+
+<% @comments.each do |comment| %>
+  <%= comment.rate %>
+  <%= comment.content %>
+<% end %>
+

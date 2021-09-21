@@ -34,7 +34,7 @@ module ApplicationHelper
 	def store_item_total(item_arr)
 		item_arr.map{ |item| item.total}.sum
 	end
-
+	
 	def product_storage(id)
     Product.find(id).quantity
   end

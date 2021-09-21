@@ -1,17 +1,12 @@
 <div class="breadcrumbs m-2.5">
 	<ul>
 		<li class='text-blue-400'><%= check_state(@order) %></li> 
-		<li><%= @order.serial %></li> 
+		<li><%= @order.serial %></li>
 	</ul>
 </div>
 
-<div class="flex justify-between m-5 mt-0">
-	<div>
-		<% @store_items.each do |item_arr| %>
-			<p class='inline'><%= item_arr[0].store.name %></p>
-		<% end %>
-	</div>
-	<p><%= @order.created_at.to_date %></p>
+<div class="m-5 mt-0">
+	<p class='text-right'><%= @order.created_at.to_date %></p>
 </div>
 
 <div class="flex">
@@ -39,24 +34,12 @@
 
 <div class="border roubded px-5 m-5">		
 	<h2 class="py-5">訂單內容</h2>
+	<p class='hidden' data-id=<%= @order.friendly_id %> id='order_id'></p> 
 	<hr>
-	<% @store_items.each do |item_arr| %>
-	<p class='text-xl'><%= item_arr[0].store.name %></p>
-		<% item_arr.each do |item| %>
-		<div class="grid grid-cols-5 my-5">
-			<div class="col pr-3">
-				<img src="http://fakeimg.pl/100x100/ecf0f1/" alt="product_img">
-			</div>
-			<div class='col-span-2'><%= item.name %></div>
-			<div class="col text-right">x <%= item.quantity %></div>
-			<div class="col text-right">NT$ <%= item.price.to_i %></div>
-		</div>
-		<% end %>
-	<% end %>
+	<%= react_component('OrderItemsInfo') %>
 	<hr>
 	<div class="grid grid-cols-2 my-2">
-		<div></div>
-		<div>
+		<div class='col-start-2'>
 			<div class="grid grid-cols-2 py-1">
 				<p class="text-right">小計</p>
 				<p class="text-right"><%= @order.total %></p>

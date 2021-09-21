@@ -1,33 +1,32 @@
 class OrdersController < ApplicationController
-	before_action  :authenticate_user!
-	before_action :find_orders_by_state, only: [:index, :pending, :processing, :shipped, :completed, :cancelled]
+	before_action :authenticate_user!
+	before_action :find_orders_by_state, only: [:pending, :processing, :shipped, :completed, :cancelled]
+	before_action :find_order_by_friendly_id, only: [:show, :items_info]
 	def index
 		redirect_to pending_orders_path
 	end
 
 	def show
-		@order = current_user.orders.find_by_friendly_id!(params[:id])
-		@items = @order.order_items.includes(:product)
-		@store_items = []
-		find_by_smae_store(@store_items, @items)
+	end
+
+	def items_info
+		@items = @order.order_items.includes(:comment)
+		render './orders/items_info.json.jbuilder'
 	end
 
 	def checkout
 		@order = Order.new
-		@store_id_list = current_cart.items.map { |item| item.store_id }.uniq.sort
-    @store_items = []
-    @store_id_list.each{ |id|
-      @store_items << current_cart.items.select{ |item|
-        item.store_id === id 
-     }
-    }
+		@items = current_cart.items
+		find_by_smae_store(@store_items = [], @items)
 	end
 
 	def create
 		@cart_items = current_cart.items
+		find_by_smae_store(@store_items = [], @cart_items)
 		@order = current_user.orders.new(order_params)
 		@order.total = current_cart.total_included_delivery_fee
 		create_order_items_data_in_order(@cart_items, @order)
+
 		if @order.save			
 			caculate_user_consume(current_user)
 			session[:cart1289] = nil
@@ -68,6 +67,10 @@ class OrdersController < ApplicationController
 			params.require(:order).permit(:receiver, :tel, :email, :address, :delivery)
 		end
 
+		def find_order_by_friendly_id
+			@order = current_user.orders.find_by_friendly_id!(params[:id])
+		end
+
 		def caculate_user_consume(user)
 			order = user.orders.select{ |order| order.state != "cancelled" }
 			total = order.map{|order| order.total}.sum
@@ -76,8 +79,7 @@ class OrdersController < ApplicationController
 
 		def create_order_items_data_in_order(cart_items, order)
 			store_id_list = []
-			# 購物車商品建立資料
-			cart_items.each do |item|
+			cart_items.each{ |item|
 				order_items = OrderItem.new(
 					name: item.name,
 					price: item.price,
@@ -85,21 +87,18 @@ class OrdersController < ApplicationController
 					product_id: item.product_id,
 					store_id: item.store_id
 				)
-				# 建立商品實體塞進order.order_items
+
 				order.order_items << order_items
-				# 建立商店id序號
 				store_id_list << item.store
-			end
-			# 建立store跟order的多對多關聯
+			}
+
 			store_id_list.uniq.each{ |id|
 				order.stores << id
 			}
 		end
 
 		def find_by_smae_store(store_items, items)
-			# 建立不重複的商店id陣列
 			store_id_list = items.map { |item| item.store_id }.uniq.sort
-			# 透過 store_id_list 把商品分類
 			store_id_list.each{ |id|
 				store_items << items.select{ |item|
 				item.store_id === id 
