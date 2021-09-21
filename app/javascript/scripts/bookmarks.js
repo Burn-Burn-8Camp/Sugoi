@@ -17,7 +17,7 @@ document.addEventListener("turbolinks:load", () => {
         console.log(err);
       },
     });
-		console.log(label.dataset.id)
+		
 	})
 })
 
