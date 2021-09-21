@@ -10,8 +10,16 @@ document.addEventListener("turbolinks:load", () => {
       url: `/products/${id}/favorite`,
       type: "post",
       data: "",
-      success: (res) => {
-          console.log(res)  
+      success: (data) => {
+
+
+        if(data.status === "added") {
+          heartIcon.classList.remove("text-gray-300");
+          heartIcon.classList.add("text-red-800");
+        } else {
+          heartIcon.classList.remove("text-red-800")
+          heartIcon.classList.add("text-gray-300")
+        }
       },
       error: function (err) {
         console.log(err);
