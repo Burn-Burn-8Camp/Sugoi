@@ -6,6 +6,9 @@ import "styles"
 import "components"
 import "scripts"
 
+
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+require("channels")
+
