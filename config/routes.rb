@@ -4,7 +4,9 @@ Rails.application.routes.draw do
     collection do
       get 'application', to: 'sellers#new'
       patch 'seller_apply', to: 'sellers#update'
-      patch "seller_verify", to: 'sellers#seller_verify'
+      get "verify", to: 'sellers#verify'
+      post "seller_verify", to: 'sellers#seller_verify'
+      get 'verified', to: 'sellers#verified'
     end
     resources :products, only: [] do
       collection do
@@ -56,7 +58,6 @@ Rails.application.routes.draw do
         get 'edit', to: 'users#edit'
         get 'about', to: 'users#about'
         patch 'about', to: 'users#about'
-        get 'buy_order', to: 'users#buy_order'
       end
     end
   end  

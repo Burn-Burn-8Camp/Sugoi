@@ -4,12 +4,12 @@
   <%= form_for(current_user, url:seller_apply_store_path) do |f| %>
   <%= f.text_field :user_id, value: current_user.id, type: "hidden"%>
   <div>
-    <%= f.label :seller_name, '真實姓名' %><br />
+    <%= f.label  '真實姓名' %><br />
     <%= f.text_field :seller_name %>
   </div>
      
   <div>
-    <%= f.label :seller_email,"您的賣家電子信箱" %><br />
+    <%= f.label "您的賣家電子信箱" %><br />
     <%= f.text_field :seller_email %>
   </div>
   <div>
