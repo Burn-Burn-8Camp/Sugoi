@@ -7,14 +7,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2 ,:github]
   has_many :orders
-  has_one :store
-
-  # validates :seller_email
-  # validates :seller_name
-
+  has_one :store 
+            
   def self.create_from_provider_data(provider_data)
     return nil if provider_data.nil?
-
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do |user|
       user.account = provider_data.info.email.split('@').first
       user.email = provider_data.info.email

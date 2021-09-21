@@ -8,21 +8,21 @@ class ApplicationController < ActionController::Base
 
     private
     
-    def configure_permitted_parameters
+      def configure_permitted_parameters
         devise_parameter_sanitizer.permit(:sign_up, keys: [:nickname,])
         devise_parameter_sanitizer.permit(:account_update, keys: [:nickname,:name,:contury,:birthdy,:gender,:self_about,:self_blog,:self_web])
-    end
+      end
 
-    def current_cart
-      @cart1289 ||= Cart.from_hash(session[:cart1289])
-    end
+      def current_cart
+        @cart1289 ||= Cart.from_hash(session[:cart1289])
+      end
 
-    def record_not_found
-      render file: 'public/404.html', stats: :not_found
-    end
+      def record_not_found
+        render file: 'public/404.html', stats: :not_found
+      end
 
-    def current_store
-      current_user.store
-    end
+      def current_store
+        current_user.store
+      end
 end
 
