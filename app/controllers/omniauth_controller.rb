@@ -27,7 +27,6 @@ class OmniauthController < ApplicationController
       failure
     end
   end
-
   def verify_authenticity_token
     verified_request? || oauth? || raise(ActionController::InvalidAuthenticityToken)
   end

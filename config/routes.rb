@@ -32,12 +32,18 @@ Rails.application.routes.draw do
     collection do
       post :add, path:'add/:id'
       get :checkout, to: 'orders#checkout'
+      post :confirmation, to: 'carts#confirm'
     end
   end
 
   resources :orders, only:[:index, :show, :create] do
     collection do
       post :response, to: 'payments#notify_response'
+      get :pending, to: 'orders#pending'
+      get :processing, to: 'orders#processing'
+      get :shipped, to: 'orders#shipped'
+      get :completed, to: 'orders#completed'
+      get :cancelled, to: 'orders#cancelled'
     end
     member do
       get :payment, to: 'payments#payment'
