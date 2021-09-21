@@ -24,12 +24,13 @@ class OrdersController < ApplicationController
 		@cart_items = current_cart.items
 		find_by_smae_store(@store_items = [], @cart_items)
 		@order = current_user.orders.new(order_params)
-		@order.total = current_cart.total
+		@order.total = current_cart.total_included_delivery_fee
 		create_order_items_data_in_order(@cart_items, @order)
 
 		if @order.save			
 			caculate_user_consume(current_user)
 			session[:cart1289] = nil
+			UserMailer.order_letter_confirm(@order).deliver_now
 			redirect_to payment_order_path(@order), notice: '訂單成立'
 		else
 			render :checkout

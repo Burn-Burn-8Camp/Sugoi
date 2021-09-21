@@ -18,6 +18,12 @@ class UsersController < ApplicationController
   end
 
   def create
+    @user = User.role != "seller"
+		if @user.save
+			redirect_to root_path, notice: '感謝您的申請'
+		else
+			render :new, notice: '請重新填寫'
+		end
   end
 
   def about
@@ -25,8 +31,5 @@ class UsersController < ApplicationController
   end
 
   def profile
-  end
-
-  def buy_order
   end
 end

@@ -4,17 +4,17 @@ class PaymentsController < ApplicationController
 	# 前往付錢
 	def payment
 		if @order.may_pay?
-			@form_info = Newebpay::Mpg.new(@order).form_info
-			@form_data = Newebpay::Mpg.new(@order).info
-		else
+			# @form_info = Newebpay::Mpg.new(@order).form_info
+			# @form_data = Newebpay::Mpg.new(@order).info
+		# else
 			redirect_to orders_path
 		end
 	end
+
 	# 付錢回來
 	def notify_response
 		check_response(return_params(params))
 	end
-
 	private
 		def check_response(params)
 			response = Newebpay::MpgResponse.new(params[:TradeInfo])

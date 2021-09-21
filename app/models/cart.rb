@@ -20,6 +20,24 @@ class Cart
     t
   end
 
+  def store_amount
+    store_id_list = @items.map { |item| item.store_id }.uniq.sort
+    @store_items = []
+    store_id_list.each{ |id|
+      @store_items << @items.select{ |item|
+        item.store_id === id 
+      }
+    }
+    @store_items.count
+  end
+
+  def total_included_delivery_fee   
+    total = @items.reduce(0) { |acc, item| acc + item.total }
+    is_children_day? ? total * 0.8 : total
+    delivery_fee = Product.deliveries["貨運 NT$100"] * store_amount
+    total += delivery_fee
+  end
+
   def change_item_quantity(product_id, quantity)
     found_item = @items.find { |item| item.product_id === product_id }
     if found_item
