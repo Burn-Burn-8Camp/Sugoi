@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   resources :messages, only: %i[create index]
-  resources :rooms
+  resources :rooms, expect: %i[destroy edit] 
   
   root "products#index"
   resource :store do
