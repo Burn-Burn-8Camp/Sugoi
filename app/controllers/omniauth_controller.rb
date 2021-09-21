@@ -17,7 +17,6 @@ class OmniauthController < ApplicationController
     redirect_to new_user_registration_url
   end
 
-
   def github
     @user = User.create_from_provider_data(request.env['omniauth.auth'])
 
@@ -28,8 +27,6 @@ class OmniauthController < ApplicationController
       failure
     end
   end
-
-
 
   def verify_authenticity_token
     verified_request? || oauth? || raise(ActionController::InvalidAuthenticityToken)

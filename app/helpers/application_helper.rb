@@ -17,4 +17,14 @@ module ApplicationHelper
 				"已取消"
 		end
 	end
+
+	def product_storage(id)
+    Product.find(id).quantity
+  end
+
+	def cart_items_amount
+		items = current_cart.items.map { |item| item.quantity } 
+		items.sum      
+	end
+
 end

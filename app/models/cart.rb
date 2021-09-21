@@ -14,10 +14,24 @@ class Cart
     end
   end
 
+
+  def change_item_quantity(product_id, quantity)
+    found_item = @items.find { |item| item.product_id === product_id }
+    if found_item
+      found_item.changement!(quantity)
+    end
+  end
+
   def total
     t = @items.reduce(0) { |acc, item| acc + item.total }
-    t = t * 0.8 if is_children_day?
-    t
+    is_children_day ? t * 0.8 : t
+  end
+
+  def total_included_delivery_fee   
+    total = @items.reduce(0) { |acc, item| acc + item.total }
+    is_children_day ? total * 0.8 : total
+    delivery_fee = Product.deliveries["貨運 NT$100"]
+    total += delivery_fee
   end
 
   def empty?
@@ -43,9 +57,7 @@ class Cart
   end
 
   private
-  def is_children_day?
-    Time.now.month === 4 && Time.now.day === 4
-  end
-
-
+    def is_children_day
+      Time.now.month === 4 && Time.now.day === 4
+    end
 end

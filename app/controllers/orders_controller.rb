@@ -21,22 +21,22 @@ class OrdersController < ApplicationController
 		store_id_list = []
 		# 購物車商品填資料
 		current_cart.items.each do |item|
-			oi = OrderItem.new(
+			order_item = OrderItem.new(
 				name: item.name,
 				price: item.price,
 				quantity: item.quantity,
 				product_id: item.product_id
 			)
-			order.order_items << oi
+			order.order_items << order_item
 			store_id_list << item.store
 		end
 		
-		store_id_list.uniq!.each{ |id|
+		store_id_list.uniq.each{ |id|
 			order.stores << id
 		}
-		
 		if order.save			
 			session[:cart1289] = nil
+			UserMailer.order_letter_confirm(order).deliver_now
 			redirect_to payment_order_path(order), notice: '訂單成立'
 		else
 			render html: "Fail"
@@ -44,8 +44,8 @@ class OrdersController < ApplicationController
 	end
 
 	private
-	def order_params
-		params.require(:order).permit(:receiver, :tel, :email, :address, :delivery)
-	end
+		def order_params
+			params.require(:order).permit(:receiver, :tel, :email, :address, :delivery)
+		end
 
 end

@@ -1,286 +1,283 @@
 <% if current_user %>
 	<!-- ===============================登入狀態================================= -->
-	<header>
-		<div class="">
-			<div class="navbar mb-2 shadow-lg  text-primary-content w-full">
-				<div>
-					<div class="px-2 mx-2 lg:flex">
-						<h1 class="text-2xl">
-							<%= link_to 'Sugoi' , root_path %>
-						</h1>
-					</div>
-
-					<div class="lg:flex-none ">
-						<div>
-							<!-- ================================================================ -->
-							<!-- Load icon library -->
-							<link rel="stylesheet"
-								href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-							<!-- The form -->
-							<form action="/products/search" method="GET">
-								<input class="w-4/5" type="text" placeholder="搜尋好設計、體驗活動" name="search">
-								<button type="submit border ">
-									搜尋
-								</button>
-							</form>
-
-							<div class='flex-none hidden lg:flex space-x-3'>
-								<a href="https://astro.5xruby.tw/" class='text-sm'>五倍</a>
-								<a href="https://astro.5xruby.tw/" class='text-sm'>月餅</a>
-								<a href="https://astro.5xruby.tw/" class='text-sm'>和牛</a>
-								<a href="https://astro.5xruby.tw/" class='text-sm'>烤肉</a>
-								<a href="https://astro.5xruby.tw/" class='text-sm'>蘋果</a>
-								<a href="https://astro.5xruby.tw/" class='text-sm'>專題</a>
-							</div>
+	<header id="gheader" class="g-header">
+		<div class="g-wrap-expand">
+			<div class="g-header-top">
+				<a class="logo" href="/" title="Sugoii">
+					<!-- 這裡是放ＬＯＧＯ的位置 -->
+				</a>
+				<div class="header-search">
+					<form class="search g-search-form g-voiceinput-form" method="get" action="/products/search">
+						<input type="search" name="q" placeholder="搜尋好設計、體驗活動" class="keyword" autocomplete="off"
+							id="g-header-keyword" maxlength="256">
+						<input class="submit" type="submit" value="搜尋">
+						<div class="trend">
+							<a href="https://astro.5xruby.tw/">蘋果</a>
+							<a href="https://astro.5xruby.tw/">蓮霧</a>
+							<a href="https://astro.5xruby.tw/">釋迦</a>
+							<a href="https://astro.5xruby.tw/">鳳梨</a>
+							<a href="https://astro.5xruby.tw/">西瓜</a>
+							<a href="https://astro.5xruby.tw/">草莓</a>
 						</div>
-					</div>
+					</form>
 				</div>
-				<!-- ================================================================ -->
-				<div>
-					<div class='flex-1 hidden lg:flex'>
-						<a href="#">我想在sugoi上販售</a>
-					</div>
 
-					<div class="flex-none">
-						<div class="avatar dropdown">
-							<div class="rounded-full w-10 h-10 m-1" tabindex="0">
-								<img src="https://picsum.photos/500/400?random=1">
+				<div class="header-right">
+					<div class="relative">
+						<a href="https://astro.5xruby.tw/" class="tab">我想在 Sugoii 上販售</a>
+						<div class="tab user" data-msg-cnt="0" data-ns-cnt="0">
+							<div class="image">
+								<img src="https://picsum.photos/500/400?random=1" alt="user avatar">
 							</div>
+							<div class="user-menu">
+								<div class="user-menu-container">
+									<div class="menu-border g-flexbox">
+										<div class="buyer user-list">
+											<%= link_to profile_member_index_path do %>
+												<a href="https://astro.5xruby.tw/" class="title">
+													<span class="icon">
+														<%= sanitize now_rank_icon(current_user.accumulated_amount) %>
+													</span>
+													<span class="text">王小明
+														<%= current_user.name %>
+													</span>
 
-							<ul tabindex="0"
-								class="p-2 shadow-2xl menu dropdown-content bg-white border-1 rounded-box w-52">
-								<li class="flex">
-									<%= link_to profile_member_index_path do %>
-										<div>
-											<%= sanitize User.now_rank_icon(current_user.accumulated_amount) %>
-												<%= current_user.name %>
+												</a>
+												<% end %>
+													<ul>
+														<li>
+															<a href="#往會員路徑">
+																<span>我的信箱</span>
+															</a>
+														</li>
+														<li>
+															<a href="#往會員路徑">
+																<span>通知中心</span>
+															</a>
+														</li>
+														<li>
+															<a href="#往會員路徑">
+																<span>P Coins</span>
+															</a>
+														</li>
+														<li>
+															<a href="https://astro.5xruby.tw/">
+																<span>一週快閃獎勵任務</span>
+															</a>
+														</li>
+														<li>
+															<a href="#往會員路徑">
+																<span>會員專區</span>
+															</a>
+														</li>
+														<li>
+															<a href="#往折價卷">
+																<span>優惠券</span>
+															</a>
+														</li>
+														<li>
+															<a href="https://astro.5xruby.tw/">
+																<span>我的獎勵</span>
+															</a>
+														</li>
+														<li>
+															<%= link_to '購買訂單' , buy_order_member_index_path %>
+														</li>
+														<li>
+															<a href="#往會員路徑">
+																<span>邀朋友賺回饋</span>
+															</a>
+														</li>
+														<li>
+															<%= link_to '帳號設定' , edit_member_index_path %>
+														</li>
+														<li>
+															<%= link_to('登出', destroy_user_session_path,
+																method: 'delete' ) %>
+														</li>
+													</ul>
 										</div>
-										<% end %>
-								</li>
-								<li>
-									<a href="#">我的信箱</a>
-								</li>
-
-								<li>
-									<a href="#">通知中心</a>
-								</li>
-
-								<li>
-									<a href="#">P_coins</a>
-								</li>
-
-								<li>
-									<a href="#">優惠卷</a>
-								</li>
-
-								<li>
-									<a href="#">我的獎勵</a>
-								</li>
-
-								<li>
-									<%= link_to '購買訂單' , buy_order_member_index_path %>
-								</li>
-
-								<li>
-									<a href="#">邀朋友獲得獎勵</a>
-								</li>
-
-								<li>
-									<%= link_to '帳號設定' , edit_member_index_path %>
-								</li>
-
-								<li>
-									<%= link_to('登出', destroy_user_session_path, method: 'delete' ) %>
-								</li>
-
-							</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<a class="favlist tab icon-hover" href="https://astro.5xruby.tw/">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+								<path class="color" fill="#29242D"
+									d="M12 20.75c-.17 0-.339-.058-.478-.172-.247-.204-6.068-5.031-8.377-8.144-1.748-2.693-1.549-5.853.456-7.722C4.612 3.77 5.952 3.25 7.374 3.25c1.153 0 2.293.347 3.208.978.651.448 1.103.952 1.417 1.432.315-.48.767-.984 1.418-1.432.915-.631 2.055-.978 3.209-.978 1.421 0 2.761.52 3.772 1.462 2.005 1.868 2.204 5.027.482 7.683-2.334 3.152-8.155 7.979-8.402 8.183-.139.114-.308.172-.478.172zm-4.626-16c-1.041 0-2.018.376-2.75 1.059-1.464 1.364-1.565 3.737-.247 5.77 1.808 2.436 6.172 6.211 7.623 7.442 1.451-1.231 5.819-5.013 7.648-7.48 1.292-1.996 1.191-4.369-.272-5.731-.733-.684-1.71-1.06-2.75-1.06-.854 0-1.69.253-2.357.713-1.23.846-1.451 1.933-1.534 2.343-.071.349-.378.6-.734.6H12c-.356 0-.663-.25-.734-.599-.084-.41-.308-1.499-1.535-2.344-.667-.46-1.504-.713-2.357-.713z">
+								</path>
+							</svg>
+						</a>
+						<div class="notification tab icon-hover">
+							<a class="image" href="https://astro.5xruby.tw/">
+								<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+									<path
+										d="M15.781 19.42a3.813 3.813 0 0 1-7.562 0c-1-.063-1.96-.15-2.872-.257a41.601 41.601 0 0 1-1.875-.26 19.22 19.22 0 0 1-.681-.122.75.75 0 0 1-.356-1.289c.655-.597 1.13-1.191 1.468-1.81.555-1.018.712-1.867.843-3.9.09-1.395.147-1.994.303-2.841.388-2.096 1.645-3.549 3.46-4.438a9.204 9.204 0 0 1 2.366-.768c.133-.025.258-.046.375-.063V2a.75.75 0 1 1 1.5 0v1.672c.117.017.242.038.375.063.804.149 1.608.397 2.366.768 1.815.89 3.072 2.342 3.46 4.438.153.83.213 1.41.322 2.817.233 3.009.613 4.179 2.226 5.674l.064.059a.75.75 0 0 1-.354 1.29 19.22 19.22 0 0 1-.68.121c-.543.09-1.17.178-1.876.26-.912.107-1.871.195-2.872.258zm-6.024.078a2.313 2.313 0 0 0 4.486 0 60.512 60.512 0 0 1-4.486 0zm-5.3-1.963c.33.047.685.093 1.064.138 1.955.229 4.134.366 6.479.366 2.345 0 4.524-.137 6.479-.366.374-.044.725-.09 1.051-.136-1.181-1.44-1.541-2.937-1.752-5.664-.105-1.354-.162-1.899-.303-2.66-.293-1.589-1.228-2.67-2.644-3.363a7.729 7.729 0 0 0-1.98-.64 7.184 7.184 0 0 0-.825-.112 6.44 6.44 0 0 0-.877.111 7.729 7.729 0 0 0-1.98.641c-1.416.694-2.35 1.774-2.644 3.363-.143.77-.196 1.329-.282 2.666-.144 2.24-.331 3.253-1.024 4.522a7.576 7.576 0 0 1-.762 1.134z">
+									</path>
+								</svg>
+							</a>
 						</div>
 					</div>
 				</div>
-				<!-- =================愛心=============== -->
-				<div class="flex">
-					<div class="flex-none">
-						<button class="btn square btn-ghost">
-							<i class="far fa-heart"></i>
-						</button>
+				<a class="cart tab icon-hover" href="/cart">
+					<%= link_to cart_path do %>
+						<svg height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+							<path
+								d="M17.494 4.552a.625.625 0 0 1 .105.546l-1.484 5.364a.625.625 0 0 1-.603.458H7.817l.03.088c.041.119.047.245.015.365l-.385 1.474h8.53v1.25h-9.34a.627.627 0 0 1-.605-.783l.543-2.072-2.603-7.405H2.153v-1.25h2.292c.265 0 .502.167.59.417l.457 1.302h11.505c.195 0 .38.09.497.246zM15.037 9.67l1.139-4.114H5.93L7.377 9.67zm-6.391 6.718a1.25 1.25 0 1 1-2.501 0 1.25 1.25 0 0 1 2.5 0zm7.361 0a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0z"
+								fill="#39393e" class="color">
+							</path>
+						</svg>
+						<% end %>
+				</a>
+			</div>
+		</div>
+		<nav id="g-navigation" class="g-navigation">
+			<div class="g-wrap-expand">
+				<ul class="nav-first col-9">
+					<li class="nav-first-li campaigns-nav hightlight has-new-badge" data-detect="new">
+						<div class="title bold pink">
+							<span class="title-inner">主題企劃</span>
+						</div>
+					</li>
+					<li class="nav-first-li">
+						<a class="title" href="https://astro.5xruby.tw/">配件飾品</a>
+					</li>
+					<li class="nav-first-li">
+						<a class="title" href="https://astro.5xruby.tw/">包包提袋</a>
+					</li>
+					<li class="nav-first-li">
+						<a class="title" href="https://astro.5xruby.tw/">居家生活</a>
+					</li>
+					<li class="nav-first-li">
+						<a class="title" href="https://astro.5xruby.tw/">品味美食</a>
+					</li>
+					<li class="nav-first-li">
+						<a class="title" href="https://astro.5xruby.tw/">廚房餐桌</a>
+					</li>
+					<li class="nav-first-li">
+						<a class="title" href="https://astro.5xruby.tw/">創意科技</a>
+					</li>
+					<li class="nav-first-li">
+						<a class="title bold" href="https://astro.5xruby.tw/">所有分類</a>
+					</li>
+					<li class="nav-first-li" data-detect="new">
+						<div class="title bold">
+							<span class="title-inner">探索更多</span>
+						</div>
+			</div>
+			</li>
+			</ul>
+			</div>
+		</nav>
+	</header>
+	<% else %>
+		<!-- ==========================以下登出狀態======================== -->
+		<header id="gheader" class="g-header">
+			<div class="g-wrap-expand">
+				<div class="g-header-top">
+					<a class="logo " href="/" title="Sugoii">
+						<!-- <%= link_to 'Sugoii' , root_path %> -->
+						<!-- 這裡是放ＬＯＧＯ的位置 -->
+					</a>
+
+					<div class="header-search">
+						<form class="search g-search-form g-voiceinput-form" method="get" action="/products/search">
+							<input type="search" name="q" placeholder="搜尋好設計、體驗活動" value="" class="keyword"
+								autocomplete="off" id="g-header-keyword" maxlength="256">
+							<input class="submit" type="submit" value="搜尋">
+							<div class="trend">
+								<a href="https://astro.5xruby.tw/">蘋果</a>
+								<a href="https://astro.5xruby.tw/">蓮霧</a>
+								<a href="https://astro.5xruby.tw/">釋迦</a>
+								<a href="https://astro.5xruby.tw/">鳳梨</a>
+								<a href="https://astro.5xruby.tw/">西瓜</a>
+								<a href="https://astro.5xruby.tw/">草莓</a>
+							</div>
+						</form>
 					</div>
-					<!-- =================鈴鐺=============== -->
-					<div class="flex-none">
-						<button class="btn square btn-ghost">
-							<i class="far fa-bell"></i>
-						</button>
-					</div>
-					<!-- ================購物車================ -->
-					<div class="flex-none">
-						<button class="btn btn-square btn-ghost">
-							<%= link_to cart_path do %>
-								<i class="fas fa-shopping-cart text-xl text-blue-900"></i>
-								<% end %>
-						</button>
+					<div class="header-right">
+						<div class="relative">
+							<a href="https://astro.5xruby.tw/" class="tab">我想在 Sugoii 上販售</a>
+							<a class="login tab" history="login" data-click="login-modal">
+								<% if current_user %>
+									<span class="border">登入/註冊
+
+										<%= current_user.email %>
+
+											<%= link_to('登出', destroy_user_session_path, method: 'delete' ) %>
+
+												<%= link_to('修改密碼', edit_registration_path(:user)) %>
+
+													<% else %>
+
+														<%= link_to('登入', new_session_path(:user)) %>
+
+															<%= link_to('註冊', new_registration_path(:user)) %>
+
+
+									</span>
+									<% end %>
+							</a>
+
+							<a class="cart tab icon-hover" history="login" data-click="login-modal">
+								<svg height="20" viewBox="0 0 20 20" width="20" xmlns="http://www.w3.org/2000/svg">
+									<%= link_to cart_path do %>
+										<path
+											d="M17.494 4.552a.625.625 0 0 1 .105.546l-1.484 5.364a.625.625 0 0 1-.603.458H7.817l.03.088c.041.119.047.245.015.365l-.385 1.474h8.53v1.25h-9.34a.627.627 0 0 1-.605-.783l.543-2.072-2.603-7.405H2.153v-1.25h2.292c.265 0 .502.167.59.417l.457 1.302h11.505c.195 0 .38.09.497.246zM15.037 9.67l1.139-4.114H5.93L7.377 9.67zm-6.391 6.718a1.25 1.25 0 1 1-2.501 0 1.25 1.25 0 0 1 2.5 0zm7.361 0a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0z"
+											fill="#39393e" class="color">
+										</path>
+										<% end %>
+								</svg>
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
 			<nav id="g-navigation" class="g-navigation">
-				<div class="g-wrap-expand ">
-					<ul class="flex  justify-evenly ">
-						<li class="nav-first-li campaigns-nav hightlight nav-first-li--0" data-detect="new">
-							<div class="title bold pink  pb-px">
-								<span class="title-inner text-red-500">主題企劃</span>
+				<div class="g-wrap-expand">
+					<ul class="nav-first col-9">
+						<li class="nav-first-li campaigns-nav hightlight has-new-badge">
+							<div class="title bold pink">
+								<span class="title-inner">主題企劃</span>
 							</div>
+
 						</li>
-						<li class="nav-first-li nav-first-li--1">
+						<li class="nav-first-li">
 							<a class="title" href="https://astro.5xruby.tw/">配件飾品</a>
 
 						</li>
-						<li class="nav-first-li nav-first-li--2">
+						<li class="nav-first-li">
 							<a class="title" href="https://astro.5xruby.tw/">包包提袋</a>
 
 						</li>
-						<li class="nav-first-li nav-first-li--3">
+						<li class="nav-first-li">
 							<a class="title" href="https://astro.5xruby.tw/">居家生活</a>
+
 						</li>
-						<li class="nav-first-li nav-first-li--4">
-							<a class="title" href="https://astro.5xruby.tw/">品味美食</a>
+						<li class="nav-first-li">
+							<a class=" title" href="https://astro.5xruby.tw/">品味美食</a>
+
 						</li>
-						<li class="nav-first-li nav-first-li--5">
-							<a class="title" href="https://astro.5xruby.tw/">廚房餐桌</a>
+						<li class="nav-first-li">
+							<a class=" title" href="https://astro.5xruby.tw/">廚房餐桌</a>
+
 						</li>
-						<li class="nav-first-li nav-first-li--6">
-							<a class="title" href="https://astro.5xruby.tw/">創意科技</a>
+						<li class="nav-first-li">
+							<a class=" title" href="https://astro.5xruby.tw/">創意科技</a>
+
 						</li>
-						<li class="nav-first-li nav-first-li--7">
+						<li class="nav-first-li">
 							<a class="title bold" href="https://astro.5xruby.tw/">所有分類</a>
+
 						</li>
-						<li class="nav-first-li nav-first-li--8" data-detect="new" data-detect-hover="g.navi.see_more">
+						<li>
 							<div class="title bold">
 								<span class="title-inner">探索更多</span>
 							</div>
-						</li>
-					</ul>
+				</div>
+				</li>
+				</ul>
 				</div>
 			</nav>
-	</header>
-	<!-- ==================== -->
-	<% else %>
-		<!-- ==========登出狀態========== -->
-		<header>
-			<div class="">
-				<div class="navbar mb-2 shadow-lg  text-primary-content w-full">
-
-					<div class="px-2 mx-2 lg:flex">
-						<h1 class="text-2xl">
-							<%= link_to 'Sugoi' , root_path %>
-						</h1>
-					</div>
-					<!-- ＝＝＝＝＝＝＝＝＝＝搜尋匡＝＝＝＝＝＝＝＝＝＝ -->
-					<div class="lg:flex-none ">
-						<div>
-							<!-- ================================================================ -->
-							<!-- Load icon library -->
-							<link rel="stylesheet"
-								href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-							<!-- The form -->
-							<form action="/products/search" method="GET">
-								<div>
-									<input class="w-5/6 border-1" type="text" placeholder="搜尋好設計、體驗活動" name="search">
-									<button class="border-1" type="submit">
-										搜尋
-									</button>
-								</div>
-							</form>
-							<!-- ================================ -->
-
-							<div class='flex-none hidden lg:flex space-x-4'>
-								<a href="#" class='text-sm'>五倍</a>
-								<a href="#" class='text-sm'>月餅</a>
-								<a href="#" class='text-sm'>和牛</a>
-								<a href="#" class='text-sm'>烤肉</a>
-								<a href="#" class='text-sm'>蘋果</a>
-								<a href="#" class='text-sm'>專題</a>
-							</div>
-						</div>
-					</div>
-					<!-- ＝＝＝＝＝＝＝＝＝＝搜尋匡＝＝＝＝＝＝＝＝＝＝ -->
-					<div>
-						<div class='flex'>
-							<a href="#">我想在sugoi上販售</a>
-							<span class="flex border border-indigo-600">
-								<% if current_user %>
-									<%= current_user.email %>
-										<div>
-											<%= link_to('登出', destroy_user_session_path, method: 'delete' ) %>
-										</div>
-										<div>
-											<%= link_to('修改密碼', edit_registration_path(:user)) %>
-										</div>
-										<% else %>
-											<div>
-												<%= link_to('登入', new_session_path(:user)) %>
-											</div>
-											/
-											<div>
-												<%= link_to('註冊', new_registration_path(:user)) %>
-											</div>
-											<% end %>
-							</span>
-						</div>
-
-
-						<!-- =================愛心=============== -->
-						<div class="flex">
-							<!-- ================購物車================ -->
-							<div class="flex-none">
-								<button class="btn btn-square btn-ghost">
-									<%= link_to cart_path do %>
-										<i class="fas fa-shopping-cart text-xl text-blue-900"></i>
-										<% end %>
-								</button>
-							</div>
-						</div>
-					</div>
-				</div>
-				<nav id="g-navigation" class="g-navigation">
-					<div class="g-wrap-expand ">
-						<ul class="flex  justify-evenly  ">
-							<li class="nav-first-li campaigns-nav hightlight nav-first-li--0" data-detect="new">
-								<div class="title bold pink  pb-px">
-									<span class="title-inner text-red-500">主題企劃</span>
-								</div>
-							</li>
-							<li class="nav-first-li nav-first-li--1">
-								<a class="title" href="https://astro.5xruby.tw/">配件飾品</a>
-
-							</li>
-							<li class="nav-first-li nav-first-li--2">
-								<a class="title" href="https://astro.5xruby.tw/">包包提袋</a>
-
-							</li>
-							<li class="nav-first-li nav-first-li--3">
-								<a class="title" href="https://astro.5xruby.tw/">居家生活</a>
-							</li>
-							<li class="nav-first-li nav-first-li--4">
-								<a class="title" href="https://astro.5xruby.tw/">品味美食</a>
-							</li>
-							<li class="nav-first-li nav-first-li--5">
-								<a class="title" href="https://astro.5xruby.tw/">廚房餐桌</a>
-							</li>
-							<li class="nav-first-li nav-first-li--6">
-								<a class="title" href="https://astro.5xruby.tw/">創意科技</a>
-							</li>
-							<li class="nav-first-li nav-first-li--7">
-								<a class="title bold" href="https://astro.5xruby.tw/">所有分類</a>
-							</li>
-							<li class="nav-first-li nav-first-li--8" data-detect="new"
-								data-detect-hover="g.navi.see_more">
-								<div class="title bold">
-									<span class="title-inner">探索更多</span>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</nav>
-			</div>
 		</header>
 		<% end %>

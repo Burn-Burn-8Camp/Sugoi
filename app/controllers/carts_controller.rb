@@ -3,6 +3,7 @@ class CartsController < ApplicationController
   before_action :find_cart_item, only: [:add]
 
   def show
+    @cart = current_cart.items
   end
 
   def add
@@ -16,8 +17,16 @@ class CartsController < ApplicationController
     redirect_to root_path, notice: "購物車已清除"
   end
 
-  private
-  def find_cart_item
-    @product = Product.find(params[:id])
+  def confirm 
+    current_cart.change_item_quantity(params[:product_id], params[:quantity])
+    # render json: current_cart.items
+    session[:cart1289] = current_cart.serialize
+    @cart = current_cart.total
+    render json: @cart  
   end
+
+  private
+    def find_cart_item
+      @product = Product.find(params[:id])
+    end
 end
