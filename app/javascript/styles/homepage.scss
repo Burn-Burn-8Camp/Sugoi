@@ -1,0 +1,1296 @@
+#survicate-box .survicate_unavailable_Ge0qj {
+    margin-top: 100px;
+    text-align: center;
+    font-size: 21px
+}
+
+#survicate-box .survicate_plus-button_3rBOx {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    background-color: rgba(0, 0, 0, 0)
+}
+
+#survicate-box .survicate_overlay_3en50 {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: 999995;
+    top: 0;
+    left: 0
+}
+
+#survicate-box .survicate_overlay_3en50.survicate_dark_3dVQC {
+    opacity: .35;
+    background-color: #000
+}
+
+#survicate-box .survicate_overlay_3en50.survicate_light_2LfbL {
+    opacity: .5;
+    background-color: #fff
+}
+
+#survicate-box .survicate_progress-bar_tv6VS {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px
+}
+
+#survicate-box .survicate_progress-bar_tv6VS>div {
+    height: 100%
+}
+
+#survicate-box .survicate_chat-theme_jN-vh {
+    height: 3px
+}
+
+#survicate-box .survicate_footer_1Byg6,
+#survicate-box .survicate_footer-wrapper_2yP5r {
+    display: inline-block
+}
+
+#survicate-box .survicate_footer_1Byg6 {
+    font-size: 11px;
+    padding: 0 5px
+}
+
+#survicate-box .survicate_footer_1Byg6.survicate_chat-theme_3CzC8 {
+    text-align: center
+}
+
+#survicate-box .survicate_survey-buttons_3ws-x {
+    color: #b3b3b3;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+    -webkit-justify-content: flex-end;
+    -ms-flex-pack: end;
+    justify-content: flex-end;
+    padding: 0
+}
+
+#survicate-box .survicate_survey-buttons_3ws-x button {
+    display: inline-block;
+    background: none;
+    border: none;
+    color: inherit;
+    font-family: Open sans, sans-serif;
+    padding: 6px;
+    font-weight: 700;
+    -webkit-transition: color .3s;
+    -o-transition: color .3s;
+    transition: color .3s
+}
+
+#survicate-box .survicate_survey-buttons_3ws-x button:focus {
+    outline-offset: 3px
+}
+
+#survicate-box .survicate_small_uC5dD {
+    font-size: 11px
+}
+
+#survicate-box .survicate_avatar_3rSdl {
+    padding: 15px 10px 15px 0;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center
+}
+
+#survicate-box .survicate_avatar_3rSdl img {
+    width: 45px;
+    min-width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    vertical-align: sub
+}
+
+#survicate-box .survicate_avatar_3rSdl div {
+    display: inline-block;
+    margin-left: 10px
+}
+
+#survicate-box .survicate_avatar_3rSdl div .survicate_avatar-description_1mzqL {
+    font-size: 11px
+}
+
+#survicate-box .survicate_avatar_3rSdl p {
+    color: #808e9b
+}
+
+#survicate-box .survicate_footer-wrapper_3LNls {
+    margin-top: 10px
+}
+
+#survicate-box {
+    /*! normalize.css v8.0.0 | MIT License | github.com/necolas/normalize.css */
+}
+
+#survicate-box html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%
+}
+
+#survicate-box body {
+    margin: 0
+}
+
+#survicate-box h1 {
+    font-size: 2em;
+    margin: .67em 0
+}
+
+#survicate-box hr {
+    -webkit-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible
+}
+
+#survicate-box pre {
+    font-family: monospace, monospace;
+    font-size: 1em
+}
+
+#survicate-box a {
+    background-color: rgba(0, 0, 0, 0)
+}
+
+#survicate-box abbr[title] {
+    border-bottom: none;
+    text-decoration: underline;
+    -webkit-text-decoration: underline dotted;
+    text-decoration: underline dotted
+}
+
+#survicate-box b,
+#survicate-box strong {
+    font-weight: bolder
+}
+
+#survicate-box code,
+#survicate-box kbd,
+#survicate-box samp {
+    font-family: monospace, monospace;
+    font-size: 1em
+}
+
+#survicate-box small {
+    font-size: 80%
+}
+
+#survicate-box sub,
+#survicate-box sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline
+}
+
+#survicate-box sub {
+    bottom: -.25em
+}
+
+#survicate-box sup {
+    top: -.5em
+}
+
+#survicate-box img {
+    border-style: none
+}
+
+#survicate-box button,
+#survicate-box input,
+#survicate-box optgroup,
+#survicate-box select,
+#survicate-box textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0
+}
+
+#survicate-box button,
+#survicate-box input {
+    overflow: visible
+}
+
+#survicate-box button,
+#survicate-box select {
+    text-transform: none
+}
+
+#survicate-box [type=button],
+#survicate-box [type=reset],
+#survicate-box [type=submit],
+#survicate-box button {
+    -webkit-appearance: button
+}
+
+#survicate-box [type=button]::-moz-focus-inner,
+#survicate-box [type=reset]::-moz-focus-inner,
+#survicate-box [type=submit]::-moz-focus-inner,
+#survicate-box button::-moz-focus-inner {
+    border-style: none;
+    padding: 0
+}
+
+#survicate-box [type=button]:-moz-focusring,
+#survicate-box [type=reset]:-moz-focusring,
+#survicate-box [type=submit]:-moz-focusring,
+#survicate-box button:-moz-focusring {
+    outline: 1px dotted ButtonText
+}
+
+#survicate-box fieldset {
+    padding: .35em .75em .625em
+}
+
+#survicate-box legend {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    color: inherit;
+    display: table;
+    max-width: 100%;
+    padding: 0;
+    white-space: normal
+}
+
+#survicate-box progress {
+    vertical-align: baseline
+}
+
+#survicate-box textarea {
+    overflow: auto
+}
+
+#survicate-box [type=checkbox],
+#survicate-box [type=radio] {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0
+}
+
+#survicate-box [type=number]::-webkit-inner-spin-button,
+#survicate-box [type=number]::-webkit-outer-spin-button {
+    height: auto
+}
+
+#survicate-box [type=search] {
+    -webkit-appearance: textfield;
+    outline-offset: -2px
+}
+
+#survicate-box [type=search]::-webkit-search-decoration {
+    -webkit-appearance: none
+}
+
+#survicate-box ::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit
+}
+
+#survicate-box details {
+    display: block
+}
+
+#survicate-box summary {
+    display: list-item
+}
+
+#survicate-box [hidden],
+#survicate-box template {
+    display: none
+}
+
+#survicate-box h1,
+#survicate-box h2,
+#survicate-box h3,
+#survicate-box h4 {
+    color: #29292a;
+    font-weight: 400;
+    margin: 0 0 16px;
+    padding: 0
+}
+
+#survicate-box .h1,
+#survicate-box h1 {
+    font-size: 24px
+}
+
+#survicate-box .h2,
+#survicate-box h2 {
+    font-size: 18px
+}
+
+#survicate-box .h3,
+#survicate-box h3 {
+    font-size: 16px
+}
+
+#survicate-box .h4,
+#survicate-box h4 {
+    font-size: 14px
+}
+
+#survicate-box .g-row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin-right: -16px;
+    margin-left: -16px;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap
+}
+
+#survicate-box div[class*=g-col] {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding-right: 16px;
+    padding-left: 16px
+}
+
+#survicate-box .g-col {
+    -webkit-box-flex: 1;
+    -webkit-flex-grow: 1;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    -webkit-flex-basis: 0;
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0
+}
+
+#survicate-box .g-col-4 {
+    max-width: 33.33333%;
+    -webkit-flex-basis: 33.33333%;
+    -ms-flex-preferred-size: 33.33333%;
+    flex-basis: 33.33333%
+}
+
+#survicate-box * {
+    font-family: Open sans, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: normal;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none
+}
+
+#survicate-box .sv__outline :focus {
+    outline: 1px solid #87cefa
+}
+
+#survicate-box button {
+    padding: 3px;
+    display: inline-block;
+    margin: 0;
+    border: none;
+    cursor: pointer
+}
+
+#survicate-box p {
+    margin: 0
+}
+
+#survicate-box a {
+    text-decoration: none
+}
+
+#survicate-box .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0
+}
+
+#survicate-box .sv-invalid.sv-invalid.sv-invalid {
+    border: 1px solid #c00
+}
+#survicate-box .sv__choice-button {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    font-weight: 500;
+    margin: 5px 0;
+    cursor: pointer;
+    -webkit-transition: background-color .3s;
+    -o-transition: background-color .3s;
+    transition: background-color .3s;
+    border-radius: 4px
+}
+
+#survicate-box .sv__choice-button>div:last-child {
+    width: 100%
+}
+
+#survicate-box .sv__choice-button textarea {
+    margin-top: 5px;
+    border-left: none;
+    border-right: none;
+    border-bottom: none;
+    resize: none;
+    border-radius: 4px;
+    padding: 5px;
+    height: 44px;
+    max-height: 72px;
+    width: 100%
+}
+
+#survicate-box .sv__choice-button.sv__chat {
+    padding: 0;
+    margin: 0 0 10px
+}
+
+#survicate-box .sv__choice-button.sv__chat textarea {
+    margin-top: 0;
+    padding: 4px 0;
+    border-top: none;
+    border-radius: 0;
+    border-bottom: 1px solid #eff3f5
+}
+
+#survicate-box .sv__choice-button.sv__chat .sv__selected {
+    font-weight: 700
+}
+
+#survicate-box .sv__choice-button .sv__checkbox {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1 0 auto;
+    -ms-flex: 1 0 auto;
+    flex: 1 0 auto
+}
+
+#survicate-box .sv__multiple-choice .sv__submit-button-wrapper {
+    margin-top: 15px
+}
+
+#survicate-box .sv__rating {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: reverse;
+    -webkit-flex-direction: row-reverse;
+    -ms-flex-direction: row-reverse;
+    flex-direction: row-reverse
+}
+
+#survicate-box .sv__rating svg {
+    height: 25px;
+    width: 25px;
+    fill: #fff
+}
+
+#survicate-box .sv__rating button {
+    background: none;
+    padding: 0;
+    max-width: 10%
+}
+
+#survicate-box .sv__rating span {
+    font-size: 12px;
+    font-weight: 200
+}
+
+#survicate-box .sv__rating.sv__chat svg {
+    fill: #eff3f5
+}
+
+#survicate-box .sv__date {
+    border-radius: 4px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 15px
+}
+
+#survicate-box .sv__date input {
+    width: 30%;
+    background: inherit;
+    border: none;
+    text-align: center
+}
+
+#survicate-box .sv__date div,
+#survicate-box .sv__date input {
+    padding: 5px;
+    display: inline-block
+}
+
+#survicate-box .sv__date.sv__chat {
+    border-radius: 0;
+    border-bottom: 1px solid #eff3f5
+}
+
+#survicate-box .sv__date.sv__invalid {
+    border: 1px solid #c00
+}
+
+#survicate-box .sv__date.sv__invalid.sv__chat {
+    border-style: none none solid
+}
+
+#survicate-box .sv__smiley-scale {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center
+}
+
+#survicate-box .sv__smiley-scale button {
+    background-color: rgba(0, 0, 0, 0)
+}
+
+#survicate-box .sv__smiley-scale button:not(:last-child) {
+    margin-right: 10px
+}
+
+#survicate-box .sv__smiley-scale svg {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+    -webkit-transition: background-color .3s;
+    -o-transition: background-color .3s;
+    transition: background-color .3s
+}
+
+#survicate-box .sv__smiley-scale.sv__three-smileys svg {
+    height: 60px;
+    width: 60px
+}
+
+#survicate-box .sv__smiley-scale .sv__very-sad {
+    background-color: #be3f32;
+    border-bottom: 1px solid #451712
+}
+
+#survicate-box .sv__smiley-scale .sv__very-sad:hover {
+    background-color: #d15d52
+}
+
+#survicate-box .sv__smiley-scale .sv__very-sad path {
+    fill: #963227
+}
+
+#survicate-box .sv__smiley-scale .sv__sad {
+    background-color: #e74c3c;
+    border-bottom: 1px solid #7b190f
+}
+
+#survicate-box .sv__smiley-scale .sv__sad:hover {
+    background-color: #ed7669
+}
+
+#survicate-box .sv__smiley-scale .sv__sad path {
+    fill: #d62c1a
+}
+
+#survicate-box .sv__smiley-scale .sv__neutral {
+    background-color: #ff9800;
+    border-bottom: 1px solid #663d00
+}
+
+#survicate-box .sv__smiley-scale .sv__neutral:hover {
+    background-color: #ffad33
+}
+
+#survicate-box .sv__smiley-scale .sv__neutral path {
+    fill: #cc7a00
+}
+
+#survicate-box .sv__smiley-scale .sv__happy {
+    background-color: #5cb45e;
+    border-bottom: 1px solid #265227
+}
+
+#survicate-box .sv__smiley-scale .sv__happy:hover {
+    background-color: #7fc481
+}
+
+#survicate-box .sv__smiley-scale .sv__happy path {
+    fill: #469748
+}
+
+#survicate-box .sv__smiley-scale .sv__very-happy {
+    background-color: #438345;
+    border-bottom: 1px solid #0f1e10
+}
+
+#survicate-box .sv__smiley-scale .sv__very-happy:hover {
+    background-color: #54a557
+}
+
+#survicate-box .sv__smiley-scale .sv__very-happy path {
+    fill: #326133
+}
+
+#survicate-box .sv__ie .sv__smiley-scale button {
+    background: rgba(0, 0, 0, 0)
+}
+
+#survicate-box .sv__text-question {
+    min-height: 80px;
+    border: none;
+    resize: none;
+    border-radius: 4px;
+    padding: 10px;
+    max-height: 200px;
+    width: 100%
+}
+
+#survicate-box .sv__chat-theme .sv__text-question {
+    border: 1px solid #eff3f5;
+    border-radius: 0
+}
+
+#survicate-box .sv__social-button {
+    display: block;
+    position: relative;
+    color: #fff;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px;
+    font-weight: 900;
+    text-align: center;
+    -webkit-transition: background-color .3s;
+    -o-transition: background-color .3s;
+    transition: background-color .3s
+}
+
+#survicate-box .sv__social-button.sv__chat {
+    border-radius: 40px
+}
+
+#survicate-box .sv__social-button.sv__fb {
+    background-color: #3579ea;
+    border-bottom: 1px solid #11192b
+}
+
+#survicate-box .sv__social-button.sv__fb:hover {
+    background-color: #165ed6
+}
+
+#survicate-box .sv__social-button.sv__twitter {
+    background-color: #4aa1ec;
+    border-bottom: 1px solid #0f5f9b
+}
+
+#survicate-box .sv__social-button.sv__twitter:hover {
+    background-color: #1c89e7
+}
+
+#survicate-box .sv__social-button.sv__twitter svg {
+    left: 17px;
+    top: 12px
+}
+
+#survicate-box .sv__social-button.sv__linkedin {
+    background-color: #2a66bc;
+    border-bottom: 1px solid #0f5f9b
+}
+
+#survicate-box .sv__social-button.sv__linkedin:hover {
+    background-color: #4480d5
+}
+
+#survicate-box .sv__social-button.sv__linkedin svg {
+    left: 17px
+}
+
+#survicate-box .sv__social-button svg {
+    position: absolute;
+    fill: #fff;
+    left: 20px
+}
+
+#survicate-box .sv__nps {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between
+}
+
+#survicate-box .sv__nps button {
+    text-align: center;
+    padding: initial;
+    height: 28px;
+    width: 20px;
+    border-radius: 4px
+}
+
+#survicate-box .sv__nps.sv__chat button {
+    background-color: #eff3f5;
+    border-color: #eff3f5
+}
+
+#survicate-box .sv__nps.sv__chat button:hover {
+    -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2)
+}
+
+#survicate-box .sv__nps-labels {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    margin-top: 5px
+}
+
+#survicate-box .sv__nps-labels div {
+    font-size: 11px
+}
+
+#survicate-box .sv__position-center .sv__nps button {
+    width: 100%;
+    margin: 0 2px;
+    height: 45px
+}
+
+#survicate-box .sv__contact-form-confirmation {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    width: 100%
+}
+
+#survicate-box .sv__contact-form-confirmation * {
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none
+}
+
+#survicate-box .sv__contact-form-confirmation>div:last-child {
+    cursor: pointer;
+    -webkit-flex-shrink: 1;
+    -ms-flex-negative: 1;
+    flex-shrink: 1
+}
+
+#survicate-box .sv__contact-form-security {
+    font-size: 12px;
+    margin-bottom: 5px;
+    margin-top: 5px
+}
+
+#survicate-box .sv__contact-form-field {
+    position: relative;
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 10px
+}
+
+#survicate-box .sv__contact-form-field.sv__light span {
+    color: #fff
+}
+
+#survicate-box .sv__contact-form-field.sv__light input:focus {
+    border-color: #fff
+}
+
+#survicate-box .sv__contact-form-field.sv__dark input:focus {
+    border-color: #000
+}
+
+#survicate-box .sv__contact-form-field.sv__chat {
+    padding: 5px 0
+}
+
+#survicate-box .sv__contact-form-field.sv__chat input {
+    padding: 0;
+    border-color: #eff3f5;
+    border-radius: 0;
+    border-style: none none solid
+}
+
+#survicate-box .sv__contact-form-field.sv__chat input:focus {
+    border-color: #5cb45e
+}
+
+#survicate-box .sv__contact-form-field.sv__chat span {
+    color: #5cb45e;
+    left: 0;
+    top: -3px
+}
+
+#survicate-box .sv__contact-form-field.sv__invalid input,
+#survicate-box .sv__contact-form-field.sv__invalid input:focus {
+    border-color: #c00
+}
+
+#survicate-box .sv__contact-form-field input {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border-top-width: 1px;
+    width: 100%;
+    padding: 12px 5px;
+    height: 40px;
+    border-top-style: solid;
+    border-left: 1px solid rgba(0, 0, 0, 0);
+    border-right: 1px solid rgba(0, 0, 0, 0);
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+    -webkit-transition: border .5s;
+    -o-transition: border .5s;
+    transition: border .5s;
+    outline-offset: 3px
+}
+
+#survicate-box .sv__contact-form-field input:focus+.sv__contact-form-field-label {
+    opacity: 1
+}
+
+#survicate-box .sv__contact-form-field .sv__contact-form-field-label {
+    position: absolute;
+    left: 10px;
+    top: -9px;
+    z-index: 1;
+    font-size: 11px;
+    -webkit-transition: opacity .5s;
+    -o-transition: opacity .5s;
+    transition: opacity .5s;
+    opacity: 0
+}
+
+#survicate-box .sv__contact-form-field .sv__contact-form-field-label:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 9px;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 1px
+}
+
+#survicate-box .sv__checkbox {
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+    height: 16px;
+    width: 16px;
+    cursor: pointer
+}
+
+#survicate-box .sv__checkbox svg {
+    fill: currentColor
+}
+
+#survicate-box .sv__checkbox.sv__circle {
+    border-radius: 50%
+}
+
+#survicate-box .sv__checkbox.sv__circle .sv__tick {
+    display: none;
+    top: 4px;
+    left: 6px;
+    height: 5px;
+    width: 5px;
+    border-radius: 100%
+}
+
+#survicate-box .sv__checkbox.sv__square {
+    border-radius: 2px
+}
+
+#survicate-box .sv__checkbox.sv__square .sv__tick {
+    top: 1px;
+    left: 5px;
+    height: 10px;
+    width: 6px;
+    border-width: 0 3px 3px 0;
+    border-style: solid;
+    background-color: rgba(0, 0, 0, 0);
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg)
+}
+
+#survicate-box .sv__checkbox.sv__chat {
+    background-color: #eff3f5;
+    border: 1px solid #d0dbe1
+}
+
+#survicate-box .sv__checkbox.sv__chat .sv__tick {
+    left: 5px
+}
+
+#survicate-box .sv__checkbox.sv__chat.sv__square .sv__tick {
+    left: 4px
+}
+
+#survicate-box .sv__checkbox .sv__tick {
+    display: none;
+    position: absolute;
+    display: block
+}
+
+#survicate-box .sv__choice-button-selected .sv__circle,
+#survicate-box .sv__choice-button:active .sv__circle,
+#survicate-box .sv__circle:active {
+    background-color: #fff;
+    background-clip: content-box;
+    border: 4px solid #29292a
+}
+
+#survicate-box .sv__submit-button-wrapper {
+    margin-top: 10px
+}
+
+#survicate-box .sv__submit-button {
+    padding: 10px;
+    width: 100%;
+    border-style: none none solid;
+    border-radius: 4px;
+    font-weight: 700;
+    outline-offset: 3px
+}
+
+#survicate-box .sv__submit-button.sv__chat {
+    border-style: none;
+    border-radius: 30px
+}
+
+#survicate-box .sv__select {
+    position: relative
+}
+
+#survicate-box .sv__select input {
+    border-style: solid none none;
+    border-radius: 4px;
+    width: 100%;
+    padding: 15px 10px;
+    cursor: pointer
+}
+
+#survicate-box .sv__select.sv__chat input {
+    background: none;
+    border-style: none none solid;
+    border-bottom: 1px solid #eff3f5
+}
+
+#survicate-box .sv__select .sv__caret {
+    border-left: 6px solid rgba(0, 0, 0, 0);
+    border-right: 6px solid rgba(0, 0, 0, 0);
+    border-top: 7px solid;
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    background: none
+}
+
+#survicate-box .sv__select.sv__dropdown-open .sv__caret {
+    border-top: none;
+    border-bottom: 7px solid
+}
+
+#survicate-box .sv__select.sv__light .sv__caret {
+    border-top-color: #000;
+    border-bottom-color: #000
+}
+
+#survicate-box .sv__select.sv__dark .sv__caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff
+}
+
+#survicate-box .sv__select ul {
+    position: absolute;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    max-height: 200px;
+    overflow: auto;
+    bottom: calc(100% + 2px);
+    border-radius: 4px 4px 0 0
+}
+
+#survicate-box .sv__select ul li button {
+    border: none;
+    padding: 10px;
+    border-radius: 0;
+    width: 100%;
+    font-size: inherit;
+    -webkit-transition: none;
+    -o-transition: none;
+    transition: none;
+    text-align: left;
+    font-weight: 400
+}
+
+#survicate-box .sv__select.sv__survey-up ul {
+    bottom: auto;
+    top: calc(100% + 2px);
+    border-radius: 0 0 4px 4px
+}
+
+#survicate-box .sv__survey {
+    z-index: 2147483646;
+    position: fixed;
+    padding: 10px 15px;
+    background: #fff;
+    width: 300px
+}
+
+#survicate-box .sv__survey.sv__position-right {
+    right: 30px;
+    bottom: 0
+}
+
+#survicate-box .sv__survey.sv__position-left {
+    left: 30px;
+    bottom: 0
+}
+
+#survicate-box .sv__survey.sv__position-top-right {
+    right: 30px;
+    top: 0
+}
+
+#survicate-box .sv__survey.sv__position-top-left {
+    left: 30px;
+    top: 0
+}
+
+#survicate-box .sv__survey.sv__position-center {
+    bottom: 50%;
+    right: 50%;
+    -webkit-transform: translate(50%, 50%);
+    -ms-transform: translate(50%, 50%);
+    transform: translate(50%, 50%);
+    width: 450px
+}
+
+#survicate-box .sv__survey.sv__position-top-left,
+#survicate-box .sv__survey.sv__position-top-right {
+    border-radius: 0 0 4px 4px
+}
+
+#survicate-box .sv__survey.sv__position-left,
+#survicate-box .sv__survey.sv__position-right {
+    border-radius: 4px 4px 0 0
+}
+
+#survicate-box .sv__survey.sv__position-center {
+    border-radius: 4px
+}
+
+#survicate-box .sv__survey.sv__classic-theme {
+    -webkit-box-shadow: 0 0 25px rgba(0, 0, 0, .5);
+    box-shadow: 0 0 25px rgba(0, 0, 0, .5)
+}
+
+#survicate-box .sv__survey.sv__chat-theme {
+    -webkit-box-shadow: 0 3px 32px rgba(0, 0, 0, .14);
+    box-shadow: 0 3px 32px rgba(0, 0, 0, .14)
+}
+
+#survicate-box .sv__survey.sv__minimized {
+    cursor: pointer;
+    -webkit-box-shadow: 0 0 9px #000;
+    box-shadow: 0 0 9px #000;
+    min-width: 70px;
+    min-height: 39px;
+    padding-right: 35px;
+    width: auto
+}
+
+#survicate-box .sv__survey.sv__minimized.sv__position-center {
+    right: 30px;
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+    width: auto;
+    bottom: 0
+}
+
+#survicate-box .sv-box-child.sv-mobile .sv__survey.sv__survey {
+    -webkit-transform: none;
+    -ms-transform: none;
+    transform: none;
+    width: calc(100% - 40px);
+    margin: 20px auto;
+    left: 20px;
+    right: 20px;
+    border-radius: 4px
+}
+
+#survicate-box .sv-box-child.sv-mobile .sv__survey.sv__survey.sv__position-top-left,
+#survicate-box .sv-box-child.sv-mobile .sv__survey.sv__survey.sv__position-top-right {
+    top: 0
+}
+
+#survicate-box .sv-box-child.sv-mobile .sv__survey.sv__survey.sv__position-center,
+#survicate-box .sv-box-child.sv-mobile .sv__survey.sv__survey.sv__position-left,
+#survicate-box .sv-box-child.sv-mobile .sv__survey.sv__survey.sv__position-right {
+    bottom: 0
+}
+
+#survicate-box .sv-box-child.sv-mobile .sv__survey.sv__survey.sv__minimized {
+    width: 100%;
+    right: 0;
+    left: 0;
+    margin: 0
+}
+
+#survicate-box .sv-box-child.sv-mobile .sv__survey.sv__survey.sv__minimized.sv__position-center {
+    width: 100%;
+    right: 0
+}
+
+@media only screen and (max-width:568px) {
+    #survicate-box .sv-box-child:not(.sv-tablet):not(.sv-desktop) .sv__survey.sv__survey {
+        -webkit-transform: none;
+        -ms-transform: none;
+        transform: none;
+        width: calc(100% - 40px);
+        margin: 20px auto;
+        left: 20px;
+        right: 20px;
+        border-radius: 4px
+    }
+
+    #survicate-box .sv-box-child:not(.sv-tablet):not(.sv-desktop) .sv__survey.sv__survey.sv__position-top-left,
+    #survicate-box .sv-box-child:not(.sv-tablet):not(.sv-desktop) .sv__survey.sv__survey.sv__position-top-right {
+        top: 0
+    }
+
+    #survicate-box .sv-box-child:not(.sv-tablet):not(.sv-desktop) .sv__survey.sv__survey.sv__position-center,
+    #survicate-box .sv-box-child:not(.sv-tablet):not(.sv-desktop) .sv__survey.sv__survey.sv__position-left,
+    #survicate-box .sv-box-child:not(.sv-tablet):not(.sv-desktop) .sv__survey.sv__survey.sv__position-right {
+        bottom: 0
+    }
+
+    #survicate-box .sv-box-child:not(.sv-tablet):not(.sv-desktop) .sv__survey.sv__survey.sv__minimized {
+        width: 100%;
+        right: 0;
+        left: 0;
+        margin: 0
+    }
+
+    #survicate-box .sv-box-child:not(.sv-tablet):not(.sv-desktop) .sv__survey.sv__survey.sv__minimized.sv__position-center {
+        width: 100%;
+        right: 0
+    }
+}
+
+#survicate-box .sv__survey-bottom-placeholder {
+    height: 12px
+}
+
+#survicate-box .sv__point {
+    padding: 0 5px;
+    max-height: 60vh;
+    overflow-y: auto
+}
+
+#survicate-box .sv__point.sv__dropdown_list-survey-point {
+    overflow: visible
+}
+
+#survicate-box .sv__point .sv__point-text {
+    margin: 5px 0
+}
+
+#survicate-box .sv__point .sv__point-question {
+    margin-bottom: 15px;
+    font-weight: 700
+}
+
+#survicate-box .sv__progress-bar {
+    border-radius: 4px 4px 0 0
+}
+
+#survicate-box .sv__progress-bar>div {
+    border-radius: 4px 0 0 0
+}
+
+@media only screen and (min-width:768px) and (-webkit-max-device-pixel-ratio:2),
+only screen and (min-width:813px) {
+
+    #survicate-box .sv-box-child:not(.sv-mobile) .sv__position-top-left .sv__progress-bar,
+    #survicate-box .sv-box-child:not(.sv-mobile) .sv__position-top-left .sv__progress-bar>div,
+    #survicate-box .sv-box-child:not(.sv-mobile) .sv__position-top-right .sv__progress-bar,
+    #survicate-box .sv-box-child:not(.sv-mobile) .sv__position-top-right .sv__progress-bar>div {
+        border-radius: 0
+    }
+}
+
+#survicate-box .sv-box-child.sv-desktop .sv__position-top-left .sv__progress-bar,
+#survicate-box .sv-box-child.sv-desktop .sv__position-top-left .sv__progress-bar>div,
+#survicate-box .sv-box-child.sv-desktop .sv__position-top-right .sv__progress-bar,
+#survicate-box .sv-box-child.sv-desktop .sv__position-top-right .sv__progress-bar>div,
+#survicate-box .sv-box-child.sv-tablet .sv__position-top-left .sv__progress-bar,
+#survicate-box .sv-box-child.sv-tablet .sv__position-top-left .sv__progress-bar>div,
+#survicate-box .sv-box-child.sv-tablet .sv__position-top-right .sv__progress-bar,
+#survicate-box .sv-box-child.sv-tablet .sv__position-top-right .sv__progress-bar>div {
+    border-radius: 0
+}
+
+#survicate-box input::-webkit-input-placeholder {
+    line-height: normal !important
+}
