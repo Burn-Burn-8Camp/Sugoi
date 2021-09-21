@@ -19,12 +19,6 @@
 							<a href="https://astro.5xruby.tw/">西瓜</a>
 							<a href="https://astro.5xruby.tw/">草莓</a>
 						</div>
-						<span class="g-voiceinput"><svg class="g-voiceinput__icon" width="24" height="24" fill="none"
-								xmlns="http://www.w3.org/2000/svg">
-								<path fill-rule="evenodd" clip-rule="evenodd"
-									d="M15.443 11.474a3.154 3.154 0 01-3.158 3.158 3.154 3.154 0 01-3.158-3.158V5.158A3.154 3.154 0 0112.285 2a3.154 3.154 0 013.158 3.158v6.316zm2.032.894a1.05 1.05 0 011.031-.894c.642 0 1.158.568 1.053 1.2a7.36 7.36 0 01-6.221 6.084v2.19c0 .578-.474 1.052-1.053 1.052a1.056 1.056 0 01-1.053-1.053v-2.19a7.36 7.36 0 01-6.22-6.083c-.095-.632.41-1.2 1.052-1.2.516 0 .947.379 1.032.894.431 2.474 2.59 4.369 5.19 4.369 2.6 0 4.757-1.895 5.189-4.369z"
-									fill="https://astro.5xruby.tw/66666A"></path>
-							</svg></span>
 					</form>
 				</div>
 
@@ -52,33 +46,32 @@
 												<% end %>
 													<ul>
 														<li>
-															<a href="https://astro.5xruby.tw/">
+															<a href="#往會員路徑">
 																<span>我的信箱</span>
 															</a>
 														</li>
 														<li>
-															<a class="js-nav-ns" href="https://astro.5xruby.tw/">
+															<a href="#往會員路徑">
 																<span>通知中心</span>
 															</a>
 														</li>
 														<li>
-															<a href="https://astro.5xruby.tw/" data-fa-section="mycoin">
+															<a href="#往會員路徑">
 																<span>P Coins</span>
 															</a>
 														</li>
 														<li>
-															<a href="https://astro.5xruby.tw/"
-																data-fa-section="my_mission">
+															<a href="https://astro.5xruby.tw/">
 																<span>一週快閃獎勵任務</span>
 															</a>
 														</li>
 														<li>
-															<a href="https://astro.5xruby.tw/">
+															<a href="#往會員路徑">
 																<span>會員專區</span>
 															</a>
 														</li>
 														<li>
-															<a href="https://astro.5xruby.tw/">
+															<a href="#往折價卷">
 																<span>優惠券</span>
 															</a>
 														</li>
@@ -91,7 +84,7 @@
 															<%= link_to '購買訂單' , buy_order_member_index_path %>
 														</li>
 														<li>
-															<a href="https://astro.5xruby.tw/">
+															<a href="#往會員路徑">
 																<span>邀朋友賺回饋</span>
 															</a>
 														</li>
@@ -167,8 +160,10 @@
 					<li class="nav-first-li">
 						<a class="title bold" href="https://astro.5xruby.tw/">所有分類</a>
 					</li>
-					<li class="nav-first-li" data-detect="new" data-detect-hover="g.navi.see_more">
-						<div class="title bold"><span class="title-inner">探索更多</span></div>
+					<li class="nav-first-li" data-detect="new">
+						<div class="title bold">
+							<span class="title-inner">探索更多</span>
+						</div>
 			</div>
 			</li>
 			</ul>
@@ -176,6 +171,7 @@
 		</nav>
 	</header>
 	<% else %>
+		<!-- ==========================以下登出狀態======================== -->
 		<header id="gheader" class="g-header">
 			<div class="g-wrap-expand">
 				<div class="g-header-top">
@@ -197,15 +193,8 @@
 								<a href="https://astro.5xruby.tw/">西瓜</a>
 								<a href="https://astro.5xruby.tw/">草莓</a>
 							</div>
-							<span class="g-voiceinput"><svg class="g-voiceinput__icon" width="24" height="24"
-									fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path fill-rule="evenodd" clip-rule="evenodd"
-										d="M15.443 11.474a3.154 3.154 0 01-3.158 3.158 3.154 3.154 0 01-3.158-3.158V5.158A3.154 3.154 0 0112.285 2a3.154 3.154 0 013.158 3.158v6.316zm2.032.894a1.05 1.05 0 011.031-.894c.642 0 1.158.568 1.053 1.2a7.36 7.36 0 01-6.221 6.084v2.19c0 .578-.474 1.052-1.053 1.052a1.056 1.056 0 01-1.053-1.053v-2.19a7.36 7.36 0 01-6.22-6.083c-.095-.632.41-1.2 1.052-1.2.516 0 .947.379 1.032.894.431 2.474 2.59 4.369 5.19 4.369 2.6 0 4.757-1.895 5.189-4.369z"
-										fill="#66666A"></path>
-								</svg></span>
 						</form>
 					</div>
-
 					<div class="header-right">
 						<div class="relative">
 							<a href="https://astro.5xruby.tw/" class="tab">我想在 Sugoii 上販售</a>
@@ -240,7 +229,6 @@
 										<% end %>
 								</svg>
 							</a>
-
 						</div>
 					</div>
 				</div>
@@ -248,8 +236,10 @@
 			<nav id="g-navigation" class="g-navigation">
 				<div class="g-wrap-expand">
 					<ul class="nav-first col-9">
-						<li class="nav-first-li campaigns-nav hightlight has-new-badge" data-detect="new">
-							<div class="title bold pink"><span class="title-inner">主題企劃</span></div>
+						<li class="nav-first-li campaigns-nav hightlight has-new-badge">
+							<div class="title bold pink">
+								<span class="title-inner">主題企劃</span>
+							</div>
 
 						</li>
 						<li class="nav-first-li">
