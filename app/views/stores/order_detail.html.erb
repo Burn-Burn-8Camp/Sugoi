@@ -1,11 +1,11 @@
 <h1 class='text-lg text-center'>訂單明細</h1>
 
 <ul class="w-full steps order-steps py-5">
-	<%= content_tag(:li, '待付款', data: {content: "✓"}, class: state_step(@order, 0)) %>
-	<%= content_tag(:li, '已付款', data: {content: "✓"}, class: state_step(@order, 1)) %>
-	<%= content_tag(:li, '運送中', data: {content: "✓"}, class: state_step(@order, 2)) %>
-	<%= content_tag(:li, '已送達', data: {content: "✓"}, class: state_step(@order, 3)) %>
-	<%= content_tag(:li, '已取消', data: {content: "✓"}, class: state_step(@order, 4)) %>
+	<%= content_tag(:li, '待付款', data: {content: "✓"}, class: seller_state_step(@order, 0)) %>
+	<%= content_tag(:li, '已付款', data: {content: "✓"}, class: seller_state_step(@order, 1)) %>
+	<%= content_tag(:li, '運送中', data: {content: "✓"}, class: seller_state_step(@order, 2)) %>
+	<%= content_tag(:li, '已送達', data: {content: "✓"}, class: seller_state_step(@order, 3)) %>
+	<%= content_tag(:li, '已取消', data: {content: "✓"}, class: seller_state_step(@order, 4)) %>
 </ul>
 
 <div class='border rounded'>

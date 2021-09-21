@@ -29,6 +29,11 @@ module ApplicationHelper
 		state_arr.index(order.state) < n ? 'step' : 'step step-primary'
 	end
 
+	def seller_state_step(order, n)
+		state_arr = ['pending', 'paid', 'in_transit', 'arrived', 'cancelled']
+		state_arr.index(order.state) < n ? 'step' : 'step step-success'
+	end
+
 	def store_item_total(item_arr)
 		item_arr.map{ |item| item.total }.sum
 	end
@@ -50,7 +55,9 @@ module ApplicationHelper
 			"1小時內"
 		elsif day < 1
 			"#{hour}小時前"
-		elsif day < 30
+		elsif day < 7
+			"#{day}天前"
+		elsif day > 7 && day < 30
 			"#{(day / 7.0).floor}週前"
 		else
 			"#{(day / 30).floor}個月前"

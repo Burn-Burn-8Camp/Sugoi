@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 2021_09_20_123904) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "product_id"
     t.bigint "store_id"
-    t.text "message_to_seller"
     t.index ["order_id"], name: "index_order_items_on_order_id"
     t.index ["product_id"], name: "index_order_items_on_product_id"
     t.index ["store_id"], name: "index_order_items_on_store_id"
