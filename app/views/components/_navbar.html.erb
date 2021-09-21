@@ -6,7 +6,7 @@
 				<div>
 					<div class="px-2 mx-2 lg:flex">
 						<h1 class="text-2xl">
-							<%= link_to 'Sugoi' , root_path %>
+							<%= link_to 'Sugoii' , root_path %>
 						</h1>
 					</div>
 
@@ -19,7 +19,7 @@
 
 							<!-- The form -->
 							<form action="/products/search" method="GET">
-								<input class="w-4/5" type="text" placeholder="搜尋好設計、體驗活動" name="search">
+								<input class="w-4/5" type="text" id="keyword" placeholder="搜尋好設計、體驗活動" name="keyword">
 								<button type="submit border ">
 									搜尋
 								</button>
@@ -39,7 +39,7 @@
 				<!-- ================================================================ -->
 				<div>
 					<div class='flex-1 hidden lg:flex'>
-						<a href="#">我想在sugoi上販售</a>
+						<a href="#">我想在sugoii上販售</a>
 					</div>
 
 					<div class="flex-none">
@@ -184,7 +184,7 @@
 							<!-- The form -->
 							<form action="/products/search" method="GET">
 								<div>
-									<input class="w-5/6 border-1" type="text" placeholder="搜尋好設計、體驗活動" name="search">
+									<input class="w-5/6 border-1" type="text" placeholder="搜尋好設計、體驗活動" name="keyword">
 									<button class="border-1" type="submit">
 										搜尋
 									</button>

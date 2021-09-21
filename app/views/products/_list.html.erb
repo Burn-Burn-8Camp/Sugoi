@@ -1,14 +1,20 @@
 
 <% products.each do |product| %>
-<div class="border-4">
-  <img src="https://picsum.photos/id/200/1000/800">
-  <div>
-    <h2 class="card-title flex border-4">品名:<%= link_to product.name,product_path(product) %></h2> 
-    <p class="border-4">所屬商店：<%= product.store.name %></p>
-    <p class="border-4">價錢：<%= product.price.to_i %></p>
-      <div class="justify-end card-actions border-4 ">
-        <button class="btn btn-secondary ">More info</button>
+  <div class="flex flex-wrap mx-auto justify-center">
+    <div class="p-1">
+      <a class="block">
+        <img alt="ecommerce" class="object-cover object-center" src="https://picsum.photos/149/149?random=1">
+      </a>
+      <div class="mt-4 border-4 ">
+        <h2 class="text-gray-900 text-sm font-medium border-4 break-all"><%= link_to product.name,product_path(product)%></h2>
+        <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1"><%= product.store.name %></h3>
+        <span class="mt-1 text-gray-800 text-lg">NT$<%= product.price.to_i %></span>
       </div>
+    </div>
   </div>
-</div>
 <% end %>
+
+
+
+
+

@@ -1,64 +1,3 @@
-<<<<<<< HEAD
-<div id="slide1" class=" relative w-full carousel-item pb-5 ">
-  <div id="tab" class="border-4">
-    <img class="tabImg hidden " src="http://fakeimg.pl/1440x300/ecf0f1/" />
-    <img src="https://picsum.photos/id/500/1440/300" alt="fakePic" class="tabImg hidden"/>
-    <img class="tabImg hidden " src="http://fakeimg.pl/1440x300/ecf0f1/" />
-  </div>
-  <div class="point">
-    <span num="0" class="tabBtn"></span>
-    <span num="1" class="tabBtn"></span>
-    <span num="2" class="tabBtn"></span>
-  </div>  
-  <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-    <span class="btn btn-circle">❮</span>
-    <span class="btn btn-circle">❯</span>
-  </div>
-</div> 
- 
-
-<div class="border-4">
-  <div class=" grid grid-cols-6 md: gap-8 border-4 bg-white m-40 p-8">
-    <h1 class="border-4 col-span-6">編輯嚴選</h1>
-    <%= render 'list', products: @foods %>
-  </div>
-</div>
-
-<div class="border-4">
-  <div class=" grid grid-cols-6 md: gap-8 border-4 bg-white m-40 p-8">
-    <h1 class="border-4 col-span-6">品牌旗艦店</h1>
-    <%= render 'list', products: @books %>
-  </div>
-</div>
-
-<div class="border-4">
-  <div class=" grid grid-cols-6 md: gap-8 border-4 bg-white m-40 p-8">
-    <h1 class="border-4 col-span-6">最近熱門</h1>
-    <%= render 'list', products: @movies %>
-  </div>
-</div>
-
-<div class="border-4">
-  <div class=" grid grid-cols-6 md: gap-8 border-4 bg-white m-40 p-8">
-    <h1 class="border-4 col-span-6">新品上架</h1>
-    <%= render 'list', products: @animals %>
-    </div>
-</div>
-
-<div class="border-4">
-  <div class=" grid grid-cols-6 md: gap-8 border-4 bg-white m-40 p-8">
-    <h1 class="border-4 col-span-6">免運專區</h1>
-    <%= render 'list', products: @dragonBalls %>
-    </div>
-</div>
-
-
-
- 
-
-<%== pagy_nav(@pagy) %>
-
-=======
 <!-- CSS only -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
   integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
@@ -100,197 +39,30 @@
 
 <!-- ＝＝＝＝＝以上幻燈片＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝以上幻燈片＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝以上幻燈片＝＝＝＝＝＝＝＝ -->
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
-<section class="text-gray-900 ">
+<section class="text-red-600 sm:text-yellow-300 lg:text-green-600 xl:text-blue-300">
   <div class="container py-20 mx-auto">
     <div class="m-auto sm:text-2xl text-center mb-2">
       <span class="border-b-2 pb-px ">編輯嚴選</span>
     </div>
     <div class="flex flex-wrap mx-auto justify-center">
-      <div class="p-1">
-        <a class="block">
-          <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=1">
-        </a>
-        <div class="mt-4">
-          <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-          <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-          <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-        </div>
-      </div>
-      <!-- ================================================================ -->
-      <div class="p-1">
-        <a class="block">
-          <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
-        </a>
-        <div class="mt-4">
-          <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-          <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-          <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-        </div>
-      </div>
-      <!-- ================================================================ -->
-      <div class="p-1">
-        <a class="block">
-          <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
-        </a>
-        <div class="mt-4">
-          <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-          <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-          <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-        </div>
-      </div>
-      <!-- ================================================================ -->
-      <div class="p-1">
-        <a class="block">
-          <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
-        </a>
-        <div class="mt-4">
-          <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-          <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-          <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-        </div>
-      </div>
-      <!-- ================================================================ -->
-
-      <!-- ================================================================ -->
-      <div class="p-1">
-        <a class="block">
-          <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=4">
-        </a>
-        <div class="mt-4">
-          <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-          <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-          <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-        </div>
-      </div>
-      <!-- ================================================================ -->
+        <%= render 'list', products: @foods %>
     </div>
 
     <div class="container py-20 mx-auto">
       <div class="m-auto sm:text-2xl text-center mb-2">
         <span class="border-b-2 pb-px ">最近熱門</span>
       </div>
-      <div class="flex flex-wrap mx-auto justify-center">
-        <div class="p-1">
-          <a class="block">
-            <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=1">
-          </a>
-          <div class="mt-4">
-            <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-            <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-            <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-          </div>
+        <div class="flex flex-wrap mx-auto justify-center">
+        <%= render 'list', products: @books %>
         </div>
-        <!-- ================================================================ -->
-        <div class="p-1">
-          <a class="block">
-            <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
-          </a>
-          <div class="mt-4">
-            <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-            <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-            <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-          </div>
-        </div>
-        <!-- ================================================================ -->
-        <div class="p-1">
-          <a class="block">
-            <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
-          </a>
-          <div class="mt-4">
-            <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-            <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-            <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-          </div>
-        </div>
-        <!-- ================================================================ -->
-        <div class="p-1">
-          <a class="block">
-            <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
-          </a>
-          <div class="mt-4">
-            <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-            <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-            <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-          </div>
-        </div>
-        <!-- ================================================================ -->
-
-        <!-- ================================================================ -->
-        <div class="p-1">
-          <a class="block">
-            <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=4">
-          </a>
-          <div class="mt-4">
-            <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-            <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-            <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-          </div>
-        </div>
-        <!-- ================================================================ -->
-      </div>
 
       <div class="container py-20 mx-auto">
         <div class="m-auto sm:text-2xl text-center mb-2">
           <span class="border-b-2 pb-px ">新品上架</span>
         </div>
         <div class="flex flex-wrap mx-auto justify-center">
-          <div class="p-1">
-            <a class="block">
-              <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=1">
-            </a>
-            <div class="mt-4">
-              <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-              <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-              <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-            </div>
+            <%= render 'list', products: @movies %>
           </div>
-          <!-- ================================================================ -->
-          <div class="p-1">
-            <a class="block">
-              <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
-            </a>
-            <div class="mt-4">
-              <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-              <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-              <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-            </div>
-          </div>
-          <!-- ================================================================ -->
-          <div class="p-1">
-            <a class="block">
-              <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
-            </a>
-            <div class="mt-4">
-              <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-              <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-              <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-            </div>
-          </div>
-          <!-- ================================================================ -->
-          <div class="p-1">
-            <a class="block">
-              <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
-            </a>
-            <div class="mt-4">
-              <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-              <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-              <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-            </div>
-          </div>
-          <!-- ================================================================ -->
-          <div class="p-1">
-            <a class="block">
-              <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=3">
-            </a>
-            <div class="mt-4">
-              <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-              <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-              <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-            </div>
-          </div>
-          <!-- ================================================================ -->
-
-          <!-- ================================================================ -->
         </div>
 
         <div class="container py-20 mx-auto">
@@ -298,127 +70,21 @@
             <span class="border-b-2 pb-px ">免運專區</span>
           </div>
           <div class="flex flex-wrap mx-auto justify-center">
-            <div class="p-1">
-              <a class="block">
-                <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=1">
-              </a>
-              <div class="mt-4">
-                <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-                <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-              </div>
+            <%= render 'list', products: @animals %>
             </div>
-            <!-- ================================================================ -->
-
-            <!-- ================================================================ -->
-            <div class="p-1">
-              <a class="block">
-                <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
-              </a>
-              <div class="mt-4">
-                <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-                <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-              </div>
-            </div>
-            <!-- ================================================================ -->
-            <div class="p-1">
-              <a class="block">
-                <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
-              </a>
-              <div class="mt-4">
-                <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-                <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-              </div>
-            </div>
-            <!-- ================================================================ -->
-            <div class="p-1">
-              <a class="block">
-                <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=3">
-              </a>
-              <div class="mt-4">
-                <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-                <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-              </div>
-            </div>
-            <!-- ================================================================ -->
-            <div class="p-1">
-              <a class="block">
-                <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=4">
-              </a>
-              <div class="mt-4">
-                <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-                <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-              </div>
-            </div>
-            <!-- ================================================================ -->
-          </div>
 
           <div class="container py-20 mx-auto">
             <div class="m-auto sm:text-2xl text-center mb-2">
               <span class="border-b-2 pb-px ">更多優惠</span>
             </div>
             <div class="flex flex-wrap mx-auto justify-center">
-              <div class="p-1">
-                <a class="block">
-                  <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=1">
-                </a>
-                <div class="mt-4">
-                  <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-                  <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                  <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-                </div>
+                <%= render 'list', products: @dragonBalls %>
               </div>
-              <!-- ================================================================ -->
-              <div class="p-1">
-                <a class="block">
-                  <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
-                </a>
-                <div class="mt-4">
-                  <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-                  <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                  <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-                </div>
-              </div>
-              <!-- ================================================================ -->
-              <div class="p-1">
-                <a class="block">
-                  <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
-                </a>
-                <div class="mt-4">
-                  <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-                  <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                  <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-                </div>
-              </div>
-              <!-- ================================================================ -->
-              <div class="p-1">
-                <a class="block">
-                  <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=2">
-                </a>
-                <div class="mt-4">
-                  <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-                  <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                  <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-                </div>
-              </div>
-              <!-- ================================================================ -->
-              <div class="p-1">
-                <a class="block">
-                  <img alt="ecommerce" class="object-cover object-center " src="https://picsum.photos/149/149?random=3">
-                </a>
-                <div class="mt-4">
-                  <h2 class="text-gray-900 title-font text-lg font-medium">The Catalyzer</h2>
-                  <h3 class="text-gray-600 text-xs tracking-widest title-font mb-1">CATEGORY</h3>
-                  <span class="mt-1 text-gray-800 text-lg">$16.00</span>
-                </div>
-              </div>
-              <!-- ================================================================ -->
-
             </div>
+        </div>
+    </div>
+</div>
+
+
 
 </section>
->>>>>>> 0e1d9967ef8b992404b550908e6640784ea47b13
