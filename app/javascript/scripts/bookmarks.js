@@ -15,9 +15,9 @@ document.addEventListener("turbolinks:load", () => {
 
         if(data.status === "added") {
           heartIcon.classList.remove("text-gray-300");
-          heartIcon.classList.add("text-red-800");
+          heartIcon.classList.add("text-red-500");
         } else {
-          heartIcon.classList.remove("text-red-800")
+          heartIcon.classList.remove("text-red-500")
           heartIcon.classList.add("text-gray-300")
         }
       },
