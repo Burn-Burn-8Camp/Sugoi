@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   before_action  :authenticate_user!
+  def index
+    @user = current_user
+  end
 
   def edit
     @user = current_user
@@ -28,14 +31,5 @@ class UsersController < ApplicationController
   end
 
   def profile
-  end
-
-  def buy_order
-  end
-
-  private
-  def user_params
-    params.require(:user).permit(:name, :email, :gender, :date, :country, :image)
-    params.require(:user).permit(:name, :email, :gender, :date, :country, :image, :self_about, :self_blog, :life_shopping, :life_design)
   end
 end

@@ -3,7 +3,6 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.2'
-
 gem 'carrierwave', '~> 1.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
 gem 'rails', '~> 6.1.4', '>= 6.1.4.1'
@@ -23,7 +22,7 @@ gem 'devise', '~> 4.8'
 gem 'pagy', '~> 3.5'
 gem 'aasm', '~> 5.2'
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 4.0'
+# gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -39,7 +38,7 @@ gem 'figaro', '~> 1.2'
 # gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.4'
+gem 'bootsnap', '>= 1.4.4', require: false
 gem 'react_on_rails', '~> 12.3'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
