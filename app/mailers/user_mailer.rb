@@ -9,7 +9,7 @@ class UserMailer < ApplicationMailer
 
   # template在app/views/user_mailer/notify_comment.text.erb(純文字格式)、notify_comment.html.erb(HTML格式)。
 
-  default :from => "SUGOII 客服 <SUGOII@sugoi.com>"
+  default :from => "SUGOII 客服 <sugoii@sugoii.live>"
 
 
   def order_letter_confirm(order)
