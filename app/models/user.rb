@@ -10,6 +10,10 @@ class User < ApplicationRecord
   has_many :orders
   has_many :comments
   has_one :store
+  has_many :bookmarks
+  has_many :favorite_items, 
+            through: :bookmarks,
+            source: :product
   has_one_attached :image
 
   def self.create_from_provider_data(provider_data)

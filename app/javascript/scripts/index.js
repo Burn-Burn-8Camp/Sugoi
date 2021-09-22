@@ -6,5 +6,6 @@ const context = require.context(".", true, /\.js$/)
 application.load(definitionsFromContext(context))
 import "./confirmCart"
 import "./swiftImg"
+import "./bookmarks"
 import '@fortawesome/fontawesome-free/js/all.js'
 

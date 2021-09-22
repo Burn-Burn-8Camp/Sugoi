@@ -3,6 +3,12 @@ class ProductsController < ApplicationController
   
   def index
     @pagy, @products = pagy(Product.all, items: 6)
+    @foods = Product.where(category: 'food').limit(6)
+    @books = Product.where(category:'book').limit(6)
+    @movies = Product.where(category: 'movie').limit(6)
+    @animals = Product.where(category: 'animal').limit(6)
+    @dragonBalls = Product.where(category: 'dragonBall').limit(6)
+
   end
 
   def new
@@ -18,7 +24,8 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show  
+  def show
+    @favorite_items = Bookmark.where(user_id: current_user, product_id: @product)  
     items = OrderItem.joins(:product, :comment).where(product_id: @product).select(:id)
     @comments = items.map{ |item| item.comment }
   end
@@ -46,6 +53,17 @@ class ProductsController < ApplicationController
       @products = Product.all
      end
   end
+
+  def favorite  
+    product = Product.find(params[:id])
+    if Bookmark.exists?(product: product) 
+      current_user.favorite_items.delete(product)
+      render json: { status: "removed", id: params[:id] }
+    else
+      current_user.favorite_items << product
+      render json: { status: "added", id: params[:id] }
+    end
+  end  
 
   private
     def product_params
