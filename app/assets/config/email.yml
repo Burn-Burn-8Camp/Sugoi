@@ -1,0 +1,20 @@
+development:
+  address: "smtp.sendgrid.net"
+  port: 587
+  domain: "sugoii.com"
+  authentication: "plain"
+  user_name: "apikey"
+  # password: ENV["SMTP_API_KEY"]
+  password: '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'
+  enable_starttls_auto: true
+  
+
+production:
+  address: "smtp.sendgrid.net"
+  port: 587
+  domain: "sugoii.com"
+  authentication: "plain"
+  user_name: "apikey"
+  # password: ENV["SMTP_API_KEY"]
+  password: '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'
+  enable_starttls_auto: true
