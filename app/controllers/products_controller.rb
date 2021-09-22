@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:favorite]
+  before_action :authenticate_user!, only: [:favorite ]
   
   def index
     @pagy, @products = pagy(Product.all, items: 6)
@@ -25,6 +25,7 @@ class ProductsController < ApplicationController
   end
 
   def show  
+    @favorite_items = Bookmark.where(user_id: current_user, product_id: @product)
   end
 
   def edit    
@@ -54,14 +55,14 @@ class ProductsController < ApplicationController
   def favorite  
     product = Product.find(params[:id])
     if Bookmark.exists?(product: product) 
-      current_user.products.delete(product)
+      current_user.favorite_items.delete(product)
       render json: { status: "removed", id: params[:id] }
     else
-      current_user.products << product
+      current_user.favorite_items << product
       render json: { status: "added", id: params[:id] }
     end
   end  
-
+  
 
   private
   def product_params

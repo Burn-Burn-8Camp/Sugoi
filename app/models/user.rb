@@ -9,8 +9,9 @@ class User < ApplicationRecord
   has_many :orders
   has_one :store
   has_many :bookmarks
-  has_many :products, 
-            through: :bookmarks
+  has_many :favorite_items, 
+            through: :bookmarks,
+            source: :product
 
   # validates :seller_email
   # validates :seller_name
