@@ -56,7 +56,7 @@ class StoresController < ApplicationController
 	  @items = OrderItem.where(order_id: @order, store_id: current_store.id)
 		# 所有商家出貨確認
 		@store_order = @order.store_orders.find_by(store_id: current_store.id)
-		@order.transport! if @order.may_transport? &&	@order.store_orders.any? {|order| order.shipment_confirm != false}	
+		@order.transport! if @order.may_transport? &&	@order.store_orders.any? {|order| order.shipment_confirm}	
 	end
 
 	def shipment
