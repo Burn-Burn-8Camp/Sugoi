@@ -8,6 +8,7 @@
 
 (1..3).each{ |i| 
   user = User.new
+  user.name = "#{i}"
   user.email = "#{i}@gmail.com"
   user.password = "password"
   user.password_confirmation = "password"

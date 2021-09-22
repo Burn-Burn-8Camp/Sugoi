@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     collection do
       get 'application', to: 'sellers#new'
       patch 'seller_apply', to: 'sellers#update'
-      patch "seller_verify", to: 'sellers#seller_verify'
+      get "verify", to: 'sellers#verify'
+      post "seller_verify", to: 'sellers#seller_verify'
+      get 'verified', to: 'sellers#verified'
     end
 
     resources :products, only: [] do
@@ -45,9 +47,15 @@ Rails.application.routes.draw do
   resources :orders, only:[:index, :show, :create] do
     collection do
       post :response, to: 'payments#notify_response'
+      get :pending, to: 'orders#pending'
+      get :processing, to: 'orders#processing'
+      get :shipped, to: 'orders#shipped'
+      get :completed, to: 'orders#completed'
+      get :cancelled, to: 'orders#cancelled'
     end
     member do
       get :payment, to: 'payments#payment'
+      post :items_info, to: 'orders#items_info'
     end
   end
 
@@ -57,18 +65,23 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :order_items, only: [] do
+    resource :comment, only: [] do
+      post 'create', to: 'comments#buyer_comment'
+    end
+  end
+
   devise_for :users, controllers: { omniauth_callbacks: 'omniauth' }
   devise_scope :users do
     resources :member, only: [] do
       collection do
-        get 'profile', to: 'users#profile'   
+        get 'profile', to: 'users#profile'
         get 'edit', to: 'users#edit'
-        patch 'edit', to: 'users#update'
+        patch 'edit',to:'users#update'
         get 'about', to: 'users#about'
         patch 'about', to: 'users#update'
         get 'buy_order', to: 'users#buy_order'
       end
     end
-  end
+  end 
 end
-

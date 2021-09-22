@@ -1,8 +1,8 @@
 <div class="border-2 px-20">
   <div class='border-2 grid sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 mt-10 mb-20'>
     <div class='flex'>
-      <div class=''>
-        <img class='' src="https://picsum.photos/120/120" alt="">
+      <div class='' style=''>
+        <%= image_tag current_user.image_url if current_user.image_url.present? %>
       </div>
       <div class='w-full'>  
         <div class='ml-4 sm:ml-8 mt-2.5 '>
@@ -71,8 +71,8 @@
   <div class="tabs block md:grid-cols-1 lg:grid-cols-1 ">
     <a href="#" class="tab tab-bordered">關於我</a> 
   </div>
-  <div class="block mt-4">
-    <h2>個人名片</h2>
+    <div class="block mt-4">
+      <h2>個人名片</h2>
     <div class="flex mt-1">
       <div class="mr-20">性別</div>
       <div class=""><%= current_user.gender %></div>
@@ -80,7 +80,7 @@
     <div class="flex mt-1">
       <div class="mr-12">現居住地</div>
       <div class=""><%= current_user.country %></div>
-   </div>
+    </div>
     <div class="flex mt-1">
       <div class="mr-12">加入日期</div>
       <div class=""><%= current_user.created_at.strftime("%Y/%m/%d") %></div> 

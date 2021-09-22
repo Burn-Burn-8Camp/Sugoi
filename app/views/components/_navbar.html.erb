@@ -14,7 +14,7 @@
 				</form>					
 			</div>
 		</div>
-		<% if current_user.role != "seller" %>
+		<% if current_user && current_user.role != "seller" %>
 	      <div>
 	        <%= link_to '申請成為賣家', application_store_path %>
 	      </div>
@@ -25,15 +25,16 @@
 	    <% end %>
 
 		<% if current_user %>
+		
 		<div class="flex-none">
 			<div class="avatar dropdown">
 			<div class="rounded-full w-10 h-10 m-1" tabindex="0">
-				<img src="https://i.pravatar.cc/500?img=32">
+				<%= image_tag current_user.image_url if current_user.image_url.present? %>
 			</div>
 			<ul tabindex="0" class="p-2 shadow menu dropdown-content bg-white rounded-box w-52">
 				<li> 
 					<%= link_to profile_member_index_path do %>
-					<div>
+					<div class="flex">
 						<%= sanitize now_rank_icon(current_user.accumulated_amount) %>
 						<%= current_user.email %>
 					</div> 

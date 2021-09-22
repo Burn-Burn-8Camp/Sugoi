@@ -1,6 +1,6 @@
 <h1>輸入驗證碼</h1>
 <%= form_for(current_user, url: seller_verify_store_path, method: "post") do |f| %>
 <%= f.label "驗證碼" %>
-<%= f.password_field :captcha %>
+<%= f.password_field :captcha, maxlength: 8 %>
 <%= f.submit "送出" %>
 <% end %>
