@@ -1,8 +1,8 @@
 <div id="slide1" class=" relative w-full carousel-item pb-2 ">
   <div id="tab" class="">
-    <img class="tabImg hidden " src="http://fakeimg.pl/1440x300/ecf0f1/" />
-    <img src="https://picsum.photos/id/500/1440/300" alt="fakePic" class="tabImg hidden"/>
-    <img class="tabImg hidden " src="http://fakeimg.pl/1440x300/ecf0f1/" />
+    <img class="tabImg hidden " src="https://picsum.photos/1440/300?random=15" />
+    <img src="https://picsum.photos/1440/300?random=13" alt="fakePic" class="tabImg hidden"/>
+    <img class="tabImg hidden " src="https://picsum.photos/1440/300?random=14" />
   </div>
   <div class="point">
     <span num="0" class="tabBtn"></span>
@@ -17,35 +17,35 @@
  
 
 <div class="">
-  <div class=" grid grid-cols-6 md: gap-8 bg-white m-40 p-8">
+  <div class=" grid grid-cols-6 md: gap-8 bg-white p-8">
     <h1 class=" col-span-6">編輯嚴選</h1>
     <%= render 'list', products: @foods %>
   </div>
 </div>
 
 <div class="">
-  <div class=" grid grid-cols-6 md: gap-8  bg-white m-40 p-8">
+  <div class=" grid grid-cols-6 md: gap-8  bg-white p-8">
     <h1 class="col-span-6">品牌旗艦店</h1>
     <%= render 'list', products: @books %>
   </div>
 </div>
 
 <div class="">
-  <div class=" grid grid-cols-6 md: gap-8 bg-white m-40 p-8">
+  <div class=" grid grid-cols-6 md: gap-8 bg-white p-8">
     <h1 class="col-span-6">最近熱門</h1>
     <%= render 'list', products: @movies %>
   </div>
 </div>
 
 <div class="">
-  <div class=" grid grid-cols-6 md: gap-8  bg-white m-40 p-8">
+  <div class=" grid grid-cols-6 md: gap-8  bg-white p-8">
     <h1 class="col-span-6">新品上架</h1>
     <%= render 'list', products: @animals %>
     </div>
 </div>
 
 <div class="">
-  <div class=" grid grid-cols-6 md: gap-8 bg-white m-40 p-8">
+  <div class=" grid grid-cols-6 md: gap-8 bg-white p-8">
     <h1 class="col-span-6">免運專區</h1>
     <%= render 'list', products: @dragonBalls %>
     </div>
@@ -55,5 +55,4 @@
 
  
 
-<%== pagy_nav(@pagy) %>
 
