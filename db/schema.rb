@@ -43,11 +43,7 @@ ActiveRecord::Schema.define(version: 2021_09_19_002708) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "addressbooks", force: :cascade do |t|
-    t.string "receiver"
-    t.string "tel"
-    t.string "address"
-    t.string "area_code"
+  create_table "comments", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "rate"
     t.text "content"
@@ -174,7 +170,7 @@ ActiveRecord::Schema.define(version: 2021_09_19_002708) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "addressbooks", "users"
+  add_foreign_key "comments", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "order_items", "orders"

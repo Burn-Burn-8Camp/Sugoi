@@ -144,6 +144,7 @@ GEM
     jwt (2.2.3)
     libv8-node (15.14.0.1-arm64-darwin-20)
     libv8-node (15.14.0.1-x86_64-darwin-20)
+    libv8-node (15.14.0.1-x86_64-linux)
     listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -169,6 +170,8 @@ GEM
     nokogiri (1.12.4-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.12.4-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.12.4-x86_64-linux)
       racc (~> 1.4)
     oauth2 (1.4.7)
       faraday (>= 0.8, < 2.0)
@@ -331,6 +334,7 @@ GEM
 PLATFORMS
   arm64-darwin-20
   x86_64-darwin-20
+  x86_64-linux
 
 DEPENDENCIES
   aasm (~> 5.2)
@@ -340,14 +344,14 @@ DEPENDENCIES
   capybara (>= 3.26)
   carrierwave (~> 1.0)
   database_cleaner (~> 1.5, >= 1.5.3)
-  devise
+  devise (~> 4.8)
   factory_bot_rails (~> 6.2)
   faker (~> 2.19)
-  figaro
+  figaro (~> 1.2)
   foreman (~> 0.87.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)
-  mini_racer
+  mini_racer (~> 0.4.0)
   omniauth
   omniauth-github
   omniauth-google-oauth2
@@ -359,7 +363,7 @@ DEPENDENCIES
   rails (~> 6.1.4, >= 6.1.4.1)
   react_on_rails (~> 12.3)
   redis (~> 4.0)
-  rexml
+  rexml (~> 3.2, >= 3.2.5)
   rspec-rails (~> 5.0, >= 5.0.2)
   sass-rails (>= 6)
   selenium-webdriver
