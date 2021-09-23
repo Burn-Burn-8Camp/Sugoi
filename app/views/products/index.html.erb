@@ -1,19 +1,4 @@
-<div id="slide1" class="relative w-full carousel-item pb-5">
-  <div id="tab">
-    <img class="tabImg hidden" src="http://fakeimg.pl/1440x300/ecf0f1/" />
-    <img src="https://picsum.photos/id/500/1440/300" alt="fakePic" class="tabImg hidden"/>
-    <img class="tabImg hidden" src="http://fakeimg.pl/1440x300/ecf0f1/" />
-  </div>
-  <div class="point">
-    <span num="0" class="tabBtn"></span>
-    <span num="1" class="tabBtn"></span>
-    <span num="2" class="tabBtn"></span>
-  </div>  
-  <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-    <span class="btn btn-circle">❮</span>
-    <span class="btn btn-circle">❯</span>
-  </div>
-</div>
+<%= react_component('BannerSlider') %>
 
 <h1 class="text-3xl">編輯嚴選</h1>
 <%= render "list", products: @products %>
