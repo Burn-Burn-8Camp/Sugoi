@@ -3,7 +3,7 @@ import Rails from "@rails/ujs";
 document.addEventListener("turbolinks:load", () => {
   const selectedItems = document.querySelector(".selected_items")
   const delivery = document.querySelector(".summary-delivery-price .total_price")
-  let totalPrice = document.querySelector(".total_price")
+  let totalPrice = document.querySelector(".summary-product-price .total_price")
   let sum = document.querySelector(".sum")
   
   if(selectedItems) {

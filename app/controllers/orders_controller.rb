@@ -31,11 +31,13 @@ class OrdersController < ApplicationController
 		create_order_items_data_in_order(@cart_items, @order)
 
 		@cart_coupon.each do |coupon| 
-			@order.total = @order.total - coupon.coupon_value.to_i
-			current_user.user_coupons.find_by(coupon_id: coupon.coupon_id).redeem!
+			if current_user.user_coupons.find_by(coupon_id: coupon.coupon_id).status === "unused"
+				@order.total = @order.total - coupon.coupon_value.to_i			
+				current_user.user_coupons.find_by(coupon_id: coupon.coupon_id).redeem!
+			end
 		end
-
-		if @order.save			
+		
+		if @order.save	
 			caculate_user_consume(current_user)
 			session[:cart1289] = nil
 			UserMailer.order_letter_confirm(@order).deliver_now
