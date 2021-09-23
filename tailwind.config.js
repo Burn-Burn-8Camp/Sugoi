@@ -20,6 +20,7 @@ module.exports = {
     require("tailwindcss"), 
     require("autoprefixer"),
     require('daisyui'),
+    
   ],
   daisyui: {
     styled: true,
