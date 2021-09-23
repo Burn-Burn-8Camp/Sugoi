@@ -1,5 +1,5 @@
- <div class="text-center"><h1>謝謝您申請成為賣家</h1></div>
-  <%= @user.seller_name %>
-  <h1>驗證碼</h1>
-  <h2><%= @valid_code %></h2>
+ <div class="text-center"><h1>感謝您申請成為賣家</h1></div>
+  <h2 class="font-size:30px"><%= @user.seller_name %></h2>
+  <h2>您的驗證碼</h2>
+  <h3><%= @valid_code %></h3>
   <button><%= link_to '點選連結填入驗證碼', verify_store_url %></button>
