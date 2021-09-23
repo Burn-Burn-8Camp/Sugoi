@@ -45,27 +45,27 @@ class OrdersController < ApplicationController
 	end
 
 	def pending
-		@orders = current_user.orders.where(state: 'pending')
+		@orders = Order.where(user_id: current_user, state: 'pending')
 		render :index
 	end
 
 	def processing
-		@orders = current_user.orders.where(state: 'paid')
+		@orders = Order.where(user_id: current_user, state: 'paid')
 		render :index
 	end
 
 	def shipped
-		@orders = current_user.orders.where(state: 'in_transit')
+		@orders = Order.where(user_id: current_user, state: 'in_transit')
 		render :index
 	end
 
 	def completed
-		@orders = current_user.orders.where(state: 'arrived')
+		@orders = Order.where(user_id: current_user, state: 'arrived')
 		render :index
 	end
 	
 	def cancelled
-		@orders = current_user.orders.where(state: 'cancelled')
+		@orders = Order.where(user_id: current_user, state: 'cancelled')
 		render :index
 	end
 
@@ -115,8 +115,8 @@ class OrdersController < ApplicationController
 		def find_orders_by_state
 			state_arr = ['pending', 'paid', 'in_transit', 'arrived', 'cancelled']
 			orders = Order.where(user_id: current_user).select(:user_id, :state)
-			states = orders.map{|o| o.state}
+			states = orders.map{|order| order.state}
 			@state_hash = {}
-			state_arr.each{|s| @state_hash[s] = states.count(s)}
+			state_arr.each{|state| @state_hash[state] = states.count(state)}
 		end
 end

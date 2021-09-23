@@ -2,7 +2,8 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
   
   def index
-    @pagy, @products = pagy(Product.where(deleted_at: nil), items: 6)
+    # @pagy, @products = pagy(Product.where(deleted_at: nil), items: 6)
+    @products = Product.where(deleted_at: nil)
   end
 
   def new

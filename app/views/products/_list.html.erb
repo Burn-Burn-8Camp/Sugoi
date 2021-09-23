@@ -1,16 +1,15 @@
-<div class="grid grid-cols-6 lg:grid-clos-6 gap-3 ">
-  <% products.each do |product| %>
-    <div class="card bordered">
-      <figure>
-        <img src="https://picsum.photos/id/1005/400/250">
-      </figure> 
-      <div class="card-body">
-        <%= link_to product_path(product) do %>
-          <h2 class="card-title">品名:<%= product.name %></h2>
-        <% end %>
-        <p>所屬商店：<%= product.store.name %></p>
-        <p>價錢：<%= product.price.to_i %></p>
-      </div>
-    </div> 
-  <% end %>
+<% products.each do |product| %>
+<div class="group relative">
+  <div class="w-full h-56 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
+    <img src="https://tailwindui.com/img/ecommerce-images/home-page-04-trending-product-02.jpg" alt="Hand stitched, orange leather long wallet." class="w-full h-full object-center object-cover">
+  </div>
+  <h3 class="mt-4 text-sm text-gray-700">
+    <a href="#">
+      <span class="absolute inset-0"></span>
+      <%= product.name %>
+    </a>
+  </h3>
+  <p class="mt-1 text-sm text-gray-500">Natural</p>
+  <p class="mt-1 text-sm font-medium text-gray-900">$<%= product.price.to_i %></p>
 </div>
+<% end %>
