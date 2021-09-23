@@ -1,40 +1,64 @@
-<h1>商品副頁面</h1>
-
-
-<div class="flex justify-start">購物車 <%= cart_items_amount %></div>
-<%= link_to "清空購物車", cart_path, method: "delete" %>
-<section>
-  <div class="flex">
-      <div class="border-2 p-3 m-auto" style="width: 18rem;">
-        <img class="m-auto" src="https://picsum.photos/200/200/?=1">
-        <div class="card-body">
-        <div class="">
-        
-        <% if current_user %>
-        <%= check_favorite_item(@favorite_items) %>
-        <% else %>
-        <%= link_to '請先登入來收藏商品', new_session_path(:user) %>
-        <% end %>
-        
-        </div>
-          <h3 class="card-title" id="productId" data-id=<%=@product.id%>>商品名稱：<%= @product.name %></h3>
-          <p class="card-text text-xl">價錢：<%= @product.price.to_i %>
-          </p>
-          <div class="btn btn-success mb-2">
-            <%= link_to "加入購物車" , add_cart_path(@product), method: "post" %>
+<div class="xl:container m-auto">
+  <div class="px-4 xl:px-0">
+    <h1>商品副頁面</h1>
+    <div class="flex justify-start">購物車 <%= cart_items_amount %></div>
+    <%= link_to "清空購物車", cart_path, method: "delete" %>
+    
+    <section>
+      <div class="flex">
+          <div class="border-2 p-3 m-auto" style="width: 18rem;">
+            <img class="m-auto" src="https://picsum.photos/200/200/?=1">
+            <div class="card-body">
+              <% if current_user %>
+              <%= check_favorite_item(@favorite_items) %>
+              <% else %>
+              <%= link_to '請先登入來收藏商品', new_session_path(:user) %>
+              <% end %>
+              <h3 class="card-title" id="productId" data-id=<%=@product.id%>>商品名稱：<%= @product.name %></h3>
+              <p class="card-text text-xl">價錢：<%= @product.price.to_i %></p>
+              <%= link_to add_item_cart_path(@product), method: "post" do %>
+                <p class="btn btn-success mb-2">加入購物車</p>
+              <% end %>
+              <%= link_to cart_path do %>
+                <p class="btn btn-primary white">立刻結帳</p>
+              <% end %>
+            </div>
           </div>
-          <div class="btn btn-primary white">
-            <%= link_to "立刻結帳" , cart_path %>
-          </div>
-        </div>
       </div>
+    </section>
   </div>
-</section>
 
-
-
-<% @comments.each do |comment| %>
-  <%= comment.rate %>
-  <%= comment.content %>
-<% end %>
-
+  <div class="px-4 xl:px-0">
+    <div class='mb-3'>
+      <h2 class="py-3">購買評價</h2>
+      <hr>
+      <p class="bg-gray-500 text-white inline-block border-2 border-gray-500 rounded-full p-2 my-3 mr-4 inline-block">商品所有評價</p>
+      <% if @comments.length === 0 %>
+        <p>此商品尚未有評價</p>
+      <% else %>
+        <div class='flex'>
+          <%= react_component 'StarList', props: {rate: calculate_star_average(@comments)} %>
+          <span class='mx-3'>(<%= @comments.length %>)</span>
+        </div> 
+      <% end %>
+    </div>
+    <hr>
+    <div>
+      <% @comments_with_users.each do |comment| %>
+      <p class="py-3">user.name: <%= comment.last.id %></p>
+      <div class='flex'>
+        <%= react_component 'StarList', props: {rate: comment.first.rate} %>
+        <span class='mx-3'><%= calculate_time_gap(comment.first.created_at) %></span>
+      </div>
+      <p class="py-3"><%= comment.first.content %></p>
+      <div class="flex">
+        <img src="http://fakeimg.pl/150x150/ecf0f1/" alt="fake_img" class="mr-5 my-2">
+        <img src="http://fakeimg.pl/150x150/ecf0f1/" alt="fake_img" class="mr-5 my-2">
+      </div>
+      <p class="py-3">規格</p>
+      <p class="py-3">是否有幫助？</p>
+      <hr>
+    </div>
+    <% end %>
+  </div>
+</div>

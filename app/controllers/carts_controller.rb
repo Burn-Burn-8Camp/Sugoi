@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   before_action  :authenticate_user!, only: [:add]
-  before_action :find_cart_item, only: [:add]
+  before_action :find_cart_item, only: [:add_item]
 
   def show
     store_id_list = current_cart.items.map { |item| item.store_id }.uniq.sort
@@ -13,8 +13,8 @@ class CartsController < ApplicationController
     @cart = current_cart.items
   end
 
-  def add
-    current_cart.add_item(params[:id], @product.name, @product.store.id, @product.store.name, @product.price)
+  def add_item
+    current_cart.add_item(@product.id, @product.name, @product.store.id, @product.store.name, @product.price)
     session[:cart1289] = current_cart.serialize
     redirect_to product_path(params[:id]), notice: "已加至購物車"
   end
@@ -33,6 +33,6 @@ class CartsController < ApplicationController
 
   private
     def find_cart_item
-      @product = Product.find(params[:id])
+      @product = Product.friendly.find(params[:id])
     end
 end

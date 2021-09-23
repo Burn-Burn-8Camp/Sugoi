@@ -1,16 +1,24 @@
 class OrdersController < ApplicationController
 	before_action :authenticate_user!
-	before_action :find_orders_by_state, only: [:pending, :processing, :shipped, :completed, :cancelled]
 	before_action :find_order_by_friendly_id, only: [:show, :items_info]
+	before_action :find_orders_by_state, only: [:pending, 
+											 												:processing, 
+																							:shipped, 
+																							:completed, 
+																							:cancelled, 
+																							:returned]
+
 	def index
 		redirect_to pending_orders_path
 	end
 
 	def show
+		@comments = @order.seller_comments.includes(:store)
 	end
 
 	def items_info
 		@items = @order.order_items.includes(:comment)
+		find_by_smae_store(@store_items = [], @items)
 		render './orders/items_info.json.jbuilder'
 	end
 
@@ -21,11 +29,11 @@ class OrdersController < ApplicationController
 	end
 
 	def create
-		@cart_items = current_cart.items
-		find_by_smae_store(@store_items = [], @cart_items)
+		cart_items = current_cart.items
+		find_by_smae_store(@store_items = [], cart_items)
 		@order = current_user.orders.new(order_params)
-		@order.total = current_cart.total_included_delivery_fee
-		create_order_items_data_in_order(@cart_items, @order)
+		@order.total = current_cart.total
+		create_order_items_in_order(cart_items, @order)
 
 		if @order.save			
 			caculate_user_consume(current_user)
@@ -38,46 +46,47 @@ class OrdersController < ApplicationController
 	end
 
 	def pending
-		@orders = current_user.orders.where(state: 'pending').order(id: :desc)
+		@orders = Order.where(user_id: current_user, state: 'pending')
 		render :index
 	end
 
 	def processing
-		@orders = current_user.orders.where(state: ['paid', 'picked']).order(id: :desc)
+		@orders = Order.where(user_id: current_user, state: 'paid')
 		render :index
 	end
 
 	def shipped
-		@orders = current_user.orders.where(state: 'in_transit').order(id: :desc)
+		@orders = Order.where(user_id: current_user, state: 'in_transit')
 		render :index
 	end
 
 	def completed
-		@orders = current_user.orders.where(state: 'arrived').order(id: :desc)
+		@orders = Order.where(user_id: current_user, state: 'arrived')
 		render :index
 	end
 	
 	def cancelled
-		@orders = current_user.orders.where(state: 'cancelled').order(id: :desc)
+		@orders = Order.where(user_id: current_user, state: 'cancelled')
 		render :index
 	end
 
 	private
 		def order_params
-			params.require(:order).permit(:receiver, :tel, :email, :address, :delivery)
+			pm = params.require(:order).permit(:receiver, :tel, :email, :address, :delivery, :message)
+			pm[:message].delete!("\r\n")
+			pm
 		end
 
 		def find_order_by_friendly_id
-			@order = current_user.orders.find_by_friendly_id!(params[:id])
+			@order = current_user.orders.friendly.find(params[:id])
 		end
 
 		def caculate_user_consume(user)
-			order = user.orders.select{ |order| order.state != "cancelled" }
-			total = order.map{|order| order.total}.sum
+			total = user.orders.where.not( state: "cancelled" ).sum(:total)
 			user.update(accumulated_amount: total)
 		end
 
-		def create_order_items_data_in_order(cart_items, order)
+		def create_order_items_in_order(cart_items, order)
 			store_id_list = []
 			cart_items.each{ |item|
 				order_items = OrderItem.new(
@@ -100,17 +109,15 @@ class OrdersController < ApplicationController
 		def find_by_smae_store(store_items, items)
 			store_id_list = items.map { |item| item.store_id }.uniq.sort
 			store_id_list.each{ |id|
-				store_items << items.select{ |item|
-				item.store_id === id 
-				}
+				store_items << items.select{ |item| item.store_id === id }
 			}
 		end
 
 		def find_orders_by_state
-			@pending_orders = current_user.orders.where(state: 'pending').order(id: :desc)
-			@processing_orders = current_user.orders.where(state: ['paid', 'picked']).order(id: :desc)
-			@shipped_orders = current_user.orders.where(state: 'in_transit').order(id: :desc)
-			@completed_orders = current_user.orders.where(state: 'arrived').order(id: :desc)
-			@cancelled_orders = current_user.orders.where(state: 'cancelled').order(id: :desc)
+			state_arr = ['pending', 'paid', 'in_transit', 'arrived', 'cancelled']
+			orders = Order.where(user_id: current_user).select(:user_id, :state)
+			states = orders.map{|order| order.state}
+			@state_hash = {}
+			state_arr.each{|state| @state_hash[state] = states.count(state)}
 		end
 end

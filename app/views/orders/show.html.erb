@@ -6,17 +6,30 @@
 </div>
 
 <div class="m-5 mt-0">
-	<p class='text-right'><%= @order.created_at.to_date %></p>
+	<p><%= @order.created_at.to_date %></p>
 </div>
 
 <div class="flex">
-	<p id='order-state' class=' bg-gray-500 text-white inline-block border-2 border-gray-500 rounded-full p-2 m-5'><%= check_state(@order) %></p>
+	<p id='order-state' class='bg-gray-500 text-white inline-block border-2 border-gray-500 rounded-full p-2 m-5'><%= check_state(@order) %></p>
 </div>
 
 <div class="rate border roubded px-5 m-5">
-	<h2 class="py-5">已獲評價</h2>
-	<hr>
-	<p class="py-5">thank you so much</p>
+	<% if @comments.length === 0 %>
+		<h2 class="py-5">尚未評價</h2>
+	<% else %>
+		<h2 class="py-5">已獲評價</h2>
+		<hr>
+		<div class='flex'>
+			<%= react_component 'StarList', props: {rate: calculate_star_average(@comments)} %>
+			<span class='mx-3'>(<%= @comments.length %>)</span>
+		</div> 
+	<% end %>
+	<% @comments.each do |comment| %>
+	<div class="py-5">
+		<span>商店：<%= comment.store.name %></span>
+		<span>內容：<%= comment.content %></span>
+	</div>
+	<% end %>
 </div>
 
 <div class="delivery border roubded px-5 m-5">		
@@ -25,18 +38,17 @@
 	<ul class="w-full steps order-steps py-5">
 		<%= content_tag(:li, '待付款', data: {content: "✓"}, class: state_step(@order, 0)) %>
 		<%= content_tag(:li, '已付款', data: {content: "✓"}, class: state_step(@order, 1)) %>
-		<%= content_tag(:li, '撿貨中', data: {content: "✓"}, class: state_step(@order, 2)) %>
-		<%= content_tag(:li, '運送中', data: {content: "✓"}, class: state_step(@order, 3)) %>
-		<%= content_tag(:li, '已送達', data: {content: "✓"}, class: state_step(@order, 4)) %>
-		<%= content_tag(:li, '已取消', data: {content: "✓"}, class: state_step(@order, 5)) %>
+		<%= content_tag(:li, '運送中', data: {content: "✓"}, class: state_step(@order, 2)) %>
+		<%= content_tag(:li, '已送達', data: {content: "✓"}, class: state_step(@order, 3)) %>
+		<%= content_tag(:li, '已取消', data: {content: "✓"}, class: state_step(@order, 4)) %>
 	</ul>
 </div>
 
 <div class="border roubded px-5 m-5">		
 	<h2 class="py-5">訂單內容</h2>
-	<p class='hidden' data-id=<%= @order.friendly_id %> id='order_id'></p> 
+	<p class='hidden' data-id=<%= @order.slug %> id='order_id'></p> 
 	<hr>
-	<%= react_component('OrderItemsInfo') %>
+	<%= react_component 'OrderItemsInfo', props: {order_id: @order.slug} %>
 	<hr>
 	<div class="grid grid-cols-2 my-2">
 		<div class='col-start-2'>

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       post "seller_verify", to: 'sellers#seller_verify'
       get 'verified', to: 'sellers#verified'
     end
-
+    
     resources :products, only: [] do
       collection do
         get 'list', to: 'stores#products_list'
@@ -38,7 +38,7 @@ Rails.application.routes.draw do
 
   resource :cart, only:[:show, :destroy] do
     collection do
-      post :add, path:'add/:id'
+      post :add_item, path:'add_item/:id'
       get :checkout, to: 'orders#checkout'
       post :confirmation, to: 'carts#confirm'
     end
@@ -88,3 +88,4 @@ Rails.application.routes.draw do
     end
   end 
 end
+

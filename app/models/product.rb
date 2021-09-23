@@ -1,6 +1,12 @@
 class Product < ApplicationRecord
+	acts_as_paranoid
 	belongs_to :store
 	has_many :order_items
+	has_many :comments
+
+
+	extend FriendlyId
+  friendly_id :name, use: :slugged
 	has_many :bookmarks
 	has_many :users, 
 	         through: :bookmarks
