@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
   before_action  :authenticate_user!, only: [:add]
-  before_action :find_cart_item, only: [:add]
+  before_action :find_cart_item, only: [:add_item]
 
   def show
     store_id_list = current_cart.items.map { |item| item.store_id }.uniq.sort

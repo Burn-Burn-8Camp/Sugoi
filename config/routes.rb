@@ -37,8 +37,8 @@ Rails.application.routes.draw do
   end
 
   resource :cart, only:[:show, :destroy] do
-    post :add_item, to: 'cart#add_item', path:'add_item/:id'
     collection do
+      post :add_item, path:'add_item/:id'
       get :checkout, to: 'orders#checkout'
       post :confirmation, to: 'carts#confirm'
     end

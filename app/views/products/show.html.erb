@@ -16,8 +16,7 @@
               <% end %>
               <h3 class="card-title" id="productId" data-id=<%=@product.id%>>商品名稱：<%= @product.name %></h3>
               <p class="card-text text-xl">價錢：<%= @product.price.to_i %></p>
-              <%# <% byebug %> %>
-              <%= link_to add_item_cart_path(@product.id), method: "POST" do %>
+              <%= link_to add_item_cart_path(@product), method: "post" do %>
                 <p class="btn btn-success mb-2">加入購物車</p>
               <% end %>
               <%= link_to cart_path do %>
