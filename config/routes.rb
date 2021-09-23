@@ -84,6 +84,7 @@ Rails.application.routes.draw do
         get 'about', to: 'users#about'
         patch 'about', to: 'users#update'
         get 'buy_order', to: 'users#buy_order'
+        get 'favorite', to: 'users#favorite'
       end
     end
   end 

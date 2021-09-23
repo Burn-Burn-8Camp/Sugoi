@@ -33,6 +33,10 @@ class UsersController < ApplicationController
   def buy_order
   end
 
+  def favorite
+    @products = current_user.favorite_items
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :email, :gender, :date, :country, :image, :self_about, :self_blog, :life_shopping, :life_design)

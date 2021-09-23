@@ -56,7 +56,7 @@ class ProductsController < ApplicationController
 
   def favorite  
     product = Product.find(params[:id])
-    if Bookmark.exists?(product: product) 
+    if Bookmark.exists?(product: product, user: current_user) 
       current_user.favorite_items.delete(product)
       render json: { status: "removed", id: params[:id] }
     else
