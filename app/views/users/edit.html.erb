@@ -1,44 +1,42 @@
 <h1>基本資料</h1>
+<%= form_with model: @user, url: edit_member_index_path, method: 'patch' do |f| %>
+  <div>
+    <%= f.label :name, "顯示暱稱" %><br />
+    <%= f.text_field :name %>
+  </div><br />
 
-<div class="" >
-  <%= form_for(@user, url: edit_member_index_path) do |f| %>
-    <div class="">
-      <%= f.label :name, "顯示暱稱" %><br />
-      <%= f.text_field :name %>
-    </div><br />
+  <div>
+    <%= f.label :email,"您的電子信箱" %><br />
+    <%= f.text_field :email %>
+  </div><br />
 
-    <div class="">
-      <%= f.label :email,"您的電子信箱" %><br />
-      <%= f.text_field :email %>
-    </div><br />
+  <div>
+    <%= f.label :gender,"性別" %><br />
+    <%= f.text_field :gender, placeholder: 'Gender', class: 'form-control' %>
+  </div><br />
 
-    <div class="">
-      <%= f.label :gender,"性別" %><br />
-      <%= f.text_field :gender, placeholder: 'Gender', class: 'form-control' %>
-    </div><br />
+  <div>
+    <%= f.label :date, "生日" %><br />
+    <%= date_field(:date, :born_on) %>
+  </div><br />
 
-    <div class="">
-      <%= f.label :date, "生日" %><br />
-      <%= date_field(:date, :born_on) %>
-    </div><br />
+  <div>
+    <%= f.label :country, "所在地" %><br />
+    <%= f.text_field :country %>
+  </div><br />
 
-    <div class="">
-      <%= f.label :country, "所在地" %><br />
-      <%= f.text_field :country %>
-    </div><br />
-    
-    <div class="" style="width: 100px; height: 100px;">
-      <h2>大頭貼</h2>
-     <%= image_tag current_user.image_url if current_user.image_url.present? %></div><br/>
-    </div><br />
-
-    <div class="">
-      <%= f.label :image, "上載大頭貼" %><br />
-      <%= f.file_field :image %>   
-    </div> <br />
+  <div style="width: 100px; height: 100px;">
+    <h2>大頭貼</h2>
+    <%= image_tag current_user.image_url if current_user.image_url.present? %><br />
+  </div><br />
+  <br />
+  <div>
+    <%= f.label :image, "上載大頭貼" %><br />
+    <%= f.file_field :image %>   
+  </div><br />
+  
+  <div>
     <%= f.submit "更新" %>
-  <%end %>
-</div>
+  </div><br />
 
-
-
+<% end %>

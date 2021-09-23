@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :messages, only: %i[create index]
-  resources :rooms, expect: %i[destroy edit] 
+
+  resources :rooms, expect: %i[destroy edit]  do
+    collection do
+      get 'rooms',to: 'rooms/index'
+    end
+  end
   
   root "products#index"
   resource :store do
@@ -81,6 +86,7 @@ Rails.application.routes.draw do
         get 'about', to: 'users#about'
         patch 'about', to: 'users#update'
         get 'buy_order', to: 'users#buy_order'
+        get 'dialog', to: 'users#dialog'
       end
     end
   end 

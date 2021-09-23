@@ -17,7 +17,7 @@ document.addEventListener('turbolinks:load', () => {
     disconnected() {
     },
 
-    received(data) {
+    receivde(data) {
       const send_btn = document.getElementById('send-btn');
       const content = document.getElementById('message_content');
       const message_content = document.getElementById('chat-room-content')
