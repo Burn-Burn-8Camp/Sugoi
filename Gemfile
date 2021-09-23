@@ -27,16 +27,15 @@ gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-gem 'omniauth'
-gem 'omniauth-google-oauth2'
-gem 'omniauth-github'
-gem "omniauth-rails_csrf_protection"
+gem 'omniauth', '~> 2.0', '>= 2.0.4'
+gem 'omniauth-google-oauth2', '~> 1.0'
+gem 'omniauth-github', '~> 2.0'
+gem 'omniauth-rails_csrf_protection', '~> 1.0'
 
-gem 'activerecord-session_store'
+gem 'activerecord-session_store', '~> 2.0'
 gem 'figaro', '~> 1.2'
 gem 'paranoia', '~> 2.4', '>= 2.4.3'
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
-gem "chartkick"
 gem 'groupdate', '~> 5.2', '>= 5.2.2'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -65,15 +64,15 @@ group :development do
   gem 'listen', '~> 3.3'
   
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+  gem 'spring', '~> 3.0'
   
-  gem 'pry'
+  gem 'pry', '~> 0.14.1'
 end
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 3.142', '>= 3.142.7'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
   gem 'timecop', '~> 0.9.4'
