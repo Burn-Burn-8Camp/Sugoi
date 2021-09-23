@@ -69,11 +69,6 @@ class OrdersController < ApplicationController
 		render :index
 	end
 
-	def returned
-		@orders = current_user.orders.where(state: 'returned')
-		render :index
-	end
-
 	private
 		def order_params
 			pm = params.require(:order).permit(:receiver, :tel, :email, :address, :delivery, :message)
