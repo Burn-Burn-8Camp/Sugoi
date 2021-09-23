@@ -40,4 +40,3 @@ class SellersController < ApplicationController
       params.require(:user).permit(:captcha)
     end
 end
-  
