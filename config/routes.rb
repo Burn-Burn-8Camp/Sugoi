@@ -63,6 +63,9 @@ Rails.application.routes.draw do
     collection do
       get 'search', to: "products#search"
     end
+    member do
+      post :favorite
+    end
   end
 
   resources :order_items, only: [] do
