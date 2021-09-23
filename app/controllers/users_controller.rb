@@ -34,6 +34,9 @@ class UsersController < ApplicationController
     @products = current_user.favorite_items
   end
 
+  def dialog
+  end
+
   def user_coupons
     @coupons = current_user.user_coupons
   end
