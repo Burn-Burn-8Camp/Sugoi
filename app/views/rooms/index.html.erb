@@ -21,7 +21,10 @@
             <div id="chat-room-content">
               <p><%= @room.name %></p>
               <% @room.messages.each do |message| %>
-                <p><%= message.content %> - <%= message.user.name %> [ <%= message.created_at %> ]</p>
+                <div>
+                  <p><%= message.content %> - <%= message.user.name %> [ <%= message.created_at %> ]</p>
+                  <div style="width: 30px"><%= image_tag message.user.image_url %></div>
+                </div>
               <% end %>
             </div>
             <div class="chat-box">
