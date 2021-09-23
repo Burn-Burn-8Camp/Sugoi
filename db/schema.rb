@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2021_09_20_123904) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_bookmarks_on_product_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "rate"
@@ -198,6 +207,8 @@ ActiveRecord::Schema.define(version: 2021_09_20_123904) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookmarks", "products"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"

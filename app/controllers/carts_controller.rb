@@ -13,7 +13,7 @@ class CartsController < ApplicationController
     @cart = current_cart.items
   end
 
-  def add
+  def add_item
     current_cart.add_item(@product.id, @product.name, @product.store.id, @product.store.name, @product.price)
     session[:cart1289] = current_cart.serialize
     redirect_to product_path(params[:id]), notice: "已加至購物車"

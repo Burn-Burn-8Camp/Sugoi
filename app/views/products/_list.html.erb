@@ -3,12 +3,12 @@
   <div class="w-full h-56 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
     <img src="https://tailwindui.com/img/ecommerce-images/home-page-04-trending-product-02.jpg" alt="Hand stitched, orange leather long wallet." class="w-full h-full object-center object-cover">
   </div>
+  <%= link_to product_path(product) do %>
   <h3 class="mt-4 text-sm text-gray-700">
-    <a href="#">
-      <span class="absolute inset-0"></span>
-      <%= product.name %>
-    </a>
+    <span class="absolute inset-0"></span>
+    <%= product.name %>
   </h3>
+   <% end %>  
   <p class="mt-1 text-sm text-gray-500">Natural</p>
   <p class="mt-1 text-sm font-medium text-gray-900">$<%= product.price.to_i %></p>
 </div>

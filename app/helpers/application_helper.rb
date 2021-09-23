@@ -34,4 +34,25 @@ module ApplicationHelper
 	def calculate_star_average(comments)
 		comments.map{|comment| comment.rate}.sum / comments.length
 	end
+
+	def delivery_fee
+		delivery_fee = Product.deliveries["貨運 NT$100"] 
+	end
+
+	def total_delivery_fee
+		delivery_fee * store_amount
+	end
+
+	def store_amount
+    store_id_list = current_cart.items.map { |item| item.store_id }.uniq.sort
+    @store_items = []
+    store_id_list.each{ |id|
+      @store_items << current_cart.items.select{ |item|
+        item.store_id === id 
+      }
+    }
+    @store_items.count
+  end
+
+
 end

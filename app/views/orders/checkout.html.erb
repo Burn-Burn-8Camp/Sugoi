@@ -33,7 +33,7 @@
 					<p class="text-right pl-5">商品小計</p>
 				</div>
 				<div class='flex flex-row-reverse pb-5'>
-					<p class="text-right pl-5">NT$ <%= 0 %></p>
+					<p class="text-right pl-5">NT$ <%= delivery_fee %></p>
 					<p class="text-right pl-5">運費</p>
 				</div>
 			</div>
@@ -69,7 +69,7 @@
 				</div>
 				<div class='flex justify-between'>
 					<p>運費總計:</p>
-					<p>0</p>
+					<p><%= total_delivery_fee %></p>
 				</div>
 				<div class='flex justify-between'>
 					<p>結帳總金額：</p>

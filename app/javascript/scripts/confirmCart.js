@@ -2,11 +2,13 @@ import Rails from "@rails/ujs";
 
 document.addEventListener("turbolinks:load", () => {
   const selectedItems = document.querySelector(".selected_items")
+  const delivery = document.querySelector(".summary-delivery-price .total_price")
   let totalPrice = document.querySelector(".total_price")
   let sum = document.querySelector(".sum")
   
   if(selectedItems) {
     const dropDownMenu = document.querySelector(".productID")
+    const deliveryFee = Number(delivery.textContent)
   
     selectedItems.addEventListener("change", (e) => {   
       if(e.target.classList.value.includes("productID")) {
@@ -19,6 +21,7 @@ document.addEventListener("turbolinks:load", () => {
       function changeQuantity(id, q) {
         const url ='/cart/confirmation';
         let params = new URLSearchParams()
+        
         params.append('product_id', id)
         params.append('quantity', q)
       
@@ -26,9 +29,9 @@ document.addEventListener("turbolinks:load", () => {
           url: url,
           type: "post",
           data: params,
-          success: (data) => {
-            totalPrice.textContent = data
-            sum.textContent = data
+          success: (itemsPrice) => {
+            totalPrice.textContent = itemsPrice
+            sum.textContent = itemsPrice + deliveryFee   
           },
           error: function (err) {
             console.log(err);
@@ -37,4 +40,5 @@ document.addEventListener("turbolinks:load", () => {
       }
     })
   }  
+
 })

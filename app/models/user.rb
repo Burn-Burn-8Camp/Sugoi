@@ -3,19 +3,21 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   mount_uploader :image, ImageUploader
   
+  # validates_uniqueness_of :name
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2 ,:github]
   has_many :orders
   has_many :comments
   has_one :store
-
-  # validates :seller_email
-  # validates :seller_name
+  has_many :bookmarks
+  has_many :favorite_items, 
+            through: :bookmarks,
+            source: :product
+  has_one_attached :image
 
   def self.create_from_provider_data(provider_data)
     return nil if provider_data.nil?
-
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do |user|
       user.account = provider_data.info.email.split('@').first
       user.email = provider_data.info.email
