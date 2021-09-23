@@ -1,23 +1,22 @@
-<h1 class="m-3">購買訂單</h1>
+<h1 class="mx-3 lg:mx-5 mt-2">購買訂單</h1>
 <div class='flex'>
 	<%= link_to pending_orders_path do %>
-		<div class='text-lg p-3 lg:p-5' data-state='尚未付款'>尚未付款<%= orders_length(@pending_orders) %></div>
+		<div class='text-lg p-3 lg:p-5'>尚未付款<%= @state_hash['pending'] %></div>
 	<% end %>
 	<%= link_to processing_orders_path do %>
-		<div class='text-lg p-3 lg:p-5'>處理中<%= orders_length(@processing_orders) %></div>
+		<div class='text-lg p-3 lg:p-5'>處理中<%= @state_hash['paid'] %></div>
 	<% end %>
 	<%= link_to shipped_orders_path do %>
-		<div class='text-lg p-3 lg:p-5'>待收貨<%= orders_length(@shipped_orders) %></div>
+		<div class='text-lg p-3 lg:p-5'>待收貨<%= @state_hash['in_transit'] %></div>
 	<% end %>
 	<%= link_to completed_orders_path do %>
-		<div class='text-lg p-3 lg:p-5'>已完成<%= orders_length(@completed_orders) %></div>
+		<div class='text-lg p-3 lg:p-5'>已完成<%= @state_hash['arrived'] %></div>
 	<% end %>
 	<%= link_to cancelled_orders_path do %>
-		<div class='text-lg p-3 lg:p-5'>已取消<%= orders_length(@cancelled_orders) %></div>
+		<div class='text-lg p-3 lg:p-5'>已取消<%= @state_hash['cancelled'] %></div>
 	<% end %>
 </div>
-<hr>
-<% if @orders.first === nil%>
+<% if @orders.first === nil %>
 	<div class='flex justify-center'>
 		<%= image_tag("OpenDoodles - LayingDown") %>
 	</div>

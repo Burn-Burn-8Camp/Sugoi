@@ -6,7 +6,7 @@
 			<% end %>
 		</ul>
 	</div>
-	<hr>
+
 	<% @store_items.each do |item_arr| %>
 	<div class="border mb-4">
 		<h2 class="mx-4 my-3"><%= item_arr[0].store.name %></h2>
@@ -39,50 +39,24 @@
 			</div>
 			<div class="col p-4">
 				<div class="col bg-gray-100 p-6">
-					<h3 class="pb-3">收件資訊</h3>
-					<%= react_component("PumpUpScreen") %>
-					<p class="pb-3">運送方式</p>
+					<h3 class="pb-3">商店資訊</h3>
 					<p class="pb-3">設計館自行提供發票/收據，開立後將寄至購買人地址</p>
-					<p class="pb-3">給設計師的訊息或注意事項</p>
-					<textarea name="" id="" cols="45" rows="5" placeholder="若你的訂單商品或是體驗活動需要提供客製化細節，請務必於下單時，填寫顏色、尺寸、圖案款式、客製文字等規格"></textarea>
 				</div>
 			</div>
 		</div>
-		</div>
 	</div>
-<% end %>
+	<% end %>
 
-<!-- <div>
-	<p class='font-bold text-xl'>商品總計：<%= current_cart.total %></p>
-	<p class='font-bold text-xl'>商品折抵:</p>
-	<p class='font-bold text-xl'>運費總計:</p>
-	<p class='font-bold text-xl'>結帳總金額：<%= current_cart.total_included_delivery_fee %></p>
-</div> -->
-
-<!-- <%= form_for @order, html: {class: 'border-2 border-black my-5 inline-block p-3 rounded'} do |f| %>
-	<h3 class='text-xl font-bold'>填寫收件人資訊</h3>
-	<div>
-		<%= f.label :recceiver, "收件人姓名：" %>
-		<%= f.text_field :receiver %>
-	</div>
-	<div>
-		<%= f.label :tel, "收件人手機：" %>
-		<%= f.telephone_field :tel %>
-	</div>
-	<div>
-		<%= f.label :email, "購買人電子信箱：" %>
-		<%= f.email_field :email %>
-	</div>
-	<% end %> -->
-	
 	<div class='border'>
 		<div class='bg-gray-100 p-4'>
 			<h3>請選擇付款方式</h3>
 			<p><i class="fas fa-lock mr-2"></i>我們有信用卡結帳與銀行轉帳兩種方式</p>
 		</div>
+
 		<div class='bg-red-200 p-3'>
 			<p><i class="fas fa-tags mr-2"></i>刷卡滿 NT$1500 即享分期 0 利率！</p>
 		</div>
+
 		<div class="grid grid-cols-1 lg:grid-cols-2">
 			<div class="col p-4">
 				<div class='flex justify-between'>
@@ -103,14 +77,6 @@
 				</div>
 			</div>
 
-			<% if @order.errors.any? %>
-				<ul>
-					<% @order.errors.full_messages.each do |message| %>
-					<li><%= message %></li>
-					<% end %>
-				</ul>
-			<% end %>
-			
 			<div class='col p-4'>
 				<div class='bg-gray-100 h-full flex justify-center'>
 					<%= form_for @order, html: {class: 'my-5'} do |f| %>
@@ -131,19 +97,22 @@
 						<%= f.label :address, "收件人地址：" %>
 						<%= f.text_field :address, class: 'w-full my-2' %>
 					</div>
-					<div>
+					<div class='my-2'>
 						<%= f.label :delivery, "運送方式：" %>
-						<%= f.select :delivery, class: 'w-full my-2' do %>
+						<%= f.select :delivery, class: 'select select-bordered' do %>
 							<%= content_tag(:option, '貨運') %>
 						<% end %>
 					</div>
 					<div>
+						<%= f.label :message, "給設計師的訊息或注意事項" %>
+						<%= f.text_area :message, class: 'w-full textarea textarea-bordered', size: "20x5", placeholder: '若你的訂單商品或是體驗活動需要提供客製化細節，請務必於下單時，填寫顏色、尺寸、圖案款式、客製文字等規格' %>
+					</div>
+					<div>
 						<%= f.submit '建立訂單', class: 'btn btn-primary' %>
 					</div>
-				<% end %>
+					<% end %>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-

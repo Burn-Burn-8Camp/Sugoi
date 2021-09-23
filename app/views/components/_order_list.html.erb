@@ -1,25 +1,27 @@
 <% orders.each do |order| %>
 <div>
-	<h3 class="text-xl bg-gray-200 p-4 my-4"><%= order.created_at.to_time.to_s.split[0] %></h3>
+	<h3 class="text-xl bg-gray-200 p-4"><%= order.created_at.to_time.to_s.split[0] %></h3>
 </div>
 <div class="md:grid md:grid-cols-2">
 	<div class="col grid grid-cols-2 justify-center">
-		<p class="p-2 md:text-right mr-4 text-xl">狀態</p>
+		<p class="px-3 py-2 md:text-right mr-4 text-xl">狀態</p>
 		<% if order.state == 'pending' %>
-			<p class="p-2 btn btn-info w-36"><%= link_to '尚未付款，前往付款', payment_order_path(order) %></p>
+			<%= link_to payment_order_path(order) do %>
+			<p class="px-3 py-2 btn btn-info w-40">尚未付款，前往付款</p>
+			<% end %>
 		<% else %>
-			<p class="p-2"><%= check_state(order) %></p>
+			<p class="px-3 py-2"><%= check_state(order) %></p>
 		<% end %>
-		<p class="p-2 md:text-right mr-4 text-xl">寄往</p>
-		<p class="p-2">台灣</p>
-		<p class="p-2 md:text-right mr-4 text-xl">訂單編號</p>
-		<p class="p-2"><%= order.serial %></p>
-		<p class="p-2 md:text-right mr-4 text-xl">總計</p>
-		<p class="p-2">NT$ <%= order.total %></p>
+		<p class="px-3 py-2 md:text-right mr-4 text-xl">寄往</p>
+		<p class="px-3 py-2">台灣</p>
+		<p class="px-3 py-2 md:text-right mr-4 text-xl">訂單編號</p>
+		<p class="px-3 py-2"><%= order.serial %></p>
+		<p class="px-3 py-2 md:text-right mr-4 text-xl">給設計師的話</p>
+		<p class="px-3 py-2"><%= order.message %></p>
+		<p class="px-3 py-2 md:text-right mr-4 text-xl">總計</p>
+		<p class="px-3 py-2">NT$ <%= order.total %></p>
 	</div>
 	<div class="col grid grid-cols-2">
-		<p class="p-2 md:text-right mr-4 text-xl">購買人備註</p>
-		<p class="p-2"></p>
 		<p class="p-2 md:text-right mr-4 text-xl">購買項目</p>
 		<div class="p-2">
 			<img src="http://fakeimg.pl/100x100/ecf0f1/" alt="product_img">

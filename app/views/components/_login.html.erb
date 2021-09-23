@@ -1,6 +1,6 @@
 <div class='flex flex-row-reverse'>
 	<% if current_user %>
-		<%= current_user.email %>
+		<%= current_user.name %>
 		<div class='mx-3'>
 			<%= link_to('登出', destroy_user_session_path, method: 'delete') %>
 		</div>

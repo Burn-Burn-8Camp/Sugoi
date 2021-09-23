@@ -1,9 +1,7 @@
-<h1 class='text-4xl text-center'>商店頁面</h1>
-
 <div class='grid grid-cols-4'>
 	<div class='col'>
 		<% if current_store %>
-			<div class="collapse w-48 border rounded-box border-base-300 collapse-arrow">
+			<div class="collapse w-36 border border-base-300 collapse-arrow bg-gray-300">
 				<input type="checkbox">
 				<div class="collapse-title text-xl font-medium">
 					商店管理
@@ -14,7 +12,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="collapse w-48 border rounded-box border-base-300 collapse-arrow">
+			<div class="collapse w-36 border border-base-300 collapse-arrow bg-gray-300">
 				<input type="checkbox">
 				<div class="collapse-title text-xl font-medium">
 					商品管理
@@ -27,7 +25,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="collapse w-48 border rounded-box border-base-300 collapse-arrow">
+			<div class="collapse w-36 border border-base-300 collapse-arrow bg-gray-300">
 				<input type="checkbox">
 				<div class="collapse-title text-xl font-medium">
 					訂單管理
@@ -39,7 +37,7 @@
 					</ul>
 				</div>
 			</div>
-			<div class="collapse w-48 border rounded-box border-base-300 collapse-arrow">
+			<div class="collapse w-36 border border-base-300 collapse-arrow bg-gray-300">
 				<input type="checkbox">
 				<div class="collapse-title text-xl font-medium">
 					財務管理
@@ -53,7 +51,7 @@
 				</div>
 			</div>
 		<% else %>
-			<div class="collapse w-48 border rounded-box border-base-300 collapse-arrow">
+			<div class="collapse w-48 border rounded-box border-base-300 collapse-arrow bg-gray-300">
 				<input type="checkbox">
 				<div class="collapse-title text-xl font-medium">
 					創立商店
@@ -67,37 +65,24 @@
 		<% end %>
 	</div>
 
-	
-	<div class='col flex-grow-1 flex flex-cols-3'>
-		<div class="shadow">
-			<div class="stat">
-				<div class="stat-title">Total Page Views</div> 
-				<div class="stat-value">89,400</div> 
-				<div class="stat-desc">21% more than last month</div>
-			</div>
-		</div>
-		<div class="shadow">
-			<div class="stat">
-				<div class="stat-title">Total Page Views</div> 
-				<div class="stat-value">89,400</div> 
-				<div class="stat-desc">21% more than last month</div>
-			</div>
-		</div>
-		<div class="shadow">
-			<div class="stat">
-				<div class="stat-title">Total Page Views</div> 
-				<div class="stat-value">89,400</div> 
-				<div class="stat-desc">21% more than last month</div>
-			</div>
-		</div>
-		<div class="shadow">
-			<div class="stat">
-				<div class="stat-title">Total Page Views</div> 
-				<div class="stat-value">89,400</div> 
-				<div class="stat-desc">21% more than last month</div>
+	<div class='col col-span-3'>
+		<h3 class='text-center'>銷售概覽</h3>
+		<div class="w-full shadow stats">
+			<div class="stat place-items-center place-content-center">
+				<div class="stat-title">銷售額</div> 
+				<div class="stat-value">310M</div> 
+				<div class="stat-desc">Jan 1st - Feb 1st</div>
+			</div> 
+			<div class="stat place-items-center place-content-center">
+				<div class="stat-title">訂單數</div> 
+				<div class="stat-value text-success">4,200</div> 
+				<div class="stat-desc text-success">↗︎ 400 (22%)</div>
+			</div> 
+			<div class="stat place-items-center place-content-center">
+				<div class="stat-title">平均訂單金額</div> 
+				<div class="stat-value text-error">1,200</div> 
+				<div class="stat-desc text-error">↘︎ 90 (14%)</div>
 			</div>
 		</div>
 	</div>
 </div>
-
-

@@ -1,39 +1,18 @@
-<div id="slide1" class="relative w-full carousel-item pb-5">
-  <div id="tab">
-    <img class="tabImg hidden" src="http://fakeimg.pl/1440x300/ecf0f1/" />
-    <img src="https://picsum.photos/id/500/1440/300" alt="fakePic" class="tabImg hidden"/>
-    <img class="tabImg hidden" src="http://fakeimg.pl/1440x300/ecf0f1/" />
-  </div>
-  <div class="point">
-    <span num="0" class="tabBtn"></span>
-    <span num="1" class="tabBtn"></span>
-    <span num="2" class="tabBtn"></span>
-  </div>  
-  <div class="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
-    <span class="btn btn-circle">❮</span>
-    <span class="btn btn-circle">❯</span>
+<%= react_component('BannerSlider') %>
+
+<div class="bg-white">
+  <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div class="md:flex md:items-center md:justify-between">
+      <h2 class="text-2xl font-extrabold tracking-tight text-gray-900">Trending products</h2>
+      <a href="#" class="hidden text-sm font-medium text-indigo-600 hover:text-indigo-500 md:block">Shop the collection<span aria-hidden="true"> &rarr;</span></a>
+    </div>
+    <div class="mt-6 grid grid-cols-2 gap-x-4 gap-y-10 sm:gap-x-6 md:grid-cols-4 md:gap-y-0 lg:gap-x-8">
+
+		<%= render 'list', products: @products %>
+
+    </div>
+    <div class="mt-8 text-sm md:hidden">
+      <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Shop the collection<span aria-hidden="true"> &rarr;</span></a>
+    </div>
   </div>
 </div>
-
-
-<h1 class="text-3xl">編輯嚴選</h1>
-<div class="grid grid-cols-6 lg:grid-clos-6 gap-3 ">
-  <% @products.each do |product| %>
-    <div class="card bordered">
-    <figure>
-      <img src="https://picsum.photos/id/1005/400/250">
-    </figure> 
-    <div class="card-body">
-      <h2 class="card-title">品名:<%= link_to product.name,product_path(product) %>
-        <div class="badge mx-2 badge-secondary">NEW</div>
-      </h2> 
-      <p>所屬商店：<%= product.store.name %></p>
-      <p>價錢：<%= product.price.to_i %></p>
-      <div class="justify-end card-actions">
-        <button class="btn btn-secondary">More info</button>
-      </div>
-   </div>
-    </div> 
-  <% end %>
-  </div>
-<%== pagy_nav(@pagy) %>
