@@ -14,7 +14,6 @@ class PaymentsController < ApplicationController
 	def notify_response
 		check_response(return_params(params))
 	end
-
 	private
 		def check_response(params)
 			response = Newebpay::MpgResponse.new(params[:TradeInfo])
@@ -34,6 +33,6 @@ class PaymentsController < ApplicationController
 		end
 
 		def find_order
-			@order = current_user.orders.find_by_friendly_id!(params[:id])
+			@order = current_user.orders.friendly.find(params[:id])
 		end
 end

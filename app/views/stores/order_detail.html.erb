@@ -1,23 +1,33 @@
 <h1 class='text-lg text-center'>訂單明細</h1>
 
-<ul class="w-full steps order-steps">
-  <li class="step step-primary" id='pending'>待付款</li> 
-  <li class="step" id='paid'>已付款</li> 
-  <li class="step" id='picked'>撿貨中</li> 
-  <li class="step" id='in_transit'>運送中</li>
-  <li class="step" id='arrived'>已送達</li>
-  <li class="step" id='cancelled'>已取消</li>
+<ul class="w-full steps order-steps py-5">
+	<%= content_tag(:li, '待付款', data: {content: "✓"}, class: seller_state_step(@order, 0)) %>
+	<%= content_tag(:li, '已付款', data: {content: "✓"}, class: seller_state_step(@order, 1)) %>
+	<%= content_tag(:li, '運送中', data: {content: "✓"}, class: seller_state_step(@order, 2)) %>
+	<%= content_tag(:li, '已送達', data: {content: "✓"}, class: seller_state_step(@order, 3)) %>
+	<%= content_tag(:li, '已取消', data: {content: "✓"}, class: seller_state_step(@order, 4)) %>
 </ul>
 
 <div class='border rounded'>
-	<ul>
-		<li class='text-lg'>訂單編號：<%= @order.serial %></li>
-		<li class='text-lg'>訂單金額：<%= @order.total %></li>
-		<li class='text-lg'>收件人：<%= @order.receiver %></li>
-		<li class='text-lg'>收件地址：<%= @order.address %></li>
-		<li class='text-lg'>運送方式：<%= @order.delivery %></li>
-		<li class='hidden' id='order-state'><%= @order.state %></li>
-	</ul>
+	<div>
+		<ul>
+			<li class='text-lg'>訂單編號：<%= @order.serial %></li>
+			<li class='text-lg'>訂單金額：<%= @order.total %></li>
+			<li class='text-lg'>收件人：<%= @order.receiver %></li>
+			<li class='text-lg'>收件地址：<%= @order.address %></li>
+			<li class='text-lg'>運送方式：<%= @order.delivery %></li>
+			<li class='hidden' id='order-state'><%= @order.state %></li>
+		</ul>
+		<% if @store_order.shipment_confirm %>
+			<p class='px-3'>您已出貨</p>
+		<% else %>
+			<%= form_with model: @order, url: shipment_store_order_path(@order), method: 'GET' do |f| %>
+				<%= f.submit '出貨', class: 'btn btn-success' %>
+			<% end %>
+		<% end %>
+		<%= react_component 'SellerCommentForm', props: {order_id: @order.id, order_friendly_id: @order.slug} %>
+	</div>
+	
 	<div tabindex="0" class="collapse collapse-arrow">
 	  <div class="collapse-title text-lg font-medium">
 		訂單明細

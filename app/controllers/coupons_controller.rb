@@ -1,7 +1,7 @@
 class CouponsController < ApplicationController
   before_action  :authenticate_user!, only: [:get]
   def index
-    @coupons = Coupon.all.order("id DESC")
+    @coupons = Coupon.order("id DESC")
   end
 
   def get

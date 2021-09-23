@@ -1,5 +1,6 @@
 class UserMailer < ApplicationMailer
-  default :from => "SUGOII 客服 <sugoii@sugoii.live>"
+  # template在app/views/user_mailer/notify_comment.text.erb(純文字格式)、notify_comment.html.erb(HTML格式)。
+  default :from => "Sugoi 客服 <sugoii@sugoii.live>"
 
   def order_letter_confirm(order)
     @order = order
@@ -8,4 +9,9 @@ class UserMailer < ApplicationMailer
     mail(to: order.email, :subject => "訂單成立") 
   end
 
+  def current_user_to_seller_letter_confirm(current_user)
+    @user = current_user
+    @valid_code = "123456"
+    mail(to: current_user.seller_email, :subject => "申請成為賣家驗證信") 
+  end
 end
