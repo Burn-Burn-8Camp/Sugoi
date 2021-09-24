@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       collection do
         get 'list', to: 'stores#products_list'
         patch 'list',to:'stores#update'
+        patch 'list',to:'stores#destory'
         get 'new', to: 'products#new'
         patch 'new',to:'products#update'
       end

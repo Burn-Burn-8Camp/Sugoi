@@ -47,6 +47,7 @@ class StoresController < ApplicationController
 	end
 
 	def destroy
+		@product, @products = Product.where(delete: nil)
 		@product.destroy if @product
       	redirect_to list_store_products_path,notice: "刪除成功"
 	end

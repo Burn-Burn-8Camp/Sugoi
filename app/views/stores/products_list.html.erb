@@ -20,7 +20,7 @@
 			<td><%= product.price.to_i %></td>
 			<td><%= product.quantity %></td>
 			<td><%= link_to '細項', detail_store_product_path(product), class: 'btn' %></td>
-			<td><%= link_to '刪除', list_store_products_path(product), class: 'btn' %></td>
+			<td><%= link_to '刪除', product_path(product), method: "DELETE", class: 'btn' %></td>
 		</tr>
 		<% end %>
 	</tbody>
