@@ -3,30 +3,58 @@
 <%= link_to "新增商品",new_product_path %>
 
 
+<div class="" >   
+  <%= form_for (@product), url: products_path do |f| %>
+    <div class="">  
+      <%= f.label :name %>
+      <%= f.text_field :name %><br />
+    </div><br />
+
+    <div class="" style="width: 100px; height: 100px;">
+      <h2>商品照片</h2>
+      <%= image_tag current_user.image_url if current_user.image_url.present? %>
+    </div><br />
+
+    <div class="">
+      <%= f.label :image, "上載商品" %><br />
+      <%= f.file_field :image %>   
+    </div><br />
+
+    <div class="">
+      <%= f.label :price,"價錢" %>
+      <%= f.text_field :price %><br />
+    </div><br />
+
+    <div class="">
+      <%= f.label :quantity,"數量" %>
+      <%= f.text_field :quantity %><br />
+    </div><br />
+
+    <div class="">
+      <%= f.label :description %>
+      <%= f.text_field :description %><br />
+    </div><br />
+
+    <div class="">
+      <%= f.label :category,"類別" %>
+      <%= f.text_field :category %><br />
+    </div><br />
+
+    <div class="">
+      <%= f.label :content,"內容" %>
+      <%= f.text_field :content %><br />
+    </div><br />
+
+    <div class="">
+      <%= f.text_field :store_id, value: current_store.id, type: 'hidden' %>
+    </div><br />
+
+    <div class="">
+      <%= f.submit "新增商品" %>
+    </div><br />
     
-<%= form_for (@product), url: products_path do |f| %>
-  <%= f.label :name %>
-  <%= f.text_field :name %><br />
-
-  <%= f.label :price,"價錢" %>
-  <%= f.text_field :price %><br />
-
-  <%= f.label :quantity,"數量" %>
-  <%= f.text_field :quantity %><br />
-
-  <%= f.label :description %>
-  <%= f.text_field :description %><br />
-
-  <%= f.label :category,"類別" %>
-  <%= f.text_field :category %><br />
-
-  <%= f.label :content,"內容" %>
-  <%= f.text_field :content %><br />
-
-  <%= f.text_field :store_id, value: current_store.id, type: 'hidden' %>
-
-  <%= f.submit "送出" %>
-<% end%>
+  <% end%>
+</div>
 <%= link_to '回首頁', products_path %>
 
 

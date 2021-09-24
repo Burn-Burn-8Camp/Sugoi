@@ -21,6 +21,7 @@ module.exports = {
     require("autoprefixer"),
     require('daisyui'),
     
+    
   ],
   daisyui: {
     styled: true,

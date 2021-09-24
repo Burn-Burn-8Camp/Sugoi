@@ -28,14 +28,17 @@ class ProductsController < ApplicationController
     @favorite_items = Bookmark.where(user_id: current_user, product_id: @product)  
     items = OrderItem.joins(:product, :comment).where(product_id: @product).select(:id)
     @comments = items.map{ |item| item.comment }
+    
+    @products = Product.find(params[:id])
   end
 
   def edit    
   end
   
   def update
+  @product = current_store
     if @product.update(product_params)
-      redirect_to products_path,notice: "修改成功"
+      redirect_to product_path,notice: "修改成功"
     else
       render :edit
     end
@@ -43,7 +46,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy if @product
-      redirect_to products_path,notice: "刪除成功"
+      redirect_to store_path,notice: "刪除成功"
   end
 
   def search 
@@ -67,7 +70,7 @@ class ProductsController < ApplicationController
 
   private
     def product_params
-      params.require(:product).permit(:name, :price, :quantity, :description, :category, :material, :manufacturing_method, :country, :content, :store_id)
+      params.require(:product).permit(:name, :price, :quantity, :description, :category, :material, :manufacturing_method, :country, :content, :store_id, :image)
     end
 
     def find_product

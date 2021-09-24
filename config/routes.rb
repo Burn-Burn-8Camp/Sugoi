@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     resources :products, only: [] do
       collection do
         get 'list', to: 'stores#products_list'
+        patch 'list',to:'stores#update'
         get 'new', to: 'products#new'
+        patch 'new',to:'products#update'
       end
       member do
         get 'detail', to: 'stores#product_detail'

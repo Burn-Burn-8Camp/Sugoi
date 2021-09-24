@@ -45,6 +45,11 @@ class StoresController < ApplicationController
 		@order = current_store.orders.find_by_friendly_id!(params[:id])
 		@items = @order.order_items.includes(:store).where(store: current_store)
 	end
+
+	def destroy
+		@product.destroy if @product
+      	redirect_to list_store_products_path,notice: "刪除成功"
+	end
 	
 	private
 		def store_params

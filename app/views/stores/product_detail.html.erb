@@ -3,5 +3,10 @@
 <ul>
 	<li>商品名稱：<%= @product.name %></li>
 	<li>單價：<%= @product.price.to_i %></li>
-	<li>庫存：<%= @product.quantity %></li>
+	<li>庫存：<%= @product.quantity %></li>	
+	<li>商品：<%= @product.quantity %></li>		
+	<%= image_tag @product.image_url if @product.image_url.present? %> 
+	<li>商品照片：<%= @product.image %></li>	
 </ul>
+
+<%= link_to "刪除", product_path(@product), method: "delete", data: { confirm: "確認刪除" } %>
