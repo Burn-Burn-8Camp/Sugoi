@@ -4,12 +4,13 @@ import OrderItemsInfo from './order_items_info'
 import StarList from './star_list'
 import SellerCommentForm from './seller_comment_form'
 import BannerSlider from './banner_slider'
-
-
+import StorePage from './store_page'
 ReactOnRails.register({
 	BuyerCommentForm, 
 	OrderItemsInfo, 
 	StarList,
 	SellerCommentForm,
-	BannerSlider
+	BannerSlider,
+	StorePage,
+	PopUpScreen,
 });
