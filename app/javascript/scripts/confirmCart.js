@@ -45,7 +45,12 @@ document.addEventListener("turbolinks:load", () => {
     for(const deleteItemButton of deleteItemButtons) {
       deleteItemButton.addEventListener("click", (e) => {
         const productId = e.currentTarget.id
-        deleteItem(productId)      
+        deleteItem(productId)
+        cartItems.forEach( cartItem => {
+          if (Number(cartItem.dataset.id) === Number(productId)) {
+            cartItem.classList.add("hidden")       
+          }
+        })
       })
     }
 
@@ -58,12 +63,10 @@ document.addEventListener("turbolinks:load", () => {
         url: url,
         type: "post",
         data: params,
-        success: (product_id) => {
-          cartItems.forEach( cartItem => {
-            if (Number(cartItem.dataset.id) === product_id) {
-              cartItem.classList.add("hidden")       
-            }
-          })         
+        success: (data) => {
+          totalPrice.textContent = data.subtotal
+          delivery.textContent = data.total_delivery_fee
+          sum.textContent = data.subtotal + data.total_delivery_fee - Number(couponValue.value) 
         },
         error: function (err) {
           console.log(err);
