@@ -21,12 +21,19 @@ class CartsController < ApplicationController
     redirect_to product_path(params[:id]), notice: "已加至購物車"
   end
 
+  def delete_item
+    current_cart.items.select! { |item| item.product_id != params[:product_id].to_i }
+    session[:cart1289] = current_cart.serialize
+    # redirect_to cart_path, notice: "已刪除商品"
+    render json: params[:product_id]
+  end
+
   def destroy
     session[:cart1289] = nil
     redirect_to root_path, notice: "購物車已清除"
   end
 
-  def confirm 
+  def confirm
     current_cart.change_item_quantity(params[:product_id], params[:quantity])
     # render json: current_cart.items
     session[:cart1289] = current_cart.serialize
@@ -38,7 +45,7 @@ class CartsController < ApplicationController
     found_coupon
     @total = current_cart.use_coupon(params[:coupon_id], params[:value])
     session[:cart1289] = current_cart.serialize
-    render json: { total: @total, value: params[:value].to_i }
+    render json: { total: @total, value: params[:value] }
   end
   
   private

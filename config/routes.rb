@@ -39,9 +39,11 @@ Rails.application.routes.draw do
   resource :cart, only:[:show, :destroy] do
     collection do
       post :add_item, path:'add_item/:id'
+      post :delete_item, to: "carts#delete_item"
       get :checkout, to: 'orders#checkout'
       post :confirmation, to: 'carts#confirm'
       post :redeem, to: 'carts#redeem'
+      post :delete_item, to: 'carts#confirm'
     end
   end
 
