@@ -5,7 +5,6 @@ import "channels"
 import "styles"
 import "components"
 import "scripts"
-import "chartkick/chart.js"
 
 Rails.start()
 Turbolinks.start()
