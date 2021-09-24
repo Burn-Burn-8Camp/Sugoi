@@ -3,13 +3,20 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   mount_uploader :image, ImageUploader
   
-  validates_uniqueness_of :name
+  # validates_uniqueness_of :name
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2 ,:github]
   has_many :orders
   has_many :comments
   has_one :store
+  has_many :user_coupons
+  has_many :coupons, through: :user_coupons
+  
+  has_many :bookmarks
+  has_many :favorite_items, 
+            through: :bookmarks,
+            source: :product
   has_one_attached :image
 
   def self.create_from_provider_data(provider_data)

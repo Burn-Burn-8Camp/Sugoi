@@ -2,7 +2,14 @@ class ProductsController < ApplicationController
   before_action :find_product, only: [:show, :edit, :update, :destroy]
   
   def index
-    @pagy, @products = pagy(Product.all, items: 6)
+    # @pagy, @products = pagy(Product.where(deleted_at: nil), items: 6)
+    @products = Product.where(deleted_at: nil)
+    @foods = Product.where(category: 'food').limit(6)
+    @books = Product.where(category:'book').limit(6)
+    @movies = Product.where(category: 'movie').limit(6)
+    @animals = Product.where(category: 'animal').limit(6)
+    @dragonBalls = Product.where(category: 'dragonBall').limit(6)
+
   end
 
   def new
@@ -18,9 +25,11 @@ class ProductsController < ApplicationController
     end
   end
 
-  def show  
-    items = OrderItem.joins(:product, :comment).where(product_id: @product).select(:id)
-    @comments = items.map{ |item| item.comment }
+  def show
+    item = OrderItem.joins(:product, :comment).where(product_id: @product).select(:id)
+    users = item.map{ |i| i.comment.user}.reverse
+    @comments = item.map{ |i| i.comment }.reverse
+    @comments_with_users = @comments.zip(users)
   end
 
   def edit    
@@ -47,17 +56,27 @@ class ProductsController < ApplicationController
      end
   end
 
+  def favorite  
+    product = Product.find(params[:id])
+    if Bookmark.exists?(product: product) 
+      current_user.favorite_items.delete(product)
+      render json: { status: "removed", id: params[:id] }
+    else
+      current_user.favorite_items << product
+      render json: { status: "added", id: params[:id] }
+    end
+  end  
+
   private
     def product_params
       params.require(:product).permit(:name, :price, :quantity, :description, :category, :material, :manufacturing_method, :country, :content, :store_id)
     end
 
     def find_product
-      @product = Product.find(params[:id])
+      @product = Product.friendly.find(params[:id])
     end
 end
 
 
 
-
-
+  

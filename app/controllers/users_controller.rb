@@ -33,9 +33,11 @@ class UsersController < ApplicationController
   def buy_order
   end
 
+  def user_coupons
+    @coupons = current_user.user_coupons
+
   private
-  def user_params
-    params.require(:user).permit(:name, :email, :gender, :date, :country, :image)
-    params.require(:user).permit(:name, :email, :gender, :date, :country, :image, :self_about, :self_blog, :life_shopping, :life_design)
-  end
+    def user_params
+      params.require(:user).permit(:name, :email, :gender, :date, :country, :image, :self_about, :self_blog, :life_shopping, :life_design)
+    end
 end
