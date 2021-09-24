@@ -1,4 +1,4 @@
-<h1 class='text-4xl text-center'>商店頁面</h1>
+<!-- <h1 class='text-4xl text-center'>商店頁面</h1>
 <div class='grid grid-cols-4'>
 	<div class='col'>
 		<% if current_store %>
@@ -97,6 +97,7 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
 
+<%= react_component 'StorePage', props: {store: current_store}%>
 
