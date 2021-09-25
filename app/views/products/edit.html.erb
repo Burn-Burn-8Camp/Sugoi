@@ -1,36 +1,3 @@
 <h1>修改商品</h1>
-
-<%= form_for(@product) do |f| %>
-
-<%= f.label :name, "商品名稱" %>
-<%= f.text_field :name %> <br />
-
-<%= f.label :price, "商品價錢" %>
-<%= f.text_field :price %> <br />
-
-<%= f.label :quantity, "商品數量" %>
-<%= f.text_field :quantity %> <br />
-
-<%= f.label :description, "商品描述" %>
-<%= f.text_field :description %> <br />
-
-<%= f.label :category, "商品類別" %>
-<%= f.text_field :category %> <br />
-
-<%= f.label :material, "商品材料" %>
-<%= f.text_field :material %> <br />
-
-<%= f.label :manufacturing_method, "製造方法" %>
-<%= f.text_field :manufacturing_method %> <br />
-
-<%= f.label :country, "國家" %>
-<%= f.text_field :country %><br />
-
-<%= f.label :content, "內容" %>
-<%= f.text_field :content %><br />
-
-<%= f.submit %>
-
-<% end %>
-<br />
-<%= link_to "返回商品列表",products_path %>
+<%= render 'product_form', product: @product %>
+<%= link_to "返回商品列表", products_path %>

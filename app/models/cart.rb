@@ -1,8 +1,9 @@
 class Cart
-  attr_reader :items
+  attr_reader :items, :coupon
 
-  def initialize(items = [])
+  def initialize(items = [], coupon = [])
     @items = items
+    @coupon = coupon
   end
 
   def add_item(product_id, name, store_id, store_name, price)
@@ -31,7 +32,7 @@ class Cart
     @store_items.count
   end
 
-  def total_included_delivery_fee   
+  def total_included_delivery_fee
     total = @items.reduce(0) { |acc, item| acc + item.total }
     is_children_day? ? total * 0.8 : total
     delivery_fee = Product.deliveries["貨運 NT$100"] * store_amount
@@ -39,10 +40,16 @@ class Cart
   end
 
   def change_item_quantity(product_id, quantity)
-    found_item = @items.find { |item| item.product_id === product_id }
+    found_item = @items.find { |item| item.product_id === product_id.to_i }
     if found_item
       found_item.changement!(quantity)
     end
+  end
+
+  def use_coupon(coupon_id, coupon_value)
+    @coupon = []
+    @coupon << CartCoupon.new(coupon_id, coupon_value)
+    total_included_delivery_fee = self.total_included_delivery_fee - coupon_value.to_i   
   end
   
   def empty?
@@ -53,7 +60,10 @@ class Cart
     t = @items.map { |item|
       { "product_id" => item.product_id, "name" => item.name, "store_id" => item.store_id, "store" => item.store_name, "price" => item.price, "quantity" => item.quantity }
     }
-    { "items" => t }
+    c = @coupon.map { |coupon|
+      { "coupon_id" => coupon.coupon_id, "coupon_value" => coupon.coupon_value}
+    }
+    { "items" => t, "coupon" => c }
   end
 
   def self.from_hash(hash)
@@ -61,7 +71,12 @@ class Cart
       items = hash["items"].map { |item|
         CartItem.new(item["product_id"], item["name"], item["store_id"], item["store"], item["price"], item["quantity"])
       }
-      Cart.new(items)
+      if hash && hash["coupon"]
+        coupon = hash["coupon"].map { |coupon|
+          CartCoupon.new(coupon["coupon_id"], coupon["coupon_value"])
+        }
+      end
+      Cart.new(items, coupon)
     else
       Cart.new
     end

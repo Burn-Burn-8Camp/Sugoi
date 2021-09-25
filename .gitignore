@@ -35,9 +35,6 @@
 yarn-debug.log*
 .yarn-integrity
 
-# Ignore application configuration
+Ignore application configuration
 /config/application.yml
 /config/email.yml
-
-# Ignore application configuration
-/config/application.yml
