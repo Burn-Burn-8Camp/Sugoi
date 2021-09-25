@@ -6,6 +6,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fas);
 
 const Navbar = ({webUser}) => {
+  const userDefault = {
+    id: '訪客',
+    email: '電子信箱',
+    imageUrl:
+    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+  }
+  webUser ? webUser : webUser = userDefault
   const user = {
     name: `${webUser.id}`,
     email: `${webUser.email}`,
@@ -19,17 +26,58 @@ const Navbar = ({webUser}) => {
     { name: '品味美食', href: '#', current: false },
     { name: '餐桌廚房', href: '#', current: false },
   ]
-  const userNavigation = [
+  const userWithLogIn = [
     { name: '個人檔案', href: '/member/profile', method: 'get' },
     { name: '我的最愛', href: '#', method: 'get' },
     { name: '優惠卷', href: '#', method: 'get' },
     { name: '我的訂單', href: '/orders', method: 'get' },
     { name: '登入', href: '/users/sign_in', method: 'get' },
+  ]
+  const userWithLogOut = [
+    { name: '個人檔案', href: '/member/profile', method: 'get' },
+    { name: '我的最愛', href: '#', method: 'get' },
+    { name: '優惠卷', href: '#', method: 'get' },
+    { name: '我的訂單', href: '/orders', method: 'get' },
     { name: '登出', href: '/users/sign_out', method: 'delete' },
   ]
 
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
+  }
+
+  const UserNav = ({data}) => {
+    return (
+      data.map((item) => (
+        <Menu.Item key={item.name}>
+          {({ active }) => (
+            <a
+              href={item.href}
+              className={classNames(
+                active ? 'bg-gray-100' : '',
+                'block py-2 px-4 text-sm text-gray-700'
+              )}
+              data-method={item.method}
+            >
+              {item.name}
+            </a>
+          )}
+        </Menu.Item>
+      ))
+    )
+  }
+
+  const UserNavigation = ({data}) => {
+    return (
+      data.map((item) => (
+        <a
+          key={item.name}
+          href={item.href}
+          className="block rounded-md py-2 px-3 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+        >
+          {item.name}
+        </a>
+      ))
+    )
   }
 
   return (
@@ -87,7 +135,7 @@ const Navbar = ({webUser}) => {
                   <div>
                     <Menu.Button className="bg-white rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                       <span className="sr-only">Open user menu</span>
-                      <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+                        <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" /> 
                     </Menu.Button>
                   </div>
                   <Transition
@@ -100,22 +148,7 @@ const Navbar = ({webUser}) => {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 py-1 focus:outline-none">
-                      {userNavigation.map((item) => (
-                        <Menu.Item key={item.name}>
-                          {({ active }) => (
-                            <a
-                              href={item.href}
-                              className={classNames(
-                                active ? 'bg-gray-100' : '',
-                                'block py-2 px-4 text-sm text-gray-700'
-                              )}
-                              data-method={item.method}
-                            >
-                              {item.name}
-                            </a>
-                          )}
-                        </Menu.Item>
-                      ))}
+                      { webUser.id != '訪客' ? <UserNav data={userWithLogOut} /> : <UserNav data={userWithLogIn} /> }
                     </Menu.Items>
                   </Transition>
                 </Menu>
@@ -141,18 +174,18 @@ const Navbar = ({webUser}) => {
             </div>
             <nav className="hidden lg:py-2 lg:flex lg:space-x-8" aria-label="Global">
               {navigation.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className={classNames(
-                    item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:bg-gray-50 hover:text-gray-900',
-                    'rounded-md py-2 px-3 inline-flex items-center text-sm font-medium'
-                  )}
-                  aria-current={item.current ? 'page' : undefined}
-                >
-                  {item.name}
-                </a>
-              ))}
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className={classNames(
+                      item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-900 hover:bg-gray-50 hover:text-gray-900',
+                      'rounded-md py-2 px-3 inline-flex items-center text-sm font-medium'
+                    )}
+                    aria-current={item.current ? 'page' : undefined}
+                  >
+                    {item.name}
+                  </a>
+                ))}
             </nav>
           </div>
 
@@ -175,7 +208,7 @@ const Navbar = ({webUser}) => {
             <div className="border-t border-gray-200 pt-4 pb-3">
               <div className="px-4 flex items-center">
                 <div className="flex-shrink-0">
-                  <img className="h-10 w-10 rounded-full" src={user.imageUrl} alt="" />
+                  <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
                 </div>
                 <div className="ml-3">
                   <div className="text-base font-medium text-gray-800">{user.name}</div>
@@ -201,15 +234,7 @@ const Navbar = ({webUser}) => {
                 </button>
               </div>
               <div className="mt-3 px-2 space-y-1">
-                {userNavigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className="block rounded-md py-2 px-3 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
-                  >
-                    {item.name}
-                  </a>
-                ))}
+                { webUser.id != '訪客' ? <UserNavigation data={userWithLogOut} /> : <UserNavigation data={userWithLogIn} /> }
               </div>
             </div>
           </Disclosure.Panel>
