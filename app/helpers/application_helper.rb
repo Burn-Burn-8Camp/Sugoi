@@ -62,5 +62,4 @@ module ApplicationHelper
     @store_items.count
   end
 
-
 end
