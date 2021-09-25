@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
     items = OrderItem.joins(:product, :comment).where(product_id: @product).select(:id)
     @comments = items.map{ |item| item.comment }
     
-    @products = Product.find(params[:id])
+    @products = Product.friendly.find(params[:id])
     item = OrderItem.joins(:product, :comment).where(product_id: @product).select(:id)
     users = item.map{ |i| i.comment.user}.reverse
     @comments = item.map{ |i| i.comment }.reverse
@@ -63,7 +63,7 @@ class ProductsController < ApplicationController
   end
 
   def favorite  
-    product = Product.find(params[:id])
+    product = Product.friendl.find(params[:id])
     if Bookmark.exists?(product: product) 
       current_user.favorite_items.delete(product)
       render json: { status: "removed", id: params[:id] }
@@ -71,7 +71,7 @@ class ProductsController < ApplicationController
       current_user.favorite_items << product
       render json: { status: "added", id: params[:id] }
     end
-  end  
+  end
 
   private
     def product_params

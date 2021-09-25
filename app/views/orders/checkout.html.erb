@@ -1,118 +1,200 @@
-<div class='xl:container m-auto px-5'>
-	<div class="breadcrumbs m-2.5">
-		<ul>
-			<%= link_to cart_path do %>
-			<li class='text-blue-400 text-lg'> 返回購物車</li>
-			<% end %>
-		</ul>
-	</div>
 
-	<% @store_items.each do |item_arr| %>
-	<div class="border mb-4">
-		<h2 class="mx-4 my-3"><%= item_arr[0].store.name %></h2>
-		<hr>
-		<div class="grid grid-cols-1 lg:grid-cols-2">
-			<div class="col p-4">
-				<% item_arr.each do |item| %>
-					<div class="grid grid-cols-4 pb-4 md:grid-cols-5 lg:grid-cols-6">
-						<div class='mr-3'>
-							<img src="http://fakeimg.pl/100x100/ecf0f1/" alt="product_img">
-						</div>
-						<div class="col-span-3 md:col-span-4 lg:col-span-5">
-							<h3><%= item.name %></h3>
+
+<div class="bg-white">
+	<main class="lg:min-h-screen lg:overflow-hidden lg:flex lg:flex-row-reverse">
+			<!-- Mobile order summary -->
+		<section aria-labelledby="order-heading" class="bg-gray-50 px-4 py-6 sm:px-6 lg:hidden">
+			<div	div class="max-w-lg mx-auto">
+				<div class="breadcrumbs">
+					<ul class='my-0 px-0'>
+						<%= link_to cart_path do %>
+						<li class='text-blue-400 text-lg'>< 返回購物車</li>
+						<% end %>
+					</ul>
+				</div>
+				<div id="disclosure-1">
+					<% @store_items.each do |item_arr| %>
+						<h2 class="py-6 border-b"><%= item_arr[0].store.name %></h2>
+						<ul role="list" class="divide-y divide-gray-200 border-gray-200">
+							<% item_arr.each do |item| %>
+								<li class="flex py-6 space-x-6">
+									<img src="https://tailwindui.com/img/ecommerce-images/checkout-page-04-product-01.jpg"
+												alt="Moss green canvas compact backpack with double top zipper, zipper front pouch, and matching carry handle and backpack straps."
+												class="flex-none w-40 h-40 object-center object-cover bg-gray-200 rounded-md">
+									<div class="flex flex-col justify-between space-y-4">
+										<div class="text-sm font-medium space-y-1">
+											<h3 class="text-gray-900"><%= item.name %></h3>
+											<p class="text-gray-900">NT$ <%= item.price.to_i %></p>
+											<p class="text-gray-500">x <%= item.quantity %></p>
+										</div>
+									</div>
+								</li>
+							<% end %>
+						</ul>
+						<dl class="text-sm font-medium text-gray-500 mt-10 space-y-6 pb-5 border-b">
 							<div class="flex justify-between">
-								<p>x <%= item.quantity %></p>
-								<p>NT$ <%= item.price.to_i %></p>
+								<dt>單館小計</dt>
+								<dd class="text-gray-900">NT$ <%= store_item_total(item_arr) %></dd>
+							</div>
+							<div class="flex justify-between">
+								<dt>運費</dt>
+								<dd class="text-gray-900">NT$ <%= delivery_fee %></dd>
+							</div>
+						</dl>
+					<% end %>
+
+
+					<dl class="text-sm font-medium text-gray-500 mt-10 space-y-6">
+						<div class="flex justify-between">
+							<dt>全館小計</dt>
+							<dd class="text-gray-900">NT$ <%= current_cart.total %></dd>
+						</div>
+						<div class="flex justify-between">
+							<dt class="flex">
+								優惠券折扣
+							</dt>
+							<dd class="text-gray-900">NT$</dd>
+						</div>
+						<div class="flex justify-between">
+							<dt class="flex">
+								會員折扣
+							</dt>
+							<dd class="text-gray-900">NT$</dd>
+						</div>
+						<div class="flex justify-between">
+							<dt>運費</dt>
+							<dd class="text-gray-900">NT$ <%= total_delivery_fee %></dd>
+						</div>
+					</dl>
+				</div>
+				<p
+					class="flex items-center justify-between text-sm font-medium text-gray-900 border-t border-gray-200 pt-6 mt-6">
+					<span class="text-base">總計</span>
+					<span class="text-base">NT$ <%= current_cart.total_included_delivery_fee %></span>
+				</p>
+			</div>
+		</section>
+
+			<!-- Order summary -->
+		<section aria-labelledby="summary-heading" class="hidden bg-gray-50 w-full max-w-xl flex-col lg:flex">
+			<% @store_items.each do |item_arr| %>
+				<h2 class="m-6 border-b"><%= item_arr[0].store.name %></h2>
+					<ul role="list" class="flex-auto overflow-y-auto divide-y divide-gray-200 px-6">
+					<% item_arr.each do |item| %>
+						<li class="flex py-6 space-x-6">
+							<img src="https://tailwindui.com/img/ecommerce-images/checkout-page-04-product-01.jpg"
+										alt="Moss green canvas compact backpack with double top zipper, zipper front pouch, and matching carry handle and backpack straps."
+										class="flex-none w-40 h-40 object-center object-cover bg-gray-200 rounded-md">
+							<div class="flex flex-col justify-between space-y-4">
+								<div class="text-sm font-medium space-y-1">
+									<h3 class="text-gray-900"><%= item.name %></h3>
+									<p class="text-gray-900">NT$ <%= item.price.to_i %></p>
+									<p class="text-gray-500">x <%= item.quantity %></p>
+								</div>
+							</div>
+						</li>
+					<% end %>
+				</ul>
+				<dl class="text-sm font-medium text-gray-500 mt-10 space-y-6 pb-5 m-6">
+					<div class="flex justify-between">
+						<dt>單館小計</dt>
+						<dd class="text-gray-900">NT$ <%= store_item_total(item_arr) %></dd>
+					</div>
+					<div class="flex justify-between">
+						<dt>運費</dt>
+						<dd class="text-gray-900">NT$ <%= delivery_fee %></dd>
+					</div>
+				</dl>
+			<% end %>
+
+			<div class="sticky bottom-0 flex-none bg-gray-50 border-t border-gray-200 p-6">
+				<dl class="text-sm font-medium text-gray-500 mt-10 space-y-6">
+					<div class="flex justify-between">
+						<dt>全館小計</dt>
+						<dd class="text-gray-900">NT$ <%= current_cart.total %></dd>
+					</div>
+					<div class="flex justify-between">
+						<dt class="flex">
+							優惠券折扣
+						</dt>
+						<dd class="text-gray-900">NT$</dd>
+					</div>
+					<div class="flex justify-between">
+						<dt class="flex">
+							會員折扣
+						</dt>
+						<dd class="text-gray-900">NT$</dd>
+					</div>
+					<div class="flex justify-between">
+						<dt>運費</dt>
+						<dd class="text-gray-900">NT$ <%= total_delivery_fee %></dd>
+					</div>
+				</dl>
+			</div>
+		</section>
+
+			<!-- Checkout form -->
+		<section aria-labelledby="payment-heading"
+							class="flex-auto overflow-y-auto px-4 pt-12 pb-16 sm:px-6 sm:pt-16 lg:px-8 lg:pt-0 lg:pb-24">
+			<div class="max-w-lg mx-auto">
+				<div class="breadcrumbs hidden md:block">
+					<ul class='my-0 px-0'>
+						<%= link_to cart_path do %>
+						<li class='text-blue-400 text-lg'>< 返回購物車</li>
+						<% end %>
+					</ul>
+				</div>
+				<%= form_for @order, html: {class: 'mt-6'} do |f| %>
+					<h3 class='text-xl font-bold pb-5'>填寫收件人資訊</h3>
+					<div class="grid grid-cols-12 gap-y-6 gap-x-4">
+						<div class="col-span-full">
+							<%= f.label :email, "電子信箱", class: "block text-sm font-medium text-gray-700" %>
+							<div class="mt-1">
+								<%= f.email_field :email, class: 'class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm', autocomplete: "email" %>
+							</div>
+						</div>
+						<div class="col-span-full">
+							<%= f.label :recceiver, "收件人姓名", class: "block text-sm font-medium text-gray-700" %>
+							<div class="mt-1">
+								<%= f.text_field :receiver,
+										class: "block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+							</div>
+						</div>
+						<div class="col-span-full">
+							<%= f.label :tel, "收件人手機", class: "block text-sm font-medium text-gray-700" %>
+							<div class="mt-1">
+								<%= f.telephone_field :tel,
+										class: "block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+							</div>
+						</div>
+						<div class="col-span-full">
+							<%= f.label :address, "收件人地址", class: "block text-sm font-medium text-gray-700" %>
+							<div class="mt-1">
+								<%= f.text_field :address, autocomplete: "street-address",
+										class: "block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+							</div>
+						</div>
+						<div class="col-span-full">
+							<%= f.label :delivery, "運送方式", class: "block text-sm font-medium text-gray-700" %>
+							<div class="mt-1">
+								<%= f.select :delivery, class: "block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" do %>
+									<%= content_tag(:option, '貨運') %>
+								<% end %>
+							</div>
+						</div>
+						<div class="col-span-full">
+							<%= f.label :message, "給設計師的訊息或注意事項", class: "block text-sm font-medium text-gray-700" %>
+							<div class="mt-1">
+								<%= f.text_area :message, class: 'w-full textarea textarea-bordered', size: "20x5", placeholder: '若你的訂單商品或是體驗活動需要提供客製化細節，請務必於下單時，填寫顏色、尺寸、圖案款式、客製文字等規格' %>
 							</div>
 						</div>
 					</div>
+					<%= f.submit '建立訂單', class: "w-full mt-6 bg-indigo-600 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
 				<% end %>
-				<hr>
-				<div class='flex flex-row-reverse py-5'>
-					<p class="text-right pl-5">NT$ <%= store_item_total(item_arr) %></p>
-					<p class="text-right pl-5">商品小計</p>
-				</div>
-				<div class='flex flex-row-reverse pb-5'>
-					<p class="text-right pl-5">NT$ <%= delivery_fee %></p>
-					<p class="text-right pl-5">運費</p>
-				</div>
+				<p class="flex justify-center text-sm font-medium text-gray-500 mt-6">
+					<i class="fas fa-lock mr-2"></i>我們有信用卡結帳與銀行轉帳兩種方式
+				</p>
 			</div>
-			<div class="col p-4">
-				<div class="col bg-gray-100 p-6">
-					<h3 class="pb-3">商店資訊</h3>
-					<p class="pb-3">設計館自行提供發票/收據，開立後將寄至購買人地址</p>
-				</div>
-			</div>
-		</div>
-	</div>
-	<% end %>
-
-	<div class='border'>
-		<div class='bg-gray-100 p-4'>
-			<h3>請選擇付款方式</h3>
-			<p><i class="fas fa-lock mr-2"></i>我們有信用卡結帳與銀行轉帳兩種方式</p>
-		</div>
-
-		<div class='bg-red-200 p-3'>
-			<p><i class="fas fa-tags mr-2"></i>刷卡滿 NT$1500 即享分期 0 利率！</p>
-		</div>
-
-		<div class="grid grid-cols-1 lg:grid-cols-2">
-			<div class="col p-4">
-				<div class='flex justify-between'>
-					<p>商品總計：</p>
-					<p><%= current_cart.total %></p>
-				</div>
-				<div class='flex justify-between'>
-					<p>商品折抵:</p>
-					<p><%= coupon_value %></p>
-				</div>
-				<div class='flex justify-between'>
-					<p>運費總計:</p>
-					<p><%= total_delivery_fee %></p>
-				</div>
-				<div class='flex justify-between'>
-					<p>結帳總金額：</p>
-					<p><%= shopping_cart_sum %></p>
-				</div>
-			</div>
-
-			<div class='col p-4'>
-				<div class='bg-gray-100 h-full flex justify-center'>
-					<%= form_for @order, html: {class: 'my-5'} do |f| %>
-					<h3 class='text-xl font-bold'>填寫收件人資訊</h3>
-					<div>
-						<%= f.label :recceiver, "收件人姓名：" %>
-						<%= f.text_field :receiver, class: 'w-full my-2' %>
-					</div>
-					<div>
-						<%= f.label :tel, "收件人手機：" %>
-						<%= f.telephone_field :tel, class: 'w-full my-2' %>
-					</div>
-					<div>
-						<%= f.label :email, "購買人電子信箱：" %>
-						<%= f.email_field :email, class: 'w-full my-2' %>
-					</div>
-					<div>
-						<%= f.label :address, "收件人地址：" %>
-						<%= f.text_field :address, class: 'w-full my-2' %>
-					</div>
-					<div class='my-2'>
-						<%= f.label :delivery, "運送方式：" %>
-						<%= f.select :delivery, class: 'select select-bordered' do %>
-							<%= content_tag(:option, '貨運') %>
-						<% end %>
-					</div>
-					<div>
-						<%= f.label :message, "給設計師的訊息或注意事項" %>
-						<%= f.text_area :message, class: 'w-full textarea textarea-bordered', size: "20x5", placeholder: '若你的訂單商品或是體驗活動需要提供客製化細節，請務必於下單時，填寫顏色、尺寸、圖案款式、客製文字等規格' %>
-					</div>
-					<div>
-						<%= f.submit '建立訂單', class: 'btn btn-primary' %>
-					</div>
-					<% end %>
-				</div>
-			</div>
-		</div>
-	</div>
+		</section>
+	</main>
 </div>
