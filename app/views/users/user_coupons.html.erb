@@ -1,0 +1,8 @@
+<% @coupons.each do |coupon| %> 
+  <div>
+    <%= coupon.coupon.name %>
+    <%= coupon.coupon.value %>
+    <%= coupon.coupon.description %>
+    <%= coupon.status %>
+  </div>
+<% end %>

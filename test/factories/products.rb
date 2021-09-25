@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :product do
-    store_id {Faker::Number.within(range: 1..3)}
+    store_id { Faker::Number.within(range: 1..3) }
     name { Faker::Food.dish }
     price { Faker::Number.within(range: 100..1000) }
     quantity { Faker::Number.within(range: 1..50) }

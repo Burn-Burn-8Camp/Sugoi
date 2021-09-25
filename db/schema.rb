@@ -63,6 +63,25 @@ ActiveRecord::Schema.define(version: 2021_09_24_043005) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "coupons", force: :cascade do |t|
+    t.string "name"
+    t.float "value"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id", null: false
@@ -99,8 +118,10 @@ ActiveRecord::Schema.define(version: 2021_09_24_043005) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "total"
     t.string "state"
-    t.string "friendly_id"
-    t.index ["friendly_id"], name: "index_orders_on_friendly_id", unique: true
+    t.string "coupon_name", default: "未使用"
+    t.string "slug"
+    t.text "message"
+    t.index ["slug"], name: "index_orders_on_slug", unique: true
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -116,6 +137,10 @@ ActiveRecord::Schema.define(version: 2021_09_24_043005) do
     t.bigint "store_id"
     t.integer "delivery"
     t.string "image"
+    t.datetime "deleted_at"
+    t.string "slug"
+    t.index ["deleted_at"], name: "index_products_on_deleted_at"
+    t.index ["slug"], name: "index_products_on_slug", unique: true
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
@@ -125,11 +150,23 @@ ActiveRecord::Schema.define(version: 2021_09_24_043005) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "seller_comments", force: :cascade do |t|
+    t.bigint "store_id", null: false
+    t.bigint "order_id", null: false
+    t.integer "rate"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_seller_comments_on_order_id"
+    t.index ["store_id"], name: "index_seller_comments_on_store_id"
+  end
+
   create_table "store_orders", force: :cascade do |t|
     t.bigint "store_id", null: false
     t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "shipment_confirm", default: false
     t.index ["order_id"], name: "index_store_orders_on_order_id"
     t.index ["store_id"], name: "index_store_orders_on_store_id"
   end
@@ -141,6 +178,16 @@ ActiveRecord::Schema.define(version: 2021_09_24_043005) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_stores_on_user_id"
+  end
+
+  create_table "user_coupons", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "coupon_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
+    t.index ["coupon_id"], name: "index_user_coupons_on_coupon_id"
+    t.index ["user_id"], name: "index_user_coupons_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -187,6 +234,10 @@ ActiveRecord::Schema.define(version: 2021_09_24_043005) do
   add_foreign_key "messages", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "seller_comments", "orders"
+  add_foreign_key "seller_comments", "stores"
   add_foreign_key "store_orders", "orders"
   add_foreign_key "store_orders", "stores"
+  add_foreign_key "user_coupons", "coupons"
+  add_foreign_key "user_coupons", "users"
 end

@@ -5,10 +5,7 @@
     <div class='' style=''>
       <%= image_tag "#{current_user.image_url}" if current_user.image_url.present? %>
     </div> 
-    <div class="">
-      <%= f.label :image, "上載商品照片" %><br />
-      <%= f.file_field :image %>   
-    </div> <br />
+    
 
     <div class="card-body">
       <h2 class="card-title">品名:<%= link_to product.name,product_path(product) %>

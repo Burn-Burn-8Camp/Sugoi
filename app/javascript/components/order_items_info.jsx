@@ -1,27 +1,25 @@
 import React, { useState } from 'react'
 import Rails from '@rails/ujs'
-import PopUpScreen from './pop_up_screen'
-import RateStar from './star_rate'
+import BuyerCommentForm from './buyer_comment_form'
+import StarList from './star_list'
 
-const StarList = ({ rate }) => {
-	const starIndex = [1, 2, 3, 4, 5]
+const Store = ({storeName}) => {
 	return (
-		starIndex.map((star, index) => {
-			const starStyle = index < rate ? 'text-yellow-400 text-xl' : 'text-gray-200 text-xl'
-			return <RateStar key={star} starStyle={starStyle} />
-		})
+		<>
+			<h3 className='mt-2'>{storeName}</h3>
+		</>
 	)
-}
+} 
 
-const OrderItem = ({ itemId, name, quantity, price, orderId, rate }) => {
+const OrderItem = ({ itemId, name, quantity, price, orderId, rate, content }) => {
 	return (
 		<div className="grid grid-cols-5 my-5">
 			<div className="col pr-3">
 				<img src="http://fakeimg.pl/100x100/ecf0f1/" alt="product_img" />
 			</div>
 			<div className='col-span-2'>
-				<span className='block'>{name}</span>				
-				{ rate == 0 ? <PopUpScreen itemId={itemId} orderId={orderId}/> : <StarList rate={rate} /> }
+				<span className='block pb-3'>{name}</span>
+				{rate == 0 ? <BuyerCommentForm itemId={itemId} orderId={orderId}/> : <StarList rate={rate} content={content} />}
 			</div>
 			<div className="col text-right">x {quantity}</div>
 			<div className="col text-right">NT$ {parseInt(price)}</div>
@@ -29,13 +27,12 @@ const OrderItem = ({ itemId, name, quantity, price, orderId, rate }) => {
 	)
 }
 
-const OrderItemsInfo = () => {
-	const[items, setItems] = React.useState([])
+const OrderItemsInfo = ({ order_id }) => {
+	const [storeItems, setStoreItems] = React.useState([])
 	const orderUrl = window.location.pathname
-	const orderId = document.querySelector("#order_id")
 	
 	let params = new URLSearchParams()
-	params.append('order_id', orderId.dataset.id)
+	params.append('order_id', order_id)
 
 	React.useEffect(() => {
 		Rails.ajax({
@@ -43,7 +40,7 @@ const OrderItemsInfo = () => {
 			type: 'post',
 			data: params,
 			success:  (res) => {
-				setItems(res)
+				setStoreItems(res)
 			},
 			error: function(err) {
 				console.log(err);
@@ -52,22 +49,33 @@ const OrderItemsInfo = () => {
 	}, [])
 
 	return (
-		<div>
+		<>
 			{
-			items.map((item) => {
+			storeItems.map((item_arr, index) => {
 				return (
-					<OrderItem
-					key={item.id}
-					itemId={item.id}
-					orderId={orderId.dataset.id}
-					name={item.name}
-					quantity={item.quantity}
-					price={item.price}
-					rate={item.rate} />	
+					<div key={index}>
+						<Store
+						storeName={item_arr.store_name} />
+						{
+							item_arr.items.map((item, index) => {
+								return (
+									<OrderItem
+									key={index}
+									itemId={item.id}
+									orderId={order_id}
+									name={item.name}
+									quantity={item.quantity}
+									price={item.price}
+									rate={item.rate}
+									content={item.content} />
+								)
+							})
+						}
+					</div>
 				)
 			})
 			}
-		</div>
+		</>
 	)
 }
 
