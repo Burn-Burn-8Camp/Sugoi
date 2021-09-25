@@ -10,7 +10,6 @@ class PaymentsController < ApplicationController
 			redirect_to orders_path
 		end
 	end
-
 	def notify_response
 		check_response(return_params(params))
 	end

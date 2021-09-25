@@ -41,7 +41,6 @@ class Order < ApplicationRecord
     def paddingZero(num, digits)
       (("0" * digits) + num.to_s).last(digits)
     end
-
     def order_num_generator
       today = Time.now
       serial = today.strftime("%Y%m%d")

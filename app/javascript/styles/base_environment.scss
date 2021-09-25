@@ -17,7 +17,8 @@
 	}
 
 	// list
-	ol, ul {
+	ol,
+	ul {
 		@apply my-4 pl-3 list-inside;
 	}
 	ol {
@@ -27,7 +28,7 @@
 		@apply list-none;
 	}
 
-	// table 
+	// table
 	table {
 		@apply table border-separate border-gray-200 align-middle text-left bg-gray-200 rounded;
 
@@ -51,21 +52,22 @@
 	// Images
 	figure {
 		@apply inline-block;
-	
-			img {
+
+		img {
 			@apply block w-full;
-			}
-	
-			figcaption {
+		}
+
+		figcaption {
 			@apply block p-3 text-center text-sm;
-			}
+		}
 	}
 }
 
-input[type=checkbox]:checked~.collapse-title, input[type=checkbox]:checked~.collapse-content {
+input[type='checkbox']:checked ~ .collapse-title,
+input[type='checkbox']:checked ~ .collapse-content {
 	background-color: rgba(252, 165, 165, var(--tw-bg-opacity)) !important;
 }
 
-input[type=checkbox]~.collapse-title:focus {
+input[type='checkbox'] ~ .collapse-title:focus {
 	background-color: rgba(252, 165, 165, var(--tw-bg-opacity)) !important;
 }

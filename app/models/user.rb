@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :orders
   has_many :comments
   has_one :store
+  has_many :user_coupons
+  has_many :coupons, through: :user_coupons
+  
   has_many :bookmarks
   has_many :favorite_items, 
             through: :bookmarks,

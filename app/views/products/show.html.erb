@@ -1,32 +1,134 @@
-<div class="xl:container m-auto">
-  <div class="px-4 xl:px-0">
-    <h1>商品副頁面</h1>
-    <div class="flex justify-start">購物車 <%= cart_items_amount %></div>
-    <%= link_to "清空購物車", cart_path, method: "delete" %>
-    
-    <section>
-      <div class="flex">
-          <div class="border-2 p-3 m-auto" style="width: 18rem;">
-            <img class="m-auto" src="https://picsum.photos/200/200/?=1">
-            <div class="card-body">
-              <% if current_user %>
-              <%= check_favorite_item(@favorite_items) %>
-              <% else %>
-              <%= link_to '請先登入來收藏商品', new_session_path(:user) %>
-              <% end %>
-              <h3 class="card-title" id="productId" data-id=<%=@product.id%>>商品名稱：<%= @product.name %></h3>
-              <p class="card-text text-xl">價錢：<%= @product.price.to_i %></p>
-              <%= link_to add_item_cart_path(@product), method: "post" do %>
-                <p class="btn btn-success mb-2">加入購物車</p>
-              <% end %>
-              <%= link_to cart_path do %>
-                <p class="btn btn-primary white">立刻結帳</p>
-              <% end %>
-            </div>
+<div class="bg-white">
+  <div class="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+    <div class="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
+      <div class="flex flex-col-reverse">
+        <div class="hidden mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
+          <div class="grid grid-cols-4 gap-6" aria-orientation="horizontal" role="tablist">
+            <button id="tabs-1-tab-1" class="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50" aria-controls="tabs-1-panel-1" role="tab" type="button">
+              <span class="absolute inset-0 rounded-md overflow-hidden">
+                <img src="https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg" alt="" class="w-full h-full object-center object-cover">
+              </span>
+              <span class="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none" aria-hidden="true"></span>
+            </button>
+        
+            <button id="tabs-1-tab-1" class="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50" aria-controls="tabs-1-panel-1" role="tab" type="button">
+              <span class="sr-only">
+              Angled 
+              </span>
+              <span class="absolute inset-0 rounded-md overflow-hidden">
+                <img src="https://picsum.photos/500/400?random=1" alt="" class="w-full h-full object-center object-cover">
+              </span>
+              <span class="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none" aria-hidden="true"></span>
+            </button>
+
+            <button id="tabs-1-tab-1" class="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50" aria-controls="tabs-1-panel-1" role="tab" type="button">
+              <span class="sr-only">
+                Angled view
+              </span>
+              <span class="absolute inset-0 rounded-md overflow-hidden">
+                <img src="https://picsum.photos/500/400?random=2" alt="" class="w-full h-full object-center object-cover">
+              </span>
+              <span class="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none" aria-hidden="true"></span>
+            </button>
+            <button id="tabs-1-tab-1" class="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50" aria-controls="tabs-1-panel-1" role="tab" type="button">
+              <span class="sr-only">
+                Angled view
+              </span>
+              <span class="absolute inset-0 rounded-md overflow-hidden">
+                <img src="https://picsum.photos/500/400?random=3" alt="" class="w-full h-full object-center object-cover">
+              </span>
+              <span class="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none" aria-hidden="true"></span>
+            </button>
           </div>
+        </div>
+
+        <div class="w-full aspect-w-1 aspect-h-1">
+          <div id="tabs-1-panel-1" aria-labelledby="tabs-1-tab-1" role="tabpanel" tabindex="0">
+            <img src="https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg" alt="Angled front view with bag zipped and handles upright." class="w-full h-full object-center object-cover sm:rounded-lg">
+          </div>
+        </div>
       </div>
-    </section>
+
+      <div class="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
+        <h1 class="text-3xl font-extrabold tracking-tight text-gray-900"><%= @product.name%></h1>
+        <div class="mt-3">
+          <h2 class="sr-only">Product information</h2>
+          <p class="text-3xl font-extrabold tracking-tight text-gray-900">NT$ <%= @product.price.to_i %></p>
+        </div>
+        <div class="mt-3">
+          <h3 class="sr-only">Reviews</h3>
+          <div class="flex items-center">
+            <div class="flex items-center">
+              <svg class="h-5 w-5 flex-shrink-0 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+
+              <svg class="h-5 w-5 flex-shrink-0 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+
+              <svg class="h-5 w-5 flex-shrink-0 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+
+              <svg class="h-5 w-5 flex-shrink-0 text-indigo-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+
+              <svg class="h-5 w-5 flex-shrink-0 text-gray-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+              </svg>
+            </div>
+            <p class="sr-only">4 out of 5 stars</p>
+          </div>
+        </div>
+
+        <div class="mt-6">
+          <h3 class="sr-only">Description</h3>
+        <form class=" mt-10 ">
+          
+          <%= link_to add_item_cart_path(@product), method: "post" do %>
+          <button type="submit" class="max-w-xs flex-1 bg-red-300 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full m-2">
+          放入購物車</button>
+          <% end %>
+            
+          <%= link_to cart_path do %>
+          <button type="submit" class="max-w-xs flex-1 bg-red-300 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50  sm:w-full m-2">
+          立即結帳</button>
+          <% end %>
+                <div>
+                  <button type="button" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform ">
+                    <i class="far fa-heart"></i>
+                  </button>
+                  <button type="button" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform">
+                    <i class="far fa-comment-dots"></i>
+                  </button>
+                </div>
+              
+                <div class="text-base text-gray-700 space-y-6 mt-8 ">
+                  <p>付款後，從備貨到寄出商品為3個工作天，（不包含假日）</p>
+                  <p>設計館符合免辦理營業登記，無需開立統一發票。</p>
+                </div>
+                <div class="relative mt-2 top-5">
+                  <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div class="w-full border-t border-gray-300 "></div>
+                  </div> 
+                </div>
+                <div class="text-base text-gray-700 space-y-4 mt-8 pt-8">
+                  <h2 class="">優惠活動</h2>
+                  <p>9/25-10/06 全站消費 NT$899 折 NT$60（每帳號限用一次）</p>
+                  <p>快閃獎勵任務進行中，週週送 P COIN 立即參加</p>
+                  <p>多重優惠顯示，實際優惠折抵以購物車內的折抵金額為準</p>
+                </div>
+              </div>
+            </div>
+        </form>
+      </div>
+    </div>
   </div>
+</div>
+
+
 
   <div class="px-4 xl:px-0">
     <div class='mb-3'>
@@ -62,3 +164,4 @@
     <% end %>
   </div>
 </div>
+  <!-- ================================================ -->
