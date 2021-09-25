@@ -6,7 +6,7 @@
 		<section aria-labelledby="order-heading" class="bg-gray-50 px-4 py-6 sm:px-6 lg:hidden">
 			<div	div class="max-w-lg mx-auto">
 				<div class="breadcrumbs">
-					<ul>
+					<ul class='my-0 px-0'>
 						<%= link_to cart_path do %>
 						<li class='text-blue-400 text-lg'>< 返回購物車</li>
 						<% end %>
@@ -14,9 +14,8 @@
 				</div>
 				<div id="disclosure-1">
 					<% @store_items.each do |item_arr| %>
-						<hr>
-						<h2 class="my-3"><%= item_arr[0].store.name %></h2>
-						<ul role="list" class="divide-y divide-gray-200 border-b border-gray-200">
+						<h2 class="py-6 border-b"><%= item_arr[0].store.name %></h2>
+						<ul role="list" class="divide-y divide-gray-200 border-gray-200">
 							<% item_arr.each do |item| %>
 								<li class="flex py-6 space-x-6">
 									<img src="https://tailwindui.com/img/ecommerce-images/checkout-page-04-product-01.jpg"
@@ -32,7 +31,7 @@
 								</li>
 							<% end %>
 						</ul>
-						<dl class="text-sm font-medium text-gray-500 mt-10 space-y-6 pb-5">
+						<dl class="text-sm font-medium text-gray-500 mt-10 space-y-6 pb-5 border-b">
 							<div class="flex justify-between">
 								<dt>單館小計</dt>
 								<dd class="text-gray-900">NT$ <%= store_item_total(item_arr) %></dd>
@@ -43,11 +42,11 @@
 							</div>
 						</dl>
 					<% end %>
-					<hr>
+
 
 					<dl class="text-sm font-medium text-gray-500 mt-10 space-y-6">
 						<div class="flex justify-between">
-							<dt>小計</dt>
+							<dt>全館小計</dt>
 							<dd class="text-gray-900">NT$ <%= current_cart.total %></dd>
 						</div>
 						<div class="flex justify-between">
@@ -77,29 +76,41 @@
 		</section>
 
 			<!-- Order summary -->
-		<section aria-labelledby="summary-heading" class="hidden bg-gray-50 w-full max-w-md flex-col lg:flex">
-			<ul role="list" class="flex-auto overflow-y-auto divide-y divide-gray-200 px-6">
-				<li class="flex py-6 space-x-6">
-					<img src="https://tailwindui.com/img/ecommerce-images/checkout-page-04-product-01.jpg"
-							alt="Moss green canvas compact backpack with double top zipper, zipper front pouch, and matching carry handle and backpack straps."
-							class="flex-none w-40 h-40 object-center object-cover bg-gray-200 rounded-md">
-					<div class="flex flex-col justify-between space-y-4">
-						<div class="text-sm font-medium space-y-1">
-							<h3 class="text-gray-900">Micro Backpack</h3>
-							<p class="text-gray-900">$70.00</p>
-							<p class="text-gray-500">Moss</p>
-							<p class="text-gray-500">5L</p>
-						</div>
+		<section aria-labelledby="summary-heading" class="hidden bg-gray-50 w-full max-w-xl flex-col lg:flex">
+			<% @store_items.each do |item_arr| %>
+				<h2 class="m-6 border-b"><%= item_arr[0].store.name %></h2>
+					<ul role="list" class="flex-auto overflow-y-auto divide-y divide-gray-200 px-6">
+					<% item_arr.each do |item| %>
+						<li class="flex py-6 space-x-6">
+							<img src="https://tailwindui.com/img/ecommerce-images/checkout-page-04-product-01.jpg"
+										alt="Moss green canvas compact backpack with double top zipper, zipper front pouch, and matching carry handle and backpack straps."
+										class="flex-none w-40 h-40 object-center object-cover bg-gray-200 rounded-md">
+							<div class="flex flex-col justify-between space-y-4">
+								<div class="text-sm font-medium space-y-1">
+									<h3 class="text-gray-900"><%= item.name %></h3>
+									<p class="text-gray-900">NT$ <%= item.price.to_i %></p>
+									<p class="text-gray-500">x <%= item.quantity %></p>
+								</div>
+							</div>
+						</li>
+					<% end %>
+				</ul>
+				<dl class="text-sm font-medium text-gray-500 mt-10 space-y-6 pb-5 m-6">
+					<div class="flex justify-between">
+						<dt>單館小計</dt>
+						<dd class="text-gray-900">NT$ <%= store_item_total(item_arr) %></dd>
 					</div>
-				</li>
-
-					<!-- More products... -->
-			</ul>
+					<div class="flex justify-between">
+						<dt>運費</dt>
+						<dd class="text-gray-900">NT$ <%= delivery_fee %></dd>
+					</div>
+				</dl>
+			<% end %>
 
 			<div class="sticky bottom-0 flex-none bg-gray-50 border-t border-gray-200 p-6">
 				<dl class="text-sm font-medium text-gray-500 mt-10 space-y-6">
 					<div class="flex justify-between">
-						<dt>小計</dt>
+						<dt>全館小計</dt>
 						<dd class="text-gray-900">NT$ <%= current_cart.total %></dd>
 					</div>
 					<div class="flex justify-between">
@@ -126,8 +137,8 @@
 		<section aria-labelledby="payment-heading"
 							class="flex-auto overflow-y-auto px-4 pt-12 pb-16 sm:px-6 sm:pt-16 lg:px-8 lg:pt-0 lg:pb-24">
 			<div class="max-w-lg mx-auto">
-				<div class="breadcrumbs">
-					<ul>
+				<div class="breadcrumbs hidden md:block">
+					<ul class='my-0 px-0'>
 						<%= link_to cart_path do %>
 						<li class='text-blue-400 text-lg'>< 返回購物車</li>
 						<% end %>
