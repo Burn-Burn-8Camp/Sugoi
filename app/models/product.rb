@@ -12,4 +12,5 @@ class Product < ApplicationRecord
 	         through: :bookmarks
 	enum delivery: { "貨運 NT$100": 100 }
 	has_one_attached :picture
+	mount_uploader :image, ImageUploader
 end

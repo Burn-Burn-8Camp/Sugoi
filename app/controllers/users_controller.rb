@@ -30,12 +30,13 @@ class UsersController < ApplicationController
   def profile
   end
 
-  def buy_order
+  def favorite
+    @products = current_user.favorite_items
   end
 
   def user_coupons
     @coupons = current_user.user_coupons
-
+  end
   private
     def user_params
       params.require(:user).permit(:name, :email, :gender, :date, :country, :image, :self_about, :self_blog, :life_shopping, :life_design)

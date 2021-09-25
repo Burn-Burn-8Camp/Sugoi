@@ -7,6 +7,7 @@ document.addEventListener("turbolinks:load", () => {
 	if (heartIcon) {
     heartIcon.addEventListener("click", () => {
       var id = label.dataset.id
+      console.log("123")
       Rails.ajax({
         url: `/products/${id}/favorite`,
         type: "post",
