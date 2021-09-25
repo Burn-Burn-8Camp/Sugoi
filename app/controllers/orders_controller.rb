@@ -31,9 +31,17 @@ class OrdersController < ApplicationController
 	def create
 		cart_items = current_cart.items
 		find_by_smae_store(@store_items = [], cart_items)
+		@cart_coupon = current_cart.coupon
 		@order = current_user.orders.new(order_params)
-		@order.total = current_cart.total
+		@order.total = current_cart.total_included_delivery_fee
 		create_order_items_in_order(cart_items, @order)
+
+		@cart_coupon.each do |coupon| 
+			if current_user.user_coupons.find_by(coupon_id: coupon.coupon_id).status === "unused"
+				@order.total = @order.total - coupon.coupon_value.to_i			
+				current_user.user_coupons.find_by(coupon_id: coupon.coupon_id).redeem!
+			end
+		end
 
 		if @order.save			
 			caculate_user_consume(current_user)

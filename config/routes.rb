@@ -41,6 +41,7 @@ Rails.application.routes.draw do
       post :add_item, path:'add_item/:id'
       get :checkout, to: 'orders#checkout'
       post :confirmation, to: 'carts#confirm'
+      post :redeem, to: 'carts#redeem'
     end
   end
 
@@ -84,8 +85,15 @@ Rails.application.routes.draw do
         get 'about', to: 'users#about'
         patch 'about', to: 'users#update'
         get 'buy_order', to: 'users#buy_order'
+        get 'user_coupons', to: 'users#user_coupons'
       end
     end
   end 
+
+  resources :coupons do 
+    member do
+      post 'get', to: 'coupons#get'
+    end
+  end
 end
 

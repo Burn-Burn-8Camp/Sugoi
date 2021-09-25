@@ -65,7 +65,7 @@
 				</div>
 				<div class='flex justify-between'>
 					<p>商品折抵:</p>
-					<p>0</p>
+					<p><%= coupon_value %></p>
 				</div>
 				<div class='flex justify-between'>
 					<p>運費總計:</p>
@@ -73,7 +73,7 @@
 				</div>
 				<div class='flex justify-between'>
 					<p>結帳總金額：</p>
-					<p><%= current_cart.total_included_delivery_fee %></p>
+					<p><%= shopping_cart_sum %></p>
 				</div>
 			</div>
 
