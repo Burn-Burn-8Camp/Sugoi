@@ -4,7 +4,9 @@
     <img src="https://tailwindui.com/img/ecommerce-images/home-page-04-trending-product-02.jpg" alt="Hand stitched, orange leather long wallet." class="w-full h-full object-center object-cover">
   </div>
   <div class='' style=''>
-    <%= image_tag "#{current_user.image_url}" if current_user.image_url.present? %>
+    <% if current_user != nil%>
+      <%= image_tag "#{current_user.image_url}" if current_user.image_url.present? %>
+    <% end %>
   </div> 
   <%= link_to product_path(product) do %>
   <h3 class="mt-4 text-sm text-gray-700">
