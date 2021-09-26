@@ -1,9 +1,6 @@
-# set :output, "/path/to/my/cron_log.log"
-#
-every 1.minute do
-  rake "orders:run"
-end
-#
-# every 4.days do
-#   runner "AnotherModel.prune_old_records"
+# set :environment, :development
+# set :output, 'log/cron.log'
+# every 1.minute do
+#   rake "orders:order_run"
+#   rake "orders:fake"
 # end
