@@ -114,6 +114,7 @@
 							</div>
 						</div>
 						<div>
+							<%= f.hidden_field :product_subtotal, value: current_cart.total %>
 							<%= f.hidden_field :coupon_value, value: coupon_value %>
 							<%= f.hidden_field :delivery_fee, value: delivery_fee %>
 							<%= f.hidden_field :user_discount, value: user_discount(current_user.accumulated_amount) %>

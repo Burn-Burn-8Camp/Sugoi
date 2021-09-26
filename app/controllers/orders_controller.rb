@@ -78,7 +78,7 @@ class OrdersController < ApplicationController
 
 	private
 		def order_params
-			pm = params.require(:order).permit(:receiver, :tel, :email, :address, :delivery, :message, :coupon_value, :delivery_fee, :user_discount, :total)
+			pm = params.require(:order).permit(:receiver, :tel, :email, :address, :delivery, :message, :product_subtotal, :coupon_value, :delivery_fee, :user_discount, :total)
 			pm[:message].delete!("\r\n")
 			pm
 		end

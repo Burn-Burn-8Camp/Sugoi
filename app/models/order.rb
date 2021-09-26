@@ -12,7 +12,7 @@ class Order < ApplicationRecord
 
   default_scope -> { order('id DESC') }
   
-  validates_presence_of :receiver, :tel, :email, :address, :delivery
+  validates_presence_of :receiver, :tel, :email, :address, :delivery, :product_subtotal, :total
   validates_format_of :email, :with => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
   
   enum delivery: { "貨運 NT$100": "貨運" }
