@@ -9,15 +9,13 @@ const Navbar = ({webUser}) => {
   const userDefault = {
     id: '訪客',
     email: '電子信箱',
-    imageUrl:
-    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    image: {url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' }
   }
   webUser ? webUser : webUser = userDefault
   const user = {
     name: `${webUser.id}`,
     email: `${webUser.email}`,
-    imageUrl:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    imageUrl: `${webUser.image.url}`,
   }
   const navigation = [
     { name: '主題企劃', href: '#', current: false },
@@ -73,7 +71,7 @@ const Navbar = ({webUser}) => {
           key={item.name}
           href={item.href}
           className="block rounded-md py-2 px-3 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
-        >
+          data-method={item.method} >
           {item.name}
         </a>
       ))
