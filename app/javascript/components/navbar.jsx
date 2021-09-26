@@ -27,14 +27,13 @@ const Navbar = ({webUser}) => {
   const userWithLogIn = [
     { name: '個人檔案', href: '/member/profile', method: 'get' },
     { name: '我的最愛', href: '#', method: 'get' },
-    { name: '優惠卷', href: '#', method: 'get' },
     { name: '我的訂單', href: '/orders', method: 'get' },
     { name: '登入', href: '/users/sign_in', method: 'get' },
   ]
   const userWithLogOut = [
     { name: '個人檔案', href: '/member/profile', method: 'get' },
     { name: '我的最愛', href: '#', method: 'get' },
-    { name: '優惠卷', href: '#', method: 'get' },
+    { name: '優惠卷', href: `/coupons/${webUser.id}`, method: 'get' },
     { name: '我的訂單', href: '/orders', method: 'get' },
     { name: '登出', href: '/users/sign_out', method: 'delete' },
   ]
