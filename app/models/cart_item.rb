@@ -1,9 +1,10 @@
 class CartItem
-  attr_reader :product_id, :quantity, :name, :store_name, :price
+  attr_reader :product_id, :name, :store_id, :store_name, :price, :quantity
 
-  def initialize(product_id, name, store_name, price, quantity = 1)
+  def initialize(product_id, name, store_id, store_name, price, quantity = 1)
     @product_id = product_id
     @name = name
+    @store_id = store_id
     @store_name = store_name
     @price = price
     @quantity = quantity
@@ -18,11 +19,11 @@ class CartItem
   end
 
   def product     
-    Product.find(@product_id)
+    Product.friendly.find(@product_id)
   end
-
+  
   def store
-    Product.find(@product_id).store
+    Product.friendly.find(@product_id).store
   end
 
   def total

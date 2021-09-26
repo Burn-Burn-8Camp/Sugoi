@@ -1,110 +1,102 @@
-<div class='container '>
-  <div class="flex flex-row w-3/4 mt-12 mb-20 mx-auto">
-    <div class="flex flex-grow h-40 w-60   rounded-box  ">
-      <div class='w-15 p-2.5 '>
-        <img class='w-' src="https://picsum.photos/80/80" alt="">
+<div class="border-2 px-20">
+<div class='border-2 grid sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 mt-10 mb-20'>
+  <div class='flex'>
+    <div class='' style=''>
+      <%= image_tag current_user.image_url if current_user.image_url.present? %>
+    </div>
+    <div class='w-full'>  
+      <div class='ml-4 sm:ml-8 mt-2.5 '>
+        <h2 class='text-xl'><%= current_user.name %></h2>
       </div>
-      <div class='w-full p-2.5'>
-        <h1 class='text-lg mb-2'><%= current_user.name %></h1>
-      <div>
-        <a href="#" class='text-sm'><%= sanitize "#{User.now_rank_icon(current_user.accumulated_amount)}" %>
-                                    <%="#{User.now_user_rank(current_user.accumulated_amount)} 
-                                    #{current_user.country}" %>
-                                    </a> 
-      
-      </div>
-      
-      <div>
-        <a href="#"><i class="fab fa-bitcoin"></i>   <%=current_user.p_coins %></a>
-      </div>
-      <div>
-        <p><i class="fas fa-star"></i>  current_user.score</p>
+      <div class="ml-4 sm:ml-8 mt-2 flex ">
+        <a href="#" class='text-3xl mr-1.5'><%= sanitize "#{now_rank_icon(current_user.accumulated_amount)}" %></a>
+        <a href="#" class="text-md mr-1.5 mt-1"><%="#{User.now_user_rank(current_user.accumulated_amount)} "%></a> 
+        <a href="#" class='text-md mt-1'><%= current_user.country %></a>
       </div>
     </div>
-  </div> 
+  </div>
 
-  <div class="divider divider-vertical"></div> 
-
-  <div class=" flex-grow h-40  w-60 card  rounded-box  border">
-    <div class="w-full ">
-      <h2 class="text-lg mt-2 ml-3">當年度升級任務</h2>
+  <div class="border">
+    <div class="">
+      <h2 class="text-lg mt-2 ml-5">當年度升級任務</h2>
     </div>
-    <div class="w-full">
+    <div class="">
       <% if current_user.accumulated_amount >= 20000 %>
-        <p class="mt-2 ml-3">您已達成最高等級<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
+        <p class="mt-2 ml-5 ">您已達成最高等級<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
       <% else %>
-        <p class="mt-2 ml-3">完成以下一項條件,可立即升級為<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
+        <p class="mt-2 ml-5">完成以下一項條件,可立即升級為<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
       <% end %>
     </div>
-    <div class="flex mt-3 ml-8">
-      <div>
-        <p><%= sanitize User.up_rank_icon(current_user.accumulated_amount) %></p>
+    <div class="flex w-full h-full">
+      <div class=" w-35  ml-5 mt-3 mb-3">
+        <p class='text-5xl'><%= sanitize up_rank_icon(current_user.accumulated_amount) %></p>
       </div>
-      <div>
+      <div class="mt-2  text-xl">
         <% if current_user.accumulated_amount >= 20000 %>
-          <p>恭喜您已達成任務</p>
+          <p class="text-center mb-5 mt-3">恭喜您已達成任務</p>
         <% else %>
-          <p>消費金額還需 NT$<%= User.still_need(current_user.accumulated_amount) %></p>
+          <p class="mt-4 ml-6">消費金額還需 NT$<%= User.still_need(current_user.accumulated_amount) %></p>
         <% end %>
       </div>
     </div>
   </div>
-  <div class="divider divider-vertical"></div> 
 
-  <div class=" flex-grow h-40  w-60 card  rounded-box  border ">
-    <div class="w-full ">
-      <h2 class="text-lg mt-2 ml-3">下一年度升級任務</h2>
+
+  <div class="border">
+    <div class="">
+      <h2 class="text-lg mt-2 ml-5">下一年度升級任務</h2>
     </div>
-    <div>
+    <div class="mt-2 ">
       <% if current_user.accumulated_amount >= 20000 %>
-        <p>恭喜您已達成任務</p>
+        <p class="ml-5 mb- mt-2">恭喜您已達成任務</p>
       <% else %>
-        <p class="mt-2 ml-3">完成以下一項條件,可在下一個年度升級為<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
+        <p class="mt-2 ml-5">完成以下一項條件,可在下一個年度升級為<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
       <% end %>
     </div>
-    <div class="flex mt-3 ml-8">
-      <div>
-        <p><%= sanitize User.up_rank_icon(current_user.accumulated_amount) %></p>
+    <div class="flex mt-3 ml-2">
+      <div class=" w-35  ml-5 mb-8">
+        <p class='text-5xl'><%= sanitize up_rank_icon(current_user.accumulated_amount) %></p>
       </div>
-      <div>
+      <div class="mt-1  text-xl">
         <% if current_user.accumulated_amount >= 20000  %>
-          <p>恭喜您在下一年度為尊貴會員</p>
+          <p class=" mb-7 ml-2">恭喜您在下一年度為尊貴會員</p>
         <% else %>
-          <p>消費金額還需 NT$<%= User.still_need(current_user.accumulated_amount) %></p>
+          <p class="mt-2 ml-6">消費金額還需 NT$<%= User.still_need(current_user.accumulated_amount) %></p>
         <% end %>
       </div>
     </div>
   </div>
 </div>
 
-<div class="tabs block">
+<div class="tabs block md:grid-cols-1 lg:grid-cols-1 ">
   <a href="#" class="tab tab-bordered">關於我</a> 
 </div>
-<div class="block">
-  <h3>個人名片</h3>
-  <div class="flex">
-    <div class="">性別</div>
+  <div class="block mt-4">
+    <h2>個人名片</h2>
+  <div class="flex mt-1">
+    <div class="mr-20">性別</div>
     <div class=""><%= current_user.gender %></div>
   </div>
-  <div class="flex">
-    <div class="">現居住地</div>
+  <div class="flex mt-1">
+    <div class="mr-12">現居住地</div>
     <div class=""><%= current_user.country %></div>
   </div>
-  <div class="flex">
-    <div class="">加入日期</div>
-    <div class=""><%= current_user.created_at.to_s.split(' ')[0]%></div>
+  <div class="flex mt-1">
+    <div class="mr-12">加入日期</div>
+    <div class=""><%= current_user.created_at.strftime("%Y/%m/%d") %></div> 
   </div>
-  <div class="flex">
-    <div class="">個人資料設定</div>
+  <div class="flex mt-1">
+    <div class="mr-4">個人資料設定</div>
     <div class="">
       <p><%= link_to "點我更新你的個人介紹",about_member_index_path %></p>
       <p><%= link_to "點我設定暱稱、大頭貼照、生日...", edit_member_index_path %></p>
     </div>
   </div>
-  <div class="block">
+  <div class="block mt-8 mb-10 border-3 bg-red-500 w-full h-35" > 
     <div class="">小提醒</div>
     <div class="">在找你關注的設計館嗎？現在你可以在 慾望清單 裡看到喔。</div>
   </div>
+</div>
 </div>
 
 

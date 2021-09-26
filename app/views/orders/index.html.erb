@@ -1,2 +1,27 @@
-<h1>訂單列表</h1>
-<%= render 'components/order_list' %>
+<h1 class="mx-3 lg:mx-5 mt-2">購買訂單</h1>
+<div class='flex'>
+	<%= link_to pending_orders_path do %>
+		<div class='text-lg p-3 lg:p-5'>尚未付款<%= @state_hash['pending'] %></div>
+	<% end %>
+	<%= link_to processing_orders_path do %>
+		<div class='text-lg p-3 lg:p-5'>處理中<%= @state_hash['paid'] %></div>
+	<% end %>
+	<%= link_to shipped_orders_path do %>
+		<div class='text-lg p-3 lg:p-5'>待收貨<%= @state_hash['in_transit'] %></div>
+	<% end %>
+	<%= link_to completed_orders_path do %>
+		<div class='text-lg p-3 lg:p-5'>已完成<%= @state_hash['arrived'] %></div>
+	<% end %>
+	<%= link_to cancelled_orders_path do %>
+		<div class='text-lg p-3 lg:p-5'>已取消<%= @state_hash['cancelled'] %></div>
+	<% end %>
+</div>
+<% if @orders.first === nil %>
+	<div class='flex justify-center'>
+		<%= image_tag("OpenDoodles - LayingDown") %>
+	</div>
+<% else %>
+	<%= render 'components/order_list', orders: @orders %>
+<% end %>
+
+

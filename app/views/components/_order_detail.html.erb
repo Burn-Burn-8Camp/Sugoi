@@ -1,34 +1,11 @@
-<ul class="w-full steps order-steps">
-  <li class="step step-primary" id='pending'>待付款</li> 
-  <li class="step" id='paid'>已付款</li> 
-  <li class="step" id='picked'>撿貨中</li> 
-  <li class="step" id='in_transit'>運送中</li>
-  <li class="step" id='arrived'>已送達</li>
-  <li class="step" id='cancelled'>已取消</li>
-</ul>
-
 <div class='border rounded'>
-	<ul>
-		<li class='text-lg'>訂單編號：<%= @order.serial %></li>
-		<li class='text-lg'>訂單金額：<%= @order.total %></li>
-		<li class='text-lg'>收件人：<%= @order.receiver %></li>
-		<li class='text-lg'>收件地址：<%= @order.address %></li>
-		<li class='text-lg'>運送方式：<%= @order.delivery %></li>
-		<li class='hidden' id='order-state'><%= @order.state %></li>
-	</ul>
-	<div tabindex="0" class="collapse collapse-arrow">
-	  <div class="collapse-title text-lg font-medium">
-		訂單明細
-	  </div>
-	  <div class="collapse-content">
-		<% @items.each do |item| %>
-			<div class='border rounded m-3'>
-				<p class='p-3'>商店：<%= item.product.store.name %></p>
-				<p class='p-3'>品名：<%= item.name %></p>
-				<p class='p-3'>單價：<%= item.price.to_i %></p>
-				<p class='p-3'>數量：<%= item.quantity %></p>
-			</div>
-		<% end %>
-	  </div>
-	</div>
+		<ul>
+			<li class='text-lg'>訂單編號：<%= @order.serial %></li>
+			<li class='text-lg'>訂單金額：<%= @order.total %></li>
+			<li class='text-lg'>收件人：<%= @order.receiver %></li>
+			<li class='text-lg'>收件地址：<%= @order.address %></li>
+			<li class='text-lg'>運送方式：<%= @order.delivery %></li>
+			<li class='hidden' id='order-state'><%= @order.state %></li>
+		</ul>
+	<%= link_to '出貨', shipment_store_order_path(@order), class: 'btn btn-success' %>
 </div>

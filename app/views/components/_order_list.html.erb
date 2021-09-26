@@ -1,22 +1,33 @@
+<% orders.each do |order| %>
 <div>
-	<table>
-		<thead>
-			<tr>
-				<th>訂單序號</th>
-				<th>訂單總金額</th>
-				<th>訂單狀態</th>
-				<th>訂單明細</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @orders.each do |order| %>
-			<tr>
-				<td><%= order.serial %></td>
-				<td><%= order.total %></td>
-				<td><%= check_state(order) %></td>
-				<td><%= link_to '前往明細', order_path(order), class: 'border-2 rounded p-3' %></td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
+	<h3 class="text-xl bg-gray-200 p-4"><%= order.created_at.to_time.to_s.split[0] %></h3>
 </div>
+<div class="md:grid md:grid-cols-2">
+	<div class="col grid grid-cols-2 justify-center">
+		<p class="px-3 py-2 md:text-right mr-4 text-xl">狀態</p>
+		<% if order.state == 'pending' %>
+			<%= link_to payment_order_path(order) do %>
+			<p class="px-3 py-2 btn btn-info w-40">尚未付款，前往付款</p>
+			<% end %>
+		<% else %>
+			<p class="px-3 py-2"><%= check_state(order) %></p>
+		<% end %>
+		<p class="px-3 py-2 md:text-right mr-4 text-xl">寄往</p>
+		<p class="px-3 py-2">台灣</p>
+		<p class="px-3 py-2 md:text-right mr-4 text-xl">訂單編號</p>
+		<p class="px-3 py-2"><%= order.serial %></p>
+		<p class="px-3 py-2 md:text-right mr-4 text-xl">給設計師的話</p>
+		<p class="px-3 py-2"><%= order.message %></p>
+		<p class="px-3 py-2 md:text-right mr-4 text-xl">總計</p>
+		<p class="px-3 py-2">NT$ <%= order.total %></p>
+	</div>
+	<div class="col grid grid-cols-2">
+		<p class="p-2 md:text-right mr-4 text-xl">購買項目</p>
+		<div class="p-2">
+			<img src="http://fakeimg.pl/100x100/ecf0f1/" alt="product_img">
+		</div>	
+		<span class="md:text-right mr-4 text-xl p-2"></span>
+		<%= link_to '前往明細', order_path(order), class: 'btn btn-primary' %>
+	</div>
+</div>
+<% end %>

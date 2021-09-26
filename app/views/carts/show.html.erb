@@ -1,109 +1,183 @@
-<div class="container">
-  <div class="flex justify-end">購物車 <%= current_cart.items %>
-  </div>
-  <%= link_to "清空購物車" , cart_path, method: "delete" %>
-  
-  <div class="selected_items">
-    <% current_cart.items.each do |item| %>
-     
-      <div class="selected-item border border-gray-500">
-        <div class="item-wrapper">
-          <div class="item-header border-b-2 border-gray-500">
-            <a href="#">設計館:<%= item.store.name %></a>
-          </div>
-      
-          <div class="item-body-wrap">
-            <div class="item-body border flex">
-
-              <div class="item-img border ">
-                <img src="https://picsum.photos/120/120/?random=<%= item.product_id %>">
-              </div>
-
-              <div class="item-name border">
-                <a href="#">
-                  <%= item.product.name %>
-                </a>   
-                <div class="item-qantity">      
-                  <select class="productID" id="<%= item.product_id %>">
-                    <%= 1.upto(product_storage(item.product_id)) do |i| %>
-                      <option value="<%= " #{i}" %>"><%= "#{i}" %>
-                      </option>
-                      <% end %>
-                  </select>
-                  <span>商品庫存:<%= product_storage(item.product_id) %></span>
-                  <div class="subtotal">
-                    單價NT$<%= item.product.price.to_i %>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      
-        <div class="deliver-item">
-          <div class="deliver-item-title">
-            <span>選擇收件地與運送方式</span>
-          </div>
-      
-          <div class="how-to-deliver">
-            <select class="border border-gray-400 inline">
-              <option value disabled>請選擇運送方式</option>
-              <optgroup label="從 台灣 寄出"></optgroup>
-              <option value="CN">貨運</option>    
-            </select>
-      
-            <ul class="promo">
-              <li>通知出貨後約 1 - 2 天寄達 | 提供追蹤</li>
-              <li>滿 NT$ 1,000 免運費</li>
-            </ul>
-      
-          </div>
-      
-        </div>
-      </div>
-    
-
-    <% end %>
-
-  </div>
-
-
-  <div class="order-list border border-gray-500 mb-3">
-    <div class="calulate-page-header bg-gray-300">訂單摘要</div>
-    <div class="calulate-page-body">
-      <div class="summary-items flex my-3">
-        <span class="summary-items-title ">商品總計</span>
-        <span class="summary-items-price">NT$<%= current_cart.total %></span>
-      </div>
-
-     
-
-      <div>
-        <p>
-          首綁首刷國泰世華卡，滿 NT$1000 現折 NT$100 (限量)！僅限「常用信用卡」結帳
-        </p>
-        <p>
-          實際運費金額以購物車結算或是到貨時收取的金額為準。
-        </p>
-      </div>
-
-      <div class="coupon">
-        <a href="#">使用優惠券、P Coins 或禮物卡</a>
-      </div>
-
-    </div>
-
-    <div class="border-t-2 border-gray-400 my-3">
-      <span class="total-price-title">結帳總金額</span>
-      <span class="total-price">
-        <%= current_cart.total %>               
+<div class="bg-white">
+  <main class="max-w-2xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+    <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">購物車</h1>  
+      <span class="block text-right">
+        購物車
+        <%= cart_items_amount %>
+        <!-- <%= current_cart.items %> -->
       </span>
-    </div>
-    <div class="my-3">
-      <button class="bg-red-400 p-3 text-white rounded inline-block">
-        <%= link_to '前往結帳', checkout_cart_path %>
-      </button>
-    </div>
-  </div>
+      <span class="block text-right">
+        <%= link_to "清空購物車" , cart_path, method: "delete" %>
+      </span>  
+
+    <form class="mt-2 lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start xl:gap-x-16">
+      <section aria-labelledby="cart-heading" class="selected_items lg:col-span-7">
+        <h2 id="cart-heading" class="sr-only">Items in your shopping cart</h2>
+
+        <ul role="list" class="border-t border-b border-gray-200 divide-y divide-gray-200 px-0">
+          <% current_cart.items.each do |item| %>
+            <div class="cart-item" data-id="<%= item.product_id %>">
+              <div class="item-header border-b p-1">
+                <a href="#">設計館:<%= item.store.name %></a>
+              </div>
+              <li class="flex py-6 sm:py-10">
+                <div class="flex-shrink-0">
+                  <img src="https://picsum.photos/120/120/?random=3"
+                      alt="Front of men&#039;s Basic Tee in sienna."
+                      class="w-24 h-24 rounded-md object-center object-cover sm:w-48 sm:h-48">
+                </div>
+
+                <div class="ml-4 flex-1 flex flex-col justify-between sm:ml-6">
+                  <div class="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+                    <div>
+                      <div class="flex justify-between">
+                        <h3 class="text-sm">
+                          <a href="#" class="font-medium text-gray-700 hover:text-gray-800">
+                              <%= item.product.name %>
+                          </a>
+                        </h3>
+                      </div>
+                      
+                      <p class="mt-1 text-sm font-medium text-gray-900">$<%= item.product.price.to_i %></p>
+                    </div>
+
+                    <div class="selection-container mt-4 sm:mt-0 sm:pr-9">
+                      <label for="quantity-0" class="sr-only">Quantity, Basic Tee</label>
+                      <select class="productID max-w-full rounded-md border border-gray-300 py-1.5 text-base leading-5 font-medium text-gray-700 text-left shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="<%= item.product_id %>">
+                        <%= 1.upto(product_storage(item.product_id)) do |i| %>
+                          <option value="<%= " #{i}" %>"><%= "#{i}" %>
+                          </option>
+                        <% end %>
+                      </select>
+
+                      <div class="absolute top-0 right-0">
+                        <button type="button"
+                            class="delete-item-button -m-2 p-2 inline-flex text-gray-400 hover:text-gray-500" id="<%= item.product_id %>">
+                          <span class="sr-only">Remove</span>
+                          <!-- Heroicon name: solid/x -->
+                          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                              fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                              clip-rule="evenodd" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="mt-4 flex text-sm text-gray-700 space-x-2">  
+                    <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span>庫存:<%= product_storage(item.product_id) %></span>
+                  </p>
+                </div>
+              </li>
+              <div class="deliver-item mt-2 p-2">
+                <div class="deliver-item-title mb-1">
+                  <span>選擇收件地與運送方式</span>
+                </div>
+              
+                <div class="how-to-deliver ">
+                  <select class="border border-gray-300 inline mb-1">
+                    <option value disabled>請選擇運送方式</option>
+                    <optgroup label="從 台灣 寄出"></optgroup>
+                    <% Product.deliveries.each do |delivery| %>
+                      <option value="<%= delivery[1] %>">
+                        <%= delivery[0] %>
+                      </option>
+                    <% end %>
+                  </select>
+              
+                  <ul class="promo px-0">
+                    <li>通知出貨後約 1 - 2 天寄達</li>
+                    <!-- <li>滿 NT$ 1,000 <span>免運費</span></li> -->
+                  </ul>         
+                </div>        
+              </div> 
+            </div>
+          <% end %>
+
+        </ul>
+      </section>
+
+      <!-- Order summary -->
+      <section aria-labelledby="summary-heading"
+          class="mt-16 bg-gray-50 rounded-lg px-4 py-6 sm:p-6 lg:p-8 lg:mt-0 lg:col-span-5">
+        <h2 id="summary-heading" class="text-lg font-medium text-gray-900">訂單摘要</h2>
+
+        <dl class="mt-6 space-y-4">
+          <div class="summary-product-price flex items-center justify-between">
+            <dt class="text-sm text-gray-600">
+              商品金額
+            </dt>
+            <dd class="total_price text-sm font-medium text-gray-900">
+              $ <%= current_cart.total %>
+            </dd>
+          </div>
+          <div class="summary-delivery-price border-t border-gray-200 pt-4 flex items-center justify-between">
+            <dt class="flex items-center text-sm text-gray-600">
+              <span>運費金額</span>  
+            </dt>
+            <dd class="text-sm font-medium text-gray-900">
+              $<span class="total_price">
+                <%= total_delivery_fee %>
+              </span>
+            </dd>
+          </div>
+
+          <div class="summary-coupon-redeem border-t border-gray-200 pt-4 flex items-center justify-between">
+            <dt class="flex text-sm text-gray-600">
+              <span>優惠券折抵</span>       
+            </dt>
+            <dd class="text-sm font-medium text-gray-900">
+              $<span class="coupon_value">
+                0
+              </span>
+            </dd>
+          </div>
+
+          <div class="border-t border-b border-gray-200 pt-4 flex items-center justify-between">
+            <dt class="text-base font-medium text-gray-900">
+              <span class="total-price-title">結帳總金額</span>        
+            </dt>
+            <dd class="text-base font-medium text-gray-900">
+              $<span class="sum">
+                <%= current_cart.total_included_delivery_fee %>
+              </span>
+            </dd>
+          </div>
+
+          <div class="coupon">
+            <a href="#">使用優惠券、P Coins 或禮物卡</a>
+          </div>        
+          <div class="user-coupon">
+            <% @coupons.each do |coupon| %>
+              <div class="coupon">
+                <label for="<%= coupon.coupon_id %>">
+                  <%= coupon.coupon.name %>
+                </label>
+                  <%= coupon.coupon.description %>
+                  <%= coupon.status %>        
+                    <input id="<%= coupon.coupon_id %>" name="coupon" type="radio" value="<%= coupon.coupon.value %>" />
+              </div>
+            <% end %>
+          </div>
+        </dl>
+
+        <div class="mt-6">
+          <button type="submit"
+            class="w-full bg-indigo-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">
+            <%= link_to '前往結帳' , checkout_cart_path %>
+          </button>
+        </div>
+      </section>
+    </form>
+      
+  </main>
+
 </div>

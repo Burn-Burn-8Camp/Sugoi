@@ -1,49 +1,105 @@
 <h1>基本資料</h1>
 
-
-<div class="">
-  <%= form_for(@user, url:edit_member_index_path) do |f| %>
-  
-  <div>
-    <%= f.label :name, '顯示暱稱' %><br />
-    <%= f.text_field :name %>
+<div class="hidden sm:block" aria-hidden="true">
+  <div class="py-5">
+    <div class="border-t border-gray-200"></div>
   </div>
-
-  <div>
-    <%= f.label :email,"您的電子信箱" %><br />
-    <%= f.text_field :email %>
-  </div>
-
-  <div class="">
-    <%= f.label :gender,"性別" %><br />
-    <%= f.text_field :gender, required: true, placeholder: 'Gender', class: 'form-control' %>
-  </div>
-
-  <div class="">
-    <%= f.label :date, "生日" %><br />
-    <%= date_field(:date, :born_on) %>
-  </div>
-
-  <div class="">
-    <%= f.label :country, "所在地" %><br />
-    <%= f.text_field :country %>
-  </div>
-  <%end %>
 </div>
 
-<br />
+<div class="mt-10 sm:mt-0">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0">
+        <h3 class=" text-lg font-medium leading-6 text-blue-900">個人資料</h3>
+        <%= image_tag('/images/logo.png') %>
+      </div>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <%= form_with model: @user, url: edit_member_index_path, method: 'patch' do |f| %>
+        <div class="shadow overflow-hidden sm:rounded-md">
+          <div class="px-4 py-5 bg-white sm:p-6">
+            <div class="grid grid-cols-6 gap-6">
 
-<h2>上載大頭貼</h2>
+              <div class="col-span-6 sm:col-span-3">
+                <%= f.label :name, "顯示暱稱" , class: "block text-sm font-medium text-gray-700"%>
+                <%= f.text_field :name, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              </div>
 
-<br />
-<%= form_with(model: @user, url: '', local: true, :html => { multipart: true }) do |form| %>
+              <div class="col-span-6 sm:col-span-4">
+                <%= f.label :email,"您的電子信箱", class:"block text-sm font-medium text-gray-700" %>
+                <%= f.text_field :email, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
+              </div>
 
-  <div class="form-group">
-    <%= form.label :image %>
-    <%= form.file_field :image %>
-  </div> 
-  
-<%end %>
+              <div class="col-span-6 sm:col-span-4">
+                <%= f.label :gender,"性別", class: "block text-sm font-medium text-gray-700" %>
+                <%= f.text_field :gender, placeholder: 'Gender', class: "form-control mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"%>
+              </div>
+
+              <div class="col-span-6 sm:col-span-4">
+                <%= f.label :country, "所在地",class: "block text-sm font-medium text-gray-700" %>
+                <%= f.text_field :country, class: "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-3">
+                <%= f.label :date, "生日", class: "block text-sm font-medium text-gray-700" %>
+                <%= date_field(:date, :born_on)%>
+              </div>
 
 
+              <%= f.submit "更新", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"%>
+            </div>
+          </div>
+        </div>
+        <% end %>
+    </div>
+  </div>
+</div>       
 
+<div class="hidden sm:block" aria-hidden="true">
+  <div class="py-5">
+    <div class="border-t border-gray-200"></div>
+  </div>
+</div>
+
+<div class="mt-10 sm:mt-0">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0">
+        <h3 class=" text-lg font-medium leading-6 text-blue-900">My Photo</h3>
+         <%= image_tag('/images/logo.png') %>
+      </div>
+    </div>
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <%= form_with model: @user, url: edit_member_index_path, method: 'patch' do |f| %>
+        <div class="shadow overflow-hidden sm:rounded-md">
+
+          <div class="px-4 py-5 bg-white sm:p-6"> 
+
+            <div style="width: 100px; height: 100px;">
+              <label class="block text-sm font-medium text-gray-700">
+                更換大頭貼照
+              </label>
+
+              <div class="mt-1 flex items-center">
+                <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100">
+                  <%= image_tag current_user.image_url if current_user.image_url.present? %>
+                </span>
+              </div>
+            </div>
+
+            <div class="col-span-6 sm:col-span-4">
+              <%= f.label :image, "上載大頭貼", class: "block text-sm font-medium text-gray-700" %><br />
+              <%= f.file_field :image%>
+              <%= f.submit "更新", class: "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"%>
+            </div>  
+          </div>
+       
+             
+
+        </div>
+      <% end %>  
+    </div>    
+  </div>
+</div>    
+      
+            
