@@ -9,7 +9,6 @@ class ProductsController < ApplicationController
     @movies = Product.where(category: 'movie').limit(6)
     @animals = Product.where(category: 'animal').limit(6)
     @dragonBalls = Product.where(category: 'dragonBall').limit(6)
-
   end
 
   def new
