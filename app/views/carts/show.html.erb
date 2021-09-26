@@ -163,19 +163,19 @@
                   <%= coupon.status %>        
                     <input id="<%= coupon.coupon_id %>" name="coupon" type="radio" value="<%= coupon.coupon.value %>" />
               </div>
-              <% end %>
+            <% end %>
           </div>
         </dl>
 
         <div class="mt-6">
+          <%= link_to checkout_cart_path do %>
           <button type="submit"
             class="w-full bg-indigo-600 border border-transparent rounded-md shadow-sm py-3 px-4 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500">
-            <%= link_to '前往結帳' , checkout_cart_path %>
+            前往結帳
           </button>
+          <% end %>
         </div>
       </section>
     </form>
-      
   </main>
-
 </div>

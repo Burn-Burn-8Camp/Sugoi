@@ -30,7 +30,11 @@ class UsersController < ApplicationController
   def profile
   end
 
-  def buy_order
+  def favorite
+    @products = current_user.favorite_items
+  end
+
+  def dialog
   end
 
   def user_coupons

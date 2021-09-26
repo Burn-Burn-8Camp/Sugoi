@@ -3,7 +3,7 @@ class SellersController < ApplicationController
 
   def update
     if current_user.update(seller_params)
-      UserMailer.current_user_to_seller_letter_confirm(current_user).deliver_now
+      # UserMailer.current_user_to_seller_letter_confirm(current_user).deliver_now
 			redirect_to root_path, notice: '感謝您的申請'
 		else
 			render :new, notice: '請重新填寫'
