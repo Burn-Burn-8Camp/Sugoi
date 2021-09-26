@@ -52,27 +52,27 @@ class OrdersController < ApplicationController
 	end
 
 	def pending
-		@orders = Order.where(user_id: current_user, state: 'pending')
+		@orders = Order.where(user_id: current_user, state: 'pending').includes(:order_items)
 		render :index
 	end
 
 	def processing
-		@orders = Order.where(user_id: current_user, state: 'paid')
+		@orders = Order.where(user_id: current_user, state: 'paid').includes(:order_items)
 		render :index
 	end
 
 	def shipped
-		@orders = Order.where(user_id: current_user, state: 'in_transit')
+		@orders = Order.where(user_id: current_user, state: 'in_transit').includes(:order_items)
 		render :index
 	end
 
 	def completed
-		@orders = Order.where(user_id: current_user, state: 'arrived')
+		@orders = Order.where(user_id: current_user, state: 'arrived').includes(:order_items)
 		render :index
 	end
 	
 	def cancelled
-		@orders = Order.where(user_id: current_user, state: 'cancelled')
+		@orders = Order.where(user_id: current_user, state: 'cancelled').includes(:order_items)
 		render :index
 	end
 
