@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_19_002708) do
+ActiveRecord::Schema.define(version: 2021_09_24_043005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2021_09_19_002708) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "bookmarks", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_id"], name: "index_bookmarks_on_product_id"
+    t.index ["user_id"], name: "index_bookmarks_on_user_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "rate"
@@ -52,6 +61,25 @@ ActiveRecord::Schema.define(version: 2021_09_19_002708) do
     t.bigint "order_item_id"
     t.index ["order_item_id"], name: "index_comments_on_order_item_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "coupons", force: :cascade do |t|
+    t.string "name"
+    t.float "value"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "friendly_id_slugs", force: :cascade do |t|
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
+    t.datetime "created_at"
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -90,8 +118,10 @@ ActiveRecord::Schema.define(version: 2021_09_19_002708) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "total"
     t.string "state"
-    t.string "friendly_id"
-    t.index ["friendly_id"], name: "index_orders_on_friendly_id", unique: true
+    t.string "coupon_name", default: "未使用"
+    t.string "slug"
+    t.text "message"
+    t.index ["slug"], name: "index_orders_on_slug", unique: true
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
@@ -106,13 +136,30 @@ ActiveRecord::Schema.define(version: 2021_09_19_002708) do
     t.string "description"
     t.bigint "store_id"
     t.integer "delivery"
+    t.datetime "deleted_at"
+    t.string "slug"
+    t.string "image"
+    t.index ["deleted_at"], name: "index_products_on_deleted_at"
+    t.index ["slug"], name: "index_products_on_slug", unique: true
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
+    # 誰跟誰的 rooms
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "seller_comments", force: :cascade do |t|
+    t.bigint "store_id", null: false
+    t.bigint "order_id", null: false
+    t.integer "rate"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_seller_comments_on_order_id"
+    t.index ["store_id"], name: "index_seller_comments_on_store_id"
   end
 
   create_table "store_orders", force: :cascade do |t|
@@ -120,6 +167,7 @@ ActiveRecord::Schema.define(version: 2021_09_19_002708) do
     t.bigint "order_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "shipment_confirm", default: false
     t.index ["order_id"], name: "index_store_orders_on_order_id"
     t.index ["store_id"], name: "index_store_orders_on_store_id"
   end
@@ -131,6 +179,16 @@ ActiveRecord::Schema.define(version: 2021_09_19_002708) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "user_id"
     t.index ["user_id"], name: "index_stores_on_user_id"
+  end
+
+  create_table "user_coupons", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "coupon_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
+    t.index ["coupon_id"], name: "index_user_coupons_on_coupon_id"
+    t.index ["user_id"], name: "index_user_coupons_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -170,11 +228,17 @@ ActiveRecord::Schema.define(version: 2021_09_19_002708) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "bookmarks", "products"
+  add_foreign_key "bookmarks", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "messages", "rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "order_items", "orders"
   add_foreign_key "orders", "users"
+  add_foreign_key "seller_comments", "orders"
+  add_foreign_key "seller_comments", "stores"
   add_foreign_key "store_orders", "orders"
   add_foreign_key "store_orders", "stores"
+  add_foreign_key "user_coupons", "coupons"
+  add_foreign_key "user_coupons", "users"
 end

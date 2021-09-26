@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
   resources :messages, only: %i[create index]
-  resources :rooms, expect: %i[destroy edit] 
+
+  resources :rooms, expect: %i[destroy edit]  do
+    collection do
+      get 'rooms',to: 'rooms/index'
+    end
+  end
   
   root "products#index"
   resource :store do
@@ -11,11 +16,14 @@ Rails.application.routes.draw do
       post "seller_verify", to: 'sellers#seller_verify'
       get 'verified', to: 'sellers#verified'
     end
-
+    
     resources :products, only: [] do
       collection do
         get 'list', to: 'stores#products_list'
+        patch 'list',to:'stores#update'
+        patch 'list',to:'stores#destory'
         get 'new', to: 'products#new'
+        patch 'new',to:'products#update'
       end
       member do
         get 'detail', to: 'stores#product_detail'
@@ -38,9 +46,12 @@ Rails.application.routes.draw do
 
   resource :cart, only:[:show, :destroy] do
     collection do
-      post :add, path:'add/:id'
+      post :add_item, path:'add_item/:id'
+      post :delete_item, to: "carts#delete_item"
       get :checkout, to: 'orders#checkout'
       post :confirmation, to: 'carts#confirm'
+      post :redeem, to: 'carts#redeem'
+      post :delete_item, to: 'carts#confirm'
     end
   end
 
@@ -63,6 +74,9 @@ Rails.application.routes.draw do
     collection do
       get 'search', to: "products#search"
     end
+    member do
+      post :favorite
+    end
   end
 
   resources :order_items, only: [] do
@@ -81,7 +95,17 @@ Rails.application.routes.draw do
         get 'about', to: 'users#about'
         patch 'about', to: 'users#update'
         get 'buy_order', to: 'users#buy_order'
+        get 'favorite', to: 'users#favorite'
+        get 'user_coupons', to: 'users#user_coupons'
+        get 'dialog', to: 'users#dialog'
       end
     end
   end 
+
+  resources :coupons do 
+    member do
+      post 'get', to: 'coupons#get'
+    end
+  end
 end
+

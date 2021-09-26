@@ -6,6 +6,8 @@ module.exports = {
     './app/views/**/*.html.erb',
     './public/**/*.html',
     './app/**/*.{js,jsx,ts,tsx,vue}',
+     
+      
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -18,6 +20,8 @@ module.exports = {
     require("tailwindcss"), 
     require("autoprefixer"),
     require('daisyui'),
+    
+    
   ],
   daisyui: {
     styled: true,

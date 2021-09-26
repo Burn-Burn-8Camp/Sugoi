@@ -19,14 +19,15 @@ class CartItem
   end
 
   def product     
-    Product.find(@product_id)
+    Product.friendly.find(@product_id)
   end
   
   def store
-    Product.find(@product_id).store
+    Product.friendly.find(@product_id).store
   end
 
   def total
     @quantity * @price.to_i
   end
+
 end
