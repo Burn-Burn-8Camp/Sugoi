@@ -16,9 +16,10 @@ const Navbar = ({webUser}) => {
   const user = {
     name: `${webUser.id}`,
     email: `${webUser.email}`,
-    imageUrl:
-      'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    imageUrl: 
+    'https://fakeimg.pl/250x100/',
   }
+
   const navigation = [
     { name: '主題企劃', href: '#', current: false },
     { name: '配件飾品', href: '#', current: false },
@@ -73,6 +74,7 @@ const Navbar = ({webUser}) => {
           key={item.name}
           href={item.href}
           className="block rounded-md py-2 px-3 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900"
+          data-method={item.method}
         >
           {item.name}
         </a>
@@ -157,6 +159,15 @@ const Navbar = ({webUser}) => {
                   className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   <span className="sr-only"></span>
+                  <a href="/coupons">
+                    <FontAwesomeIcon icon={['fas', 'ticket-alt']} className="h-6 w-6 text-2xl" aria-hidden="true" />
+                  </a>
+                </button>
+                <button
+                  type="button"
+                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  <span className="sr-only"></span>
                   <a href="/store">
                     <FontAwesomeIcon icon={['fas', 'store']} className="h-6 w-6 text-2xl" aria-hidden="true" />
                   </a>
@@ -214,6 +225,15 @@ const Navbar = ({webUser}) => {
                   <div className="text-base font-medium text-gray-800">{user.name}</div>
                   <div className="text-sm font-medium text-gray-500">{user.email}</div>
                 </div>
+                <button
+                  type="button"
+                  className="ml-auto flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                >
+                  <span className="sr-only"></span>
+                  <a href="/coupons">
+                    <FontAwesomeIcon icon={['fas', 'ticket-alt']} className="h-6 w-6 text-2xl" aria-hidden="true" />
+                  </a>
+                </button>
                 <button
                   type="button"
                   className="ml-auto flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

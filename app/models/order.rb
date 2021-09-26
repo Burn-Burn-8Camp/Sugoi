@@ -14,6 +14,8 @@ class Order < ApplicationRecord
   
   validates_presence_of :receiver, :tel, :email, :address, :delivery
   validates_format_of :email, :with => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
+  
+  enum delivery: { "貨運 NT$100": "貨運" }
 
   include AASM
   aasm column: 'state' do

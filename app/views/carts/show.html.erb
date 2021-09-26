@@ -4,6 +4,7 @@
       <span class="block text-right">
         購物車
         <%= cart_items_amount %>
+        <!-- <%= current_cart.items %> -->
       </span>
       <span class="block text-right">
         <%= link_to "清空購物車" , cart_path, method: "delete" %>
@@ -15,91 +16,91 @@
 
         <ul role="list" class="border-t border-b border-gray-200 divide-y divide-gray-200 px-0">
           <% current_cart.items.each do |item| %>
-            <div class="item-header border-b p-1">
-              <a href="#">設計館:<%= item.store.name %></a>
-            </div>
-            <li class="flex py-6 sm:py-10">
-              <div class="flex-shrink-0">
-                <img src="https://picsum.photos/120/120/?random=3"
-                    alt="Front of men&#039;s Basic Tee in sienna."
-                    class="w-24 h-24 rounded-md object-center object-cover sm:w-48 sm:h-48">
+            <div class="cart-item" data-id="<%= item.product_id %>">
+              <div class="item-header border-b p-1">
+                <a href="#">設計館:<%= item.store.name %></a>
               </div>
-
-              <div class="ml-4 flex-1 flex flex-col justify-between sm:ml-6">
-                <div class="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
-                  <div>
-                    <div class="flex justify-between">
-                      <h3 class="text-sm">
-                        <a href="#" class="font-medium text-gray-700 hover:text-gray-800">
-                            <%= item.product.name %>
-                        </a>
-                      </h3>
-                    </div>
-                    
-                    <p class="mt-1 text-sm font-medium text-gray-900">$<%= item.product.price.to_i %></p>
-                  </div>
-
-                  <div class="selection-container mt-4 sm:mt-0 sm:pr-9">
-                    <label for="quantity-0" class="sr-only">Quantity, Basic Tee</label>
-                    <select class="productID max-w-full rounded-md border border-gray-300 py-1.5 text-base leading-5 font-medium text-gray-700 text-left shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="<%= item.product_id %>">
-                      <%= 1.upto(product_storage(item.product_id)) do |i| %>
-                        <option value="<%= " #{i}" %>"><%= "#{i}" %>
-                        </option>
-                      <% end %>
-                    </select>
-
-                    <div class="absolute top-0 right-0">
-                      <button type="button"
-                          class="-m-2 p-2 inline-flex text-gray-400 hover:text-gray-500">
-                        <span class="sr-only">Remove</span>
-                        <!-- Heroicon name: solid/x -->
-                        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
-                            fill="currentColor" aria-hidden="true">
-                          <path fill-rule="evenodd"
-                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                            clip-rule="evenodd" />
-                        </svg>
-                      </button>
-                    </div>
-                  </div>
+              <li class="flex py-6 sm:py-10">
+                <div class="flex-shrink-0">
+                  <img src="https://picsum.photos/120/120/?random=3"
+                      alt="Front of men&#039;s Basic Tee in sienna."
+                      class="w-24 h-24 rounded-md object-center object-cover sm:w-48 sm:h-48">
                 </div>
 
-                <p class="mt-4 flex text-sm text-gray-700 space-x-2">  
-                  <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                      <path fill-rule="evenodd"
-                          d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                          clip-rule="evenodd" />
-                  </svg>
-                  <span>庫存:<%= product_storage(item.product_id) %></span>
-                </p>
-              </div>
-            </li>
-            <div class="deliver-item mt-2 p-2">
-              <div class="deliver-item-title mb-1">
-                <span>選擇收件地與運送方式</span>
-              </div>
-            
-              <div class="how-to-deliver ">
-                <select class="border border-gray-300 inline mb-1">
-                  <option value disabled>請選擇運送方式</option>
-                  <optgroup label="從 台灣 寄出"></optgroup>
-                  <% Product.deliveries.each do |delivery| %>
-                    <option value="<%= delivery[1] %>">
-                      <%= delivery[0] %>
-                    </option>
-                  <% end %>
-                </select>
-            
-                <ul class="promo px-0">
-                  <li>通知出貨後約 1 - 2 天寄達</li>
-                  <!-- <li>滿 NT$ 1,000 <span>免運費</span></li> -->
-                </ul>         
-              </div>        
-            </div>           
-          <% end %>
+                <div class="ml-4 flex-1 flex flex-col justify-between sm:ml-6">
+                  <div class="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
+                    <div>
+                      <div class="flex justify-between">
+                        <h3 class="text-sm">
+                          <a href="#" class="font-medium text-gray-700 hover:text-gray-800">
+                              <%= item.product.name %>
+                          </a>
+                        </h3>
+                      </div>
+                      
+                      <p class="mt-1 text-sm font-medium text-gray-900">$<%= item.product.price.to_i %></p>
+                    </div>
 
+                    <div class="selection-container mt-4 sm:mt-0 sm:pr-9">
+                      <label for="quantity-0" class="sr-only">Quantity, Basic Tee</label>
+                      <select class="productID max-w-full rounded-md border border-gray-300 py-1.5 text-base leading-5 font-medium text-gray-700 text-left shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="<%= item.product_id %>">
+                        <%= 1.upto(product_storage(item.product_id)) do |i| %>
+                          <option value="<%= " #{i}" %>"><%= "#{i}" %>
+                          </option>
+                        <% end %>
+                      </select>
+
+                      <div class="absolute top-0 right-0">
+                        <button type="button"
+                            class="delete-item-button -m-2 p-2 inline-flex text-gray-400 hover:text-gray-500" id="<%= item.product_id %>">
+                          <span class="sr-only">Remove</span>
+                          <!-- Heroicon name: solid/x -->
+                          <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                              fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd"
+                              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                              clip-rule="evenodd" />
+                          </svg>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+
+                  <p class="mt-4 flex text-sm text-gray-700 space-x-2">  
+                    <svg class="flex-shrink-0 h-5 w-5 text-green-500" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd"
+                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                            clip-rule="evenodd" />
+                    </svg>
+                    <span>庫存:<%= product_storage(item.product_id) %></span>
+                  </p>
+                </div>
+              </li>
+            </div>
+          <% end %>
         </ul>
+        <div class="deliver-item mt-2 p-2">
+          <div class="deliver-item-title mb-1">
+            <span>選擇收件地與運送方式</span>
+          </div>
+        
+          <div class="how-to-deliver ">
+            <select class="border border-gray-300 inline mb-1">
+              <option value disabled>請選擇運送方式</option>
+              <optgroup label="從 台灣 寄出"></optgroup>
+              <% Product.deliveries.each do |delivery| %>
+                <option value="<%= delivery[1] %>">
+                  <%= delivery[0] %>
+                </option>
+              <% end %>
+            </select>
+        
+            <ul class="promo px-0">
+              <li>通知出貨後約 1 - 2 天寄達</li>
+            </ul>         
+          </div>        
+        </div> 
       </section>
 
       <!-- Order summary -->
@@ -122,7 +123,7 @@
             </dt>
             <dd class="text-sm font-medium text-gray-900">
               $<span class="total_price">
-                <%= total_delivery_fee %>
+                <%= delivery_fee %>
               </span>
             </dd>
           </div>
