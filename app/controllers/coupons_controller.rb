@@ -16,6 +16,9 @@ class CouponsController < ApplicationController
     end
   end
 
+  def show
+  end
+
   def check_coupon_id?(coupon_id)
     current_user.user_coupons.any? { |coupon| coupon.coupon_id == coupon_id.to_i }
   end
