@@ -3,11 +3,10 @@ import Rails from "@rails/ujs";
 
 document.addEventListener("turbolinks:load", () => {
 	const heartIcon = document.querySelector("#heart")
-	const label = document.querySelector("#productId")
+  console.log(heartIcon)
 	if (heartIcon) {
     heartIcon.addEventListener("click", () => {
-      var id = label.dataset.id
-      console.log("123")
+      var id = heartIcon.dataset.id
       Rails.ajax({
         url: `/products/${id}/favorite`,
         type: "post",

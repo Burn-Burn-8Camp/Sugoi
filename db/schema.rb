@@ -146,7 +146,6 @@ ActiveRecord::Schema.define(version: 2021_09_24_043005) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
-    # 誰跟誰的 rooms
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
