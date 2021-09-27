@@ -96,13 +96,21 @@
           <button type="submit" class="max-w-xs flex-1 bg-red-300 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50  sm:w-full m-2">
           立即結帳</button>
           <% end %>
-                <div>
+                <div id="log">
                   <button type="button" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform ">
                     <i class="far fa-heart"></i>
                   </button>
-                  <button type="button" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform">
+
+
+                  <%= link_to rooms_path, class: "px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform" do %>
+                    <i class="far fa-comment-dots"></i>
+                  <% end %>
+
+                  <!--
+                  <button id="roomId" type="button" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform">
                     <i class="far fa-comment-dots"></i>
                   </button>
+                  -->
                 </div>
               
                 <div class="text-base text-gray-700 space-y-6 mt-8 ">
