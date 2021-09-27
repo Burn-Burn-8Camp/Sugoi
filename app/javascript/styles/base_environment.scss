@@ -71,3 +71,12 @@ input[type='checkbox']:checked ~ .collapse-content {
 input[type='checkbox'] ~ .collapse-title:focus {
 	background-color: rgba(252, 165, 165, var(--tw-bg-opacity)) !important;
 }
+
+.slick-next {
+	right: 25px;
+	display: none;
+}
+.slick-prev {
+	left: 25px;
+	display: none;
+}
