@@ -5,7 +5,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fas);
 
-const Navbar = ({webUser}) => {
+const Navbar = ({webUser, cart}) => {
   const userDefault = {
     id: '訪客',
     email: '電子信箱',
@@ -151,29 +151,29 @@ const Navbar = ({webUser}) => {
                 </Menu>
                 <button
                   type="button"
-                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
+                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   <span className="sr-only"></span>
                   <a href="/coupons">
-                    <FontAwesomeIcon icon={['fas', 'ticket-alt']} className="h-6 w-6 text-2xl" aria-hidden="true" />
+                    <FontAwesomeIcon icon={['fas', 'ticket-alt']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200" aria-hidden="true" />
                   </a>
                 </button>
                 <button
                   type="button"
-                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
+                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   <span className="sr-only"></span>
                   <a href="/store">
-                    <FontAwesomeIcon icon={['fas', 'store']} className="h-6 w-6 text-2xl" aria-hidden="true" />
+                    <FontAwesomeIcon icon={['fas', 'store']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200" aria-hidden="true" />
                   </a>
                 </button>
                 <button
                   type="button"
-                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
+                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   <span className="sr-only"></span>
                   <a href="/cart">
-                    <FontAwesomeIcon icon={['fas', 'shopping-cart']} className="h-6 w-6 text-2xl" aria-hidden="true" />
+                    <div class="indicator">
+                      <div class="indicator-item badge badge-secondary mt-1">{cart.items.length}</div> 
+                      <FontAwesomeIcon icon={['fas', 'shopping-cart']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200 mt-1" aria-hidden="true" />
+                    </div>
                   </a>
                 </button>
               </div>
@@ -222,29 +222,26 @@ const Navbar = ({webUser}) => {
                 </div>
                 <button
                   type="button"
-                  className="ml-auto flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  <span className="sr-only"></span>
+                  className="ml-auto flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   <a href="/coupons">
-                    <FontAwesomeIcon icon={['fas', 'ticket-alt']} className="h-6 w-6 text-2xl" aria-hidden="true" />
+                    <FontAwesomeIcon icon={['fas', 'ticket-alt']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200" aria-hidden="true" />
                   </a>
                 </button>
                 <button
                   type="button"
-                  className="ml-auto flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  <span className="sr-only"></span>
+                  className="flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   <a href="/store">
-                    <FontAwesomeIcon icon={['fas', 'store']} className="h-6 w-6 text-2xl" aria-hidden="true" />
+                    <FontAwesomeIcon icon={['fas', 'store']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200" aria-hidden="true" />
                   </a>
                 </button>
                 <button
                   type="button"
-                  className="flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  <span className="sr-only"></span>
+                  className="flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                   <a href="/cart">
-                    <FontAwesomeIcon icon={['fas', 'shopping-cart']} className="h-6 w-6 text-2xl" aria-hidden="true" />
+                    <div class="indicator">
+                      <div class="indicator-item badge badge-secondary mt-1">{cart.items.length}</div> 
+                      <FontAwesomeIcon icon={['fas', 'shopping-cart']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200 mt-1" aria-hidden="true" />
+                    </div>
                   </a>
                 </button>
               </div>
