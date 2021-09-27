@@ -136,9 +136,9 @@ ActiveRecord::Schema.define(version: 2021_09_24_043005) do
     t.string "description"
     t.bigint "store_id"
     t.integer "delivery"
+    t.string "image"
     t.datetime "deleted_at"
     t.string "slug"
-    t.string "image"
     t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["slug"], name: "index_products_on_slug", unique: true
     t.index ["store_id"], name: "index_products_on_store_id"
@@ -146,7 +146,6 @@ ActiveRecord::Schema.define(version: 2021_09_24_043005) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
-    # 誰跟誰的 rooms
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
