@@ -121,6 +121,10 @@ ActiveRecord::Schema.define(version: 2021_09_27_041528) do
     t.string "coupon_name", default: "未使用"
     t.string "slug"
     t.text "message"
+    t.integer "coupon_value", default: 0
+    t.integer "user_discount", default: 0
+    t.integer "delivery_fee", default: 0
+    t.integer "product_subtotal"
     t.index ["slug"], name: "index_orders_on_slug", unique: true
     t.index ["user_id"], name: "index_orders_on_user_id"
   end

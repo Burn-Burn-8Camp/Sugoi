@@ -5,8 +5,7 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fas);
 
-const Navbar = ({webUser}) => {
-  console.log(webUser)
+const Navbar = ({webUser, cart}) => {
   const userDefault = {
     id: '訪客',
     role: 'visitor',
@@ -35,7 +34,7 @@ const Navbar = ({webUser}) => {
   const userWithLogOut = [
     { name: '個人檔案', href: '/member/profile', method: 'get' },
     { name: '我的最愛', href: '#', method: 'get' },
-    { name: '優惠卷', href: `/coupons/${webUser.id}`, method: 'get' },
+    { name: '優惠卷', href: `/member/user_coupons`, method: 'get' },
     { name: '我的訂單', href: '/orders', method: 'get' },
     { name: '登出', href: '/users/sign_out', method: 'delete' },
   ]
@@ -177,11 +176,17 @@ const Navbar = ({webUser}) => {
                 </Menu>
                 <button
                   type="button"
-                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-red-300 hover:text-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
+                  className="mr-4 flex-shrink-0 p-1">
+                  <a href="/coupons">
+                    <FontAwesomeIcon icon={['fas', 'ticket-alt']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200" aria-hidden="true" />
+                  </a>
+                </button>
+                <button
+                  type="button"
+                  className="mr-4 flex-shrink-0 p-1">
                   <span className="sr-only"></span>
                   <a href="/store">
-                    <FontAwesomeIcon icon={['fas', 'store']} className="h-6 w-6 text-2xl" aria-hidden="true" />
+                    <FontAwesomeIcon icon={['fas', 'store']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200" aria-hidden="true" />
                   </a>
                 </button>
                 <button
@@ -190,7 +195,10 @@ const Navbar = ({webUser}) => {
                 >
                   <span className="sr-only"></span>
                   <a href="/cart">
-                    <FontAwesomeIcon icon={['fas', 'shopping-cart']} className="h-6 w-6 text-2xl" aria-hidden="true" />
+                    <div className="indicator">
+                      <div className="indicator-item badge badge-secondary mt-1" id='cart-item-quantity'>{cart.items.length}</div> 
+                      <FontAwesomeIcon icon={['fas', 'shopping-cart']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200 mt-1" aria-hidden="true" />
+                    </div>
                   </a>
                 </button>
               </div>
@@ -239,20 +247,26 @@ const Navbar = ({webUser}) => {
                 </div>
                 <button
                   type="button"
-                  className="ml-auto flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  <span className="sr-only"></span>
-                  <a href="/store">
-                    <FontAwesomeIcon icon={['fas', 'store']} className="h-6 w-6 text-2xl" aria-hidden="true" />
+                  className="ml-auto flex-shrink-0 p-1">
+                  <a href="/coupons">
+                    <FontAwesomeIcon icon={['fas', 'ticket-alt']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200 mx-2" aria-hidden="true" />
                   </a>
                 </button>
                 <button
                   type="button"
-                  className="flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                >
-                  <span className="sr-only"></span>
+                  className="flex-shrink-0 p-1">
+                  <a href="/store">
+                    <FontAwesomeIcon icon={['fas', 'store']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200 mx-2" aria-hidden="true" />
+                  </a>
+                </button>
+                <button
+                  type="button"
+                  className="flex-shrink-0 p-1">
                   <a href="/cart">
-                    <FontAwesomeIcon icon={['fas', 'shopping-cart']} className="h-6 w-6 text-2xl" aria-hidden="true" />
+                    <div className="indicator mx-2">
+                      <div className="indicator-item badge badge-secondary mt-1">{cart.items.length}</div> 
+                      <FontAwesomeIcon icon={['fas', 'shopping-cart']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200 mt-1" aria-hidden="true" />
+                    </div>
                   </a>
                 </button>
               </div>
