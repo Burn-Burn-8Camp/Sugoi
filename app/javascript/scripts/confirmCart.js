@@ -64,9 +64,19 @@ document.addEventListener("turbolinks:load", () => {
         type: "post",
         data: params,
         success: (data) => {
-          totalPrice.textContent = data.subtotal
-          delivery.textContent = data.total_delivery_fee
-          sum.textContent = data.subtotal + data.total_delivery_fee - Number(couponValue.value) 
+          if (data.subtotal === 0) {
+            totalPrice.textContent = data.subtotal
+            delivery.textContent = 0
+            sum.textContent = data.subtotal 
+          } else if (couponValue.value) {
+            totalPrice.textContent = data.subtotal
+            delivery.textContent = data.delivery_fee
+            sum.textContent = data.subtotal + data.delivery_fee - Number(couponValue.value) 
+          } else {
+            totalPrice.textContent = data.subtotal
+            delivery.textContent = data.delivery_fee
+            sum.textContent = data.subtotal + data.delivery_fee
+          }
         },
         error: function (err) {
           console.log(err);

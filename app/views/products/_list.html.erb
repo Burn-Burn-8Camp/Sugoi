@@ -3,11 +3,6 @@
   <div class="w-full h-56 bg-gray-200 rounded-md overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
     <img src="https://tailwindui.com/img/ecommerce-images/home-page-04-trending-product-02.jpg" alt="Hand stitched, orange leather long wallet." class="w-full h-full object-center object-cover">
   </div>
-  <div class='' style=''>
-    <% if current_user != nil%>
-      <%= image_tag "#{current_user.image_url}" if current_user.image_url.present? %>
-    <% end %>
-  </div> 
   <%= link_to product_path(product) do %>
   <h3 class="mt-4 text-sm text-gray-700">
     <span class="absolute inset-0"></span>

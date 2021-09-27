@@ -35,22 +35,6 @@ module ApplicationHelper
 		comments.map{|comment| comment.rate}.sum / comments.length
 	end
 
-	def delivery_fee
-		delivery_fee = Product.deliveries["貨運 NT$100"] 
-	end
-
-	def total_delivery_fee
-		delivery_fee * store_amount
-	end
-
-	def coupon_value
-		current_cart.coupon.reduce(0) { |acc, coupon | acc + coupon.coupon_value.to_i }
-	end
-
-	def shopping_cart_sum
-		current_cart.total_included_delivery_fee - coupon_value
-	end
-
 	def store_amount
     store_id_list = current_cart.items.map { |item| item.store_id }.uniq.sort
     @store_items = []
@@ -62,4 +46,24 @@ module ApplicationHelper
     @store_items.count
   end
 
+	def delivery_fee
+		delivery_fee = Product.deliveries["貨運 NT$100"] 
+	end
+
+	def coupon_value
+		current_cart.coupon.reduce(0) { |acc, coupon | acc + coupon.coupon_value.to_i }
+	end
+
+	def user_discount(accumulated_amount)
+		shopping_cart_with_fee_and_coupon = current_cart.total_included_delivery_fee - coupon_value 
+    if accumulated_amount > 2000 && accumulated_amount < 20000
+			shopping_cart_with_fee_and_coupon -= (shopping_cart_with_fee_and_coupon * 0.95).ceil 
+		else accumulated_amount >= 20000
+			shopping_cart_with_fee_and_coupon -= (shopping_cart_with_fee_and_coupon * 0.85).ceil 
+    end      
+  end
+
+	def final_shopping_cart_value(accumulated_amount)
+		current_cart.total_included_delivery_fee - coupon_value - user_discount(accumulated_amount)
+	end
 end

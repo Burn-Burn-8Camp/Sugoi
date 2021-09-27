@@ -3,7 +3,6 @@ class CartsController < ApplicationController
   before_action :find_cart_item, only: [:add_item]
 
   def show
-    # 相同商城會在同一欄位內
     @coupons = current_user.user_coupons.where(status: "unused")
     store_id_list = current_cart.items.map { |item| item.store_id }.uniq.sort
     @store_items = []
@@ -22,12 +21,11 @@ class CartsController < ApplicationController
   end
 
   def delete_item
-       
     current_cart.items.select! { |item| item.product_id != params[:product_id].to_i }
-    total_delivery_fee = Product.deliveries["貨運 NT$100"] * current_cart.store_amount 
+    delivery_fee = Product.deliveries["貨運 NT$100"]
     subtotal = current_cart.items.reduce(0) { |acc, item| acc + item.price.to_i } 
     session[:cart1289] = current_cart.serialize
-    render json: { total_delivery_fee: total_delivery_fee, subtotal: subtotal }
+    render json: { delivery_fee: delivery_fee, subtotal: subtotal }
   end
 
   def destroy
@@ -47,7 +45,7 @@ class CartsController < ApplicationController
     found_coupon
     @total = current_cart.use_coupon(params[:coupon_id], params[:value])
     session[:cart1289] = current_cart.serialize
-    render json: { total: @total, value: params[:value] }
+    render json: { total: @total, value: params[:value].to_i }
   end
   
   private
