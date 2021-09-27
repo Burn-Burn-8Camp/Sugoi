@@ -36,6 +36,8 @@ gem 'activerecord-session_store', '~> 2.0'
 gem 'figaro', '~> 1.2'
 gem 'paranoia', '~> 2.4', '>= 2.4.3'
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
+gem 'sidekiq', '~> 6.2', '>= 6.2.2'
+gem 'sidekiq-scheduler', '~> 3.1'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

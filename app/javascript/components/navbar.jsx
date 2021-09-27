@@ -25,9 +25,7 @@ const Navbar = ({webUser, cart}) => {
     { name: '餐桌廚房', href: '#', current: false },
   ]
   const userWithLogIn = [
-    { name: '個人檔案', href: '/member/profile', method: 'get' },
-    { name: '我的最愛', href: '#', method: 'get' },
-    { name: '我的訂單', href: '/orders', method: 'get' },
+    { name: '註冊', href: '/users/sign_up', method: 'get' },
     { name: '登入', href: '/users/sign_in', method: 'get' },
   ]
   const userWithLogOut = [
