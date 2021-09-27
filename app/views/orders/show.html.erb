@@ -1,95 +1,97 @@
-<div class="breadcrumbs m-2.5">
-	<ul>
-		<li class='text-blue-400'><%= check_state(@order) %></li> 
-		<li><%= @order.serial %></li>
-	</ul>
-</div>
-
-<div class="m-5 mt-0">
-	<p><%= @order.created_at.to_date %></p>
-</div>
-
-<div class="rate border roubded px-5 m-5">
-	<% if @comments.length === 0 %>
-		<h2 class="py-5">尚未評價</h2>
-	<% else %>
-		<h2 class="py-5">已獲評價</h2>
+<div class='lg:container m-auto'> 
+	<div class="breadcrumbs mx-2.5">
+		<ul>
+			<li class='text-blue-400'><%= check_state(@order) %></li>
+			<li><%= @order.serial %></li>
+		</ul>
+	</div>
+	
+	<div class="m-5 mt-0">
+		<p class='text-xl'><%= @order.created_at.to_date %></p>
+	</div>
+	
+	<div class="rate border roubded px-5 m-5">
+		<% if @comments.length === 0 %>
+			<h2 class="py-5">尚未評價</h2>
+		<% else %>
+			<h2 class="py-5 border-b">已獲評價</h2>
+			<div class='flex'>
+				<%= react_component 'StarList', props: {rate: calculate_star_average(@comments)} %>
+				<span class='mx-3'>(<%= @comments.length %>)</span>
+			</div>
+		<% end %>
+		<% @comments.each do |comment| %>
+		<div class="py-5">
+			<span>商店：<%= comment.store.name %></span>
+			<span>內容：<%= comment.content %></span>
+		</div>
+		<% end %>
+	</div>
+	
+	<div class="delivery border roubded px-5 m-5">
+		<h2 class="py-5 border-b">運送狀態</h2>
+		<ul class="w-full steps order-steps py-5">
+			<%= content_tag(:li, '待付款', data: {content: "✓"}, class: state_step(@order, 0)) %>
+			<%= content_tag(:li, '已付款', data: {content: "✓"}, class: state_step(@order, 1)) %>
+			<%= content_tag(:li, '運送中', data: {content: "✓"}, class: state_step(@order, 2)) %>
+			<%= content_tag(:li, '已送達', data: {content: "✓"}, class: state_step(@order, 3)) %>
+			<%= content_tag(:li, '已取消', data: {content: "✓"}, class: state_step(@order, 4)) %>
+		</ul>
+	</div>
+	
+	<div class="border roubded px-5 m-5">
+		<h2 class="py-5 border-b pb-3">訂單內容</h2>
+		<p class='hidden' data-id=<%= @order.slug %> id='order_id'></p>
+		<%= react_component 'OrderItemsInfo', props: {order_id: @order.slug} %>
 		<hr>
-		<div class='flex'>
-			<%= react_component 'StarList', props: {rate: calculate_star_average(@comments)} %>
-			<span class='mx-3'>(<%= @comments.length %>)</span>
-		</div> 
-	<% end %>
-	<% @comments.each do |comment| %>
-	<div class="py-5">
-		<span>商店：<%= comment.store.name %></span>
-		<span>內容：<%= comment.content %></span>
-	</div>
-	<% end %>
-</div>
-
-<div class="delivery border roubded px-5 m-5">		
-	<h2 class="py-5">運送狀態</h2>
-	<hr>
-	<ul class="w-full steps order-steps py-5">
-		<%= content_tag(:li, '待付款', data: {content: "✓"}, class: state_step(@order, 0)) %>
-		<%= content_tag(:li, '已付款', data: {content: "✓"}, class: state_step(@order, 1)) %>
-		<%= content_tag(:li, '運送中', data: {content: "✓"}, class: state_step(@order, 2)) %>
-		<%= content_tag(:li, '已送達', data: {content: "✓"}, class: state_step(@order, 3)) %>
-		<%= content_tag(:li, '已取消', data: {content: "✓"}, class: state_step(@order, 4)) %>
-	</ul>
-</div>
-
-<div class="border roubded px-5 m-5">		
-	<h2 class="py-5">訂單內容</h2>
-	<p class='hidden' data-id=<%= @order.slug %> id='order_id'></p> 
-	<hr>
-	<%= react_component 'OrderItemsInfo', props: {order_id: @order.slug} %>
-	<hr>
-	<div class="grid grid-cols-2 my-2">
-		<div class='col-start-2'>
-			<div class="grid grid-cols-2 py-1">
-				<p class="text-right">小計</p>
-				<p class="text-right"><%= @order.total %></p>
-			</div>
-			<div class="grid grid-cols-2 py-1">
-				<p class="text-right">商品折抵</p>
-				<p class="text-right">0</p>
-			</div>
-			<div class="grid grid-cols-2 py-1">
-				<p class="text-right">運費</p>
-				<p class="text-right">0</p>
-			</div>
-			<hr class="my-2">
-			<div class="grid grid-cols-2 py-1">
-				<p class="text-right">總計</p>
-				<p class="text-right"><%= @order.total %></p>
+		<div class="grid grid-cols-2 my-2">
+			<div class='col-start-2'>
+				<div class="grid grid-cols-2 py-1">
+					<p class="text-right">小計</p>
+					<p class="text-right">NT$ <%= @order.product_subtotal %></p>
+				</div>
+				<div class="grid grid-cols-2 py-1">
+					<p class="text-right">運費</p>
+					<p class="text-right">NT$ <%= @order.delivery_fee %></p>
+				</div>
+				<div class="grid grid-cols-2 py-1">
+					<p class="text-right">優惠券折抵</p>
+					<p class="text-right">-NT$ <%= @order.coupon_value %></p>
+				</div>
+				<div class="grid grid-cols-2 pt-1 pb-2 border-b">
+					<p class="text-right">會員折扣</p>
+					<p class="text-right">-NT$ <%= @order.user_discount %></p>
+				</div>
+				<div class="grid grid-cols-2 pt-2 pb-1">
+					<p class="text-right">總計</p>
+					<p class="text-right">NT$ <%= @order.total %></p>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-
-<div class="delivery border roubded px-5 m-5">		
-	<h2 class="py-5">收件人資訊</h2>
-	<hr>
-	<div class='grid grid-cols-8'>
-		<div class="col col-span-3 md:col-span-2 lg:col-span-1">
-			<p class="text-right pr-3">收件人</p>
-		</div>
-		<div class="col col-span-5 md:col-span-6 lg:col-span-7">
-			<p><%= @order.receiver %></p>
-		</div>
-		<div class="col col-span-3 md:col-span-2 lg:col-span-1">
-			<p class="text-right pr-3">收件人地址</p>
-		</div>
-		<div class="col col-span-5 md:col-span-6 lg:col-span-7">
-			<p><%= @order.address %></p>
-		</div>
-		<div class="col col-span-3 md:col-span-2 lg:col-span-1">
-			<p class="text-right pr-3">收件人電話</p>
-		</div>
-		<div class="col col-span-5 md:col-span-6 lg:col-span-7">
-			<p><%= @order.tel %></p>
+	
+	<div class="delivery border roubded px-5 m-5">
+		<h2 class="py-5">收件人資訊</h2>
+		<hr>
+		<div class='grid grid-cols-8'>
+			<div class="col col-span-2 pr-2 py-3">
+				<p>收件人</p>
+			</div>
+			<div class="col col-span-6 py-3">
+				<p><%= @order.receiver %></p>
+			</div>
+			<div class="col col-span-2 pr-2 py-3">
+				<p>收件人地址</p>
+			</div>
+			<div class="col col-span-6 py-3">
+				<p><%= @order.address %></p>
+			</div>
+			<div class="col col-span-2 pr-2 py-3">
+				<p>收件人電話</p>
+			</div>
+			<div class="col col-span-6 py-3">
+				<p><%= @order.tel %></p>
+			</div>
 		</div>
 	</div>
 </div>

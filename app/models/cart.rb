@@ -32,10 +32,23 @@ class Cart
     @store_items.count
   end
 
+  def change_item_quantity(product_id, quantity)
+    found_item = @items.find { |item| item.product_id === product_id.to_i }
+    if found_item
+      found_item.changement!(quantity)
+    end
+  end
+
+  def use_coupon(coupon_id, coupon_value)
+    @coupon = []
+    @coupon << CartCoupon.new(coupon_id, coupon_value)
+    total_included_delivery_fee = self.total_included_delivery_fee - coupon_value.to_i   
+  end
+
   def total_included_delivery_fee
     total = @items.reduce(0) { |acc, item| acc + item.total }
     is_children_day? ? total * 0.8 : total
-    delivery_fee = Product.deliveries["貨運 NT$100"] * store_amount
+    delivery_fee = Product.deliveries["貨運 NT$100"]
     total += delivery_fee
   end
 
