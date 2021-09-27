@@ -52,33 +52,33 @@ class OrdersController < ApplicationController
 	end
 
 	def pending
-		@orders = Order.where(user_id: current_user, state: 'pending')
+		@orders = Order.where(user_id: current_user, state: 'pending').includes(:order_items)
 		render :index
 	end
 
 	def processing
-		@orders = Order.where(user_id: current_user, state: 'paid')
+		@orders = Order.where(user_id: current_user, state: 'paid').includes(:order_items)
 		render :index
 	end
 
 	def shipped
-		@orders = Order.where(user_id: current_user, state: 'in_transit')
+		@orders = Order.where(user_id: current_user, state: 'in_transit').includes(:order_items)
 		render :index
 	end
 
 	def completed
-		@orders = Order.where(user_id: current_user, state: 'arrived')
+		@orders = Order.where(user_id: current_user, state: 'arrived').includes(:order_items)
 		render :index
 	end
 	
 	def cancelled
-		@orders = Order.where(user_id: current_user, state: 'cancelled')
+		@orders = Order.where(user_id: current_user, state: 'cancelled').includes(:order_items)
 		render :index
 	end
 
 	private
 		def order_params
-			pm = params.require(:order).permit(:receiver, :tel, :email, :address, :delivery, :message, :coupon_value, :delivery_fee, :user_discount, :total)
+			pm = params.require(:order).permit(:receiver, :tel, :email, :address, :delivery, :message, :product_subtotal, :coupon_value, :delivery_fee, :user_discount, :total)
 			pm[:message].delete!("\r\n")
 			pm
 		end

@@ -55,11 +55,12 @@ module ApplicationHelper
 	end
 
 	def user_discount(accumulated_amount)
-		shopping_cart_with_fee_and_coupon = current_cart.total_included_delivery_fee - coupon_value 
     if accumulated_amount > 2000 && accumulated_amount < 20000
-			shopping_cart_with_fee_and_coupon -= (shopping_cart_with_fee_and_coupon * 0.95).ceil 
-		else accumulated_amount >= 20000
-			shopping_cart_with_fee_and_coupon -= (shopping_cart_with_fee_and_coupon * 0.85).ceil 
+			((current_cart.total_included_delivery_fee - coupon_value) * 0.05).ceil 
+		elsif accumulated_amount >= 20000
+			((current_cart.total_included_delivery_fee - coupon_value) * 0.15).ceil 
+		else
+			0
     end      
   end
 
