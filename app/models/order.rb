@@ -1,8 +1,9 @@
 class Order < ApplicationRecord
   after_create :order_num_generator
-
   extend FriendlyId
   friendly_id :receiver, use: :slugged
+  default_scope -> { order('id DESC') }
+  enum delivery: { "貨運 NT$100": "貨運" }
 
   has_many :order_items
   has_many :store_orders
@@ -10,10 +11,10 @@ class Order < ApplicationRecord
   has_many :seller_comments
   belongs_to :user
 
-  default_scope -> { order('id DESC') }
-  
-  validates_presence_of :receiver, :tel, :email, :address, :delivery
+  validates_presence_of :receiver, :tel, :email, :address, :delivery, :product_subtotal, :total
   validates_format_of :email, :with => /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
+  
+  
 
   include AASM
   aasm column: 'state' do

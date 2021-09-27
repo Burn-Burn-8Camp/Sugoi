@@ -5,7 +5,7 @@ document.addEventListener("turbolinks:load", () => {
   let sum = document.querySelector(".sum")
   let couponValue = document.querySelector(".summary-coupon-redeem .coupon_value")
 
-  if (coupons){
+  if (coupons) {
     coupons.addEventListener("click", (e) => { 
       if(e.target.name === "coupon") {
         console.log(e.target)
@@ -14,7 +14,7 @@ document.addEventListener("turbolinks:load", () => {
         useCoupon(coupon_id, coupon_value)
       }
     })
-
+  
     function useCoupon(id, value) {
       const url ='/cart/redeem';
       let params = new URLSearchParams()
@@ -28,7 +28,7 @@ document.addEventListener("turbolinks:load", () => {
         data: params,
         success: (data) => {
           sum.textContent = data.total
-          couponValue.textContent = data.value
+          couponValue.textContent = parseInt(data.value)
         },
         error: function (err) {
           console.log(err);

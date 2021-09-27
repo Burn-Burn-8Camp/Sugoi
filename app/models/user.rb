@@ -36,7 +36,6 @@ class User < ApplicationRecord
       "尊貴會員"
     end
   end
-  #顯示下一階段可升級成甚麼會員
 
   def self.now_user_rank(accumulated_amount)
     if accumulated_amount <= 2000
@@ -47,7 +46,6 @@ class User < ApplicationRecord
       "尊貴會員"  
     end
   end
-  #判斷現在的會員等級
 
   def self.still_need(accumulated_amount)
     if accumulated_amount < 2000
@@ -56,5 +54,4 @@ class User < ApplicationRecord
       20000 - accumulated_amount
     end
   end
-  #判斷要完成任務還差多少消費金額
 end
