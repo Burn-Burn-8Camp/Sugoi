@@ -32,7 +32,7 @@ class StoresController < ApplicationController
 	end
 	
 	def products_list
-	  @products = current_store.products
+	  @products = current_store.products.order(id: :desc)
 	end
 
 	def product_detail

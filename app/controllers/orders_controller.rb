@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
 	before_action :authenticate_user!
-	before_action :find_order_by_friendly_id, only: [:show, :items_info]
+	before_action :find_order_by_friendly_id, only: [:show, :items_info, :cancel_order]
 	before_action :find_orders_by_state, only: [:pending, 
 											 												:processing, 
 																							:shipped, 
@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
 	end
 
 	def items_info
-		@items = @order.order_items.includes(:comment)
+		@items = @order.order_items.includes(:comment).includes(:product)
 		find_by_smae_store(@store_items = [], @items)
 		render './orders/items_info.json.jbuilder'
 	end
@@ -83,6 +83,15 @@ class OrdersController < ApplicationController
 	def cancelled
 		@orders = Order.where(user_id: current_user, state: 'cancelled').includes(:order_items)
 		render :index
+	end
+
+	def cancel_order
+		if @order.may_cancel?
+			@order.cancel!
+			redirect_to orders_path, notice: '退單成功'
+		else
+			redirect_to orders_path, notice: '訂單已出貨，無法執行退單' 
+		end
 	end
 
 	private

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_041528) do
+ActiveRecord::Schema.define(version: 2021_09_27_151944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -209,7 +209,7 @@ ActiveRecord::Schema.define(version: 2021_09_27_041528) do
     t.string "rank"
     t.integer "accumulated_amount", default: 0
     t.string "country"
-    t.string "name"
+    t.string "name", default: "SUGOII粉絲"
     t.integer "p_coins", default: 0
     t.string "gender"
     t.date "birthday"
