@@ -31,15 +31,24 @@ class OrdersController < ApplicationController
 	def create
 		cart_items = current_cart.items
 		find_by_smae_store(@store_items = [], cart_items)
+
 		@order = current_user.orders.new(order_params)
 		@cart_coupon = current_cart.coupon
-		create_order_items_in_order(cart_items, @order)
 
+		@order.product_subtotal = current_cart.total
+		@order.delivery_fee = 100
 		@cart_coupon.each do |coupon| 
 			if current_user.user_coupons.find_by(coupon_id: coupon.coupon_id).status === "unused"
 				current_user.user_coupons.find_by(coupon_id: coupon.coupon_id).redeem!
+				@order.coupon_value = coupon.value
 			end
 		end
+		
+		total_with_fee_with_coupon =  @order.product_subtotal - @order.coupon_value + @order.delivery_fee
+		@order.user_discount = user_discount(current_user.accumulated_amount, total_with_fee_with_coupon)
+
+		@order.total = total_with_fee_with_coupon - @order.user_discount
+		create_order_items_in_order(cart_items, @order)
 
 		if @order.save			
 			caculate_user_consume(current_user)
@@ -78,7 +87,7 @@ class OrdersController < ApplicationController
 
 	private
 		def order_params
-			pm = params.require(:order).permit(:receiver, :tel, :email, :address, :delivery, :message, :product_subtotal, :coupon_value, :delivery_fee, :user_discount, :total)
+			pm = params.require(:order).permit(:receiver, :tel, :email, :address, :delivery, :message)
 			pm[:message].delete!("\r\n")
 			pm
 		end
@@ -125,5 +134,15 @@ class OrdersController < ApplicationController
 			states = orders.map{|order| order.state}
 			@state_hash = {}
 			state_arr.each{|state| @state_hash[state] = states.count(state)}
+		end
+
+		def user_discount(accumulated_amount, total_with_fee_with_coupon)
+			if accumulated_amount > 2000 && accumulated_amount < 20000
+				(total_with_fee_with_coupon * 0.05).ceil 
+			elsif accumulated_amount >= 20000
+				(total_with_fee_with_coupon * 0.15).ceil 
+			else
+				0
+			end      
 		end
 end

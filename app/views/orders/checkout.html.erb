@@ -113,13 +113,6 @@
 								<%= f.text_area :message, class: 'w-full textarea textarea-bordered', size: "20x5", placeholder: '若你的訂單商品或是體驗活動需要提供客製化細節，請務必於下單時，填寫顏色、尺寸、圖案款式、客製文字等規格' %>
 							</div>
 						</div>
-						<div>
-							<%= f.hidden_field :product_subtotal, value: current_cart.total %>
-							<%= f.hidden_field :coupon_value, value: coupon_value %>
-							<%= f.hidden_field :delivery_fee, value: delivery_fee %>
-							<%= f.hidden_field :user_discount, value: user_discount(current_user.accumulated_amount) %>
-							<%= f.hidden_field :total, value: final_shopping_cart_value(current_user.accumulated_amount) %>
-						</div>
 					</div>
 					<%= f.submit '建立訂單', class: "w-full mt-6 bg-red-300 border border-transparent rounded-md shadow-sm py-2 px-4 text-sm font-medium text-black hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
 				<% end %>
