@@ -10,7 +10,9 @@ const Navbar = ({webUser, cart}) => {
     id: '訪客',
     role: 'visitor',
     email: '電子信箱',
-    image: {url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' }
+    image: {
+      url: '/images/阿榮.jpg'
+    }
   }
   webUser ? webUser : webUser = userDefault
   const user = {
@@ -27,14 +29,13 @@ const Navbar = ({webUser, cart}) => {
   ]
   const userWithLogIn = [
     { name: '個人檔案', href: '/member/profile', method: 'get' },
-    { name: '我的最愛', href: '#', method: 'get' },
     { name: '我的訂單', href: '/orders', method: 'get' },
     { name: '登入', href: '/users/sign_in', method: 'get' },
     { name: '註冊', href: '/users/sign_up', method: 'get' },
   ]
   const userWithLogOut = [
     { name: '個人檔案', href: '/member/profile', method: 'get' },
-    { name: '我的最愛', href: '#', method: 'get' },
+    { name: '我的最愛', href: '/member/favorite', method: 'get' },
     { name: '優惠卷', href: `/member/user_coupons`, method: 'get' },
     { name: '我的訂單', href: '/orders', method: 'get' },
     { name: '登出', href: '/users/sign_out', method: 'delete' },
