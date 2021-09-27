@@ -74,9 +74,9 @@ input[type='checkbox'] ~ .collapse-title:focus {
 
 .slick-next {
 	right: 25px;
-	display: none;
+	z-index: 10;
 }
 .slick-prev {
 	left: 25px;
-	display: none;
+	z-index: 10;
 }
