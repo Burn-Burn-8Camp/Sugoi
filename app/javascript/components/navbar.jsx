@@ -151,15 +151,14 @@ const Navbar = ({webUser, cart}) => {
                 </Menu>
                 <button
                   type="button"
-                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                  <span className="sr-only"></span>
+                  className="mr-4 flex-shrink-0 p-1">
                   <a href="/coupons">
                     <FontAwesomeIcon icon={['fas', 'ticket-alt']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200" aria-hidden="true" />
                   </a>
                 </button>
                 <button
                   type="button"
-                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  className="mr-4 flex-shrink-0 p-1">
                   <span className="sr-only"></span>
                   <a href="/store">
                     <FontAwesomeIcon icon={['fas', 'store']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200" aria-hidden="true" />
@@ -167,11 +166,11 @@ const Navbar = ({webUser, cart}) => {
                 </button>
                 <button
                   type="button"
-                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  className="mr-4 flex-shrink-0 p-1">
                   <span className="sr-only"></span>
                   <a href="/cart">
-                    <div class="indicator">
-                      <div class="indicator-item badge badge-secondary mt-1">{cart.items.length}</div> 
+                    <div className="indicator">
+                      <div className="indicator-item badge badge-secondary mt-1" id='cart-item-quantity'>{cart.items.length}</div> 
                       <FontAwesomeIcon icon={['fas', 'shopping-cart']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200 mt-1" aria-hidden="true" />
                     </div>
                   </a>
@@ -222,24 +221,24 @@ const Navbar = ({webUser, cart}) => {
                 </div>
                 <button
                   type="button"
-                  className="ml-auto flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  className="ml-auto flex-shrink-0 p-1">
                   <a href="/coupons">
-                    <FontAwesomeIcon icon={['fas', 'ticket-alt']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200" aria-hidden="true" />
+                    <FontAwesomeIcon icon={['fas', 'ticket-alt']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200 mx-2" aria-hidden="true" />
                   </a>
                 </button>
                 <button
                   type="button"
-                  className="flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  className="flex-shrink-0 p-1">
                   <a href="/store">
-                    <FontAwesomeIcon icon={['fas', 'store']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200" aria-hidden="true" />
+                    <FontAwesomeIcon icon={['fas', 'store']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200 mx-2" aria-hidden="true" />
                   </a>
                 </button>
                 <button
                   type="button"
-                  className="flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                  className="flex-shrink-0 p-1">
                   <a href="/cart">
-                    <div class="indicator">
-                      <div class="indicator-item badge badge-secondary mt-1">{cart.items.length}</div> 
+                    <div className="indicator mx-2">
+                      <div className="indicator-item badge badge-secondary mt-1">{cart.items.length}</div> 
                       <FontAwesomeIcon icon={['fas', 'shopping-cart']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200 mt-1" aria-hidden="true" />
                     </div>
                   </a>
