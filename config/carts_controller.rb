@@ -18,15 +18,10 @@ class CartsController < ApplicationController
   end
 
   def confirm
-    
-  #  render json: params
-    
     current_cart.change_item_quantity(params[:product_id], params[:quantity])
     # render json: current_cart.items
     session[:cart1289] = current_cart.serialize
-
-    redirect_to cart_path
-    
+    redirect_to cart_path  
   end
 
   private
