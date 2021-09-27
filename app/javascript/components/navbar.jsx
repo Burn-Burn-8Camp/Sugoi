@@ -30,6 +30,7 @@ const Navbar = ({webUser, cart}) => {
     { name: '我的最愛', href: '#', method: 'get' },
     { name: '我的訂單', href: '/orders', method: 'get' },
     { name: '登入', href: '/users/sign_in', method: 'get' },
+    { name: '註冊', href: '/users/sign_up', method: 'get' },
   ]
   const userWithLogOut = [
     { name: '個人檔案', href: '/member/profile', method: 'get' },
@@ -90,7 +91,7 @@ const Navbar = ({webUser, cart}) => {
                   <a href="/">
                     <img
                       className="block h-8 w-auto"
-                      src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg"
+                      src='/images/logo.png'
                       alt="Workflow"
                     />
                     </a>
