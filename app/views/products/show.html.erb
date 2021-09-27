@@ -6,7 +6,7 @@
           <div id="pic-group"  class="grid grid-cols-4 gap-6" aria-orientation="horizontal" role="tablist">
             <button id="tabs-1-tab-1" class="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50" aria-controls="tabs-1-panel-1" role="tab" type="button">
               <span class="absolute inset-0 rounded-md overflow-hidden">
-                <img src="https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg" alt="" class="w-full h-full object-center object-cover">
+                <img src="https://img.onl/AIawYZ" alt="" class="w-full h-full object-center object-cover">
               </span>
               <span class="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none" aria-hidden="true"></span>
             </button>
@@ -16,7 +16,7 @@
               Angled 
               </span>
               <span class="absolute inset-0 rounded-md overflow-hidden">
-                <img src="https://picsum.photos/500/400?random=1" alt="" class="w-full h-full object-center object-cover">
+                <img src="https://img.onl/b1jJn7" alt="" class="w-full h-full object-center object-cover">
               </span>
               <span class="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none" aria-hidden="true"></span>
             </button>
@@ -26,16 +26,17 @@
                 Angled view
               </span>
               <span class="absolute inset-0 rounded-md overflow-hidden">
-                <img src="https://picsum.photos/500/400?random=2" alt="" class="w-full h-full object-center object-cover">
+                <img src="https://img.onl/lpTsfs" alt="" class="w-full h-full object-center object-cover">
               </span>
               <span class="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none" aria-hidden="true"></span>
             </button>
+
             <button id="tabs-1-tab-1" class="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50" aria-controls="tabs-1-panel-1" role="tab" type="button">
               <span class="sr-only">
                 Angled view
               </span>
               <span class="absolute inset-0 rounded-md overflow-hidden">
-                <img src="https://picsum.photos/500/400?random=3" alt="" class="w-full h-full object-center object-cover">
+                <img src="https://img.onl/VUokUk" alt="" class="w-full h-full object-center object-cover">
               </span>
               <span class="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none" aria-hidden="true"></span>
             </button>
@@ -44,7 +45,7 @@
 
         <div class="w-full aspect-w-1 aspect-h-1">
           <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabindex="0">
-            <img id="big-pic" src="https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg" alt="Angled front view with bag zipped and handles upright." class="w-full h-full object-center object-cover sm:rounded-lg">
+            <img id="big-pic" src="https://img.onl/PY08z6" alt="Angled front view with bag zipped and handles upright." class="w-full h-full object-center object-cover sm:rounded-lg">
           </div>
         </div>
       </div>
@@ -85,12 +86,17 @@
           立即結帳</button>
           <% end %>
                 <div>
-                  <button type="button" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform ">
-                    <i class="far fa-heart"></i>
-                  </button>
+                  <% if current_user %>
+                    <button type="button" id="heart" data-id="<%= @product.slug %>" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform ">
+                      <i class="far fa-heart"></i>
+                    </button>
+                  <% else %>
+                    <%= link_to '請加入會員來收藏商品', new_user_session_path %>
+                  <% end %>
                   <button type="button" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform">
                     <i class="far fa-comment-dots"></i>
                   </button>
+                  -->
                 </div>
               
                 <div class="text-base text-gray-700 space-y-6 mt-8 ">

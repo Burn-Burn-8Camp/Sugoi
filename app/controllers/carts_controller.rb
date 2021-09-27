@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  before_action  :authenticate_user!, only: [:add_item]
+  before_action  :authenticate_user!, only: [:add_item, :show]
   before_action :find_cart_item, only: [:add_item]
 
   def show
@@ -25,7 +25,7 @@ class CartsController < ApplicationController
     delivery_fee = Product.deliveries["貨運 NT$100"]
     subtotal = current_cart.items.reduce(0) { |acc, item| acc + item.price.to_i } 
     session[:cart1289] = current_cart.serialize
-    render json: { delivery_fee: delivery_fee, subtotal: subtotal }
+    render json: { delivery_fee: delivery_fee, subtotal: subtotal, itemsQuantity: current_cart.items.count }
   end
 
   def destroy
@@ -35,10 +35,10 @@ class CartsController < ApplicationController
 
   def confirm
     current_cart.change_item_quantity(params[:product_id], params[:quantity])
-    # render json: current_cart.items
     session[:cart1289] = current_cart.serialize
-    @cart = current_cart.total
-    render json: @cart  
+    itemsPrice = current_cart.total
+    items_quantity = current_cart.items.count
+    render json: { itemsPrice: current_cart.total }
   end
 
   def redeem

@@ -2,6 +2,7 @@ class Order < ApplicationRecord
   after_create :order_num_generator
   extend FriendlyId
   friendly_id :receiver, use: :slugged
+  
   default_scope -> { order('id DESC') }
   enum delivery: { "貨運 NT$100": '貨運' }
 

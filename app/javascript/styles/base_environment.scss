@@ -62,21 +62,3 @@
 		}
 	}
 }
-
-input[type='checkbox']:checked ~ .collapse-title,
-input[type='checkbox']:checked ~ .collapse-content {
-	background-color: rgba(252, 165, 165, var(--tw-bg-opacity)) !important;
-}
-
-input[type='checkbox'] ~ .collapse-title:focus {
-	background-color: rgba(252, 165, 165, var(--tw-bg-opacity)) !important;
-}
-
-.slick-next {
-	right: 25px;
-	z-index: 10;
-}
-.slick-prev {
-	left: 25px;
-	z-index: 10;
-}
