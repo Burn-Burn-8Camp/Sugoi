@@ -29,14 +29,16 @@
               <td class="px-6 py-4 whitespace-nowrap">
                 <div class="flex items-center">
                   <div class="flex-shrink-0 h-10 w-10">
-				  <%= image_tag @product.image_url if @product.image_url.present? %> 
+                    <%= image_tag @product.image_url if @product.image_url.present? %>
                   </div>
-                  
+
                 </div>
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
-                <div class="text-sm text-gray-900"><%= @product.name %></div>
-                
+                <div class="text-sm text-gray-900">
+                  <%= @product.name %>
+                </div>
+
               </td>
               <td class="px-6 py-4 whitespace-nowrap">
                 <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
@@ -47,7 +49,9 @@
                 <%= @product.quantity %>
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                <a href="#" class="text-indigo-600 hover:text-indigo-900"><%= link_to "刪除", product_path(@product), method: "delete", data: { confirm: "確認刪除" } %></a>
+                <a href="#" class="text-indigo-600 hover:text-indigo-900">
+                  <%= link_to "刪除" , product_path(@product), method: "delete" , data: { confirm: "確認刪除" } %>
+                </a>
               </td>
             </tr>
 
