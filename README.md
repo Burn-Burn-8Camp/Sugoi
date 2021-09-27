@@ -1,4 +1,4 @@
-# Sugoi
+# Sugoii
 ## 為什麼我們致敬 Pinkoi ?
 > 疫情關係電商平台是目前的市場主流，Pinkoi 是提供給小眾設計師的販賣個人商品的網站，本組有同學之前從事設計相關的行業所以我們選擇了 Pinkoi，
 與課程上的教學有許多的共通性可以讓我們可以展示學習的成果。
@@ -42,7 +42,7 @@
 3. 看到單筆訂單進度條與明細
 
 
-### SUGOI開發技術
+### SUGOII開發技術
 
 1. 前端：HTML /  Tailwindcss / JavaScript
 2. 後端：Ruby on Rails / Devise / Action Cable

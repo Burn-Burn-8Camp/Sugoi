@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_24_043005) do
+ActiveRecord::Schema.define(version: 2021_09_27_041528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,9 +118,13 @@ ActiveRecord::Schema.define(version: 2021_09_24_043005) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "total"
     t.string "state"
-    t.string "coupon_name", default: "未使用"
     t.string "slug"
     t.text "message"
+    t.string "coupon_name", default: "未使用"
+    t.integer "coupon_value", default: 0
+    t.integer "user_discount", default: 0
+    t.integer "delivery_fee", default: 0
+    t.integer "product_subtotal"
     t.index ["slug"], name: "index_orders_on_slug", unique: true
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
@@ -146,7 +150,6 @@ ActiveRecord::Schema.define(version: 2021_09_24_043005) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
-    # 誰跟誰的 rooms
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -216,7 +219,7 @@ ActiveRecord::Schema.define(version: 2021_09_24_043005) do
     t.string "life_shopping"
     t.string "life_design"
     t.string "image"
-    t.string "role"
+    t.string "role", default: "normal"
     t.string "seller_email", default: "", null: false
     t.string "seller_name", default: "", null: false
     t.bigint "captcha"
