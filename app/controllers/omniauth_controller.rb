@@ -1,5 +1,5 @@
 class OmniauthController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: %i[google_oauth2]
+  skip_before_action :verify_authenticity_token, only: %i[google_oauth2 github]
 
   def google_oauth2
     @user = User.create_from_provider_data(request.env['omniauth.auth'])

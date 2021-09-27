@@ -23,7 +23,8 @@ class User < ApplicationRecord
     return nil if provider_data.nil?
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do |user|
       user.account = provider_data.info.email.split('@').first
-      user.email = provider_data.info.email
+      provider_data_email = User.where(email: provider_data.info.email).exists? ? (provider_data.info.email + '1') : provider_data.info.email
+      user.email = provider_data_email
       user.password = Devise.friendly_token[0, 20]
       user.picture = provider_data.info.image
     end
