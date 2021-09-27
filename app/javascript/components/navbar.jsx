@@ -6,8 +6,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 library.add(fas);
 
 const Navbar = ({webUser}) => {
+  console.log(webUser)
   const userDefault = {
     id: '訪客',
+    role: 'visitor',
     email: '電子信箱',
     image: {url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80' }
   }
@@ -77,6 +79,7 @@ const Navbar = ({webUser}) => {
     )
   }
 
+
   return (
     <Disclosure as="header" className="bg-white shadow">
       {({ open }) => (
@@ -114,10 +117,22 @@ const Navbar = ({webUser}) => {
                     </div>
                   </form>
                 </div>
-              </div>
+               </div>
+             
               <div className="relative z-10 flex items-center lg:hidden">
+              {
+                  webUser.role === 'normal'
+                  ?
+                  <button>
+                  <div className='mr-5'>
+                    <a className='text-red-300 hover:text-blue-200' href="/store/application">我想在SUGOII上販售</a>
+                  </div>
+                  </button>
+                  :
+                  ''
+                }
                 {/* Mobile menu button */}
-                <Disclosure.Button className="rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                <Disclosure.Button className="rounded-md p-2 inline-flex items-center justify-center text-red-300 hover:bg-gray-100 hover:text-blue-200 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                   <span className="sr-only">Open menu</span>
                   {open ? (
 										<FontAwesomeIcon icon={['fas', 'times']} className="block h-6 w-6 text-2xl" aria-hidden="true" />
@@ -127,6 +142,17 @@ const Navbar = ({webUser}) => {
                 </Disclosure.Button>
               </div>
               <div className="hidden lg:relative lg:z-10 lg:ml-4 lg:flex lg:items-center">
+              {
+                  webUser.role === 'normal'
+                  ?
+                  <button>
+                  <div className='mr-5'>
+                    <a className='text-red-300 hover:text-blue-200' href="/store/application">我想在SUGOII上販售</a>
+                  </div>
+                  </button>
+                  :
+                  ''
+                }
                 {/* Profile dropdown */}
                 <Menu as="div" className="flex-shrink-0 relative mr-4">
                   <div>
@@ -151,7 +177,7 @@ const Navbar = ({webUser}) => {
                 </Menu>
                 <button
                   type="button"
-                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-red-300 hover:text-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   <span className="sr-only"></span>
                   <a href="/store">
@@ -160,7 +186,7 @@ const Navbar = ({webUser}) => {
                 </button>
                 <button
                   type="button"
-                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-red-300 hover:text-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
                   <span className="sr-only"></span>
                   <a href="/cart">
@@ -235,6 +261,7 @@ const Navbar = ({webUser}) => {
               </div>
             </div>
           </Disclosure.Panel>
+
         </>
       )}
     </Disclosure>
