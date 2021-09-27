@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_24_043005) do
+ActiveRecord::Schema.define(version: 2021_09_27_041528) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -146,7 +146,6 @@ ActiveRecord::Schema.define(version: 2021_09_24_043005) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
-    # 誰跟誰的 rooms
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -216,7 +215,7 @@ ActiveRecord::Schema.define(version: 2021_09_24_043005) do
     t.string "life_shopping"
     t.string "life_design"
     t.string "image"
-    t.string "role"
+    t.string "role", default: "normal"
     t.string "seller_email", default: "", null: false
     t.string "seller_name", default: "", null: false
     t.bigint "captcha"
