@@ -3,12 +3,13 @@ class ProductsController < ApplicationController
   
   def index
     # @pagy, @products = pagy(Product.where(deleted_at: nil), items: 6)
-    @products = Product.where(deleted_at: nil)
-    @foods = Product.where(category: 'food').limit(6)
-    @books = Product.where(category:'book').limit(6)
-    @movies = Product.where(category: 'movie').limit(6)
-    @animals = Product.where(category: 'animal').limit(6)
-    @dragonBalls = Product.where(category: 'dragonBall').limit(6)
+    # @products = Product.where(deleted_at: nil)
+    @products = Product.all
+    # @foods = Product.where(category: 'food').limit(6)
+    # @books = Product.where(category:'book').limit(6)
+    # @movies = Product.where(category: 'movie').limit(6)
+    # @animals = Product.where(category: 'animal').limit(6)
+    # @dragonBalls = Product.where(category: 'dragonBall').limit(6)
   end
 
   def new
