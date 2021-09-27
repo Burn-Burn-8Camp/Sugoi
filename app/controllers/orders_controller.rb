@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
 		@cart_coupon.each do |coupon| 
 			if current_user.user_coupons.find_by(coupon_id: coupon.coupon_id).status === "unused"
 				current_user.user_coupons.find_by(coupon_id: coupon.coupon_id).redeem!
-				@order.coupon_value = coupon.value
+				@order.coupon_value = coupon.value.to_i
 			end
 		end
 		
