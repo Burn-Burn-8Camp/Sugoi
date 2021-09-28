@@ -71,4 +71,8 @@ module ApplicationHelper
 	def heart_color(favorite_item)
 		favorite_item.length === 0 ? "text-gray-800" : "text-red-400"
 	end
+
+	def set_cart_item_qiantity(index, quantity)
+		index === quantity ? 'selected' : ''
+	end
 end

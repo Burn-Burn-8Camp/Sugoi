@@ -26,7 +26,7 @@
 											<div class="space-y-1 sm:flex sm:items-start sm:justify-between sm:space-x-6">
 												<div class="flex-auto text-sm font-medium space-y-1">
 													<h3 class="text-gray-900">
-														<a href="#"><%= item.name %></a>
+														<%= item.name %>
 													</h3>
 													<p class="text-gray-900">$<%= number_with_delimiter(item.price.to_i) %></p>
 												</div>
@@ -51,7 +51,11 @@
 					</div>
 					<div class="flex justify-between">
 						<dt>運費</dt>
-						<dd class="text-gray-900">NT$ <%= number_with_delimiter(delivery_fee) %></dd>
+						<% if current_cart.total == 0 %>
+							<dd class="text-gray-900">NT$ 0</dd>
+						<% else %>
+							<dd class="text-gray-900">NT$ <%= number_with_delimiter(delivery_fee) %></dd>
+						<% end %>
 					</div>
 					<div class="flex justify-between">
 						<dt class="flex">優惠券折扣</dt>
@@ -59,14 +63,24 @@
 					</div>
 					<div class="flex justify-between">
 						<dt class="flex">會員折扣</dt>
-						<dd class="text-gray-900">-NT$ <%= user_discount(current_user.accumulated_amount) %></dd>
+						<% if current_cart.total == 0 %>
+							<dd class="text-gray-900">NT$ 0</dd>
+						<% else %>
+							<dd class="text-gray-900">-NT$ <%= user_discount(current_user.accumulated_amount) %></dd>
+						<% end %>
 					</div>
-					<div class="flex justify-between">
+					<div class="flex justify-between text-lg">
 						<dt>結帳總金額</dt>
-						<dd class="text-gray-900">NT$ <%= number_with_delimiter(final_shopping_cart_value(current_user.accumulated_amount)) %></dd>
+						<% if current_cart.total == 0 %>
+							<dd class="text-gray-900">NT$ 0</dd>
+						<% else %>
+							<dd class="text-gray-900">NT$ <%= number_with_delimiter(final_shopping_cart_value(current_user.accumulated_amount)) %></dd>
+						<% end %>
 					</div>
 				</dl>			
 			</div>
+
+			
 			<%# order_form %>
 			<div class="max-w-lg">
 				<%= form_for @order, html: {class: 'mt-6'} do |f| %>
