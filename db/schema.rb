@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_041528) do
+ActiveRecord::Schema.define(version: 2021_09_28_001411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,9 +118,9 @@ ActiveRecord::Schema.define(version: 2021_09_27_041528) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "total"
     t.string "state"
-    t.string "coupon_name", default: "未使用"
     t.string "slug"
     t.text "message"
+    t.string "coupon_name", default: "未使用"
     t.integer "coupon_value", default: 0
     t.integer "user_discount", default: 0
     t.integer "delivery_fee", default: 0
@@ -140,9 +140,9 @@ ActiveRecord::Schema.define(version: 2021_09_27_041528) do
     t.string "description"
     t.bigint "store_id"
     t.integer "delivery"
-    t.string "image"
     t.datetime "deleted_at"
     t.string "slug"
+    t.string "image"
     t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["slug"], name: "index_products_on_slug", unique: true
     t.index ["store_id"], name: "index_products_on_store_id"

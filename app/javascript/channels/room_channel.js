@@ -21,6 +21,7 @@ document.addEventListener('turbolinks:load', () => {
       const send_btn = document.getElementById('send-btn');
       const content = document.getElementById('message_content');
       const message_content = document.getElementById('chat-room-content')
+      // 調整 HTML
       message_content.innerHTML = message_content.innerHTML + `<p>${data.message} - ${data.user_name} [ ${data.datetime} ] </p><div style="width: 30px"><img src="${data.image}"></div>`
 
       send_btn.disabled = false;
