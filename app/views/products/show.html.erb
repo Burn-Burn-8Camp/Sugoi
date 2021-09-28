@@ -49,12 +49,12 @@
                     <button type="button" id="heart" data-id="<%= @product.slug %>" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform ">
                       <i class="far fa-heart"></i>
                     </button>
+                    <%= link_to room_path(product: @product.id), class: "px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform" do %>
+                      <i class="far fa-comment-dots"></i>
+                    <% end %>
                   <% else %>
                     <%= link_to '請加入會員來收藏商品', new_user_session_path %>
                   <% end %>
-                  <button type="button" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform">
-                    <i class="far fa-comment-dots"></i>
-                  </button>
                 </div>
               
                 <div class="text-base text-gray-700 space-y-6 mt-8 ">

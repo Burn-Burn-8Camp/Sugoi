@@ -1,13 +1,16 @@
 class RoomsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_room, only: %i[ show edit update destroy ]
+  before_action :set_room, only: %i[edit update destroy]
+  before_action :set_or_create_room, only: %i[show]
 
   def index
     @rooms = Room.all
   end
 
   def show
-    @rooms = Room.all
+    @rooms = Room.where(user: current_user).or(Room.where(product: current_user.product))
+    @messages = Message.where(room: @room)
+    # @rooms = Room.all
     render 'index'
   end
 
@@ -53,11 +56,25 @@ class RoomsController < ApplicationController
   end
 
   private
-    def set_room
-      @room = Room.find(params[:id])
-    end
+  
+  def set_room
+    @room = Room.find(params[:id])
+  end
 
-    def room_params
-      params.require(:room).permit(:name)
+  def set_or_create_room
+    if params[:product].present?
+      product = Product.find(params[:product])
+      @room = Room.find_by(product: product, user: current_user)
+
+      if @room.nil?
+        @room = Room.create!(name: product.name, product: product, user: current_user)
+      end
+    else
+      @room = Room.find_by(id: params[:id])
     end
+  end
+
+  def room_params
+    params.require(:room).permit(:name)
+  end
 end
