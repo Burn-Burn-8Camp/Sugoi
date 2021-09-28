@@ -80,7 +80,7 @@
 				</dl>			
 			</div>
 
-			
+
 			<%# order_form %>
 			<div class="max-w-lg">
 				<%= form_for @order, html: {class: 'mt-6'} do |f| %>
@@ -89,8 +89,12 @@
 						<div class="col-span-full">
 							<%= f.label :email, "電子信箱", class: "block text-sm font-medium text-gray-700" %>
 							<div class="mt-1">
-								<%= f.email_field :email, class: 'class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm', autocomplete: "email" %>
+								<%= f.email_field :email, 
+										class: "block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ", autocomplete: "email" %>
 							</div>
+							<% if f.object.errors[:email] %>
+								<span class='text-red-600'><%= f.object.errors[:email].first %></span>
+							<% end %>
 						</div>
 						<div class="col-span-full">
 							<%= f.label :recceiver, "收件人姓名", class: "block text-sm font-medium text-gray-700" %>
@@ -98,6 +102,9 @@
 								<%= f.text_field :receiver,
 										class: "block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
 							</div>
+							<% if f.object.errors[:receiver] %>
+								<span class='text-red-600'><%= f.object.errors[:receiver].first %></span>
+							<% end %>
 						</div>
 						<div class="col-span-full">
 							<%= f.label :tel, "收件人手機", class: "block text-sm font-medium text-gray-700" %>
@@ -105,6 +112,9 @@
 								<%= f.telephone_field :tel,
 										class: "block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
 							</div>
+							<% if f.object.errors[:tel] %>
+								<span class='text-red-600'><%= f.object.errors[:tel].first %></span>
+							<% end %>
 						</div>
 						<div class="col-span-full">
 							<%= f.label :address, "收件人地址", class: "block text-sm font-medium text-gray-700" %>
@@ -112,6 +122,9 @@
 								<%= f.text_field :address, autocomplete: "street-address",
 										class: "block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
 							</div>
+							<% if f.object.errors[:address] %>
+								<span class='text-red-600'><%= f.object.errors[:address].first %></span>
+							<% end %>
 						</div>
 						<div class="col-span-full">
 							<%= f.label :delivery, "運送方式", class: "text-sm font-medium text-gray-700" %>
