@@ -9,9 +9,6 @@ document.addEventListener("turbolinks:load", () => {
   const coupon = document.querySelector(".coupon_value")
   let totalPrice = document.querySelector(".summary-product-price .total_price")
   let sum = document.querySelector(".sum")
-
-  console.log(coupon.textContent)
-  console.log(typeof(0))
   
   if(selectedItems) {
     const dropDownMenu = document.querySelector(".productID")

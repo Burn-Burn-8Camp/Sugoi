@@ -1,7 +1,7 @@
 user_list = [
-  { name: '阿華', email: 'hua@gmail.com', store: '阿華的店', introduction: '優質又便宜的店'},
-  { name: '大明', email: 'min@gmail.com', store: '大明的店', introduction: '市面看不到的優質商店'},
-  { name: '小美', email: 'may@gmail.com', store: '小美的店', introduction: '賣一些飾品配件'},
+  { name: '阿華', email: 'h1@gmail.com', store: '阿華的店', introduction: '優質又便宜的店'},
+  { name: '大明', email: 'm2@gmail.com', store: '大明的店', introduction: '市面看不到的優質商店'},
+  { name: '小美', email: 'm3@gmail.com', store: '小美的店', introduction: '賣一些飾品配件'},
 ]
 
 user_list.each{ |u, index| 
