@@ -224,7 +224,7 @@ ActiveRecord::Schema.define(version: 2021_09_27_151944) do
     t.string "seller_name", default: "", null: false
     t.bigint "captcha"
     t.datetime "valid_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["account"], name: "index_users_on_account", unique: true
     t.index ["rank"], name: "index_users_on_rank"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
