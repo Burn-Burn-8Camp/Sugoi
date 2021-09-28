@@ -1,7 +1,7 @@
 <div class="w-screen">
     <div class="grid grid-cols-3 min-w-full border rounded" style="min-height: 80vh;">
-            <div class="col-span-1 bg-white border-r border-gray-300">
-                <ul class="overflow-auto" style="height: 500px;">
+            <div class="col-span-1 bg-white border-r border-gray-300  bg-red-300">
+                <ul class="overflow-auto  bg-red-300" style="height: 500px;">
                     <h2 class="ml-2 mb-2 text-gray-600 text-lg my-2">Chats</h2>
                     <li>
                         <% if @rooms.present? %>
@@ -25,7 +25,7 @@
             </div>
             <div class="col-span-2 bg-white">
                 <div class="w-full">
-                    <div class="flex items-center border-b border-gray-300 pl-3 py-3">
+                    <div class="flex items-center border-b border-gray-300 pl-3 py-3 bg-blue-300">
                     <% if @room.present? %>
                         <img class="h-10 w-10 rounded-full object-cover"
                         src="<%= @room.product.image if @room.present? %>"
@@ -38,14 +38,14 @@
                         </span>
                     <% end %>
                     </div>
-                    <div id="chat" class="w-full overflow-y-auto p-10 relative" style="height: 700px;" ref="toolbarChat">
+                    <div id="chat" class="w-full overflow-y-auto p-10 relative bg-blue-300 " style="height: 700px;" ref="toolbarChat">
                         <ul>
                             <li class="clearfix2" id="chat-room-content">
                             <% if @messages.present? %>
                                 <% @messages.each do |message| %>
                                     <% if message.user == current_user %>
-                                        <div class="w-full flex justify-end" >
-                                            <div class="bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative" style="max-width: 300px;">
+                                        <div class="w-full flex justify-end " >
+                                            <div class="bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative " style="max-width: 300px;">
                                                 <span class="block"><%= message.content%></span>
                                                 <span class="block text-xs text-left"><%= message.created_at.strftime('%H:%M %p') %></span>
                                             </div>
