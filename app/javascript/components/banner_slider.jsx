@@ -13,22 +13,13 @@ const BannerSlider = () => {
     <div>
       <Slider {...settings}>
         <div>
-          <img src="https://picsum.photos/1400/400?random=2" alt="fakePic"  className='w-full'/>
+          <img src="/images/sugoii_banner1.jpg" alt="bannerPic"  className='w-full'/>
         </div>
         <div>
           <img src="https://picsum.photos/1400/400?random=3" alt="fakePic"  className='w-full'/>
         </div>
         <div>
           <img src="https://picsum.photos/1400/400?random=4" alt="fakePic"  className='w-full'/>
-        </div>
-        <div>
-          <img src="https://picsum.photos/1400/400?random=5" alt="fakePic"  className='w-full'/>
-        </div>
-        <div>
-          <img src="https://picsum.photos/1400/400?random=6" alt="fakePic"  className='w-full'/>
-        </div>
-        <div>
-          <img src="https://picsum.photos/1400/400?random=7" alt="fakePic"  className='w-full'/>
         </div>
       </Slider>
     </div>

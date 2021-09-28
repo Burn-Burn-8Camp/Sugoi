@@ -57,6 +57,8 @@
 					<td class="py-6 font-medium text-right whitespace-nowrap">
 					<% if order.state === 'cancelled' %>
 						訂單已取消
+					<% elsif order.state === 'arrived' || order.state === 'in_transit' %>
+						<%= link_to '如需退貨，請將商品寄回', cancel_order_path(order), class: 'text-gray-500 border-2 border-red-300 p-3 rounded-lg bg-red-300', method: 'patch' %>
 					<% else %>
 						<%= link_to '退訂單', cancel_order_path(order), class: 'text-gray-500 border-2 border-red-300 p-3 rounded-lg bg-red-300', method: 'patch' %>
 					<% end %>
