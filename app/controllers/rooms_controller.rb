@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
 
   def show
     @rooms = Room.where(user: current_user).or(Room.where(product: current_user.product))
-    @messages = Message.where(room: @room)
+    @messages = @room.messages
     # @rooms = Room.all
     render 'index'
   end
