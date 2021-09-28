@@ -15,9 +15,8 @@
 			<h2 class="py-5">尚未評價</h2>
 		<% else %>
 			<h2 class="py-5 border-b">已獲評價</h2>
-			<div class='flex'>
+			<div class='flex pt-5'>
 				<%= react_component 'StarList', props: {rate: calculate_star_average(@comments)} %>
-				<span class='mx-3'>(<%= @comments.length %>)</span>
 			</div>
 		<% end %>
 		<% @comments.each do |comment| %>
