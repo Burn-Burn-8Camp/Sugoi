@@ -67,4 +67,8 @@ module ApplicationHelper
 	def final_shopping_cart_value(accumulated_amount)
 		current_cart.total_included_delivery_fee - coupon_value - user_discount(accumulated_amount)
 	end
+
+	def heart_color(favorite_item)
+		favorite_item.length === 0 ? "text-gray-800" : "text-red-400"
+	end
 end

@@ -40,7 +40,7 @@
                         </h3>
                       </div>
                       
-                      <p class="mt-1 text-sm font-medium text-gray-900">$<%= item.product.price.to_i %></p>
+                      <p class="mt-1 text-sm font-medium text-gray-900">$<%= number_with_delimiter(item.product.price.to_i) %></p>
                     </div>
 
                     <div class="selection-container mt-4 sm:mt-0 sm:pr-9">
@@ -110,31 +110,31 @@
 
         <dl class="mt-6 space-y-4">
           <div class="summary-product-price flex items-center justify-between">
-            <dt class="text-sm text-gray-600">
+            <dt class="text-md text-gray-600">
               商品金額
             </dt>
-            <dd class="total_price text-sm font-medium text-gray-900">
+            <dd class="total_price text-md font-medium text-gray-900">
               $<span>
-                <%= current_cart.total %>
+                <%= number_with_delimiter(current_cart.total) %>
               </span>             
             </dd>
           </div>
           <div class="summary-delivery-price border-t border-gray-200 pt-4 flex items-center justify-between">
-            <dt class="flex items-center text-sm text-gray-600">
+            <dt class="flex items-center text-md text-gray-600">
               <span>運費金額</span>  
             </dt>
-            <dd class="text-sm font-medium text-gray-900">
+            <dd class="text-md font-medium text-gray-900">
               $<span class="total_price">
-                <%= delivery_fee %>
+                <%= number_with_delimiter(delivery_fee) %>
               </span>
             </dd>
           </div>
 
           <div class="summary-coupon-redeem border-t border-gray-200 pt-4 flex items-center justify-between">
-            <dt class="flex text-sm text-gray-600">
+            <dt class="flex text-md text-gray-600">
               <span>優惠券折抵</span>       
             </dt>
-            <dd class="text-sm font-medium text-gray-900">
+            <dd class="text-md font-medium text-gray-900">
               $<span class="coupon_value">
                 0
               </span>
@@ -143,11 +143,11 @@
 
           <div class="border-t border-b border-gray-200 pt-4 flex items-center justify-between">
             <dt class="text-base font-medium text-gray-900">
-              <span class="total-price-title">結帳總金額</span>        
+              <span class="total-price-title text-xl">結帳總金額</span>        
             </dt>
             <dd class="text-base font-medium text-gray-900">
-              $<span class="sum">
-                <%= current_cart.total_included_delivery_fee %>
+              $<span class="sum text-xl">
+                <%= number_with_delimiter(current_cart.total_included_delivery_fee) %>
               </span>
             </dd>
           </div>

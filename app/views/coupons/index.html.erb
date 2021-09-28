@@ -7,7 +7,7 @@
       <div class="card-body md:w-2/3 md:flex bg-gray-200">
         <div class="card-description">
           <h2 class="card-title text-center md:text-left"><%= coupon.name %></h2> 
-          <p class="text-center border-b border-gray-300 md:border-0 md:text-left pb-6">抵用<%= coupon.value.to_i %>元</p>
+          <p class="text-center border-b border-gray-300 md:border-0 md:text-left pb-6">抵用<%= number_with_delimiter(coupon.value.to_i) %>元</p>
         </div>     
         <div class="card-actions flex justify-center border-gray-300 md:border-0 md:justify-end">
           <button class="btn btn-primary bg-red-300 hover:bg-blue-200 text-white"><%= link_to "領取", get_coupon_path(coupon.id), method: "post" %></button> 

@@ -28,7 +28,7 @@
 													<h3 class="text-gray-900">
 														<a href="#"><%= item.name %></a>
 													</h3>
-													<p class="text-gray-900">$<%= item.price.to_i %></p>
+													<p class="text-gray-900">$<%= number_with_delimiter(item.price.to_i) %></p>
 												</div>
 												<div class="flex-none flex space-x-4">
 													<p class="text-sm font-medium text-indigo-600 hover:text-indigo-500">
@@ -47,15 +47,15 @@
 				<dl class="text-sm font-medium text-gray-500 mt-10 space-y-6">
 					<div class="flex justify-between">
 						<dt>商品小計</dt>
-						<dd class="text-gray-900">NT$ <%= current_cart.total %></dd>
+						<dd class="text-gray-900">NT$ <%= number_with_delimiter(current_cart.total) %></dd>
 					</div>
 					<div class="flex justify-between">
 						<dt>運費</dt>
-						<dd class="text-gray-900">NT$ <%= delivery_fee %></dd>
+						<dd class="text-gray-900">NT$ <%= number_with_delimiter(delivery_fee) %></dd>
 					</div>
 					<div class="flex justify-between">
 						<dt class="flex">優惠券折扣</dt>
-						<dd class="text-gray-900">-NT$ <%= coupon_value %></dd>
+						<dd class="text-gray-900">-NT$ <%= number_with_delimiter(coupon_value) %></dd>
 					</div>
 					<div class="flex justify-between">
 						<dt class="flex">會員折扣</dt>
@@ -63,7 +63,7 @@
 					</div>
 					<div class="flex justify-between">
 						<dt>結帳總金額</dt>
-						<dd class="text-gray-900">NT$ <%= final_shopping_cart_value(current_user.accumulated_amount) %></dd>
+						<dd class="text-gray-900">NT$ <%= number_with_delimiter(final_shopping_cart_value(current_user.accumulated_amount)) %></dd>
 					</div>
 				</dl>			
 			</div>

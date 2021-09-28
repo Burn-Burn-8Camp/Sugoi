@@ -33,7 +33,7 @@
 								<div class="flex justify-between pt-4 font-medium text-gray-900 md:block md:pt-0">
 									<dt>訂單總額</dt>
 									<dd class="md:mt-1">
-										<%= @order.total %>
+										<%= number_with_delimiter(@order.total) %>
 									</dd>
 								</div>
 							</dl>
@@ -61,7 +61,7 @@
 												<div>
 													<h4 class="font-medium text-gray-900"><%= item.name %></h4>
 													<p class="hidden mt-2 text-sm text-gray-500 sm:block">This durable double-walled insulated tumbler keeps your beverages at the perfect temperature all day long. Hot, cold, or even lukewarm if you&#039;re weird like that, this bottle is ready for your next adventure.</p>
-													<p class="font-medium text-gray-900 pt-3">NT$ <%= item.price.to_i %></p>
+													<p class="font-medium text-gray-900 pt-3">NT$ <%= number_with_delimiter(item.price.to_i) %></p>
 													<p class="font-medium text-gray-900 pt-3">數量 <%= item.quantity %></p>
 												</div>
 											</div>
@@ -75,8 +75,6 @@
 							</div>
 						</div>
 					</div>
-
-
 				</div>
 			</section>
 		</div>

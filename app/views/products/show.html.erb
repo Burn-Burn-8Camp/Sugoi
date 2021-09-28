@@ -13,7 +13,7 @@
         <h1 class="text-3xl font-extrabold tracking-tight text-gray-900"><%= @product.name%></h1>
         <div class="mt-3">
           <h2 class="sr-only">Product information</h2>
-          <p class="text-3xl font-extrabold tracking-tight text-gray-900">NT$ <%= @product.price.to_i %></p>
+          <p class="text-3xl font-extrabold tracking-tight text-gray-900">NT$ <%= number_with_delimiter(@product.price.to_i) %></p>
         </div>
         <div class="mt-3">
           <h3 class="sr-only">Reviews</h3>
@@ -46,8 +46,8 @@
           <% end %>
                 <div>
                   <% if current_user %>
-                    <button type="button" id="heart" data-id="<%= @product.slug %>" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform ">
-                      <i class="far fa-heart"></i>
+                    <button type="button" id="heart" data-id="<%= @product.slug %>" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform <%= heart_color(@favorite_item)%>">
+                      <i class="fas fa-heart"></i>
                     </button>
                   <% else %>
                     <%= link_to '請加入會員來收藏商品', new_user_session_path %>

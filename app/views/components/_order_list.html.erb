@@ -37,7 +37,7 @@
 						</div>
 					</td>
 					<td class="hidden py-6 pr-8 md:table-cell">
-						NT$ <%= order.total %>
+						NT$ <%= number_with_delimiter(order.total) %>
 					</td>
 					<td class="hidden py-6 pr-8 md:table-cell break-all">
 						<%= order.message %>
