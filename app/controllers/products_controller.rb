@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   
   def index
     # @pagy, @products = pagy(Product.where(deleted_at: nil), items: 6)
-    @products = Product.all
+    @products = Product.all.order(id: :desc)
     # @foods = Product.where(category: 'food').limit(6)
     # @books = Product.where(category:'book').limit(6)
     # @movies = Product.where(category: 'movie').limit(6)
@@ -50,7 +50,7 @@ class ProductsController < ApplicationController
 
   def destroy
     @product.destroy if @product
-      redirect_to store_path,notice: "刪除成功"
+      redirect_to list_store_products_path, notice: "刪除成功"
   end
 
   def search 
