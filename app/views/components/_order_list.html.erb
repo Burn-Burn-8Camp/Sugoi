@@ -24,6 +24,7 @@
 					<th scope="col" class="hidden w-1/5 pr-8 py-3 font-normal md:table-cell">給設計師的話</th>
 					<th scope="col" class="hidden pr-8 py-3 font-normal md:table-cell">狀態</th>
 					<th scope="col" class="w-0 py-3 font-normal">明細</th>
+					<th scope="col" class="w-0 py-3 font-normal">退訂單</th>
 				</tr>
 			</thead>
 			<tbody class="border-b border-gray-200 divide-y divide-gray-200 text-sm sm:border-t">
@@ -38,7 +39,7 @@
 					<td class="hidden py-6 pr-8 md:table-cell">
 						NT$ <%= order.total %>
 					</td>
-					<td class="hidden py-6 pr-8 md:table-cell">
+					<td class="hidden py-6 pr-8 md:table-cell break-all">
 						<%= order.message %>
 					</td>
 					<td class="hidden py-6 pr-8 md:table-cell">
@@ -52,6 +53,13 @@
 					</td>
 					<td class="py-6 font-medium text-right whitespace-nowrap">
 						<%= link_to '前往明細', order_path(order), class: 'text-gray-500 border-2 border-red-300 p-3 rounded-lg bg-red-300' %>
+					</td>
+					<td class="py-6 font-medium text-right whitespace-nowrap">
+					<% if order.state === 'cancelled' %>
+						訂單已取消
+					<% else %>
+						<%= link_to '退訂單', cancel_order_path(order), class: 'text-gray-500 border-2 border-red-300 p-3 rounded-lg bg-red-300', method: 'patch' %>
+					<% end %>
 					</td>
 				</tr>
 			</tbody>

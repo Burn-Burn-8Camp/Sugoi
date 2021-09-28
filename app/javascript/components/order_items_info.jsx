@@ -11,13 +11,13 @@ const Store = ({storeName}) => {
 	)
 } 
 
-const OrderItem = ({ itemId, name, quantity, price, orderId, rate, content }) => {
+const OrderItem = ({ itemId, name, quantity, price, orderId, rate, content, imageUrl}) => {
 	return (
 		<div className="grid grid-cols-5 my-5">
 			<div className="col pr-3">
-				<img src="http://fakeimg.pl/100x100/ecf0f1/" alt="product_img" />
+				<img src={imageUrl} alt="product_img" />
 			</div>
-			<div className='col-span-2'>
+			<div className='col-span-2 ml-5'>
 				<span className='block pb-3'>{name}</span>
 				{rate == 0 ? <BuyerCommentForm itemId={itemId} orderId={orderId}/> : <StarList rate={rate} content={content} />}
 			</div>
@@ -67,7 +67,8 @@ const OrderItemsInfo = ({ order_id }) => {
 									quantity={item.quantity}
 									price={item.price}
 									rate={item.rate}
-									content={item.content} />
+									content={item.content}
+									imageUrl={item.image_url} />
 								)
 							})
 						}

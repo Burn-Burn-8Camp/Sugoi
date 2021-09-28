@@ -67,6 +67,7 @@ Rails.application.routes.draw do
     member do
       get :payment, to: 'payments#payment'
       post :items_info, to: 'orders#items_info'
+      patch :cancel, to: 'orders#cancel_order'
     end
   end
 

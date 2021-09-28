@@ -8,7 +8,6 @@ import Navbar from './navbar';
 import StorePage from './store_page'
 import PayBack from './pay_back';
 
-
 ReactOnRails.register({
 	BuyerCommentForm, 
 	OrderItemsInfo, 

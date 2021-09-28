@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_27_041528) do
+ActiveRecord::Schema.define(version: 2021_09_27_151944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,9 +140,9 @@ ActiveRecord::Schema.define(version: 2021_09_27_041528) do
     t.string "description"
     t.bigint "store_id"
     t.integer "delivery"
-    t.string "image"
     t.datetime "deleted_at"
     t.string "slug"
+    t.string "image"
     t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["slug"], name: "index_products_on_slug", unique: true
     t.index ["store_id"], name: "index_products_on_store_id"
@@ -209,7 +209,7 @@ ActiveRecord::Schema.define(version: 2021_09_27_041528) do
     t.string "rank"
     t.integer "accumulated_amount", default: 0
     t.string "country"
-    t.string "name"
+    t.string "name", default: "SUGOII粉絲"
     t.integer "p_coins", default: 0
     t.string "gender"
     t.date "birthday"
@@ -224,7 +224,7 @@ ActiveRecord::Schema.define(version: 2021_09_27_041528) do
     t.string "seller_name", default: "", null: false
     t.bigint "captcha"
     t.datetime "valid_at"
-    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["account"], name: "index_users_on_account", unique: true
     t.index ["rank"], name: "index_users_on_rank"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
