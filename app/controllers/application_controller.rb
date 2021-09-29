@@ -17,8 +17,9 @@ class ApplicationController < ActionController::Base
       end
 
       def record_not_found
-        render file: 'public/404.html', stats: :not_found
+        render file: 'public/404.zh-CN.html', stats: :not_found
       end
+
 
       def current_store
         current_user.store

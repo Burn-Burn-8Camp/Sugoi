@@ -1,38 +1,34 @@
-<h1>我的商品列表</h1>
-<% @products.each do |product| %>
-	<div class="bg-white ">
-		<div class="max-w-7xl mx-auto overflow-hidden  lg:px-8 sm:grid-cols-2 sm:px-8 sm:py-12 sm:gap-x-8 md:py-16 ">
-			<h2 class="sr-only">Products</h2>
-			<div class="-mx-px border-l border-gray-200 grid grid-cols-2 sm:mx-0 md:grid-cols-3 lg:grid-cols-4">
-				<div class="group relative p-4 border-r border-b border-gray-200 sm:p-6">
-					<div class="rounded-lg overflow-hidden bg-gray-200 aspect-w-1 aspect-h-1 group-hover:opacity-75">
+<h1 class="text-center">
+	刊登商品列表
+</h1>
+<div class="bg-white ">
+	<div class="max-w-7xl mx-auto overflow-hidden  bg-teal-500 lg:bg-teal-500 justify-center ">
+		<div class="-mx-px border-l border-gray-200 grid grid-cols-2 sm:mx-0 md:grid-row-3 lg:grid-cols-4 ">
+			<% @products.each do |product| %>
+				<div class="group relative p-10 border-2 sm:p-6 ">
+					<div class="rounded-lg overflow-hidden bg-gray-200 aspect-w-1 aspect-h-1 group-hover:opacity-75 ">
 						<%= image_tag product.image_url if product.image_url.present? %>
 					</div>
 					<div class="pt-10 pb-4 text-center">
 						<h3 class="text-sm font-medium text-gray-900 sm:bg-none">
 							<a href="#">
-								<%= product.name %>
+								商品名稱：<%= product.name %>
 							</a>
 						</h3>
-						<div class="mt-3 flex flex-col items-center sm:mb-1 sm:text-gray-500">
-							<p class="sr-only">5 out of 5 stars</p>
-							<p class="mt-1 text-sm text-gray-500">
-								<%= product.quantity %>
+						<div class="mt-3 flex flex-col items-center sm:mb-1 text-gray-900">
+							<p class="mt-1 text-sm text-gray-900">
+								數量：<%= product.quantity %>
 							</p>
 						</div>
 						<p class="mt-4 text-base font-medium text-gray-900">
-							<%= product.price.to_i %>
+							金額：<%= product.price.to_i %>
 						</p>
 					</div>
-					<div class="mx-auto sm:text-2xl sm:leading-7 sm:text-black md:text-3xl sm:pb-16 ">
-					<%= link_to '細項' , detail_store_product_path(product), class: 'btn' %>
-					<%= link_to '刪除' , product_path(product), method: "DELETE" , class: 'btn' %>
+					<div class="mx-auto sm:text-2xl sm:leading-7 sm:text-black md:text-3xl sm:pb-16 text-center">
+						<%= link_to '刪除' , product_path(product), method: "DELETE" , class: 'btn' %>
 					</div>
-				</div>	
-			</div>
+				</div>
+				<% end %>
 		</div>
 	</div>
-	<% end %>
-
-
-
+</div>

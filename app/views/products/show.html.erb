@@ -3,122 +3,142 @@
     <div class="lg:grid lg:grid-cols-2 lg:gap-x-8 lg:items-start">
       <div class="flex flex-col-reverse">
         <div class="hidden mt-6 w-full max-w-2xl mx-auto sm:block lg:max-w-none">
-          <div id="pic-group"  class="grid grid-cols-4 gap-6" aria-orientation="horizontal" role="tablist">
-            <button id="tabs-1-tab-1" class="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50" aria-controls="tabs-1-panel-1" role="tab" type="button">
+          <div id="pic-group" class="grid grid-cols-4 gap-6" aria-orientation="horizontal" role="tablist">
+            <button id="tabs-1-tab-1"
+              class="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
+              aria-controls="tabs-1-panel-1" role="tab" type="button">
               <span class="absolute inset-0 rounded-md overflow-hidden">
                 <img src="https://img.onl/AIawYZ" alt="" class="w-full h-full object-center object-cover">
               </span>
-              <span class="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none" aria-hidden="true"></span>
+              <span class="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none"
+                aria-hidden="true"></span>
             </button>
-        
-            <button id="tabs-1-tab-1" class="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50" aria-controls="tabs-1-panel-1" role="tab" type="button">
+
+            <button id="tabs-1-tab-1"
+              class="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
+              aria-controls="tabs-1-panel-1" role="tab" type="button">
               <span class="sr-only">
-              Angled 
+                Angled
               </span>
               <span class="absolute inset-0 rounded-md overflow-hidden">
                 <img src="https://img.onl/b1jJn7" alt="" class="w-full h-full object-center object-cover">
               </span>
-              <span class="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none" aria-hidden="true"></span>
+              <span class="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none"
+                aria-hidden="true"></span>
             </button>
 
-            <button id="tabs-1-tab-1" class="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50" aria-controls="tabs-1-panel-1" role="tab" type="button">
+            <button id="tabs-1-tab-1"
+              class="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
+              aria-controls="tabs-1-panel-1" role="tab" type="button">
               <span class="sr-only">
                 Angled view
               </span>
               <span class="absolute inset-0 rounded-md overflow-hidden">
                 <img src="https://img.onl/lpTsfs" alt="" class="w-full h-full object-center object-cover">
               </span>
-              <span class="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none" aria-hidden="true"></span>
+              <span class="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none"
+                aria-hidden="true"></span>
             </button>
 
-            <button id="tabs-1-tab-1" class="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50" aria-controls="tabs-1-panel-1" role="tab" type="button">
+            <button id="tabs-1-tab-1"
+              class="relative h-24 bg-white rounded-md flex items-center justify-center text-sm font-medium uppercase text-gray-900 cursor-pointer hover:bg-gray-50 focus:outline-none focus:ring focus:ring-offset-4 focus:ring-opacity-50"
+              aria-controls="tabs-1-panel-1" role="tab" type="button">
               <span class="sr-only">
                 Angled view
               </span>
               <span class="absolute inset-0 rounded-md overflow-hidden">
                 <img src="https://img.onl/VUokUk" alt="" class="w-full h-full object-center object-cover">
               </span>
-              <span class="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none" aria-hidden="true"></span>
+              <span class="ring-transparent absolute inset-0 rounded-md ring-2 ring-offset-2 pointer-events-none"
+                aria-hidden="true"></span>
             </button>
           </div>
         </div>
 
         <div class="w-full aspect-w-1 aspect-h-1">
           <div aria-labelledby="tabs-1-tab-1" role="tabpanel" tabindex="0">
-            <img id="big-pic" src="https://img.onl/PY08z6" alt="Angled front view with bag zipped and handles upright." class="w-full h-full object-center object-cover sm:rounded-lg">
+            <img id="big-pic" src="https://img.onl/PY08z6" alt="Angled front view with bag zipped and handles upright."
+              class="w-full h-full object-center object-cover sm:rounded-lg">
           </div>
         </div>
       </div>
 
       <div class="mt-10 px-4 sm:px-0 sm:mt-16 lg:mt-0">
-        <h1 class="text-3xl font-extrabold tracking-tight text-gray-900"><%= @product.name%></h1>
+        <h1 class="text-3xl font-extrabold tracking-tight text-gray-900">
+          <%= @product.name%>
+        </h1>
         <div class="mt-3">
           <h2 class="sr-only">Product information</h2>
-          <p class="text-3xl font-extrabold tracking-tight text-gray-900">NT$ <%= @product.price.to_i %></p>
+          <p class="text-3xl font-extrabold tracking-tight text-gray-900">NT$ <%= @product.price.to_i %>
+          </p>
         </div>
         <div class="mt-3">
           <h3 class="sr-only">Reviews</h3>
           <div class="flex items-center">
             <div class="flex items-center">
-            <% if @comments.length === 0 %>
-              <p>此商品尚未有評價</p>
-            <% else %>
-              <div class='flex'>
-                <%= react_component 'StarList', props: {rate: calculate_star_average(@comments)} %>
-                <span class='mx-3'>(<%= @comments.length %>)</span>
-              </div> 
-            <% end %>
+              <% if @comments.length===0 %>
+                <p>此商品尚未有評價</p>
+                <% else %>
+                  <div class='flex'>
+                    <%= react_component 'StarList' , props: {rate: calculate_star_average(@comments)} %>
+                      <span class='mx-3'>(<%= @comments.length %>)</span>
+                  </div>
+                  <% end %>
             </div>
           </div>
         </div>
 
         <div class="mt-6">
           <h3 class="sr-only">Description</h3>
-        <form class=" mt-10 ">
-          
-          <%= link_to add_item_cart_path(@product), method: "post" do %>
-          <button type="submit" class="max-w-xs flex-1 bg-red-300 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full m-2">
-          放入購物車</button>
-          <% end %>
-            
-          <%= link_to cart_path do %>
-          <button type="submit" class="max-w-xs flex-1 bg-red-300 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50  sm:w-full m-2">
-          立即結帳</button>
-          <% end %>
-                <div>
-                  <% if current_user %>
-                    <button type="button" id="heart" data-id="<%= @product.slug %>" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform ">
-                      <i class="far fa-heart"></i>
-                    </button>
-                  <% else %>
-                    <%= link_to '請加入會員來收藏商品', new_user_session_path %>
-                  <% end %>
-                  <button type="button" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform">
-                    <i class="far fa-comment-dots"></i>
-                  </button>
-                </div>
-              
-                <div class="text-base text-gray-700 space-y-6 mt-8 ">
-                  <p>付款後，從備貨到寄出商品為3個工作天，（不包含假日）</p>
-                  <p>設計館符合免辦理營業登記，無需開立統一發票。</p>
-                </div>
-                <div class="relative mt-2 top-5">
-                  <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                    <div class="w-full border-t border-gray-300 "></div>
-                  </div> 
-                </div>
-                <div class="text-base text-gray-700 space-y-4 mt-8 pt-8">
-                  <h2 class="">優惠活動</h2>
-                  <p>9/25-10/06 全站消費 NT$899 折 NT$60（每帳號限用一次）</p>
-                  <p>快閃獎勵任務進行中，週週送 P COIN 立即參加</p>
-                  <p>多重優惠顯示，實際優惠折抵以購物車內的折抵金額為準</p>
-                </div>
+          <form class=" mt-10 ">
+            <div>
+              <%= link_to add_item_cart_path(@product), method: "post" do %>
+                <button type="submit"
+                  class="max-w-xs flex-1 bg-red-300 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full m-2">
+                  放入購物車</button>
+                <% end %>
+
+                  <%= link_to cart_path do %>
+                    <button type="submit"
+                      class="max-w-xs flex-1 bg-red-300 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50  sm:w-full m-2">
+                      立即結帳</button>
+                    <% end %>
+                      <div>
+                        <% if current_user %>
+                          <button type="button" id="heart" data-id="<%= @product.slug %>"
+                            class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform ">
+                            <i class="far fa-heart"></i>
+                          </button>
+                          <% else %>
+                            <%= link_to '請加入會員來收藏商品' , new_user_session_path %>
+                              <% end %>
+                                <button type="button"
+                                  class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform">
+                                  <i class="far fa-comment-dots"></i>
+                                </button>
+                      </div>
+            </div>
+            <div class="text-base text-gray-700 space-y-6 mt-8 ">
+              <p>付款後，從備貨到寄出商品為3個工作天，（不包含假日）</p>
+              <p>設計館符合免辦理營業登記，無需開立統一發票。</p>
+            </div>
+            <div class="relative mt-2 top-5">
+              <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                <div class="w-full border-t border-gray-300 "></div>
               </div>
             </div>
-        </form>
+            <div class="text-base text-gray-700 space-y-4 mt-8 pt-8">
+              <h2 class="">優惠活動</h2>
+              <p>9/25-10/06 全站消費 NT$899 折 NT$60（每帳號限用一次）</p>
+              <p>快閃獎勵任務進行中，週週送 P COIN 立即參加</p>
+              <p>多重優惠顯示，實際優惠折抵以購物車內的折抵金額為準</p>
+            </div>
+        </div>
       </div>
+      </form>
     </div>
   </div>
+</div>
 </div>
 
 <div class="bg-white">
@@ -127,26 +147,39 @@
     <div class="mt-6 pb-10 border-t border-b border-gray-200 divide-y divide-gray-200 space-y-10">
       <div class="pt-10 lg:grid lg:grid-cols-12 lg:gap-x-8">
         <% @comments_with_users.each do |comment| %>
-          <div class="lg:col-start-5 lg:col-span-8 xl:col-start-4 xl:col-span-9 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:items-start">
+          <div
+            class="lg:col-start-5 lg:col-span-8 xl:col-start-4 xl:col-span-9 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:items-start">
             <div class="flex items-center xl:col-span-1">
               <div class="flex items-center">
-                <%= react_component 'StarList', props: {rate: comment.first.rate} %> 
-                <p class='px-3'><%= comment.first.rate %></p>
-                <p class='mx-3'><%= calculate_time_gap(comment.first.created_at) %></p>
+                <%= react_component 'StarList' , props: {rate: comment.first.rate} %>
+                  <p class='px-3'>
+                    <%= comment.first.rate %>
+                  </p>
+                  <p class='mx-3'>
+                    <%= calculate_time_gap(comment.first.created_at) %>
+                  </p>
               </div>
             </div>
             <div class="mt-4 lg:mt-6 xl:mt-0 xl:col-span-2 ">
               <h3 class="text-sm font-medium text-gray-900">商品評論</h3>
               <div class="mt-3 space-y-6 text-sm text-gray-500">
-                <p><%= comment.first.content %></p>
+                <p>
+                  <%= comment.first.content %>
+                </p>
               </div>
             </div>
           </div>
-          <div class="mt-6 flex items-center text-sm lg:mt-0 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:flex-col lg:items-start xl:col-span-3">
-            <p class="font-medium text-gray-900"><%= comment.last.id %></p>
-            <time datetime="2021-01-06" class="ml-4 border-l border-gray-200 pl-4 text-gray-500 lg:ml-0 lg:mt-2 lg:border-0 lg:pl-0"><%= comment.first.created_at.to_date %></time>
+          <div
+            class="mt-6 flex items-center text-sm lg:mt-0 lg:col-start-1 lg:col-span-4 lg:row-start-1 lg:flex-col lg:items-start xl:col-span-3">
+            <p class="font-medium text-gray-900">
+              <%= comment.last.id %>
+            </p>
+            <time datetime="2021-01-06"
+              class="ml-4 border-l border-gray-200 pl-4 text-gray-500 lg:ml-0 lg:mt-2 lg:border-0 lg:pl-0">
+              <%= comment.first.created_at.to_date %>
+            </time>
           </div>
-        <% end %>  
+          <% end %>
       </div>
     </div>
   </div>
