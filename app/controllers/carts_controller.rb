@@ -15,7 +15,7 @@ class CartsController < ApplicationController
   end
 
   def add_item
-    current_cart.add_item(@product.id, @product.name, @product.store.id, @product.store.name, @product.price)
+    current_cart.add_item(@product.id, @product.name, @product.store.id, @product.store.name, @product.price, @product.image_url)
     session[:cart1289] = current_cart.serialize
     redirect_to product_path(params[:id]), notice: "已加至購物車"
   end
@@ -35,7 +35,6 @@ class CartsController < ApplicationController
 
   def confirm
     current_cart.change_item_quantity(params[:product_id], params[:quantity])
-    # render json: current_cart.items
     session[:cart1289] = current_cart.serialize
     itemsPrice = current_cart.total
     items_quantity = current_cart.items.count

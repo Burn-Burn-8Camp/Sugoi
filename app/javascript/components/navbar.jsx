@@ -7,7 +7,7 @@ library.add(fas);
 
 const Navbar = ({webUser, cart}) => {
   const userDefault = {
-    id: '訪客',
+    name: '訪客',
     role: 'visitor',
     email: '電子信箱',
     image: {
@@ -15,8 +15,9 @@ const Navbar = ({webUser, cart}) => {
     }
   }
   webUser ? webUser : webUser = userDefault
+  if (webUser.image.url === null) {webUser.image.url = '/images/阿榮.jpg'}
   const user = {
-    name: `${webUser.id}`,
+    name: `${webUser.name}`,
     email: `${webUser.email}`,
     imageUrl: `${webUser.image.url}`,
   }
@@ -28,8 +29,6 @@ const Navbar = ({webUser, cart}) => {
     { name: '餐桌廚房', href: '#', current: false },
   ]
   const userWithLogIn = [
-    { name: '個人檔案', href: '/member/profile', method: 'get' },
-    { name: '我的訂單', href: '/orders', method: 'get' },
     { name: '登入', href: '/users/sign_in', method: 'get' },
     { name: '註冊', href: '/users/sign_up', method: 'get' },
   ]
@@ -92,7 +91,7 @@ const Navbar = ({webUser, cart}) => {
                   <a href="/">
                     <img
                       className="block h-8 w-auto"
-                      src='/images/logo.png'
+                      src='/images/sugoii_logo.jpg'
                       alt="Workflow"
                     />
                     </a>
@@ -157,7 +156,7 @@ const Navbar = ({webUser, cart}) => {
                 {/* Profile dropdown */}
                 <Menu as="div" className="flex-shrink-0 relative mr-4">
                   <div>
-                    <Menu.Button className="bg-white rounded-full flex focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <Menu.Button className="bg-white rounded-full flex">
                       <span className="sr-only">Open user menu</span>
                         <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" /> 
                     </Menu.Button>
@@ -172,7 +171,7 @@ const Navbar = ({webUser, cart}) => {
                     leaveTo="transform opacity-0 scale-95"
                   >
                     <Menu.Items className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 py-1 focus:outline-none">
-                      { webUser.id != '訪客' ? <UserNav data={userWithLogOut} /> : <UserNav data={userWithLogIn} /> }
+                      { webUser.name != '訪客' ? <UserNav data={userWithLogOut} /> : <UserNav data={userWithLogIn} /> }
                     </Menu.Items>
                   </Transition>
                 </Menu>
@@ -193,7 +192,15 @@ const Navbar = ({webUser, cart}) => {
                 </button>
                 <button
                   type="button"
-                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-red-300 hover:text-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="mr-4 flex-shrink-0 p-1">
+                  <span className="sr-only"></span>
+                  <a href="/rooms">
+                    <FontAwesomeIcon icon={['fas', 'comments']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200" aria-hidden="true" />
+                  </a>
+                </button>
+                <button
+                  type="button"
+                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-red-300"
                 >
                   <span className="sr-only"></span>
                   <a href="/cart">
@@ -264,6 +271,13 @@ const Navbar = ({webUser, cart}) => {
                 <button
                   type="button"
                   className="flex-shrink-0 p-1">
+                  <a href="/rooms">
+                    <FontAwesomeIcon icon={['fas', 'comments']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200 mx-2" aria-hidden="true" />
+                  </a>
+                </button>
+                <button
+                  type="button"
+                  className="flex-shrink-0 p-1">
                   <a href="/cart">
                     <div className="indicator mx-2">
                       <div className="indicator-item badge badge-secondary mt-1">{cart.items.length}</div> 
@@ -273,7 +287,7 @@ const Navbar = ({webUser, cart}) => {
                 </button>
               </div>
               <div className="mt-3 px-2 space-y-1">
-                { webUser.id != '訪客' ? <UserNavigation data={userWithLogOut} /> : <UserNavigation data={userWithLogIn} /> }
+                { webUser.name != '訪客' ? <UserNavigation data={userWithLogOut} /> : <UserNavigation data={userWithLogIn} /> }
               </div>
             </div>
           </Disclosure.Panel>

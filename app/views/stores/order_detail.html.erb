@@ -1,46 +1,87 @@
-<h1 class='text-lg text-center'>訂單明細</h1>
-
-<ul class="w-full steps order-steps py-5">
-	<%= content_tag(:li, '待付款', data: {content: "✓"}, class: seller_state_step(@order, 0)) %>
-	<%= content_tag(:li, '已付款', data: {content: "✓"}, class: seller_state_step(@order, 1)) %>
-	<%= content_tag(:li, '運送中', data: {content: "✓"}, class: seller_state_step(@order, 2)) %>
-	<%= content_tag(:li, '已送達', data: {content: "✓"}, class: seller_state_step(@order, 3)) %>
-	<%= content_tag(:li, '已取消', data: {content: "✓"}, class: seller_state_step(@order, 4)) %>
-</ul>
-
-<div class='border rounded'>
-	<div>
-		<ul>
-			<li class='text-lg'>訂單編號：<%= @order.serial %></li>
-			<li class='text-lg'>訂單金額：<%= @order.total %></li>
-			<li class='text-lg'>收件人：<%= @order.receiver %></li>
-			<li class='text-lg'>收件地址：<%= @order.address %></li>
-			<li class='text-lg'>運送方式：<%= @order.delivery %></li>
-			<li class='hidden' id='order-state'><%= @order.state %></li>
-		</ul>
-		<% if @store_order.shipment_confirm %>
-			<p class='px-3'>您已出貨</p>
-		<% else %>
-			<%= form_with model: @order, url: shipment_store_order_path(@order), method: 'GET' do |f| %>
-				<%= f.submit '出貨', class: 'btn btn-success' %>
-			<% end %>
-		<% end %>
-		<%= react_component 'SellerCommentForm', props: {order_id: @order.id, order_friendly_id: @order.slug} %>
-	</div>
-	
-	<div tabindex="0" class="collapse collapse-arrow">
-	  <div class="collapse-title text-lg font-medium">
-		訂單明細
-	  </div>
-	  <div class="collapse-content">
-		<p class='p-3'>商店：<%= @store.name %></p>
-		<% @items.each do |item| %>
-			<div class='border rounded m-3'>
-				<p class='p-3'>品名：<%= item.name %></p>
-				<p class='p-3'>單價：<%= item.price.to_i %></p>
-				<p class='p-3'>數量：<%= item.quantity %></p>
+<div class="bg-white">  
+	<main class="pt-16 pb-14 sm:pt-24 sm:pb-20 sm:px-6 lg:px-8">
+		<div class="max-w-4xl mx-auto">
+			<div class="px-4 sm:px-0">
+				<h1 class="text-2xl font-extrabold tracking-tight text-gray-900 sm:text-3xl">店家訂單明細</h1>
 			</div>
-		<% end %>
-	  </div>
-	</div>
+			<section aria-labelledby="recent-heading" class="mt-10">
+				<div class="space-y-16 sm:space-y-24">
+					<div>
+						<div>
+							<ul class="w-full steps order-steps py-5">
+								<%= content_tag(:li, '待付款', data: {content: "✓"}, class: seller_state_step(@order, 0)) %>
+								<%= content_tag(:li, '已付款', data: {content: "✓"}, class: seller_state_step(@order, 1)) %>
+								<%= content_tag(:li, '運送中', data: {content: "✓"}, class: seller_state_step(@order, 2)) %>
+								<%= content_tag(:li, '已送達', data: {content: "✓"}, class: seller_state_step(@order, 3)) %>
+								<%= content_tag(:li, '已取消', data: {content: "x"}, class: seller_state_step(@order, 4)) %>
+							</ul>
+						</div>
+						<div class="bg-gray-50 px-4 py-6 sm:rounded-lg sm:p-6 md:flex md:items-center md:justify-between md:space-x-6 lg:space-x-8">
+							<dl class="divide-y divide-gray-200 space-y-4 text-sm text-gray-600 flex-auto md:divide-y-0 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-6 lg:w-1/2 lg:flex-none lg:gap-x-8">
+								<div class="flex justify-between md:block">
+									<dt class="font-medium text-gray-900">訂單編號</dt>
+									<dd class="md:mt-1">
+										<%= @order.serial %>
+									</dd>
+								</div>
+								<div class="flex justify-between pt-4 md:block md:pt-0">
+									<dt class="font-medium text-gray-900">訂單日期</dt>
+									<dd class="md:mt-1">
+										<time datetime="2021-01-22"><%= @order.created_at.to_date %></time>
+									</dd>
+								</div>
+								<div class="flex justify-between pt-4 font-medium text-gray-900 md:block md:pt-0">
+									<dt>訂單總額</dt>
+									<dd class="md:mt-1">
+										NT$ <%= number_with_delimiter(@order.total) %>
+									</dd>
+								</div>
+							</dl>
+							<div class="space-y-4 mt-6 sm:flex sm:space-x-4 sm:space-y-0 md:mt-0">
+								<% if @store_order.shipment_confirm %>
+									<p class='p-3'>您已出貨</p>
+								<% else %>
+									<%= form_with model: @order, url: shipment_store_order_path(@order), method: 'GET' do |f| %>
+										<%= f.submit '出貨', class: 'btn btn-success' %>
+									<% end %>
+								<% end %>
+
+								<% if @comment.length != 0 %>
+									<p class='p-3'>您已評價</p>
+								<% else %>
+									<%= react_component 'SellerCommentForm', props: {order_id: @order.id, order_friendly_id: @order.slug} %>
+								<% end %>
+							</div>
+						</div>
+
+						<div class="mt-6 flow-root px-4 sm:mt-10 sm:px-0">
+							<div class="-my-6 divide-y divide-gray-200 sm:-my-10">
+								<h2 class='text-center my-3'>您的出貨內容</h2>
+								<% @items.each do |item| %>
+		
+								<div class="flex py-6 sm:py-10">
+									<div class="min-w-0 flex-1 lg:flex lg:flex-col">
+										<div class="lg:flex-1">
+											<div class="sm:flex">
+												<div>
+													<h4 class="font-medium text-gray-900 text-xl"><%= item.name %></h4>
+													<p class="font-medium text-gray-900 pt-3">NT$ <%= number_with_delimiter(item.price.to_i) %></p>
+													<p class="font-medium text-gray-900 pt-3">數量 <%= item.quantity %></p>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="ml-4 flex-shrink-0 sm:m-0 sm:mr-6 sm:order-first">
+										<%= image_tag item.product.image.url, class: "col-start-2 col-end-3 sm:col-start-1 sm:row-start-1 sm:row-span-2 w-20 h-20 rounded-lg object-center object-cover sm:w-40 sm:h-40 lg:w-52 lg:h-52" %>
+									</div>
+								</div>
+								<% end %>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</main>
 </div>
+  

@@ -15,9 +15,8 @@
 			<h2 class="py-5">尚未評價</h2>
 		<% else %>
 			<h2 class="py-5 border-b">已獲評價</h2>
-			<div class='flex'>
+			<div class='flex pt-5'>
 				<%= react_component 'StarList', props: {rate: calculate_star_average(@comments)} %>
-				<span class='mx-3'>(<%= @comments.length %>)</span>
 			</div>
 		<% end %>
 		<% @comments.each do |comment| %>
@@ -35,7 +34,7 @@
 			<%= content_tag(:li, '已付款', data: {content: "✓"}, class: state_step(@order, 1)) %>
 			<%= content_tag(:li, '運送中', data: {content: "✓"}, class: state_step(@order, 2)) %>
 			<%= content_tag(:li, '已送達', data: {content: "✓"}, class: state_step(@order, 3)) %>
-			<%= content_tag(:li, '已取消', data: {content: "✓"}, class: state_step(@order, 4)) %>
+			<%= content_tag(:li, '已取消', data: {content: "x"}, class: state_step(@order, 4)) %>
 		</ul>
 	</div>
 	
@@ -48,23 +47,23 @@
 			<div class='col-start-2'>
 				<div class="grid grid-cols-2 py-1">
 					<p class="text-right">小計</p>
-					<p class="text-right">NT$ <%= @order.product_subtotal %></p>
+					<p class="text-right">NT$ <%= number_with_delimiter(@order.product_subtotal) %></p>
 				</div>
 				<div class="grid grid-cols-2 py-1">
 					<p class="text-right">運費</p>
-					<p class="text-right">NT$ <%= @order.delivery_fee %></p>
+					<p class="text-right">NT$ <%= number_with_delimiter(@order.delivery_fee) %></p>
 				</div>
 				<div class="grid grid-cols-2 py-1">
 					<p class="text-right">優惠券折抵</p>
-					<p class="text-right">-NT$ <%= @order.coupon_value %></p>
+					<p class="text-right">-NT$ <%= number_with_delimiter(@order.coupon_value) %></p>
 				</div>
 				<div class="grid grid-cols-2 pt-1 pb-2 border-b">
 					<p class="text-right">會員折扣</p>
-					<p class="text-right">-NT$ <%= @order.user_discount %></p>
+					<p class="text-right">-NT$ <%= number_with_delimiter(@order.user_discount) %></p>
 				</div>
 				<div class="grid grid-cols-2 pt-2 pb-1">
 					<p class="text-right">總計</p>
-					<p class="text-right">NT$ <%= @order.total %></p>
+					<p class="text-right">NT$ <%= number_with_delimiter(@order.total) %></p>
 				</div>
 			</div>
 		</div>

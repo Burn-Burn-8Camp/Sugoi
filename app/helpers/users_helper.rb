@@ -16,7 +16,6 @@ module UsersHelper
       "<i class='fas fa-crown text-yellow-500'></i>"
     end 
   end
-  #判斷現在總消費金額的icon之後顯示下一等級的icon
 
   def check_favorite_item(favorite_items)
     if favorite_items

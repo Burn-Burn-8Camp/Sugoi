@@ -32,7 +32,7 @@ class StoresController < ApplicationController
 	end
 	
 	def products_list
-	  @products = current_store.products
+	  @products = current_store.products.order(id: :desc)
 	end
 
 	def product_detail
@@ -53,10 +53,13 @@ class StoresController < ApplicationController
 
 	def order_detail
 	  @order = current_store.orders.friendly.find(params[:id])
-	  @items = OrderItem.where(order_id: @order, store_id: current_store.id)
+	  @items = OrderItem.where(order_id: @order, store_id: current_store.id).includes(:product)
 		# 所有商家出貨確認
 		@store_order = @order.store_orders.find_by(store_id: current_store.id)
-		@order.transport! if @order.may_transport? &&	@order.store_orders.any? {|order| order.shipment_confirm}	
+		deliver_status = @order.store_orders.map{ |order| order.shipment_confirm }
+		@order.transport! if @order.may_transport? &&	deliver_status.any? { |status| false }
+
+		@comment = SellerComment.where(order_id: @order, store_id: current_store)
 	end
 
 	def shipment

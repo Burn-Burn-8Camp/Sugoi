@@ -7,7 +7,7 @@ library.add(fas);
 
 const PopUpScreen = ({ itemId, orderId }) =>  {
   const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-  const commentUrl = `http://localhost:3000/order_items/${itemId}/comment`;
+  const commentUrl = `/order_items/${itemId}/comment`;
   const starIndex = [1, 2, 3, 4, 5];
   const [isOpen, setIsOpen] = useState(false);
   const [rateValue, setRateValue] = useState(5);

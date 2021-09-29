@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
 	acts_as_paranoid
 	extend FriendlyId
-  friendly_id :name, use: :slugged
+  	friendly_id :name, use: :slugged
 
 	enum delivery: { "貨運 NT$100": 100 }
 
@@ -12,4 +12,7 @@ class Product < ApplicationRecord
 	has_many :users, through: :bookmarks
 	has_one_attached :picture
 	mount_uploader :image, ImageUploader
+
+	has_many :rooms
+	has_many :users, through: :rooms
 end

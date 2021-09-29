@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_28_001411) do
+ActiveRecord::Schema.define(version: 2021_09_28_140225) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,10 @@ ActiveRecord::Schema.define(version: 2021_09_28_001411) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.bigint "product_id"
+    t.index ["product_id"], name: "index_rooms_on_product_id"
+    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "seller_comments", force: :cascade do |t|
@@ -209,7 +213,7 @@ ActiveRecord::Schema.define(version: 2021_09_28_001411) do
     t.string "rank"
     t.integer "accumulated_amount", default: 0
     t.string "country"
-    t.string "name"
+    t.string "name", default: "SUGOII粉絲"
     t.integer "p_coins", default: 0
     t.string "gender"
     t.date "birthday"

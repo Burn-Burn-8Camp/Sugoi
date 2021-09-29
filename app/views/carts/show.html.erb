@@ -1,15 +1,8 @@
 <div class="bg-white">
   <main class="max-w-2xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
     <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">購物車</h1>  
-      <span class="block text-right">
-        購物車
-       
-        <%= current_cart.items.count %>
-         
-      
-      </span>
-      <span class="block text-right">
-        <%= link_to "清空購物車" , cart_path, method: "delete" %>
+      <span class="block text-right mb-6">
+        <%= link_to "清空購物車" , cart_path, method: "delete", class: 'border p-3 rounded bg-red-300 hover:bg-blue-200 text-white' %>
       </span>  
 
     <form class="mt-2 lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start xl:gap-x-16">
@@ -23,12 +16,9 @@
                 <a href="#">設計館:<%= item.store.name %></a>
               </div>
               <li class="flex py-6 sm:py-10">
-                <div class="flex-shrink-0">
-                  <img src="https://picsum.photos/120/120/?random=3"
-                      alt="Front of men&#039;s Basic Tee in sienna."
-                      class="w-24 h-24 rounded-md object-center object-cover sm:w-48 sm:h-48">
+                <div class="flex-shrink-0">                    
+                  <%= image_tag item.image, class: "w-24 h-24 rounded-md object-center object-cover sm:w-48 sm:h-48" %>  
                 </div>
-
                 <div class="ml-4 flex-1 flex flex-col justify-between sm:ml-6">
                   <div class="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
                     <div>
@@ -40,15 +30,14 @@
                         </h3>
                       </div>
                       
-                      <p class="mt-1 text-sm font-medium text-gray-900">$<%= item.product.price.to_i %></p>
+                      <p class="mt-1 text-sm font-medium text-gray-900">$<%= number_with_delimiter(item.product.price.to_i) %></p>
                     </div>
 
                     <div class="selection-container mt-4 sm:mt-0 sm:pr-9">
                       <label for="quantity-0" class="sr-only">Quantity, Basic Tee</label>
                       <select class="productID max-w-full rounded-md border border-gray-300 py-1.5 text-base leading-5 font-medium text-gray-700 text-left shadow-sm focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" id="<%= item.product_id %>">
                         <%= 1.upto(product_storage(item.product_id)) do |i| %>
-                          <option value="<%= " #{i}" %>"><%= "#{i}" %>
-                          </option>
+                          <option value="<%= " #{i}" %>" <%= set_cart_item_qiantity(i, item.quantity) %>><%= "#{i}" %></option>
                         <% end %>
                       </select>
 
@@ -56,7 +45,6 @@
                         <button type="button"
                             class="delete-item-button -m-2 p-2 inline-flex text-gray-400 hover:text-gray-500" id="<%= item.product_id %>">
                           <span class="sr-only">Remove</span>
-                          <!-- Heroicon name: solid/x -->
                           <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
                               fill="currentColor" aria-hidden="true">
                             <path fill-rule="evenodd"
@@ -105,38 +93,44 @@
         </div> 
       </section>
 
-      <!-- Order summary -->
       <section aria-labelledby="summary-heading"
           class="mt-16 bg-gray-50 rounded-lg px-4 py-6 sm:p-6 lg:p-8 lg:mt-0 lg:col-span-5">
-        <h2 id="summary-heading" class="text-lg font-medium text-gray-900">訂單摘要</h2>
+        <h2 id="summary-heading" class="text-xl font-medium text-gray-900">訂單摘要</h2>
 
         <dl class="mt-6 space-y-4">
           <div class="summary-product-price flex items-center justify-between">
-            <dt class="text-sm text-gray-600">
+            <dt class="text-md text-gray-600">
               商品金額
             </dt>
-            <dd class="total_price text-sm font-medium text-gray-900">
+            <dd class="total_price text-md font-medium text-gray-900">
               $<span>
-                <%= current_cart.total %>
+                <%= number_with_delimiter(current_cart.total) %>
               </span>             
             </dd>
           </div>
           <div class="summary-delivery-price border-t border-gray-200 pt-4 flex items-center justify-between">
-            <dt class="flex items-center text-sm text-gray-600">
+            <dt class="flex items-center text-md text-gray-600">
               <span>運費金額</span>  
             </dt>
-            <dd class="text-sm font-medium text-gray-900">
+            <% if current_cart.total === 0 %>
+              <dd class="text-md font-medium text-gray-900">
               $<span class="total_price">
-                <%= delivery_fee %>
+                0
+              </span>
+            <% else %>
+              <dd class="text-md font-medium text-gray-900">
+              $<span class="total_price">
+                <%= number_with_delimiter(delivery_fee) %>
               </span>
             </dd>
+            <% end %>
           </div>
 
           <div class="summary-coupon-redeem border-t border-gray-200 pt-4 flex items-center justify-between">
-            <dt class="flex text-sm text-gray-600">
+            <dt class="flex text-md text-gray-600">
               <span>優惠券折抵</span>       
             </dt>
-            <dd class="text-sm font-medium text-gray-900">
+            <dd class="text-md font-medium text-gray-900">
               $<span class="coupon_value">
                 0
               </span>
@@ -145,13 +139,20 @@
 
           <div class="border-t border-b border-gray-200 pt-4 flex items-center justify-between">
             <dt class="text-base font-medium text-gray-900">
-              <span class="total-price-title">結帳總金額</span>        
+              <span class="total-price-title text-xl">結帳總金額</span>        
             </dt>
-            <dd class="text-base font-medium text-gray-900">
-              $<span class="sum">
-                <%= current_cart.total_included_delivery_fee %>
+            <% if current_cart.total === 0 %>
+              <dd class="text-md font-medium text-gray-900">
+              $<span class="total_price">
+                0
               </span>
-            </dd>
+            <% else %>
+              <dd class="text-base font-medium text-gray-900">
+                $<span class="sum text-xl">
+                  <%= number_with_delimiter(current_cart.total_included_delivery_fee) %>
+                </span>
+              </dd>
+            <% end %>
           </div>
 
           <div class="coupon">
