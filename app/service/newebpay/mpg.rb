@@ -2,9 +2,9 @@ module Newebpay
 	class Mpg
 		attr_accessor :info
 		def initialize(params)
-			@key = ENV["merchant_hash_key"]
-			@iv = ENV["merchant_hash_iv"]
-			@merchant_id = ENV["merchant_id"]
+			@key = ENV["MERCHANT_HASH_KEY"]
+			@iv = ENV["MERCHANT_HASH_IV"]
+			@merchant_id = ENV["MERCHANT_ID"]
 			@info = {}
 			set_info(params)
 		end
@@ -30,7 +30,7 @@ module Newebpay
 				info[:TimeStamp] = Time.now.to_i
 				info[:RespondType] = 'JSON'
 				info[:Version] = '1.6'
-				info[:ReturnURL] = ENV["return_url"]
+				info[:ReturnURL] = ENV["RETURN_URL"]
 				info[:NotifyURL] = ''
 				info[:LoginType] = 0
 				info[:CREDIT] = 1

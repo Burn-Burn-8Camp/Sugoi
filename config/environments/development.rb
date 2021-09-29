@@ -40,7 +40,7 @@ Rails.application.configure do
 
   # 設定 SMTP 伺服器
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_url_options = { host: 'gentle-inlet-27483.herokuapp.com' }
   config.action_mailer.smtp_settings = config_for(:email).symbolize_keys
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
