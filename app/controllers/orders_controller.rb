@@ -23,9 +23,19 @@ class OrdersController < ApplicationController
 	end
 
 	def checkout
-		@order = Order.new
-		@items = current_cart.items
-		find_by_smae_store(@store_items = [], @items)
+		coupon_value = 0
+		coupon_value ||= current_cart.coupon[0].coupon_value.to_i
+		total_price = current_cart.total_included_delivery_fee - coupon_value
+
+		if current_cart.items.count === 0
+			redirect_to root_path, notice: "未加入任何商品"
+		elsif total_price <= 0
+			redirect_to root_path, notice: "總金額不得為負"
+		else
+			@order = Order.new
+			@items = current_cart.items
+			find_by_smae_store(@store_items = [], @items)
+		end
 	end
 
 	def create
