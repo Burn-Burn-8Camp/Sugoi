@@ -1,7 +1,7 @@
 <div class='border rounded'>
 		<ul>
 			<li class='text-lg'>訂單編號：<%= @order.serial %></li>
-			<li class='text-lg'>訂單金額：<%= @order.total %></li>
+			<li class='text-lg'>訂單金額：<%= number_with_delimiter(@order.total) %></li>
 			<li class='text-lg'>收件人：<%= @order.receiver %></li>
 			<li class='text-lg'>收件地址：<%= @order.address %></li>
 			<li class='text-lg'>運送方式：<%= @order.delivery %></li>
