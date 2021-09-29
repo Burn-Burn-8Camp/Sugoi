@@ -10,11 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 2021_09_28_001411) do
-=======
 ActiveRecord::Schema.define(version: 2021_09_28_140225) do
->>>>>>> 8f04b48... feat: new room
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -122,9 +118,9 @@ ActiveRecord::Schema.define(version: 2021_09_28_140225) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "total"
     t.string "state"
+    t.string "coupon_name", default: "未使用"
     t.string "slug"
     t.text "message"
-    t.string "coupon_name", default: "未使用"
     t.integer "coupon_value", default: 0
     t.integer "user_discount", default: 0
     t.integer "delivery_fee", default: 0
