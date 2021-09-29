@@ -2,7 +2,7 @@
   <main class="max-w-2xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
     <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">購物車</h1>  
       <span class="block text-right mb-6">
-        <%= link_to "清空購物車" , cart_path, method: "delete", class: 'border p-3 rounded bg-red-300 hover:bg-blue-200' %>
+        <%= link_to "清空購物車" , cart_path, method: "delete", class: 'border p-3 rounded bg-red-300 hover:bg-blue-200 text-white' %>
       </span>  
 
     <form class="mt-2 lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start xl:gap-x-16">
@@ -16,12 +16,9 @@
                 <a href="#">設計館:<%= item.store.name %></a>
               </div>
               <li class="flex py-6 sm:py-10">
-                <div class="flex-shrink-0">
-                  <img src="https://picsum.photos/120/120/?random=3"
-                      alt="Front of men&#039;s Basic Tee in sienna."
-                      class="w-24 h-24 rounded-md object-center object-cover sm:w-48 sm:h-48">
+                <div class="flex-shrink-0">                    
+                  <%= image_tag item.image, class: "w-24 h-24 rounded-md object-center object-cover sm:w-48 sm:h-48" %>  
                 </div>
-
                 <div class="ml-4 flex-1 flex flex-col justify-between sm:ml-6">
                   <div class="relative pr-9 sm:grid sm:grid-cols-2 sm:gap-x-6 sm:pr-0">
                     <div>

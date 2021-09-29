@@ -14,4 +14,7 @@ class Product < ApplicationRecord
 	has_many :users, through: :bookmarks
 	has_one_attached :picture
 	mount_uploader :image, ImageUploader
+
+	has_many :rooms
+	has_many :users, through: :rooms
 end

@@ -72,14 +72,13 @@
                         <th style="background:#333333;width:15%;text-align:center;padding:5px;color:#ffffff;font-size:12px;line-height:18px;margin:0;">數 量</th>
                         <th style="background:#333333;width:15%;text-align:center;padding:5px;color:#ffffff;font-size:12px;line-height:18px;margin:0;">單 價</th>
                         <th style="background:#333333;width:15%;text-align:center;padding:5px;color:#ffffff;font-size:12px;line-height:18px;margin:0;">小 計</th>
-                        <th style="background:#333333;width:15%;text-align:center;padding:5px;color:#ffffff;font-size:12px;line-height:18px;margin:0;">備註</th>
+                        <th style="background:#333333;width:15%;text-align:center;padding:5px;color:#ffffff;font-size:12px;line-height:18px;margin:0;border-right:1px solid #333333;">備註</th>
                       </tr>
             
                       <% @order_items.each do |order_item| %>         
                         <tr style="border-bottom:1px solid #333333;">
-                          <td style="border-right:1px solid #333333;padding:5px;">
+                          <td style="border-right:1px solid #333333;border-left:1px solid #333333;padding:5px;">
                             <span style="display:block;font-size:12px;line-height:16px;"><%= order_item.name %></span>
-
                           </td>
                           <td style="border-right:1px solid #333333;padding:0px;text-align:center;">
                             <p style="color:#333333;font-size:12px;font-weight:bold;line-height:14px;margin:0;"><%= order_item.quantity %></p>
@@ -96,7 +95,7 @@
                         </tr>
                       <% end %>
 
-                      <tr style="border-bottom:1px solid #333333;">
+                      <tr style="border-bottom:1px solid #333333;border-left:1px solid #333333;">
                         <td colspan="4" style="border-right:1px solid #333333;padding:5px;text-align:right;">
                           <p style="color:#333333;font-size:12px;line-height:14px;margin:0;">優惠券折抵</p>
                         </td>
@@ -105,7 +104,7 @@
                         </td>
                       </tr>
 
-                      <tr style="border-bottom:1px solid #333333;">
+                      <tr style="border-bottom:1px solid #333333;border-left:1px solid #333333;">
                         <td colspan="4" style="border-right:1px solid #333333;padding:5px;text-align:right;">
                           <p style="color:#333333;font-size:12px;line-height:14px;margin:0;">會員折扣</p>
                         </td>
@@ -114,7 +113,7 @@
                         </td>
                       </tr>
 
-                      <tr style="border-bottom:1px solid #333333;">
+                      <tr style="border-bottom:1px solid #333333;border-left:1px solid #333333;">
                         <td colspan="4" style="border-right:1px solid #333333;padding:5px;text-align:right;">
                           <p style="color:#333333;font-size:12px;line-height:14px;margin:0;">運費</p>
                         </td>
@@ -126,10 +125,10 @@
                       
 
                       <tr>
-                        <td colspan="4" style="border-right:1px solid #333333;padding:5px;text-align:right;">
+                        <td colspan="4" style="border-right:1px solid #333333;border-left:1px solid #333333;border-bottom:1px solid #333333;padding:5px;text-align:right;">
                           <p style="color:#333333;font-size:12px;line-height:14px;margin:0;">總計</p>
                         </td>
-                        <td style="background:#cb3747;display:block;padding:5px;text-align:center;">
+                        <td style="background:#cb3747;display:block;padding:5px;text-align:center;border-bottom:1px solid #333333;border-right:1px solid #333333;">
                           <p style="color:#ffffff;font-size:16px;font-weight:bold;line-height:20px;margin:0;"><%= @order.total %></p>
                         </td>
                       </tr>
@@ -207,10 +206,3 @@
   
 </table>
 </div>
-
-
-
-
-
-
-
