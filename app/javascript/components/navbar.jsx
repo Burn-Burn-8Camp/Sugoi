@@ -210,6 +210,14 @@ const Navbar = ({webUser, cart}) => {
                     </div>
                   </a>
                 </button>
+                <button
+                  type="button"
+                  className="mr-4 flex-shrink-0 p-1">
+                  <span className="sr-only"></span>
+                  <a href="/rooms">
+                    <FontAwesomeIcon icon={['fas', 'star']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200" aria-hidden="true" />
+                  </a>
+                </button>
               </div>
             </div>
             <nav className="hidden lg:py-2 lg:flex lg:space-x-8" aria-label="Global">
