@@ -118,9 +118,9 @@ ActiveRecord::Schema.define(version: 2021_09_28_001411) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "total"
     t.string "state"
-    t.string "coupon_name", default: "未使用"
     t.string "slug"
     t.text "message"
+    t.string "coupon_name", default: "未使用"
     t.integer "coupon_value", default: 0
     t.integer "user_discount", default: 0
     t.integer "delivery_fee", default: 0
@@ -152,6 +152,10 @@ ActiveRecord::Schema.define(version: 2021_09_28_001411) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "user_id"
+    t.bigint "product_id"
+    t.index ["product_id"], name: "index_rooms_on_product_id"
+    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "seller_comments", force: :cascade do |t|

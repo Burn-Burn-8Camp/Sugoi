@@ -18,6 +18,8 @@ class User < ApplicationRecord
             through: :bookmarks,
             source: :product
   has_one_attached :image
+  has_many :rooms
+  has_many :product, through: :rooms
 
   def self.create_from_provider_data(provider_data)
     return nil if provider_data.nil?
