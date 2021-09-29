@@ -33,19 +33,24 @@
 								<div class="flex justify-between pt-4 font-medium text-gray-900 md:block md:pt-0">
 									<dt>訂單總額</dt>
 									<dd class="md:mt-1">
-										<%= number_with_delimiter(@order.total) %>
+										NT$ <%= number_with_delimiter(@order.total) %>
 									</dd>
 								</div>
 							</dl>
 							<div class="space-y-4 mt-6 sm:flex sm:space-x-4 sm:space-y-0 md:mt-0">
 								<% if @store_order.shipment_confirm %>
-									<p class='px-3'>您已出貨</p>
+									<p class='p-3'>您已出貨</p>
 								<% else %>
 									<%= form_with model: @order, url: shipment_store_order_path(@order), method: 'GET' do |f| %>
 										<%= f.submit '出貨', class: 'btn btn-success' %>
 									<% end %>
 								<% end %>
-								<%= react_component 'SellerCommentForm', props: {order_id: @order.id, order_friendly_id: @order.slug} %>
+
+								<% if @comment.length != 0 %>
+									<p class='p-3'>您已評價</p>
+								<% else %>
+									<%= react_component 'SellerCommentForm', props: {order_id: @order.id, order_friendly_id: @order.slug} %>
+								<% end %>
 							</div>
 						</div>
 
@@ -59,8 +64,12 @@
 										<div class="lg:flex-1">
 											<div class="sm:flex">
 												<div>
+<<<<<<< HEAD
 													<h4 class="font-medium text-gray-900"><%= item.name %></h4>
 													<p class="hidden mt-2 text-sm text-gray-500 sm:block">This durable double-walled insulated tumbler keeps your beverages at the perfect temperature all day long. Hot, cold, or even lukewarm if you&#039;re weird like that, this bottle is ready for your next adventure.</p>
+=======
+													<h4 class="font-medium text-gray-900 text-xl"><%= item.name %></h4>
+>>>>>>> develop_fix
 													<p class="font-medium text-gray-900 pt-3">NT$ <%= number_with_delimiter(item.price.to_i) %></p>
 													<p class="font-medium text-gray-900 pt-3">數量 <%= item.quantity %></p>
 												</div>
@@ -68,7 +77,7 @@
 										</div>
 									</div>
 									<div class="ml-4 flex-shrink-0 sm:m-0 sm:mr-6 sm:order-first">
-										<img src="https://tailwindui.com/img/ecommerce-images/order-history-page-06-product-01.jpg" alt="Olive drab green insulated bottle with flared screw lid and flat top." class="col-start-2 col-end-3 sm:col-start-1 sm:row-start-1 sm:row-span-2 w-20 h-20 rounded-lg object-center object-cover sm:w-40 sm:h-40 lg:w-52 lg:h-52">
+										<%= image_tag item.product.image.url, class: "col-start-2 col-end-3 sm:col-start-1 sm:row-start-1 sm:row-span-2 w-20 h-20 rounded-lg object-center object-cover sm:w-40 sm:h-40 lg:w-52 lg:h-52" %>
 									</div>
 								</div>
 								<% end %>

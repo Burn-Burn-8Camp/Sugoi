@@ -22,7 +22,6 @@ class ProductsController < ApplicationController
   def show
     @favorite_item = Bookmark.where(user_id: current_user, product_id: @product)  
     
-    @products = Product.friendly.find(params[:id])
     item = OrderItem.joins(:product, :comment).where(product_id: @product).select(:id)
     users = item.map{ |i| i.comment.user}.reverse
     @comments = item.map{ |i| i.comment }.reverse
@@ -71,7 +70,7 @@ class ProductsController < ApplicationController
     end
 
     def find_product
-      @product = Product.friendly.find(params[:id])
+      @product = Product.includes(:store).friendly.find(params[:id])
     end
 end
 
