@@ -353,10 +353,7 @@ GEM
 
 PLATFORMS
   arm64-darwin-20
-<<<<<<< HEAD
   x86_64-linux
-=======
->>>>>>> 0e555c82a62a26489c1501b80e7c894a203f8b32
 
 DEPENDENCIES
   aasm (~> 5.2)
