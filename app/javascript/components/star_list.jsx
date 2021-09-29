@@ -24,7 +24,7 @@ const StarList = ({ rate, content }) => {
 				)
 			})
 			}
-			<p>{content}</p>
+			<p className='pt-3'>{content}</p>
 		</div>
 	)
 }

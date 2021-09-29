@@ -192,7 +192,7 @@ const Navbar = ({webUser, cart}) => {
                 </button>
                 <button
                   type="button"
-                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-red-300 hover:text-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-red-300"
                 >
                   <span className="sr-only"></span>
                   <a href="/cart">

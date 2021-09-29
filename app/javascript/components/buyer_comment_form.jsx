@@ -29,7 +29,7 @@ const BuyerCommentForm = ({ itemId, orderId }) =>  {
 
   return (
     <div className="BuyerCommentForm mb-3">
-      <button onClick={toggleModal} className='btn btn-primary'>商品評價</button>
+      <button onClick={toggleModal} className='p-3 bg-red-300 hover:bg-blue-200 rounded-xl'>商品評價</button>
 
       <Modal
 				ariaHideApp={false}
@@ -57,10 +57,10 @@ const BuyerCommentForm = ({ itemId, orderId }) =>  {
           </div>
 					<div className='p-3'>
             <label htmlFor="content" className='text-lg'>商品評論</label>
-            <textarea name="content" cols="20" rows="5" placeholder='我很滿意這個商品' className='w-full my-2 border-2 rounded'></textarea>
+            <textarea name="content" cols="20" rows="5" placeholder='我很滿意這個商品' className='w-full my-2 border-2 rounded-2xl'></textarea>
           </div>
 					<div className='flex flex-row-reverse'>
-            <input type="submit" className='btn btn-primary my-2 mr-3' value='送出'/>
+            <input type="submit" className='bg-red-300 btn my-2 mr-3 border-red-300 hover:bg-blue-200 hover:border-blue-200' value='送出'/>
             <button onClick={toggleModal} className='btn btn-success my-2 mr-3'>關閉</button>
           </div>
 				</form>

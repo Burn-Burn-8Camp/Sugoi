@@ -29,7 +29,7 @@ const SellerCommentForm = ({ order_id, order_friendly_id }) =>  {
 
   return (
     <div className="SellerCommentForm mb-3">
-      <button onClick={toggleModal} className='btn btn-primary'>賣家評價</button>
+      <button onClick={toggleModal} className='p-3 bg-red-300 hover:bg-blue-200 rounded-xl'>賣家評價</button>
 
       <Modal
 				ariaHideApp={false}
@@ -60,7 +60,7 @@ const SellerCommentForm = ({ order_id, order_friendly_id }) =>  {
             <textarea name="content" cols="20" rows="5" placeholder='優質的好買家' className='w-full my-2 border-2 rounded'></textarea>
           </div>
 					<div className='flex flex-row-reverse'>
-            <input type="submit" className='btn btn-primary my-2 mr-3' value='送出'/>
+            <input type="submit" className='bg-red-300 btn my-2 mr-3 border-red-300 hover:bg-blue-200 hover:border-blue-200' value='送出'/>
             <button onClick={toggleModal} className='btn btn-success my-2 mr-3'>關閉</button>
           </div>
 				</form>

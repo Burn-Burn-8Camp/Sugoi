@@ -4,11 +4,6 @@ class ProductsController < ApplicationController
   def index
     # @pagy, @products = pagy(Product.where(deleted_at: nil), items: 6)
     @products = Product.all.order(id: :desc)
-    # @foods = Product.where(category: 'food').limit(6)
-    # @books = Product.where(category:'book').limit(6)
-    # @movies = Product.where(category: 'movie').limit(6)
-    # @animals = Product.where(category: 'animal').limit(6)
-    # @dragonBalls = Product.where(category: 'dragonBall').limit(6)
   end
 
   def new
@@ -25,11 +20,8 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @favorite_items = Bookmark.where(user_id: current_user, product_id: @product)  
-    items = OrderItem.joins(:product, :comment).where(product_id: @product).select(:id)
-    @comments = items.map{ |item| item.comment }
+    @favorite_item = Bookmark.where(user_id: current_user, product_id: @product)  
     
-    @products = Product.friendly.find(params[:id])
     item = OrderItem.joins(:product, :comment).where(product_id: @product).select(:id)
     users = item.map{ |i| i.comment.user}.reverse
     @comments = item.map{ |i| i.comment }.reverse
@@ -78,7 +70,7 @@ class ProductsController < ApplicationController
     end
 
     def find_product
-      @product = Product.friendly.find(params[:id])
+      @product = Product.includes(:store).friendly.find(params[:id])
     end
 end
 

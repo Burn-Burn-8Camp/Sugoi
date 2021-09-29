@@ -12,9 +12,11 @@ document.addEventListener("turbolinks:load", () => {
         data: "",
         success: (data) => {  
           if(data.status === "added") {
+            heartIcon.classList.remove("text-gray-800");
             heartIcon.classList.add("text-red-400");
           } else {
             heartIcon.classList.remove("text-red-400")
+            heartIcon.classList.add("text-gray-800");
           }
         },
         error: function (err) {

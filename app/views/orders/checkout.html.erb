@@ -19,16 +19,14 @@
 							<div class="flow-root">
 								<ul role="list" class="-my-6 divide-y divide-gray-200 py-3">
 									<li class="py-6 flex space-x-6">
-										<img src="https://tailwindui.com/img/ecommerce-images/checkout-page-05-product-01.jpg"
-											alt="Front of women&#039;s basic tee in heather gray."
-											class="flex-none w-24 h-24 object-center object-cover bg-gray-100 rounded-md">
+										<%= image_tag item.image, class: "flex-none w-24 h-24 object-center object-cover bg-gray-100 rounded-md" %>
 										<div class="flex-auto">
 											<div class="space-y-1 sm:flex sm:items-start sm:justify-between sm:space-x-6">
 												<div class="flex-auto text-sm font-medium space-y-1">
 													<h3 class="text-gray-900">
-														<a href="#"><%= item.name %></a>
+														<%= item.name %>
 													</h3>
-													<p class="text-gray-900">$<%= item.price.to_i %></p>
+													<p class="text-gray-900">$<%= number_with_delimiter(item.price.to_i) %></p>
 												</div>
 												<div class="flex-none flex space-x-4">
 													<p class="text-sm font-medium text-indigo-600 hover:text-indigo-500">
@@ -47,26 +45,40 @@
 				<dl class="text-sm font-medium text-gray-500 mt-10 space-y-6">
 					<div class="flex justify-between">
 						<dt>商品小計</dt>
-						<dd class="text-gray-900">NT$ <%= current_cart.total %></dd>
+						<dd class="text-gray-900">NT$ <%= number_with_delimiter(current_cart.total) %></dd>
 					</div>
 					<div class="flex justify-between">
 						<dt>運費</dt>
-						<dd class="text-gray-900">NT$ <%= delivery_fee %></dd>
+						<% if current_cart.total == 0 %>
+							<dd class="text-gray-900">NT$ 0</dd>
+						<% else %>
+							<dd class="text-gray-900">NT$ <%= number_with_delimiter(delivery_fee) %></dd>
+						<% end %>
 					</div>
 					<div class="flex justify-between">
 						<dt class="flex">優惠券折扣</dt>
-						<dd class="text-gray-900">-NT$ <%= coupon_value %></dd>
+						<dd class="text-gray-900">-NT$ <%= number_with_delimiter(coupon_value) %></dd>
 					</div>
 					<div class="flex justify-between">
 						<dt class="flex">會員折扣</dt>
-						<dd class="text-gray-900">-NT$ <%= user_discount(current_user.accumulated_amount) %></dd>
+						<% if current_cart.total == 0 %>
+							<dd class="text-gray-900">NT$ 0</dd>
+						<% else %>
+							<dd class="text-gray-900">-NT$ <%= user_discount(current_user.accumulated_amount) %></dd>
+						<% end %>
 					</div>
-					<div class="flex justify-between">
+					<div class="flex justify-between text-lg">
 						<dt>結帳總金額</dt>
-						<dd class="text-gray-900">NT$ <%= final_shopping_cart_value(current_user.accumulated_amount) %></dd>
+						<% if current_cart.total == 0 %>
+							<dd class="text-gray-900">NT$ 0</dd>
+						<% else %>
+							<dd class="text-gray-900">NT$ <%= number_with_delimiter(final_shopping_cart_value(current_user.accumulated_amount)) %></dd>
+						<% end %>
 					</div>
 				</dl>			
 			</div>
+
+
 			<%# order_form %>
 			<div class="max-w-lg">
 				<%= form_for @order, html: {class: 'mt-6'} do |f| %>
@@ -75,8 +87,12 @@
 						<div class="col-span-full">
 							<%= f.label :email, "電子信箱", class: "block text-sm font-medium text-gray-700" %>
 							<div class="mt-1">
-								<%= f.email_field :email, class: 'class="block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm', autocomplete: "email" %>
+								<%= f.email_field :email, 
+										class: "block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm ", autocomplete: "email" %>
 							</div>
+							<% if f.object.errors[:email] %>
+								<span class='text-red-600'><%= f.object.errors[:email].first %></span>
+							<% end %>
 						</div>
 						<div class="col-span-full">
 							<%= f.label :recceiver, "收件人姓名", class: "block text-sm font-medium text-gray-700" %>
@@ -84,6 +100,9 @@
 								<%= f.text_field :receiver,
 										class: "block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
 							</div>
+							<% if f.object.errors[:receiver] %>
+								<span class='text-red-600'><%= f.object.errors[:receiver].first %></span>
+							<% end %>
 						</div>
 						<div class="col-span-full">
 							<%= f.label :tel, "收件人手機", class: "block text-sm font-medium text-gray-700" %>
@@ -91,6 +110,9 @@
 								<%= f.telephone_field :tel,
 										class: "block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
 							</div>
+							<% if f.object.errors[:tel] %>
+								<span class='text-red-600'><%= f.object.errors[:tel].first %></span>
+							<% end %>
 						</div>
 						<div class="col-span-full">
 							<%= f.label :address, "收件人地址", class: "block text-sm font-medium text-gray-700" %>
@@ -98,6 +120,9 @@
 								<%= f.text_field :address, autocomplete: "street-address",
 										class: "block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
 							</div>
+							<% if f.object.errors[:address] %>
+								<span class='text-red-600'><%= f.object.errors[:address].first %></span>
+							<% end %>
 						</div>
 						<div class="col-span-full">
 							<%= f.label :delivery, "運送方式", class: "text-sm font-medium text-gray-700" %>
