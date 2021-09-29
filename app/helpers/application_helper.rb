@@ -35,22 +35,6 @@ module ApplicationHelper
 		comments.map{|comment| comment.rate}.sum / comments.length
 	end
 
-	def delivery_fee
-		delivery_fee = Product.deliveries["貨運 NT$100"] 
-	end
-
-	def total_delivery_fee
-		delivery_fee * store_amount
-	end
-
-	def coupon_value
-		current_cart.coupon.reduce(0) { |acc, coupon | acc + coupon.coupon_value.to_i }
-	end
-
-	def shopping_cart_sum
-		current_cart.total_included_delivery_fee - coupon_value
-	end
-
 	def store_amount
     store_id_list = current_cart.items.map { |item| item.store_id }.uniq.sort
     @store_items = []
@@ -62,4 +46,33 @@ module ApplicationHelper
     @store_items.count
   end
 
+	def delivery_fee
+		delivery_fee = Product.deliveries["貨運 NT$100"] 
+	end
+
+	def coupon_value
+		current_cart.coupon.reduce(0) { |acc, coupon | acc + coupon.coupon_value.to_i }
+	end
+
+	def user_discount(accumulated_amount)
+    if accumulated_amount > 2000 && accumulated_amount < 20000
+			((current_cart.total_included_delivery_fee - coupon_value) * 0.05).ceil 
+		elsif accumulated_amount >= 20000
+			((current_cart.total_included_delivery_fee - coupon_value) * 0.15).ceil 
+		else
+			0
+    end      
+  end
+
+	def final_shopping_cart_value(accumulated_amount)
+		current_cart.total_included_delivery_fee - coupon_value - user_discount(accumulated_amount)
+	end
+
+	def heart_color(favorite_item)
+		favorite_item.length === 0 ? "text-gray-800" : "text-red-400"
+	end
+
+	def set_cart_item_qiantity(index, quantity)
+		index === quantity ? 'selected' : ''
+	end
 end

@@ -102,7 +102,10 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.4.4)
+    e2mmap (0.1.0)
     erubi (1.10.0)
+    et-orbi (1.2.5)
+      tzinfo
     execjs (2.8.1)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
@@ -136,10 +139,11 @@ GEM
     foreman (0.87.2)
     friendly_id (5.4.2)
       activerecord (>= 4.0.0)
+    fugit (1.5.2)
+      et-orbi (~> 1.1, >= 1.1.8)
+      raabro (~> 1.4)
     globalid (0.5.2)
       activesupport (>= 5.0)
-    groupdate (5.2.2)
-      activesupport (>= 5)
     hashie (4.1.0)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
@@ -147,8 +151,6 @@ GEM
       activesupport (>= 5.0.0)
     jwt (2.2.3)
     libv8-node (15.14.0.1-arm64-darwin-20)
-    libv8-node (15.14.0.1-x86_64-darwin-20)
-    libv8-node (15.14.0.1-x86_64-linux)
     listen (3.7.0)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -171,11 +173,7 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     nio4r (2.5.8)
-    nokogiri (1.12.4-arm64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.12.4-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.12.4-x86_64-linux)
+    nokogiri (1.12.5-arm64-darwin)
       racc (~> 1.4)
     oauth2 (1.4.7)
       faraday (>= 0.8, < 2.0)
@@ -212,6 +210,7 @@ GEM
     public_suffix (4.0.6)
     puma (5.5.0)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-protection (2.1.0)
@@ -283,6 +282,8 @@ GEM
     rspec-support (3.10.2)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
+    rufus-scheduler (3.8.0)
+      fugit (~> 1.1, >= 1.1.6)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -297,6 +298,17 @@ GEM
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     semantic_range (3.0.0)
+    sidekiq (6.2.2)
+      connection_pool (>= 2.2.2)
+      rack (~> 2.0)
+      redis (>= 4.2.0)
+    sidekiq-scheduler (3.1.0)
+      e2mmap
+      redis (>= 3, < 5)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 3)
+      thwait
+      tilt (>= 1.4.0)
     spring (3.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -307,6 +319,8 @@ GEM
       sprockets (>= 3.0.0)
     ssrf_filter (1.0.7)
     thor (1.1.0)
+    thwait (0.2.0)
+      e2mmap
     tilt (2.0.10)
     timecop (0.9.4)
     turbolinks (5.2.1)
@@ -339,8 +353,6 @@ GEM
 
 PLATFORMS
   arm64-darwin-20
-  x86_64-darwin-20
-  x86_64-linux
 
 DEPENDENCIES
   aasm (~> 5.2)
@@ -356,7 +368,6 @@ DEPENDENCIES
   figaro (~> 1.2)
   foreman (~> 0.87.2)
   friendly_id (~> 5.4, >= 5.4.2)
-  groupdate (~> 5.2, >= 5.2.2)
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mini_racer (~> 0.4.0)
@@ -376,6 +387,8 @@ DEPENDENCIES
   rspec-rails (~> 5.0, >= 5.0.2)
   sass-rails (>= 6)
   selenium-webdriver (~> 3.142, >= 3.142.7)
+  sidekiq (~> 6.2, >= 6.2.2)
+  sidekiq-scheduler (~> 3.1)
   spring (~> 3.0)
   timecop (~> 0.9.4)
   turbolinks (~> 5)

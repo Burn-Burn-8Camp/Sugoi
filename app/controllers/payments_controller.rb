@@ -23,7 +23,7 @@ class PaymentsController < ApplicationController
 
 			if response.success?
 				@order.pay!
-				render './payments/pay_back.html.erb'
+				redirect_to order_path(@order), notice: '刷卡成功，歡迎回來'
 			else
 				redirect_to payment_order_path(@order), notice: '刷卡失敗，請重新付款'
 			end

@@ -8,4 +8,3 @@ namespace :products do
 	puts "done!"
 	end
 end
-# 做一個rake 命令 來產生50筆假資料

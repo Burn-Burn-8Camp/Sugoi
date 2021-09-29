@@ -1,10 +1,22 @@
-<div class='flex'>
-	<div class='border-2 border-black mx-auto p-4'>
-		<h1 class='text-4xl'>前往付款</h1>
-		<ul>
-			<li class='text-xl'>訂單編號：<%= @order.serial %></li>
-			<li class='text-xl'>訂單金額：<%= @order.total %></li>
-		</ul>
-		<%= render 'payment_form' %>
+<div class="min-w-screen min-h-screen bg-gray-200 flex items-center justify-center px-5 pb-10">
+	<div class="w-full mx-auto rounded-lg bg-white shadow-lg p-5 text-gray-700" style="max-width: 600px">
+		<div class="w-full pt-1 pb-5">
+			<div class="bg-indigo-500 text-white overflow-hidden rounded-full w-20 h-20 -mt-16 mx-auto shadow-lg flex justify-center items-center">
+				<i class="fas fa-credit-card text-3xl"></i>
+			</div>
+		</div>
+		<div class="mb-5">
+			<h1 class="text-center font-bold text-xl uppercase">前往付款</h1>
+		</div>
+		<div class="mb-5 max-w-xs mx-auto">
+			<ul>
+				<li class='text-xl py-2'>訂單編號：<%= @order.serial %></li>
+				<li class='text-xl py-2'>訂單日期：<%= @order.created_at.to_date %></li>
+				<li class='text-xl py-2'>訂單金額：<%= @order.total %></li>
+			</ul>
+		</div>
+		<div>
+			<%= render 'payment_form' %>
+		</div>
 	</div>
 </div>

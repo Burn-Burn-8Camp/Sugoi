@@ -22,8 +22,6 @@
 
 總金額 <%= @order.total %> -->
 
-
-
 <div>
 <title>訂購通知信</title>
 </div>
@@ -57,7 +55,7 @@
                   <td style="width:538px;text-align:left;vertical-align:top;">
                     <p style="color:#333;font-size:18px;text-align:center;display:block;margin:0;">SUGOII 官方網站︱台灣設計師交易平台</p><br>
                     <p style="color:#cb3747;font-size:14px;margin:0;">★ 此信件為重要信件，交易完成前請保留此信件以利查詢。</p><br>
-                    <p style="color:#333333;font-size:12px;line-height:18px;margin:0 0 5px;"><span style="font-weight:bold;">客戶</span>親愛的顧客，您好，恭喜您。</p>
+                    <p style="color:#333333;font-size:12px;line-height:18px;margin:0 0 5px;">親愛的顧客，您好，恭喜您。</p>
                     <p style="color:#333333;font-size:12px;line-height:18px;margin:0;">您已經成功購買了「<a rel="nofollow noopener noreferrer" target="_blank" href="#">SUGOII 官方網站︱台灣設計師交易平台</a>」的商品，
                       我們將為您安排後續相關作業。
                     </p>
@@ -74,15 +72,13 @@
                         <th style="background:#333333;width:15%;text-align:center;padding:5px;color:#ffffff;font-size:12px;line-height:18px;margin:0;">數 量</th>
                         <th style="background:#333333;width:15%;text-align:center;padding:5px;color:#ffffff;font-size:12px;line-height:18px;margin:0;">單 價</th>
                         <th style="background:#333333;width:15%;text-align:center;padding:5px;color:#ffffff;font-size:12px;line-height:18px;margin:0;">小 計</th>
-                        <th style="background:#333333;width:15%;text-align:center;padding:5px;color:#ffffff;font-size:12px;line-height:18px;margin:0;">備註</th>
+                        <th style="background:#333333;width:15%;text-align:center;padding:5px;color:#ffffff;font-size:12px;line-height:18px;margin:0;border-right:1px solid #333333;">備註</th>
                       </tr>
-
-                    
+            
                       <% @order_items.each do |order_item| %>         
                         <tr style="border-bottom:1px solid #333333;">
-                          <td style="border-right:1px solid #333333;padding:5px;">
+                          <td style="border-right:1px solid #333333;border-left:1px solid #333333;padding:5px;">
                             <span style="display:block;font-size:12px;line-height:16px;"><%= order_item.name %></span>
-
                           </td>
                           <td style="border-right:1px solid #333333;padding:0px;text-align:center;">
                             <p style="color:#333333;font-size:12px;font-weight:bold;line-height:14px;margin:0;"><%= order_item.quantity %></p>
@@ -99,31 +95,40 @@
                         </tr>
                       <% end %>
 
-
-
-
-
-                      <tr style="border-bottom:1px solid #333333;">
+                      <tr style="border-bottom:1px solid #333333;border-left:1px solid #333333;">
                         <td colspan="4" style="border-right:1px solid #333333;padding:5px;text-align:right;">
-                          <p style="color:#333333;font-size:12px;line-height:14px;margin:0;"><span>【現金積點】</span>現金積點折抵</p>
+                          <p style="color:#333333;font-size:12px;line-height:14px;margin:0;">優惠券折抵</p>
                         </td>
                         <td style="border-right:1px solid #333333;padding:5px;text-align:center;">
-                          <p style="color:#333333;font-size:14px;font-weight:bold;line-height:18px;margin:0;">0</p>
+                          <p style="color:#333333;font-size:14px;font-weight:bold;line-height:18px;margin:0;"><%= @order.coupon_value %></p>
                         </td>
                       </tr>
-                        <tr style="border-bottom:1px solid #333333;">
+
+                      <tr style="border-bottom:1px solid #333333;border-left:1px solid #333333;">
+                        <td colspan="4" style="border-right:1px solid #333333;padding:5px;text-align:right;">
+                          <p style="color:#333333;font-size:12px;line-height:14px;margin:0;">會員折扣</p>
+                        </td>
+                        <td style="border-right:1px solid #333333;padding:5px;text-align:center;">
+                          <p style="color:#333333;font-size:14px;font-weight:bold;line-height:18px;margin:0;"><%= @order.user_discount %></p>
+                        </td>
+                      </tr>
+
+                      <tr style="border-bottom:1px solid #333333;border-left:1px solid #333333;">
                         <td colspan="4" style="border-right:1px solid #333333;padding:5px;text-align:right;">
                           <p style="color:#333333;font-size:12px;line-height:14px;margin:0;">運費</p>
                         </td>
                         <td style="border-right:1px solid #333333;padding:5px;text-align:center;">
-                          <p style="color:#333333;font-size:14px;font-weight:bold;line-height:18px;margin:0;">0</p>
+                          <p style="color:#333333;font-size:14px;font-weight:bold;line-height:18px;margin:0;">100</p>
                         </td>
                       </tr>
+                      
+                      
+
                       <tr>
-                        <td colspan="4" style="border-right:1px solid #333333;padding:5px;text-align:right;">
+                        <td colspan="4" style="border-right:1px solid #333333;border-left:1px solid #333333;border-bottom:1px solid #333333;padding:5px;text-align:right;">
                           <p style="color:#333333;font-size:12px;line-height:14px;margin:0;">總計</p>
                         </td>
-                        <td style="background:#cb3747;display:block;padding:5px;text-align:center;">
+                        <td style="background:#cb3747;display:block;padding:5px;text-align:center;border-bottom:1px solid #333333;border-right:1px solid #333333;">
                           <p style="color:#ffffff;font-size:16px;font-weight:bold;line-height:20px;margin:0;"><%= @order.total %></p>
                         </td>
                       </tr>
@@ -131,7 +136,7 @@
                   </table>
                   <br>
                   <div style="overflow:hidden;display:table;margin:auto;">
-                    <a rel="nofollow noopener noreferrer" style="background:#333333;color:#ffffff;display:block;font-size:16px;line-height:16px;letter-spacing:2px;margin:0 auto;padding:15px;text-decoration:none;text-align:center;width:150px;" target="_blank" href="https://tcs02.fun-to.com/clk?sr=25265207&amp;c=c74d97b01eae257e44aa9d5bade97baf&amp;e=c8902f85b3eabb126053382883bf8e1b&amp;em=ZHJlYW0wMTg0QHlhaG9vLmNvbS50dw==&amp;ln=https%3A%2F%2Fwww.bhks.com.tw%2Forder%2Fstatus%3Fno%3DVnpNME9GaEhNakV3TlRBMk1qY3hNQT09">物流詳情</a>
+                    <a rel="nofollow noopener noreferrer" style="background:#333333;color:#ffffff;display:block;font-size:16px;line-height:16px;letter-spacing:2px;margin:0 auto;padding:15px;text-decoration:none;text-align:center;width:150px;" target="_blank" href="#">物流詳情</a>
                   </div>
                   <br>
                   <table style="border:0;border-collapse:collapse;letter-spacing:0;width:100%;">
@@ -169,7 +174,7 @@
                       <p style="color:#010101;font-size:12px;margin:0;">若您於垃圾信件匣中收到此通知信，請點選上方『這不是垃圾信』的按鍵或將點選『加入通訊錄』即可。</p>
                     </li>
                     <li>
-                      <p style="color:#010101;font-size:12px;margin:0;">如欲查詢訂單狀況，請至「<b>Sugoi 官方網站︱台灣設計師交易平台</b>」首頁左上方「<a rel="nofollow noopener noreferrer" target="_blank" href="#">訂單查詢</a>」→輸入「<strong>訂單編號</strong>」、「<strong>認證碼</strong>」，即可查詢。</p>
+                      <p style="color:#010101;font-size:12px;margin:0;">如欲查詢訂單狀況，請至「<b>Sugoii 官方網站︱台灣設計師交易平台</b>」首頁左上方「<a rel="nofollow noopener noreferrer" target="_blank" href="#">訂單查詢</a>」即可查詢。</p>
                     </li>
 
                   </ul>
@@ -185,14 +190,14 @@
         <tr>
           <td style="padding:5px;background:#F87171;text-align:center;">
             <ul style="list-style:none;padding:0;display:table;margin:auto;">
-              <li style="float:left;margin-right:10px;padding-right:10px;"><a rel="nofollow noopener noreferrer" style="color:#ffffff;font-size:12px;text-decoration:none;" target="_blank" href="#">Sugoi Inc</a></li>
+              <li style="float:left;margin-right:10px;padding-right:10px;"><a rel="nofollow noopener noreferrer" style="color:#ffffff;font-size:12px;text-decoration:none;" target="_blank" href="#">Sugoii Inc</a></li>
               
             </ul>
           </td>
         </tr>
         <tr>
           <td style="background:#ffffff;text-align:center;">
-            <p style="color:#333333;font-size:12px;line-height:18px;margin:0;">Copyright © 2021 Sugoi Inc. All Rights Reserved.</p>
+            <p style="color:#333333;font-size:12px;line-height:18px;margin:0;">Copyright © 2021 Sugoii Inc. All Rights Reserved.</p>
           </td>
         </tr>
       </table>
@@ -201,10 +206,3 @@
   
 </table>
 </div>
-
-
-
-
-
-
-
