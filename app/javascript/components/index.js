@@ -6,7 +6,6 @@ import SellerCommentForm from './seller_comment_form'
 import BannerSlider from './banner_slider'
 import Navbar from './navbar';
 import StorePage from './store_page'
-import PayBack from './pay_back';
 
 ReactOnRails.register({
 	BuyerCommentForm, 
