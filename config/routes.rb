@@ -107,6 +107,6 @@ Rails.application.routes.draw do
     member do
       post 'get', to: 'coupons#get'
     end
-  end
+  end  
 end
 
