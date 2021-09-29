@@ -29,18 +29,18 @@ class OrdersController < ApplicationController
 	end
 
 	def create
-		cart_items = current_cart.items
-		find_by_smae_store(@store_items = [], cart_items)
-
 		@order = current_user.orders.new(order_params)
-		@cart_coupon = current_cart.coupon
+		cart_items = current_cart.items
+		cart_coupon = current_cart.coupon
+		user_coupons = current_user.user_coupons
 
 		@order.product_subtotal = current_cart.total
 		@order.delivery_fee = 100
-		@cart_coupon.each do |coupon| 
-			if current_user.user_coupons.find_by(coupon_id: coupon.coupon_id).status === "unused"
-				current_user.user_coupons.find_by(coupon_id: coupon.coupon_id).redeem!
-				@order.coupon_value = coupon.coupon_value.to_i
+		
+		if cart_coupon.length != 0
+			if find_coupon(user_coupons, cart_coupon).status === "unused"
+				find_coupon(user_coupons, cart_coupon).redeem!
+				@order.coupon_value = cart_coupon.first.coupon_value.to_i
 			end
 		end
 		
@@ -49,13 +49,14 @@ class OrdersController < ApplicationController
 
 		@order.total = total_with_fee_with_coupon - @order.user_discount
 		create_order_items_in_order(cart_items, @order)
-
+		
 		if @order.save			
 			caculate_user_consume(current_user)
 			session[:cart1289] = nil
 			UserMailer.order_letter_confirm(@order).deliver_now
 			redirect_to payment_order_path(@order), notice: '訂單成立'
 		else
+			find_by_smae_store(@store_items = [], cart_items)
 			render :checkout
 		end
 	end
@@ -113,7 +114,7 @@ class OrdersController < ApplicationController
 		def create_order_items_in_order(cart_items, order)
 			store_id_list = []
 			cart_items.each{ |item|
-				order_items = OrderItem.new(
+				order_item = OrderItem.new(
 					name: item.name,
 					price: item.price,
 					quantity: item.quantity,
@@ -121,7 +122,9 @@ class OrdersController < ApplicationController
 					store_id: item.store_id
 				)
 
-				order.order_items << order_items
+				product = Product.find(item.product_id)
+				product.update(quantity: (product.quantity - item.quantity))
+				order.order_items << order_item
 				store_id_list << item.store
 			}
 
@@ -153,5 +156,9 @@ class OrdersController < ApplicationController
 			else
 				0
 			end      
+		end
+
+		def find_coupon(user_coupons, cart_coupon)
+			user_coupons.find_by(coupon_id: cart_coupon.first.coupon_id)
 		end
 end

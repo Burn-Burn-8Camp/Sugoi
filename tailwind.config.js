@@ -27,7 +27,6 @@ module.exports = {
     styled: true,
     themes: [
       'bumblebee',
-      'Wireframe',
     ],
     base: true,
     utils: true,

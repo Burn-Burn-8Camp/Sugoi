@@ -35,7 +35,7 @@ class Order < ApplicationRecord
     end
 
     event :cancel do
-    transitions from: [:pending, :paid], to: :cancelled
+    transitions from: [:pending, :paid, :in_transit, :arrived], to: :cancelled
     end
   end
 

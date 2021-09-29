@@ -1,63 +1,42 @@
 <%= form_for (@product), url: products_path do |f| %>
-<!-- component -->
 <div class="flex justify-center items-center w-full  border-4">
-    <div class="w-1/2 rounded shadow-2xl p-8 m-4 bg-red-200">
-        <h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">新增商品</h1>
-        <form action="/" method="post">
-            <div class="flex flex-col mb-4">
-                <%= f.label :商品名稱,class:"mb-2 font-bold text-lg text-gray-900" %>
-                <%= f.text_field :name, class:"border py-2 px-3 text-grey-800" %> 
-            </div>
-            <div class="flex flex-col mb-4">
-                <%= f.label :price,"價錢",class:"mb-2 font-bold text-lg text-gray-900" %>
-                <%= f.text_field :price,class:"border py-2 px-3 text-grey-800" %>
-            </div>
-            <div class="flex flex-col mb-4">
-                <%= f.label :image, "上載商品",class:"mb-2 font-bold text-lg text-gray-900" %>
-                <%= f.file_field :image,class:"border py-2 px-3 text-grey-800" %>
-            </div>
-
-            <div class="flex flex-col mb-4">
-                <%= f.label :content,"內容", class:"mb-2 font-bold text-lg text-gray-900" %>
-                <%= f.text_field :content, class:"border py-2 px-3 text-grey-800" %>
-            </div>
-            
-            <div class="flex flex-col mb-4">
-                <%= f.label :quantity,"數量",class:"mb-2 font-bold text-lg text-gray-900" %>
-                    <%= f.text_field :quantity, class:"border py-2 px-3 text-grey-800" %>
-                        <!-- <select> -->
-                            <!-- <option>1</option>
-                            <option>2</option>
-                            <option>Bandung</option>
-                            <option>Mojokerto</option>
-                        </select> -->
-            </div>
-
-
-            <div class="flex flex-col mb-4">
-                <%= f.label :category,"類別",class:"mb-2 font-bold text-lg text-gray-900"  %>
-                
-                <%= f.text_field :category,class:"border py-2 px-3 text-grey-800" %>
-                <!-- <select >
-                    <option>Surabaya</option>
-                    <option>Jakarta</option>
-                    <option>Bandung</option>
-                    <option>Mojokerto</option>
-                </select> -->
-            </div>
-            
-            <%= f.text_field :store_id, value: current_store.id, type: 'hidden' %>
-            
-
-            <button >
-                <%= f.submit "新增商品",class:"btn btn-outline" %>
-            </button>
-            <button>
-                <%= link_to '回首頁' , products_path ,class:"btn btn-outline" %>
-            </button>
-            </div>
-        </form>
-    </div>
+	<div class="w-1/2 rounded shadow-2xl p-8 m-4 bg-red-200">
+		<h1 class="block w-full text-center text-gray-800 text-2xl font-bold mb-6">新增商品</h1>
+		<form action="/" method="post">
+			<div class="flex flex-col mb-4">
+				<%= f.label :商品名稱,class:"mb-2 font-bold text-lg text-gray-900" %>
+				<%= f.text_field :name, class:"border py-2 px-3 text-grey-800" %> 
+			</div>
+			<div class="flex flex-col mb-4">
+				<%= f.label :price,"價錢",class:"mb-2 font-bold text-lg text-gray-900" %>
+				<%= f.text_field :price,class:"border py-2 px-3 text-grey-800" %>
+			</div>
+			<div class="flex flex-col mb-4">
+				<%= f.label :image, "上載商品",class:"mb-2 font-bold text-lg text-gray-900" %>
+				<%= f.file_field :image,class:"border py-2 px-3 text-grey-800" %>
+			</div>
+			<div class="flex flex-col mb-4">
+				<%= f.label :content,"內容", class:"mb-2 font-bold text-lg text-gray-900" %>
+				<%= f.text_field :content, class:"border py-2 px-3 text-grey-800" %>
+			</div>
+			<div class="flex flex-col mb-4">
+				<%= f.label :quantity,"數量",class:"mb-2 font-bold text-lg text-gray-900" %>
+				<%= f.text_field :quantity, class:"border py-2 px-3 text-grey-800" %>
+			</div>
+			<div class="flex flex-col mb-4">
+				<%= f.label :category,"類別",class:"mb-2 font-bold text-lg text-gray-900"  %>
+				<%= f.text_field :category,class:"border py-2 px-3 text-grey-800" %>
+			</div>	
+			<%= f.text_field :store_id, value: current_store.id, type: 'hidden' %>
+			<button >
+				<%= f.submit "新增商品",class:"btn btn-outline" %>
+			</button>
+			<button>
+				<%= link_to '回首頁' , products_path ,class:"btn btn-outline" %>
+			</button>
+			</div>
+		</form>
+	</div>
 </div>
 <% end%>
 
