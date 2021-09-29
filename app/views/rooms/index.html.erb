@@ -25,7 +25,7 @@
             </div>
             <div class="col-span-2 bg-white">
                 <div class="w-full">
-                    <div class="flex items-center border-b border-gray-300 pl-3 py-3 bg-blue-300">
+                    <div class="flex items-center pl-3 py-3 bg-blue-200">
                     <% if @room.present? %>
                         <img class="h-10 w-10 rounded-full object-cover"
                         src="<%= @room.product.image if @room.present? %>"
@@ -45,14 +45,14 @@
                                 <% @messages.each do |message| %>
                                     <% if message.user == current_user %>
                                         <div class="w-full flex justify-end " >
-                                            <div class="bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative " style="max-width: 300px;">
+                                            <div class="bg-yellow-50 rounded px-5 py-2 my-2 text-gray-700 relative " style="max-width: 300px;">
                                                 <span class="block"><%= message.content%></span>
                                                 <span class="block text-xs text-left"><%= message.created_at.strftime('%H:%M %p') %></span>
                                             </div>
                                         </div>
                                     <% else %>
                                         <div class="w-full flex justify-start">
-                                            <div class="bg-gray-100 rounded px-5 py-2 my-2 text-gray-700 relative" style="max-width: 300px;">
+                                            <div class="bg-yellow-200 rounded px-5 py-2 my-2 text-gray-700 relative" style="max-width: 300px;">
                                                 <span class="block"><%= message.content%></span>
                                                 <span class="block text-xs text-right"><%= message.created_at.strftime('%H:%M %p') %></span>
                                             </div>
