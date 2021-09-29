@@ -23,9 +23,13 @@ class OrdersController < ApplicationController
 	end
 
 	def checkout
-		@order = Order.new
-		@items = current_cart.items
-		find_by_smae_store(@store_items = [], @items)
+		if current_cart.items.count === 0
+			redirect_to root_path, notice: "未加入任何商品"
+		else
+			@order = Order.new
+			@items = current_cart.items
+			find_by_smae_store(@store_items = [], @items)
+		end
 	end
 
 	def create
@@ -40,7 +44,7 @@ class OrdersController < ApplicationController
 		@cart_coupon.each do |coupon| 
 			if current_user.user_coupons.find_by(coupon_id: coupon.coupon_id).status === "unused"
 				current_user.user_coupons.find_by(coupon_id: coupon.coupon_id).redeem!
-				@order.coupon_value = coupon.value.to_i
+				@order.coupon_value = coupon.coupon_value.to_i
 			end
 		end
 		
