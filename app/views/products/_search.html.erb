@@ -1,7 +1,7 @@
 <% products.each do |product| %>
 <div class="group relative">
   <div class="w-full overflow-hidden group-hover:opacity-75 lg:h-72 xl:h-80">
-    <%= image_tag product.image_url, class: 'object-over' %>
+    <%= image_tag "#{product.image_url}", class: 'object-over' %>
   </div>
   <%= link_to product_path(product) do %>
   <h3 class="mt-4 text-sm text-gray-700">
