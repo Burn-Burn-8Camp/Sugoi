@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
     include Pagy::Backend
     before_action :configure_permitted_parameters, if: :devise_controller?
     
-    # rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+    rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     helper_method :current_cart, :current_store
     helper_method :user_signed_in?, :current_user
 

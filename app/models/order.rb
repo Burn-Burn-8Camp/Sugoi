@@ -2,8 +2,9 @@ class Order < ApplicationRecord
   after_create :order_num_generator
   extend FriendlyId
   friendly_id :receiver, use: :slugged
+  
   default_scope -> { order('id DESC') }
-  enum delivery: { "貨運 NT$100": "貨運" }
+  enum delivery: { "貨運 NT$100": '貨運' }
 
   has_many :order_items
   has_many :store_orders
@@ -34,7 +35,7 @@ class Order < ApplicationRecord
     end
 
     event :cancel do
-    transitions from: [:pending, :paid], to: :cancelled
+    transitions from: [:pending, :paid, :in_transit, :arrived], to: :cancelled
     end
   end
 

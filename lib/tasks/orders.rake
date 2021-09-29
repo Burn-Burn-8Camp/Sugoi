@@ -60,10 +60,3 @@ namespace :orders do
 		puts "done!"
 	end
 end
-
-desc "order run"
-task :order_run => :environment do
-	orders = Order.where(state: 'in_transit')
-	orders.each{ |order| order.arrive!}
-	p done
-end

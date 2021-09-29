@@ -5,7 +5,7 @@ class User < ApplicationRecord
   
   # validates_uniqueness_of :name
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable,
+         :recoverable, :rememberable,
          :omniauthable, omniauth_providers: [:google_oauth2 ,:github]
   has_many :orders
   has_many :comments
@@ -18,11 +18,13 @@ class User < ApplicationRecord
             through: :bookmarks,
             source: :product
   has_one_attached :image
+  has_many :rooms
+  has_many :product, through: :rooms
 
   def self.create_from_provider_data(provider_data)
     return nil if provider_data.nil?
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do |user|
-      user.account = provider_data.info.email.split('@').first
+      user.account = oauth_account(provider_data.info.email.split('@').first)
       user.email = provider_data.info.email
       user.password = Devise.friendly_token[0, 20]
       user.picture = provider_data.info.image
@@ -53,5 +55,14 @@ class User < ApplicationRecord
     elsif accumulated_amount < 20000 
       20000 - accumulated_amount
     end
+  end
+
+  def self.oauth_account(account)
+    return random_account if account
+    User.where(account: account).exists? ? "#{account}_#{random_account}" : account
+  end
+
+  def self.random_account
+    (0...8).map { (65 + rand(26)).chr }.join
   end
 end

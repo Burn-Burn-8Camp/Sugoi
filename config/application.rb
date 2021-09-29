@@ -6,12 +6,13 @@ require "active_storage/engine"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-
+Redis.exists_returns_integer = true
 module Sugoi
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
-
+    config.eager_load_paths += %W( #{config.root}/app/jobs )
+    config.active_job.queue_adapter = :sidekiq
     config.generators do |g|
       g.factory_bot false
     end
