@@ -20,8 +20,8 @@ class MessagesController < ApplicationController
     @message = Message.new(message_params)
     @message.user = current_user
     @message.save
-
-    ActionCable.server.broadcast "room_channel_#{@message.room_id}", { message: @message.content, user_name: current_user.name, datetime: @message.created_at, image: current_user.image_url}
+    
+    ActionCable.server.broadcast "room_channel_#{@message.room_id}", { message: @message.content, user_name: current_user.name, datetime: @message.created_at, image: current_user.image_url, user_id: current_user.id}
   end
 
   def update
