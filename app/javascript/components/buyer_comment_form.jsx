@@ -7,7 +7,7 @@ library.add(fas);
 
 const BuyerCommentForm = ({ itemId, orderId }) =>  {
   const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-  const commentUrl = `http://localhost:3000/order_items/${itemId}/comment/create`;
+  const commentUrl = `/order_items/${itemId}/comment/create`;
   const starIndex = [1, 2, 3, 4, 5];
   const [isOpen, setIsOpen] = useState(false);
   const [rateValue, setRateValue] = useState(5);
