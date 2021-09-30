@@ -25,9 +25,9 @@ namespace :products do
     ]
 
     product_list.each{ |product|
-      p = Product.new(product)
-      p.save      
+      po = Product.new(product) 
+      p "#{po} create success" if po.save
     }
-    p "created 20 poductss"
+    p 'done'
   end
 end

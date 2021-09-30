@@ -1,6 +1,6 @@
 <div class='xl:container m-auto'>
 	<div>
-		<h1 class='text-center pt-5'>店家訂單總覽</h1>
+		<h1 class='text-center pt-5'><%= current_store.name %>訂單總覽</h1>
 		<div class='pt-3'>
 			<%= form_with url: list_store_orders_path, method: 'GET', class: 'text-right' do |f| %>
 				查詢日期：
