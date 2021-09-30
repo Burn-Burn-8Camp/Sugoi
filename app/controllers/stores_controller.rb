@@ -54,20 +54,27 @@ class StoresController < ApplicationController
 	def order_detail
 	  @order = current_store.orders.friendly.find(params[:id])
 	  @items = OrderItem.where(order_id: @order, store_id: current_store.id).includes(:product)
-		# 所有商家出貨確認
-		@store_order = @order.store_orders.find_by(store_id: current_store.id)
-		deliver_status = @order.store_orders.map{ |order| order.shipment_confirm }
-		@order.transport! if @order.may_transport? &&	deliver_status.any? { |status| false }
-
 		@comment = SellerComment.where(order_id: @order, store_id: current_store)
+		@store_order = @order.store_orders.find_by(store_id: current_store.id)
+		# 所有商家出貨確認
+		# deliver_status = @order.store_orders.map{ |order| order.shipment_confirm }
+		# @order.transport! if @order.may_transport? &&	deliver_status.any? { |status| false }
+
 	end
 
 	def shipment
 		order = current_store.orders.friendly.find(params[:id])
 		store_order = order.store_orders.find_by(store_id: current_store.id)
+
 		if order.may_transport?
 			store_order.update(shipment_confirm: true)
-			redirect_to detail_store_order_path, notice: "成功出貨"
+			deliver_status = order.store_orders.map{ |order| order.shipment_confirm }
+			if deliver_status.all?(true)
+				order.transport! 
+				redirect_to detail_store_order_path, notice: "所有店家都已出貨"
+			else
+				redirect_to detail_store_order_path, notice: "成功出貨，等待其他店家出貨"
+			end
 		else
 			redirect_to detail_store_order_path, notice: "訂單尚未付款，請勿出貨"
 		end
