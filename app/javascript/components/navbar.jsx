@@ -272,6 +272,13 @@ const Navbar = ({webUser, cart}) => {
                 <button
                   type="button"
                   className="flex-shrink-0 p-1">
+                  <a href="/rooms">
+                    <FontAwesomeIcon icon={['fas', 'comments']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200 mx-2" aria-hidden="true" />
+                  </a>
+                </button>
+                <button
+                  type="button"
+                  className="flex-shrink-0 p-1">
                   <a href="/cart">
                     <div className="indicator mx-2">
                       <div className="indicator-item badge badge-secondary mt-1">{cart.items.length}</div> 
