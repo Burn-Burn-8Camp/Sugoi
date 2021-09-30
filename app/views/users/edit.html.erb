@@ -40,6 +40,16 @@
                 <%= f.text_field :country, class: "mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
               </div>
 
+               <div class="col-span-6 sm:col-span-4 ">
+               <span>更換大頭貼照</span>
+               <%= image_tag current_user.image_url if current_user.image_url.present? %>
+              </div>
+
+              <div class="col-span-6 sm:col-span-4">
+                <%= f.label :image, "上載大頭貼", class: "block text-sm font-medium text-gray-700" %><br />
+                <%= f.file_field :image%>
+              </div><br />
+
               <div class="col-span-6 sm:col-span-3">
                 <%= f.label :date, "生日", class: "block text-sm font-medium text-gray-700 py-2 " %>
                 <%= date_field(:date, :born_on)%>
