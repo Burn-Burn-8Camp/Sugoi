@@ -168,7 +168,7 @@ const StorePage = ({store}) => {
       </div>
 
       <div className="flex-1 overflow-auto focus:outline-none">
-        <div className="relative z-10 flex-shrink-0 flex h-16 bg-red-300 border-b border-gray-200 lg:border-none">
+        <div className="relative  flex-shrink-0 flex h-16 bg-red-300 border-b border-gray-200 lg:border-none">
           <button
             type="button"
             className="px-4 border-r border-gray-200 text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500 lg:hidden"
