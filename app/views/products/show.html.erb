@@ -25,7 +25,7 @@
             <% else %>
               <div class='flex'>
                 <%= react_component 'StarList', props: {rate: calculate_star_average(@comments)} %>
-                <span class='mx-3'>(<%= @comments.length %>)</span>
+                <span class='m-3'>(<%= @comments.length %>)</span>
               </div> 
             <% end %>
             </div>
