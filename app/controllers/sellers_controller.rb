@@ -6,13 +6,14 @@ class SellersController < ApplicationController
 
   def update
     if current_user.update(seller_params)
-      begin
-        UserMailer.current_user_to_seller_letter_confirm(current_user).deliver_now
-			  redirect_to root_path, notice: '感謝您的申請'
-      rescue
-        redirect_to application_store_path, notice: '資料不可為空'
-      end
-	  end
+      UserMailer.current_user_to_seller_letter_confirm(current_user).deliver_now
+			redirect_to root_path, notice: '感謝您的申請'
+		else
+			render :new, notice: '請重新填寫'
+		end
+  end
+  
+  def verify
   end
 
   def seller_verify

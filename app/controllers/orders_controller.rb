@@ -2,11 +2,11 @@ class OrdersController < ApplicationController
 	before_action :authenticate_user!
 	before_action :find_order_by_friendly_id, only: [:show, :items_info, :cancel_order]
 	before_action :find_orders_by_state, only: [:pending, 
-											 												:processing, 
-																							:shipped, 
-																							:completed, 
-																							:cancelled, 
-																							:returned]
+												:processing, 
+												:shipped, 
+												:completed, 
+												:cancelled, 
+												:returned]
 
 	def index
 		redirect_to pending_orders_path
@@ -99,9 +99,9 @@ class OrdersController < ApplicationController
 	def cancel_order
 		if @order.may_cancel?
 			@order.cancel!
-			redirect_to orders_path, notice: '退單成功'
+			redirect_to cancelled_orders_path, notice: '退單成功'
 		else
-			redirect_to orders_path, notice: '訂單已出貨，無法執行退單' 
+			redirect_to cancelled_orders_path, notice: '訂單已出貨，無法執行退單' 
 		end
 	end
 

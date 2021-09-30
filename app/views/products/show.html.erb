@@ -20,14 +20,14 @@
           <h3 class="sr-only">Reviews</h3>
           <div class="flex items-center">
             <div class="flex items-center">
-              <% if @comments.length===0 %>
-                <p>此商品尚未有評價</p>
-                <% else %>
-                  <div class='flex'>
-                    <%= react_component 'StarList' , props: {rate: calculate_star_average(@comments)} %>
-                      <span class='mx-3'>(<%= @comments.length %>)</span>
-                  </div>
-                  <% end %>
+            <% if @comments.length === 0 %>
+              <p>此商品尚未有評價</p>
+            <% else %>
+              <div class='flex'>
+                <%= react_component 'StarList', props: {rate: calculate_star_average(@comments)} %>
+                <span class='mx-3'>(<%= @comments.length %>)</span>
+              </div> 
+            <% end %>
             </div>
           </div>
         </div>
@@ -54,12 +54,12 @@
                     <button type="button" id="heart" data-id="<%= @product.slug %>" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform <%= heart_color(@favorite_item)%>">
                       <i class="fas fa-heart"></i>
                     </button>
-                    <%= link_to room_path(product: @product.id), class: "px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform" do %>
-                      <i class="far fa-comment-dots"></i>
-                    <% end %>
                   <% else %>
                     <%= link_to '請加入會員來收藏商品', new_user_session_path %>
                   <% end %>
+                  <button type="button" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform">
+                    <i class="far fa-comment-dots"></i>
+                  </button>
                 </div>
               
                 <div class="text-base text-gray-700 space-y-6 mt-8 ">
@@ -103,19 +103,15 @@
           <div class="lg:col-start-5 lg:col-span-8 xl:col-start-4 xl:col-span-9 xl:grid xl:grid-cols-3 xl:gap-x-8 xl:items-start py-3">
             <div class="flex items-center xl:col-span-1">
               <div class="flex items-center">
-                <%= react_component 'StarList' , props: {rate: comment.first.rate} %>
-                  <p class='px-3'>
-                    <%= comment.first.rate %>
-                  </p>
-                  <p class='mx-3'>
-                    <%= calculate_time_gap(comment.first.created_at) %>
-                  </p>
+                <%= react_component 'StarList', props: {rate: comment.first.rate} %> 
+                <p class='px-4'><%= comment.first.rate %></p>
+                <p class='mx-3'><%= calculate_time_gap(comment.first.created_at) %></p>
               </div>
-              <div class="mt-4 lg:mt-6 xl:mt-0 xl:col-span-2 ">
-                <h3 class="text-sm font-medium text-gray-900">商品評論</h3>
-                <div class="mt-3 space-y-6 text-sm text-gray-500">
-                  <p><%= comment.first.content %></p>
-                </div>
+            </div>
+            <div class="mt-4 lg:mt-6 xl:mt-0 xl:col-span-2 ">
+              <h3 class="text-sm font-medium text-gray-900">商品評論</h3>
+              <div class="mt-3 space-y-6 text-sm text-gray-500">
+                <p><%= comment.first.content %></p>
               </div>
             </div>
           </div>
