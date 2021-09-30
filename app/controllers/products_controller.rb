@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   
   def index
     # @pagy, @products = pagy(Product.where(deleted_at: nil), items: 6)
-    @products = Product.all.order(id: :desc)
+    @products = Product.all.order(id: :desc).where("quantity > 0")
   end
 
   def new
