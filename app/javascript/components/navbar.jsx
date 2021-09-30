@@ -231,7 +231,7 @@ const Navbar = ({webUser, cart}) => {
           </div>
 
           <Disclosure.Panel as="nav" className="lg:hidden" aria-label="Global">
-            <div className="pt-2 pb-3 px-2 space-y-1">
+            <div>
               {navigation.map((item) => (
                 <a
                   key={item.name}

@@ -72,11 +72,21 @@ img {
 	width: 250px;
 }
 
-.dragon {
-	position: absolute;
-	translate: (50%, 50%);
-	left: 47%;
-	top: 30%;
+@media (min-width: 768px) {
+	.dragon {
+		position: absolute;
+		translate: (50%, 50%);
+		left: 47%;
+		top: 30%;
+	}
+}
+@media (max-width: 768px) {
+	.dragon {
+		position: absolute;
+		translate: (50%, 50%);
+		left: 20%;
+		top: 30%;
+	}
 }
 
 .spacing {
