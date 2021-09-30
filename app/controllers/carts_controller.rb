@@ -15,15 +15,22 @@ class CartsController < ApplicationController
   end
 
   def add_item
-    current_cart.add_item(@product.id, @product.name, @product.store.id, @product.store.name, @product.price, @product.image_url)
-    session[:cart1289] = current_cart.serialize
-    redirect_to product_path(params[:id]), notice: "已加至購物車"
+    cart_qauntity = current_cart.found_item_quantity(@product.id)
+   
+    if (@product.quantity - cart_qauntity) > 0
+      current_cart.add_item(@product.id, @product.name, @product.store.id, @product.store.name, @product.price, @product.image_url) 
+      session[:cart1289] = current_cart.serialize
+      redirect_to product_path(params[:id]), notice: "已加至購物車"   
+    else     
+      redirect_to product_path(params[:id]), notice: "商品庫存不足"
+    end
   end
 
   def delete_item
     current_cart.items.select! { |item| item.product_id != params[:product_id].to_i }
     delivery_fee = Product.deliveries["貨運 NT$100"]
-    subtotal = current_cart.items.reduce(0) { |acc, item| acc + item.price.to_i } 
+    subtotal = current_cart.items.reduce(0) { |acc, item| acc + (item.price.to_i) * (item.quantity) } 
+    
     session[:cart1289] = current_cart.serialize
     render json: { delivery_fee: delivery_fee, subtotal: subtotal, itemsQuantity: current_cart.items.count }
   end

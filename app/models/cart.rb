@@ -21,6 +21,15 @@ class Cart
     t
   end
 
+  def found_item_quantity(product_id)
+    found_item = @items.find { |item| item.product_id === product_id }
+    if found_item
+      found_item.quantity
+    else
+      0
+    end
+  end
+
   def store_amount
     store_id_list = @items.map { |item| item.store_id }.uniq.sort
     @store_items = []

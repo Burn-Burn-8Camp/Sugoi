@@ -22,15 +22,15 @@
 																		bg-blue-200 placeholder-black text-gray-800 outline-none focus:bg-blue-200" %>
 										</div>
 										<div class="relative w-full mb-3">
-						                  <%= f.label "商店介紹", class: "block uppercase text-gray-700 text-xs font-bold mb-2" %>
-						                  <%= f.text_area :introduction, class: "border-0 px-3 py-3 bg-blue-200 placeholder-black text-black rounded text-sm shadow focus:outline-non+ w-full" %>
-				                    	</div>
-					                    <div>
-		                                  <%= f.text_field :user_id, value: current_user.id, type: 'hidden' %>
-	                                    </div>
-	                                    <div class="text-center mt-6">
-		                                  <%= f.submit '送出', class:"bg-red-300 hover:bg-blue-200 text-black text-center mx-auto active:bg-yellow-400 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 " %>
-	                                    </div>
+						          <%= f.label "商店介紹", class: "block uppercase text-gray-700 text-xs font-bold mb-2" %>
+						          <%= f.text_area :introduction, class: "border-0 px-3 py-3 bg-blue-200 placeholder-black text-black rounded text-sm shadow focus:outline-non+ w-full" %>
+				            </div>
+					          <div>
+		                  <%= f.text_field :user_id, value: current_user.id, type: 'hidden' %>
+	                  </div>
+	                  <div class="text-center mt-6">
+		                  <%= f.submit '送出', class:"bg-red-300 hover:bg-blue-200 text-black text-center mx-auto active:bg-yellow-400 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 " %>
+	                  </div>
 									  <% end %>
 								</div>
 							</div>

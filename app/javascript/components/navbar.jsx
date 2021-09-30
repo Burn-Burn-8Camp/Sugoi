@@ -210,6 +210,7 @@ const Navbar = ({webUser, cart}) => {
                     </div>
                   </a>
                 </button>
+                
               </div>
             </div>
             <nav className="hidden lg:py-2 lg:flex lg:space-x-8" aria-label="Global">
