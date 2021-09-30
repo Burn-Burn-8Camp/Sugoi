@@ -28,11 +28,11 @@ const seller = [
     lists: [{name: '編輯商店', url: '/store/edit' }] 
   },
   { name: '商品', icon: ClockIcon, current: false,
-    lists: [{name: '新增商品', url: '#'},
-            {name: '編輯商品', url: '#' }] 
+    lists: [{name: '新增商品', url: '/store/products/new'},
+            {name: '編輯商品', url: '/store/products/list' }] 
   },
 	{ name: '訂單', icon: ClockIcon, current: false,
-	  lists: [{name: '訂單總攬', url: '#'},] 
+	  lists: [{name: '訂單總覽', url: '/store/orders/list'},] 
   },  
 ]
 
