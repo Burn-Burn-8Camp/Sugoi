@@ -4,7 +4,7 @@ class RoomsController < ApplicationController
   before_action :set_or_create_room, only: %i[show]
 
   def index
-    @rooms = Room.where(user: current_user).or(Room.where(product: current_user.product))
+    @rooms = Room.where(user: current_user).or(Room.where(product: current_user.store.products))
     @messages = nil
   end
 
