@@ -155,7 +155,7 @@ const StorePage = ({store}) => {
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex flex-col flex-grow bg-red-300 pt-5 pb-8 overflow-y-auto">
             <div className="flex items-center flex-shrink-0 px-4">
-              <img src="/images/阿榮偷看.png" alt="" />
+              <img src="/images/阿榮偷看.png" alt="img" />
             </div>
             <nav className="mt-5 flex-1 flex flex-col divide-y divide-cyan-800 overflow-y-auto" aria-label="Sidebar">
 						  {
