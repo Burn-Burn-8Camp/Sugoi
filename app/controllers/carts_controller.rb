@@ -15,9 +15,15 @@ class CartsController < ApplicationController
   end
 
   def add_item
-    current_cart.add_item(@product.id, @product.name, @product.store.id, @product.store.name, @product.price, @product.image_url)
-    session[:cart1289] = current_cart.serialize
-    redirect_to product_path(params[:id]), notice: "已加至購物車"
+    cart_qauntity = current_cart.found_item_quantity(@product.id)
+   
+    if (@product.quantity - cart_qauntity) > 0
+      current_cart.add_item(@product.id, @product.name, @product.store.id, @product.store.name, @product.price, @product.image_url) 
+      session[:cart1289] = current_cart.serialize
+      redirect_to product_path(params[:id]), notice: "已加至購物車"   
+    else     
+      redirect_to product_path(params[:id]), notice: "商品庫存不足"
+    end
   end
 
   def delete_item
