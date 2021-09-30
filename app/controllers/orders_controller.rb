@@ -22,7 +22,7 @@ class OrdersController < ApplicationController
 		render './orders/items_info.json.jbuilder'
 	end
 
-	def checkout
+	def checkout	
 		coupon_value = 0
 		coupon_value ||= current_cart.coupon[0].coupon_value.to_i
 		total_price = current_cart.total_included_delivery_fee - coupon_value

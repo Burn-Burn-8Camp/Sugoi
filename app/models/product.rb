@@ -1,8 +1,8 @@
 class Product < ApplicationRecord
 	acts_as_paranoid
 	extend FriendlyId
-  	friendly_id :name, use: :slugged
-	validates_presence_of :name, :price, :quantity, :category, :content 
+  friendly_id :name, use: :slugged
+	validates_presence_of :name, :price, :quantity, :category
 	
 	
 	enum delivery: { "貨運 NT$100": 100 }
