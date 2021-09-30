@@ -85,8 +85,7 @@ document.addEventListener("turbolinks:load", () => {
             totalPrice.textContent = data.subtotal
             delivery.textContent = data.delivery_fee
             sum.textContent = data.subtotal + data.delivery_fee
-            shoppingCartItems.textContent = data.itemsQuantity
-          
+            shoppingCartItems.textContent = data.itemsQuantity 
           }
         },
         error: function (err) {

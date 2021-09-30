@@ -29,7 +29,8 @@ class CartsController < ApplicationController
   def delete_item
     current_cart.items.select! { |item| item.product_id != params[:product_id].to_i }
     delivery_fee = Product.deliveries["貨運 NT$100"]
-    subtotal = current_cart.items.reduce(0) { |acc, item| acc + item.price.to_i } 
+    subtotal = current_cart.items.reduce(0) { |acc, item| acc + (item.price.to_i) * (item.quantity) } 
+    
     session[:cart1289] = current_cart.serialize
     render json: { delivery_fee: delivery_fee, subtotal: subtotal, itemsQuantity: current_cart.items.count }
   end
