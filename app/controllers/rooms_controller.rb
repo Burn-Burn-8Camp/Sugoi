@@ -4,12 +4,14 @@ class RoomsController < ApplicationController
   before_action :set_or_create_room, only: %i[show]
 
   def index
-    @rooms = Room.where(user: current_user).or(Room.where(product: current_user.store.products))
+    product = current_user.store.present? ? {product: current_user.store.products} : {user: current_user}
+    @rooms = Room.where(user: current_user).or(Room.where(product))
     @messages = nil
   end
 
   def show
-    @rooms = Room.where(user: current_user).or(Room.where(product: current_user.product))
+    product = current_user.store.present? ? {product: current_user.store.products} : {user: current_user}
+    @rooms = Room.where(user: current_user).or(Room.where(product))
     @messages = @room.messages
     # @rooms = Room.all
     render 'index'
