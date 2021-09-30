@@ -2,11 +2,11 @@ class OrdersController < ApplicationController
 	before_action :authenticate_user!
 	before_action :find_order_by_friendly_id, only: [:show, :items_info, :cancel_order]
 	before_action :find_orders_by_state, only: [:pending, 
-											 												:processing, 
-																							:shipped, 
-																							:completed, 
-																							:cancelled, 
-																							:returned]
+												:processing, 
+												:shipped, 
+												:completed, 
+												:cancelled, 
+												:returned]
 
 	def index
 		redirect_to pending_orders_path

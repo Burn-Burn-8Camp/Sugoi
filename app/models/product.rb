@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
 	acts_as_paranoid
 	extend FriendlyId
-  friendly_id :name, use: :slugged
+  	friendly_id :name, use: :slugged
 	validates_presence_of :name, :price, :quantity, :category, :content 
 	
 	
