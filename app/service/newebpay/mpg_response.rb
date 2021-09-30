@@ -3,8 +3,8 @@ module Newebpay
 		attr_reader :status, :message, :result, :order_no, :trans_no
 
 		def initialize(params)
-			@key = ENV["merchant_hash_key"]
-			@iv = ENV["merchant_hash_iv"]
+			@key = ENV["MERCHANT_HASH_KEY"]
+			@iv = ENV["MERCHANT_HASH_IV"]
 
 			response = decrypt(params)
 			@status = response['Status']

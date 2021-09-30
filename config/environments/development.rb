@@ -40,7 +40,9 @@ Rails.application.configure do
 
   # 設定 SMTP 伺服器
   config.action_mailer.delivery_method = :smtp
+  # 必要的host
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # 藏金鑰
   config.action_mailer.smtp_settings = config_for(:email).symbolize_keys
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -76,5 +78,4 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
-  # config.hosts << "a527-61-220-182-115.ngrok.io"
 end

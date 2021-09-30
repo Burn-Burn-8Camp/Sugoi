@@ -1,12 +1,12 @@
 <div>
-  <div class="min-h-screen flex items-center justify-center bg-blue-400 py-12 px-4 sm:px-6 lg:px-8">
-    <img  style="border: 20px; margin: 50px; float: left; width: 550px; height: 570px;" class="object-cover hidden md:block" src="/images/登入 (1).jpeg">
+  <div class="min-h-screen flex items-center justify-center bg-blue-300 py-12 px-4 sm:px-6 lg:px-8">
+    <img  style="border:20px;margin:50px;float:left;width:500px;height: 500px;" class="object-cover hidden md:block" src="/images/註冊2.jpeg">
     <hr>
 
     <div class="max-w-md w-full space-y-8">        
       <div>
         <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">
-          註冊您的帳戶
+          嗨 ！ <br />謝謝你成為SUGOII的朋友 
         </h2>
       </div>
       
@@ -40,15 +40,10 @@
               <%= f.label '記得我',class: "ml-2 block text-sm text-gray-900" %>                
               </label>
             </div>
-            <div class="text-sm">
-              <a href="boxing.html" class="font-medium text-blue-600 hover:text-blue-500">
-                忘記密碼?
-              </a>
-            </div>
           </div>
         <% end %>
         <div class="actions">
-          <%= f.submit "註冊", class:"group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-300 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-50"%>
+          <%= f.submit "註冊", class:"group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-400 hover:bg-red-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-50"%>
         </div>
         <span class="flex items-center justify-center space-x-2">
           <span class="h-px bg-gray-400 w-14"></span>
@@ -58,10 +53,10 @@
 
         <% if devise_mapping.omniauthable? %>
             <%- resource_class.omniauth_providers.each do |provider| %>
-              <%= link_to omniauth_authorize_path(resource_name, provider), method: :post , class: 'w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50' do %>
+              <%= link_to omniauth_authorize_path(resource_name, provider), method: :post , class: 'w-full inline-flex justify-center py-2 px-4 border-transparent rounded-md shadow-sm bg-blue-400 hover:bg-red-300 text-sm font-medium text-white' do %>
                 <span class="sr-only">Sign in with <%= OmniAuth::Utils.camelize(provider) %></span>
                 <% if provider.to_s == 'github'%>                    
-                  <i class="fab fa-github"></i>
+                  <i class="fab fa-github "></i>
                 <% else %>
                   <i class="fab fa-google"></i>
                 <% end %>
