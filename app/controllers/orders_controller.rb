@@ -99,9 +99,9 @@ class OrdersController < ApplicationController
 	def cancel_order
 		if @order.may_cancel?
 			@order.cancel!
-			redirect_to orders_path, notice: '退單成功'
+			redirect_to cancelled_orders_path, notice: '退單成功'
 		else
-			redirect_to orders_path, notice: '訂單已出貨，無法執行退單' 
+			redirect_to cancelled_orders_path, notice: '訂單已出貨，無法執行退單' 
 		end
 	end
 

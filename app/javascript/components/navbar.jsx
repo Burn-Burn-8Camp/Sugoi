@@ -192,6 +192,14 @@ const Navbar = ({webUser, cart}) => {
                 </button>
                 <button
                   type="button"
+                  className="mr-4 flex-shrink-0 p-1">
+                  <span className="sr-only"></span>
+                  <a href="/rooms">
+                    <FontAwesomeIcon icon={['fas', 'comments']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200" aria-hidden="true" />
+                  </a>
+                </button>
+                <button
+                  type="button"
                   className="mr-4 flex-shrink-0 bg-white rounded-full p-1 text-red-300"
                 >
                   <span className="sr-only"></span>
@@ -200,14 +208,6 @@ const Navbar = ({webUser, cart}) => {
                       <div className="indicator-item badge badge-secondary mt-1" id='cart-item-quantity'>{cart.items.length}</div> 
                       <FontAwesomeIcon icon={['fas', 'shopping-cart']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200 mt-1" aria-hidden="true" />
                     </div>
-                  </a>
-                </button>
-                <button
-                  type="button"
-                  className="mr-4 flex-shrink-0 p-1">
-                  <span className="sr-only"></span>
-                  <a href="/rooms">
-                    <FontAwesomeIcon icon={['fas', 'star']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200" aria-hidden="true" />
                   </a>
                 </button>
               </div>
@@ -266,6 +266,13 @@ const Navbar = ({webUser, cart}) => {
                   className="flex-shrink-0 p-1">
                   <a href="/store">
                     <FontAwesomeIcon icon={['fas', 'store']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200 mx-2" aria-hidden="true" />
+                  </a>
+                </button>
+                <button
+                  type="button"
+                  className="flex-shrink-0 p-1">
+                  <a href="/rooms">
+                    <FontAwesomeIcon icon={['fas', 'comments']} className="h-6 w-6 text-2xl text-red-300 hover:text-blue-200 mx-2" aria-hidden="true" />
                   </a>
                 </button>
                 <button
