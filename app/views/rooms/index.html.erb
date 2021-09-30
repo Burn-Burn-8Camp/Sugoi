@@ -1,7 +1,8 @@
 <div class="w-screen">
-    <div class="grid grid-cols-3 min-w-full border rounded" style="min-height: 80vh;">
-            <div class="col-span-1 bg-white border-r border-gray-300  bg-red-300">
-                <ul class="overflow-auto  bg-red-300" style="height: 500px;">
+    <div class="md:flex border rounded" style="min-height: 80vh;">
+
+            <div class="col-span-1 bg-red-300 border-r border-gray-300">
+                <ul class="overflow-auto  bg-red-300 md:h-500" >
                     <h2 class="ml-2 mb-2 text-gray-600 text-lg my-2">Chats</h2>
                     <li>
                         <% if @rooms.present? %>
@@ -12,10 +13,8 @@
                                     />
                                     <div class="w-full pb-2">
                                     <div class="flex justify-between">
-                                        <span class="block ml-2 font-semibold text-base text-gray-600 "><%= room.product.name %></span>
-                                        <!-- <span class="block ml-2 text-sm text-gray-600">5 minutes</span> -->
+                                        <span class="block ml-2 font-semibold text-base text-gray-600"><%= room.product.name %> - 來自 <%= room.user.name %> 詢問</span>
                                     </div>
-                                    <!-- <span class="block ml-2 text-sm text-gray-600">Hello world!!</span> -->
                                 </div>
                                 <% end %>
                             <% end %>
@@ -23,7 +22,8 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-span-2 bg-white">
+            
+            <div class="col-span-2 bg-white w-full">
                 <div class="w-full">
                     <div class="flex items-center pl-3 py-3 bg-blue-200">
                     <% if @room.present? %>
