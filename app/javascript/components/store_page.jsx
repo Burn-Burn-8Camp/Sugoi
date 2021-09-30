@@ -28,11 +28,11 @@ const seller = [
     lists: [{name: '編輯商店', url: '/store/edit' }] 
   },
   { name: '商品', icon: ClockIcon, current: false,
-    lists: [{name: '新增商品', url: '#'},
-            {name: '編輯商品', url: '#' }] 
+    lists: [{name: '新增商品', url: '/store/products/new'},
+            {name: '編輯商品', url: '/store/products/list' }] 
   },
 	{ name: '訂單', icon: ClockIcon, current: false,
-	  lists: [{name: '訂單總攬', url: '#'},] 
+	  lists: [{name: '訂單總覽', url: '/store/orders/list'},] 
   },  
 ]
 
@@ -168,7 +168,7 @@ const StorePage = ({store}) => {
       </div>
 
       <div className="flex-1 overflow-auto focus:outline-none">
-        <div className="relative z-10 flex-shrink-0 flex h-16 bg-red-300 border-b border-gray-200 lg:border-none">
+        <div className="relative  flex-shrink-0 flex h-16 bg-red-300 border-b border-gray-200 lg:border-none">
           <button
             type="button"
             className="px-4 border-r border-gray-200 text-gray-400 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-cyan-500 lg:hidden"

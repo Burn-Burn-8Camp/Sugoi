@@ -40,7 +40,7 @@
             <p class='pb-3'>該商品已售罄</p>
           <% else %>
           <%= link_to add_item_cart_path(@product), method: "post" do %>
-          <button type="submit" class="max-w-xs flex-1 bg-red-200 border border-red-800 rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-red-500 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full m-2">
+          <button type="submit" class="max-w-xs flex-1 bg-red-100 border border-red-500 rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-red-500 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 sm:w-full m-2">
           放入購物車</button>
           <% end %>
           <% end %>
@@ -49,17 +49,17 @@
           <button type="submit" class="max-w-xs flex-1 bg-red-300 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50  sm:w-full m-2">
           立即結帳</button>
           <% end %>
-                <div>
+                <div class='m-2'>
                   <% if current_user %>
                     <button type="button" id="heart" data-id="<%= @product.slug %>" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform <%= heart_color(@favorite_item)%>">
                       <i class="fas fa-heart"></i>
                     </button>
+                    <%= link_to room_path(product: @product.id), class: "px-4 spacing bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform" do %>
+                      <i class="far fa-comment-dots"></i>
+                    <% end %>
                   <% else %>
                     <%= link_to '請加入會員來收藏商品', new_user_session_path %>
                   <% end %>
-                  <button type="button" class="px-4 py-3 bg-red-200 rounded-md  outline-none focus:ring-4 shadow-lg transform active:scale-75 transition-transform">
-                    <i class="far fa-comment-dots"></i>
-                  </button>
                 </div>
               
                 <div class="text-base text-gray-700 space-y-6 mt-8 ">
