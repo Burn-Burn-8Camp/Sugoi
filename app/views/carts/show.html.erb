@@ -1,9 +1,6 @@
 <div class="bg-white">
   <main class="max-w-2xl mx-auto pt-16 pb-24 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
     <h1 class="text-3xl font-extrabold tracking-tight text-gray-900 sm:text-4xl">購物車</h1>  
-      <span class="block text-right mb-6">
-        <%= link_to "清空購物車" , cart_path, method: "delete", class: 'border p-3 rounded bg-red-300 hover:bg-blue-200 text-white' %>
-      </span>  
 
     <form class="mt-2 lg:grid lg:grid-cols-12 lg:gap-x-12 lg:items-start xl:gap-x-16">
       <section aria-labelledby="cart-heading" class="selected_items lg:col-span-7">
@@ -88,7 +85,10 @@
         
             <ul class="promo px-0">
               <li>通知出貨後約 1 - 2 天寄達</li>
-            </ul>         
+            </ul>
+            <span class="block text-left mb-6 mt-4">
+              <%= link_to "清空購物車" , cart_path, method: "delete" , class: 'border p-3 rounded bg-gray-200 hover:bg-blue-200 text-red-500' %>
+            </span>         
           </div>        
         </div> 
       </section>

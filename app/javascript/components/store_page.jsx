@@ -29,7 +29,7 @@ const seller = [
   },
   { name: '商品', icon: ClockIcon, current: false,
     lists: [{name: '新增商品', url: '/store/products/new'},
-            {name: '編輯商品', url: '/store/products/list' }] 
+            {name: '商品列表', url: '/store/products/list' }] 
   },
 	{ name: '訂單', icon: ClockIcon, current: false,
 	  lists: [{name: '訂單總覽', url: '/store/orders/list'},] 

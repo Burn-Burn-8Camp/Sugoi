@@ -59,8 +59,8 @@ module UsersHelper
       'self_about': '你是怎樣的一個人',
       'self_blog': '部落格',
       'self_web': '個人網站',
-      'life_shopping': '你喜歡什麼東西、平常愛買些什麼',
-      'life_design':  '愛逛的市集、設計師、老屋聚落'
+      'life_shopping': '你喜歡什麼東西',
+      'life_design':  '愛逛的市集'
     }
     transfer_content[title.to_sym]
   end

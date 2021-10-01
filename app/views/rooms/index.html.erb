@@ -1,8 +1,8 @@
-<div class="w-screen">
+<div class="w-full">
     <div class="md:flex border rounded" style="min-height: 80vh;">
-            <div class="col-span-1 bg-red-300 border-r border-gray-300">
+            <div class="col-span-1 bg-red-300 border-r border-gray-300 lg:w-1/4">
                 <ul class="overflow-auto  bg-red-300 md:h-500" >
-                    <h2 class="ml-2 mb-2 text-gray-600 text-lg my-2">Chats</h2>
+                    <h2 class="ml-2 mb-2 text-gray-600 text-lg my-2">聊天室</h2>
                     <li>
                         <% if @rooms.present? %>
                             <% @rooms.each do |room| %>

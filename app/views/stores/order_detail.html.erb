@@ -64,7 +64,9 @@
 										<div class="lg:flex-1">
 											<div class="sm:flex">
 												<div>
+													<%= link_to product_path(item.product) do %>
 													<h4 class="font-medium text-gray-900 text-xl"><%= item.name %></h4>
+													<% end %>
 													<p class="font-medium text-gray-900 pt-3">NT$ <%= number_with_delimiter(item.price.to_i) %></p>
 													<p class="font-medium text-gray-900 pt-3">數量 <%= item.quantity %></p>
 												</div>

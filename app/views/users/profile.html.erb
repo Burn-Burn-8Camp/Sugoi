@@ -1,116 +1,138 @@
-<div class="px-20">
-<div class='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-3 mt-10 mb-20'>
-  <div class='flex'>
-    <div>
-      <%= image_tag current_user.image_url if current_user.image_url.present? %>
-    </div>
-    <div class='w-full'>  
-      <div class='ml-4 sm:ml-8 mt-2.5 '>
-        <h2 class='text-xl'><%= current_user.name %></h2>
+<div class="px-3 lg:px-20">
+  <div class='grid sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-3 mt-10 mb-20'>
+    <div class='flex'>
+      <div>
+        <%= image_tag current_user.image_url if current_user.image_url.present? %>
       </div>
-      <div class="ml-4 sm:ml-8 mt-2 flex ">
-        <a href="#" class='text-3xl mr-1.5'><%= sanitize "#{now_rank_icon(current_user.accumulated_amount)}" %></a>
-        <a href="#" class="text-md mr-1.5 mt-1"><%="#{User.now_user_rank(current_user.accumulated_amount)} "%></a> 
-        <a href="#" class='text-md mt-1'><%= current_user.country %></a>
-      </div>
-    </div>
-  </div>
-
-  <div class="border">
-    <div class="">
-      <h2 class="text-lg mt-2 ml-5">當年度升級任務</h2>
-    </div>
-    <div class="">
-      <% if current_user.accumulated_amount >= 20000 %>
-        <p class="mt-2 ml-5 ">您已達成最高等級<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
-      <% else %>
-        <p class="mt-2 ml-5">完成以下條件,可立即升級為<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
-      <% end %>
-    </div>
-    <div class="flex w-full h-full">
-      <div class=" w-35  ml-5 mt-3 mb-3">
-        <p class='text-5xl'><%= sanitize up_rank_icon(current_user.accumulated_amount) %></p>
-      </div>
-      <div class="mt-2  text-xl">
-        <% if current_user.accumulated_amount >= 20000 %>
-          <p class="text-center mb-5 mt-3">恭喜您已達成任務</p>
-        <% else %>
-          <p class="mt-4 ml-6 mr-2">消費金額還需 NT$<%= User.still_need(current_user.accumulated_amount) %></p>
-        <% end %>
-      </div>
-    </div>
-  </div>
-
-
-  <div class="border">
-    <div class="">
-      <h2 class="text-lg mt-2 ml-5">下一年度升級任務</h2>
-    </div>
-    <div class="mt-2 ">
-      <% if current_user.accumulated_amount >= 20000 %>
-        <p class="ml-5 mb- mt-2">恭喜您已達成任務</p>
-      <% else %>
-        <p class="mt-2 ml-5 mr-3">完成以下條件,可在下年度升級為<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
-      <% end %>
-    </div>
-    <div class="flex mt-3 ">
-      <div class=" w-35  ml-5 mb-6">
-        <p class='text-5xl'><%= sanitize up_rank_icon(current_user.accumulated_amount) %></p>
-      </div>
-      <div class="mt-1  text-xl ">
-        <% if current_user.accumulated_amount >= 20000  %>
-          <p class=" mb-7 ml-2">恭喜您在下年度為尊貴會員</p>
-        <% else %>
-          <p class="mt-2 ml-5 mr-3">消費金額還需 NT$<%= User.still_need(current_user.accumulated_amount) %></p>
-        <% end %>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="tabs block md:grid-cols-1 lg:grid-cols-1 ">
-  <a href="#" class="tab tab-bordered text-red-300 hover:text-blue-200">關於我</a> 
-</div>
-<div class="block mt-4">
-  <div class='flex'>
-    <div>
-      <h2 class='text-red-300'>個人名片</h2>
-      <div class="flex mt-1">
-        <div class="mr-20">性別</div>
-        <div class=""><%= current_user.gender %></div>
-      </div>
-      <div class="flex mt-1">
-        <div class="mr-12">現居住地</div>
-        <div class=""><%= current_user.country %></div>
-      </div>
-      <div class="flex mt-1">
-        <div class="mr-12">加入日期</div>
-        <div class=""><%= current_user.created_at.strftime("%Y/%m/%d") %></div> 
-      </div>
-      <div class="flex mt-1">
-        <div class="mr-4">個人資料設定</div>
-        <div class="">
-          <p class='text-red-300 hover:text-blue-200'><%= link_to "點我更新你的個人介紹",about_member_index_path %></p>
-          <p class='text-red-300 hover:text-blue-200'><%= link_to "點我設定暱稱、大頭貼照、生日...", edit_member_index_path %></p>
+      <div class='w-full'>  
+        <div class='ml-4 sm:ml-8 mt-2.5 '>
+          <h2 class='text-xl'><%= current_user.name %></h2>
+        </div>
+        <div class="ml-4 sm:ml-8 mt-2 flex ">
+          <a href="#" class='text-3xl mr-1.5'><%= sanitize "#{now_rank_icon(current_user.accumulated_amount)}" %></a>
+          <a href="#" class="text-md mr-1.5 mt-1"><%="#{User.now_user_rank(current_user.accumulated_amount)} "%></a> 
+          <a href="#" class='text-md mt-1'><%= current_user.country %></a>
         </div>
       </div>
     </div>
-    <div>
-      <% if about_feild?(current_user) %>
-        <h4>關於我</h4>
-        <% filled_fields(current_user).each do |field| %>
-          <div>
-            <h4><%= transfer_title(field['title']) %></h4>
-            <span><%= field['content'] %></span>
-          </div>
-        <% end %>
-      <% end %>  
-    </div>
-  </div>
-</div>
-<div class="block mt-8 mb-10 border-3 bg-red-300 w-full h-35" > 
-  <div class="">小提醒</div>
-  <div class="">在找你關注的設計館嗎？現在你可以在 慾望清單 裡看到喔。</div>
+  </div> 
 </div>
 
+<div class="px-3 lg:px-20 pb-5">
+  <div class='grid grid-cols-1 md:grid-cols-2 gap-5'>
+          <div class="border">
+        <div>
+          <h2 class="text-red-300 px-3 mb-3 py-3 border-b font-normal">當年度升級任務</h2>
+        </div>
+        <div class="">
+          <% if current_user.accumulated_amount >= 20000 %>
+            <p class="mt-2 ml-5 font-normal">您已達成最高等級<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
+          <% else %>
+            <p class="mt-2 ml-5 font-normal">完成以下條件,可立即升級為<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
+          <% end %>
+        </div>
+        <div class="flex w-full h-full">
+          <div class=" w-35  ml-5 mt-3 mb-3">
+            <p class='text-5xl'><%= sanitize up_rank_icon(current_user.accumulated_amount) %></p>
+          </div>
+          <div class="mt-2  text-xl">
+            <% if current_user.accumulated_amount >= 20000 %>
+              <p class="text-center mb-5 mt-3 font-normal">恭喜您已達成任務</p>
+            <% else %>
+              <p class="mt-4 ml-6 mr-2 font-normal">消費金額還需 NT$<%= User.still_need(current_user.accumulated_amount) %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="border">
+        <div class="">
+          <h2 class="text-red-300 px-3 mb-3 py-3 border-b font-normal">下一年度升級任務</h2>
+        </div>
+        <div class="mt-2 ">
+          <% if current_user.accumulated_amount >= 20000 %>
+            <p class="ml-5 mb- mt-2 font-normal">恭喜您已達成任務</p>
+          <% else %>
+            <p class="mt-2 ml-5 mr-3 font-normal">完成以下條件,可在下年度升級為<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
+          <% end %>
+        </div>
+        <div class="flex mt-3 ">
+          <div class=" w-35  ml-5 mb-6">
+            <p class='text-5xl'><%= sanitize up_rank_icon(current_user.accumulated_amount) %></p>
+          </div>
+          <div class="mt-1  text-xl ">
+            <% if current_user.accumulated_amount >= 20000  %>
+              <p class=" mb-7 ml-2 font-normal">恭喜您在下年度為尊貴會員</p>
+            <% else %>
+              <p class="mt-2 ml-5 mr-3 font-normal">消費金額還需 NT$<%= User.still_need(current_user.accumulated_amount) %></p>
+            <% end %>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="px-3 lg:px-20">
+  <div class='grid grid-cols-1 md:grid-cols-2 gap-5'>
+    <div class="border">
+      <div>
+        <h2 class='text-red-300 px-3 mb-3 py-3 border-b'>個人名片</h2>
+        <div class="grid grid-cols-2 px-3 pb-2">
+          <div class="mr-12">
+            <p class='font-normal'>性別</p>
+          </div>
+          <p><%= current_user.gender %></p>
+        </div>
+        <div class="grid grid-cols-2 px-3 pb-2">
+          <div class="mr-12">
+            <p class='font-normal'>現居住地</p>
+          </div>
+          <p class=""><%= current_user.country %></p>
+        </div>
+        <div class="grid grid-cols-2 px-3 pb-2">
+          <div class="mr-12">
+            <p class='font-normal'>加入日期</p>
+          </div>
+          <p><%= current_user.created_at.strftime("%Y/%m/%d") %></p>
+        </div>
+        <div class="grid grid-cols-2 px-3 pb-2">
+          <div class="mr-12">
+            <p class='font-normal'>個人資料設定</p>
+          </div>
+          <div>
+            <p class='text-red-300 hover:text-blue-200'><%= link_to "更新個人介紹",about_member_index_path %></p>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 px-3 pb-2">
+          <div class="mr-12">
+            <p class='font-normal'>更新大頭照</p>
+          </div>
+          <div>
+            <p class='text-red-300 hover:text-blue-200'><%= link_to "設定暱稱、大頭貼照、生日", edit_member_index_path %></p>
+          </div>
+        </div>
+     </div>
+    </div>
+    <div class="border">
+      <div>
+        <h2 class='text-red-300 px-3 mb-3 py-3 border-b'>關於我</h2>
+         <% filled_fields(current_user).each do |field| %>
+        <div class="grid grid-cols-2 px-3 pb-2">
+          <div class="mr-12">
+            <p class='font-normal'><%= transfer_title(field['title']) %></p>
+          </div>
+          <div>
+            <p><%= field['content'] %></p>
+          </div>
+        </div>
+        <% end %>
+     </div>
+    </div>
+
+  </div>
+  <div class="block mt-8 mb-10 border-3 bg-red-300 w-full h-35" > 
+    <div>小提醒</div>
+    <div>在找你關注的設計館嗎？現在你可以在 慾望清單 裡看到喔。</div>
+  </div>
+</div>
 
