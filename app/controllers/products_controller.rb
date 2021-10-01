@@ -3,7 +3,7 @@ class ProductsController < ApplicationController
   
   def index
     # @pagy, @products = pagy(Product.where(deleted_at: nil), items: 6)
-    @products = Product.all.order(id: :desc)
+    @products = Product.all.order(id: :desc).where("quantity > 0")
   end
 
   def new
@@ -32,7 +32,7 @@ class ProductsController < ApplicationController
   end
   
   def update
-  @product = current_store
+  @product = Product.friendly.find(params[:id])
     if @product.update(product_params)
       redirect_to product_path,notice: "修改成功"
     else

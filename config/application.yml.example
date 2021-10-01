@@ -1,3 +1,6 @@
 merchant_hash_key: "你的商店ＫＥＹ"
 merchant_hash_iv: "你的商店ＩＶ"
 merchant_id: "你的商店ＩＤ"
+aws_access_key_id: 's3 ID'
+aws_secret_access_key: 's3 key'
+fog_directory: 's3 buket name'

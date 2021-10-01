@@ -22,11 +22,11 @@ const Navbar = ({webUser, cart}) => {
     imageUrl: `${webUser.image.url}`,
   }
   const navigation = [
-    { name: '主題企劃', href: '#', current: false },
-    { name: '配件飾品', href: '#', current: false },
-    { name: '居家生活', href: '#', current: false },
-    { name: '品味美食', href: '#', current: false },
-    { name: '餐桌廚房', href: '#', current: false },
+    // { name: '主題企劃', href: '#', current: false },
+    // { name: '配件飾品', href: '#', current: false },
+    // { name: '居家生活', href: '#', current: false },
+    // { name: '品味美食', href: '#', current: false },
+    // { name: '餐桌廚房', href: '#', current: false },
   ]
   const userWithLogIn = [
     { name: '登入', href: '/users/sign_in', method: 'get' },
@@ -210,9 +210,10 @@ const Navbar = ({webUser, cart}) => {
                     </div>
                   </a>
                 </button>
+                
               </div>
             </div>
-            <nav className="hidden lg:py-2 lg:flex lg:space-x-8" aria-label="Global">
+            {/* <nav className="hidden lg:py-2 lg:flex lg:space-x-8" aria-label="Global">
               {navigation.map((item) => (
                   <a
                     key={item.name}
@@ -226,11 +227,11 @@ const Navbar = ({webUser, cart}) => {
                     {item.name}
                   </a>
                 ))}
-            </nav>
+            </nav> */}
           </div>
 
           <Disclosure.Panel as="nav" className="lg:hidden" aria-label="Global">
-            <div className="pt-2 pb-3 px-2 space-y-1">
+            <div>
               {navigation.map((item) => (
                 <a
                   key={item.name}

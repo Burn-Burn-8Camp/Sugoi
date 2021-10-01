@@ -1,12 +1,13 @@
 <div>
-  <div class="min-h-screen flex items-center justify-center bg-red-200 py-12 px-4 sm:px-6 lg:px-8">
-    <img  style="border:20px;margin:50px;float:left;width:500px;height: 500px;" class="object-cover hidden md:block" src="/images/登入 (1).jpeg">
-    <hr>
+  <div class="min-h-screen flex justify-center items-center bg-system-color py-12 px-4 lg:justify-between">
+    <div class='m-auto'>
+      <img  style="width:500px;height:500px;" class="object-cover hidden lg:block" src="/images/登入 (1).jpeg">
+    </div>
 
-    <div class="max-w-md w-full space-y-8">        
+    <div class="max-w-md mr-auto">        
       <div>
-        <h2 class="mt-6 text-center text-3xl font-bold text-gray-900">
-          Sign in to your account
+        <h2 class="mt-6 text-center text-white text-3xl font-bold">
+          好久不見！SUGOII 歡迎你！
         </h2>
       </div>
 
@@ -15,13 +16,13 @@
         <div class="rounded-md shadow-sm -space-y-px">
 
           <div>
-            <%= f.label '電子信箱',class:"block text-md mb-2"%>
-            <%= f.email_field :email,autofocus: true, autocomplete: "email",class:"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" %>
+            <%= f.label '電子信箱',class:"block text-md mb-2 text-white"%>
+            <%= f.email_field :email,autofocus: true, autocomplete: "email",class:"appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" %>
           </div>
 
           <div>
-            <%= f.label '密碼', class:"block text-md mb-2" %>
-            <%= f.password_field :password, autocomplete: "current-password", class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" %>
+            <%= f.label '密碼', class:"block text-md mt-2 mb-2 text-white" %>
+            <%= f.password_field :password, autocomplete: "current-password", class: "appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm" %>
           </div>
         </div>
   
@@ -29,31 +30,26 @@
           <div class="flex items-center justify-between">
             <div class="flex items-center">
               <%= f.check_box :remember_me, class: "h-4 w-4 text-indigo-600 focus:ring-blue-500 border-gray-300 rounded" %>
-              <%= f.label 'Remember me',class: "ml-2 block text-sm text-gray-900" %>                
+              <%= f.label '記得我',class: "text-white ml-2 block text-sm text-gray-900" %>                
               </label>
-            </div>
-            <div class="text-sm">
-              <a href="boxing.html" class="font-medium text-blue-600 hover:text-blue-500">
-                Forgot your password?
-              </a>
             </div>
           </div>
         <% end %>
         <div class="actions">
-          <%= f.submit "登入", class:"group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-500 hover:bg-lightblue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-50"%>
+          <%= f.submit "登入", class:"group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-red-400 hover:bg-blue-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-50"%>
         </div>
         <span class="flex items-center justify-center space-x-2">
-          <span class="h-px bg-gray-400 w-14"></span>
-          <span class="font-normal text-gray-500">or login with</span>
-          <span class="h-px bg-gray-400 w-14"></span>
+          <span class="h-px bg-white w-14"></span>
+          <span class="font-normal text-gray-500 text-white">or login with</span>
+          <span class="h-px bg-white w-14"></span>
         </span>
         <%- if devise_mapping.omniauthable? %>
             <%- resource_class.omniauth_providers.each do |provider| %>
                 <%#= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider), method: :post , class: 'w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50'%>
-                <%= link_to omniauth_authorize_path(resource_name, provider), method: :post , class: 'w-full inline-flex justify-center py-2 px-4 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50' do %>
+                <%= link_to omniauth_authorize_path(resource_name, provider), method: :post , class: 'w-full inline-flex justify-center py-2 px-4 border-transparent rounded-md shadow-sm text-white bg-red-400 hover:bg-blue-300 hover:text-black text-sm font-medium text-gray-500 hover:bg-gray-50' do %>
                     <span class="sr-only">Sign in with <%= OmniAuth::Utils.camelize(provider) %></span>
                     <% if provider.to_s == 'github'%>
-                        <i class="fab fa-github"></i>
+                        <i class="fab fa-github "></i>
                     <% else %>
                         <i class="fab fa-google"></i>
                     <% end %>

@@ -9,53 +9,54 @@
     <div class="md:col-span-1 bg-red-200">
       <div class="px-4 sm:px-0">
         <h3 class=" text-lg font-medium leading-6 text-blue-900"></h3>
-        <%= image_tag('/images/阿榮.jpg') %>
+        <%= image_tag('/images/阿榮去背.png') %>
       </div>
     </div>
     <div class="mt-5 md:mt-0 md:col-span-2">
       <%= form_with model: @user, url: edit_member_index_path, method: 'patch' do |f| %>
         <div class="sadow overflow-hiddshen sm:rounded-md ">
-          <div class="px-4 py-5 bg-white sm:p-6">
-           <span>基本資料</span>
+          <div class="px-4 py-5 bg-white sm:p-6 py-2">
+           <h1>基本資料</h1>
             <div class="">
            
 
               <div class="col-span-6 sm:col-span-3">
-                <%= f.label :name, "顯示暱稱" , class: "block text-sm font-medium text-gray-700"%>
+                <%= f.label :name, "顯示暱稱" , class: "block text-sm font-medium text-gray-700 py-2"%>
                 <%= f.text_field :name, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </div>
 
               <div class="col-span-6 sm:col-span-4">
-                <%= f.label :email,"您的電子信箱", class:"block text-sm font-medium text-gray-700" %>
+                <%= f.label :email,"您的電子信箱", class:"block text-sm font-medium text-gray-700 py-2" %>
                 <%= f.text_field :email, class: "mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" %>
               </div>
 
               <div class="col-span-6 sm:col-span-4">
-                <%= f.label :gender,"性別", class: "block text-sm font-medium text-gray-700" %>
+                <%= f.label :gender,"性別", class: "block text-sm font-medium text-gray-700 py-2" %>
                 <%= f.text_field :gender, placeholder: 'Gender', class: "form-control mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"%>
               </div>
 
               <div class="col-span-6 sm:col-span-4 ">
-                <%= f.label :country, "所在地",class: "block text-sm font-medium text-gray-700" %>
-                <%= f.text_field :country, class: "mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
+                <%= f.label :country, "所在地",class: "block text-sm font-medium text-gray-700 py-2 " %>
+                <%= f.text_field :country, class: "mt-1 block w-full border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" %>
               </div>
 
-               <div class="col-span-6 sm:col-span-4 ">
+              <div class="col-span-6 sm:col-span-3">
+                <%= f.label :date, "生日", class: "block text-sm font-medium text-gray-700 py-2 " %>
+                <%= date_field(:date, :born_on)%>
+              </div>
+
+               <div class="col-span-6 sm:col-span-4 bordr-indigo-500 py-2 ">
                <span>更換大頭貼照</span>
                <%= image_tag current_user.image_url if current_user.image_url.present? %>
               </div>
 
               <div class="col-span-6 sm:col-span-4">
-                <%= f.label :image, "上載大頭貼", class: "block text-sm font-medium text-gray-700" %><br />
+                <%= f.label :image, "上載大頭貼", class: "block text-sm font-medium text-gray-700 py-2" %><br />
                 <%= f.file_field :image%>
               </div><br />
 
-              <div class="col-span-6 sm:col-span-3">
-                <%= f.label :date, "生日", class: "block text-sm font-medium text-gray-700" %>
-                <%= date_field(:date, :born_on)%>
-              </div>
-              <div class="">
-              <%= f.submit "更新", class: "inline-flex justify-center border-transparent shadow-sm text-sm py-2 px-5 font-medium rounded-md text-white bg-red-200 hover:bg-blue-300 border-4 "%>
+              <div class=" py-6">
+              <%= f.submit "更新", class: "inline-flex justify-center border-transparent shadow-sm text-sm py-2 px-5 font-medium rounded-md text-white bg-red-200 hover:bg-blue-300 border-4  py-2"%>
               </div>
             </div>  
           </div>

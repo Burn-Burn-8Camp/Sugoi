@@ -1,9 +1,9 @@
-<h1 class="text-center">
+<h1 class="text-center my-6">
 	刊登商品列表
 </h1>
 <div class="bg-white ">
 	<div class="max-w-7xl mx-auto overflow-hidden  bg-teal-500 lg:bg-teal-500 justify-center ">
-		<div class="-mx-px border-l border-gray-200 grid grid-cols-2 sm:mx-0 md:grid-row-3 lg:grid-cols-4 ">
+		<div class="-mx-px border-l border-gray-200 grid grid-cols-2 gap-3 sm:mx-0 md:grid-row-3 lg:grid-cols-4 px-3">
 			<% @products.each do |product| %>
 				<div class="group relative p-10 border-2 sm:p-6 ">
 					<div class="rounded-lg overflow-hidden bg-gray-200 aspect-w-1 aspect-h-1 group-hover:opacity-75 ">
@@ -24,8 +24,9 @@
 							金額：<%= product.price.to_i %>
 						</p>
 					</div>
-					<div class="mx-auto sm:text-2xl sm:leading-7 sm:text-black md:text-3xl sm:pb-16 text-center">
-						<%= link_to '刪除' , product_path(product), method: "DELETE" , class: 'btn' %>
+					<div class='flex justify-center'>
+						<%= link_to '編輯' , edit_product_path(product), class: 'btn text-red-300 bg-red-100 mr-2 border-red-300 hover:bg-blue-200 hover:border-blue-200 hover:text-white' %>
+						<%= link_to '刪除' , product_path(product), method: "DELETE" , class: 'btn text-red-300 bg-red-100 border-red-300 hover:bg-blue-200 hover:border-blue-200 hover:text-white' %>
 					</div>
 				</div>
 				<% end %>

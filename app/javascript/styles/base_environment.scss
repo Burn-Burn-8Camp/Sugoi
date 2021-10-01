@@ -66,3 +66,38 @@
 img {
 	width: 300px;
 }
+
+.pink-light {
+	background: #ff9da3;
+	width: 250px;
+}
+
+@media (min-width: 768px) {
+	.dragon {
+		position: absolute;
+		translate: (50%, 50%);
+		left: 47%;
+		top: 30%;
+	}
+}
+@media (max-width: 768px) {
+	.dragon {
+		position: absolute;
+		translate: (50%, 50%);
+		left: 20%;
+		top: 30%;
+	}
+}
+
+.spacing {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+.bg-system-color {
+	background-color: #f1989f;
+}
+
+.bg-signup-color {
+	background-color: #c4dafb;
+}
