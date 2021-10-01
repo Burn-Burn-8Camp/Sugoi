@@ -1,5 +1,5 @@
 <div class="px-3 lg:px-20">
-  <div class='grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-1 xl:grid-cols-3 mt-10 mb-20'>
+  <div class='grid sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-3 mt-10 mb-20'>
     <div class='flex'>
       <div>
         <%= image_tag current_user.image_url if current_user.image_url.present? %>
@@ -15,17 +15,20 @@
         </div>
       </div>
     </div>
+  </div> 
+</div>
 
-    <div class='grid grid-cols-1 md:grid-cols-2 gap-5'>
-      <div class="border">
+<div class="px-3 lg:px-20 pb-5">
+  <div class='grid grid-cols-1 md:grid-cols-2 gap-5'>
+          <div class="border">
         <div>
-          <h2 class="text-lg mt-2 ml-5">當年度升級任務</h2>
+          <h2 class="text-red-300 px-3 mb-3 py-3 border-b font-normal">當年度升級任務</h2>
         </div>
         <div class="">
           <% if current_user.accumulated_amount >= 20000 %>
-            <p class="mt-2 ml-5 ">您已達成最高等級<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
+            <p class="mt-2 ml-5 font-normal">您已達成最高等級<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
           <% else %>
-            <p class="mt-2 ml-5">完成以下條件,可立即升級為<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
+            <p class="mt-2 ml-5 font-normal">完成以下條件,可立即升級為<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
           <% end %>
         </div>
         <div class="flex w-full h-full">
@@ -34,22 +37,22 @@
           </div>
           <div class="mt-2  text-xl">
             <% if current_user.accumulated_amount >= 20000 %>
-              <p class="text-center mb-5 mt-3">恭喜您已達成任務</p>
+              <p class="text-center mb-5 mt-3 font-normal">恭喜您已達成任務</p>
             <% else %>
-              <p class="mt-4 ml-6 mr-2">消費金額還需 NT$<%= User.still_need(current_user.accumulated_amount) %></p>
+              <p class="mt-4 ml-6 mr-2 font-normal">消費金額還需 NT$<%= User.still_need(current_user.accumulated_amount) %></p>
             <% end %>
           </div>
         </div>
       </div>
       <div class="border">
         <div class="">
-          <h2 class="text-lg mt-2 ml-5">下一年度升級任務</h2>
+          <h2 class="text-red-300 px-3 mb-3 py-3 border-b font-normal">下一年度升級任務</h2>
         </div>
         <div class="mt-2 ">
           <% if current_user.accumulated_amount >= 20000 %>
-            <p class="ml-5 mb- mt-2">恭喜您已達成任務</p>
+            <p class="ml-5 mb- mt-2 font-normal">恭喜您已達成任務</p>
           <% else %>
-            <p class="mt-2 ml-5 mr-3">完成以下條件,可在下年度升級為<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
+            <p class="mt-2 ml-5 mr-3 font-normal">完成以下條件,可在下年度升級為<%= sanitize User.user_rank(current_user.accumulated_amount) %></p>
           <% end %>
         </div>
         <div class="flex mt-3 ">
@@ -58,17 +61,15 @@
           </div>
           <div class="mt-1  text-xl ">
             <% if current_user.accumulated_amount >= 20000  %>
-              <p class=" mb-7 ml-2">恭喜您在下年度為尊貴會員</p>
+              <p class=" mb-7 ml-2 font-normal">恭喜您在下年度為尊貴會員</p>
             <% else %>
-              <p class="mt-2 ml-5 mr-3">消費金額還需 NT$<%= User.still_need(current_user.accumulated_amount) %></p>
+              <p class="mt-2 ml-5 mr-3 font-normal">消費金額還需 NT$<%= User.still_need(current_user.accumulated_amount) %></p>
             <% end %>
           </div>
         </div>
       </div>
-    </div>
-   </div> 
+  </div>
 </div>
-
 
 
 <div class="px-3 lg:px-20">
