@@ -273,16 +273,18 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
 
-  config.omniauth :google_oauth2, 
-                  Rails.application.credentials.dig(:google, :google_client_id), 
-                  Rails.application.credentials.dig(:google, :google_client_secret), 
-                  scope: 'userinfo.email,userinfo.profile'
+  # config.omniauth :google_oauth2, 
+  #                 Rails.application.credentials.dig(:google, :google_client_id), 
+  #                 Rails.application.credentials.dig(:google, :google_client_secret), 
+  #                 scope: 'userinfo.email,userinfo.profile'
+
+  config.omniauth :google_oauth2, ENV['google_client_id'], ENV['google_client_secret']
 
   # config.omniauth :github, 
   #                 Rails.application.credentials.dig(:github, :github_client_id), 
   #                 Rails.application.credentials.dig(:github, :github_client_secret), 
   #                 scope: 'user'
-  config.omniauth :github, ENV['github_client_id'], ENV['github_app_secret']
+  config.omniauth :github, ENV['github_client_id'], ENV['github_app_secret'], scope: 'user:email'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
