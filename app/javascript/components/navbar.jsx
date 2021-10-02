@@ -10,8 +10,8 @@ const Navbar = ({webUser, cart}) => {
     name: '訪客',
     role: 'visitor',
     email: '電子信箱',
-    image: {
-      url: '/images/阿榮.jpg'
+    image : {
+      url: '/images/images.png', 
     }
   }
   webUser ? webUser : webUser = userDefault
@@ -111,7 +111,7 @@ const Navbar = ({webUser, cart}) => {
                         id="search"
                         name="keyword"
                         className="block w-full bg-white border border-gray-300 rounded-md py-2 pl-10 pr-3 text-sm placeholder-gray-500 focus:outline-none focus:text-gray-900 focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                        placeholder="搜尋好設計、體驗活動"
+                        placeholder="搜尋"
                         type="search"
                       />
                     </div>
@@ -125,7 +125,7 @@ const Navbar = ({webUser, cart}) => {
                   ?
                   <button>
                   <div className='mr-5'>
-                    <a className='text-red-300 hover:text-blue-200' href="/store/application">我想在SUGOII上販售</a>
+                    <a className='text-red-300 hover:text-blue-200' href="/store/application">販售商品</a>
                   </div>
                   </button>
                   :
@@ -147,7 +147,7 @@ const Navbar = ({webUser, cart}) => {
                   ?
                   <button>
                   <div className='mr-5'>
-                    <a className='text-red-300 hover:text-blue-200' href="/store/application">我想在SUGOII上販售</a>
+                    <a className='text-red-300 hover:text-blue-200' href="/store/application">販售商品</a>
                   </div>
                   </button>
                   :
@@ -158,7 +158,7 @@ const Navbar = ({webUser, cart}) => {
                   <div>
                     <Menu.Button className="bg-white rounded-full flex">
                       <span className="sr-only">Open user menu</span>
-                        <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" /> 
+                      <img className="h-8 w-8 rounded-full border border-gray-500" src={user.imageUrl} alt="user_pic" />
                     </Menu.Button>
                   </div>
                   <Transition
@@ -249,7 +249,7 @@ const Navbar = ({webUser, cart}) => {
             <div className="border-t border-gray-200 pt-4 pb-3">
               <div className="px-4 flex items-center">
                 <div className="flex-shrink-0">
-                  <img className="h-8 w-8 rounded-full" src={user.imageUrl} alt="" />
+                  <img className="h-8 w-8 rounded-full border border-gray-500" src={user.imageUrl} alt="" />
                 </div>
                 <div className="ml-3">
                   <div className="text-base font-medium text-gray-800">{user.name}</div>
