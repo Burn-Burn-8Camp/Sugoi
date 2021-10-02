@@ -1,5 +1,5 @@
 <div class="w-full py-3 px-3 flex items-center justify-between border-t border-gray-300 bg-blue-300">
-  <%= form_with(model: message, local: true) do |form| %>
+  <%= form_with model: message, local: true, html: {class: 'w-full'} do |form| %>
     <% if message.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
@@ -16,7 +16,7 @@
 
     <div>
       <%= form.text_field :content, placeholder: "Type your message here...", class: 'py-2 pl-5 w-full rounded-full bg-white outline-none focus:text-gray-700' %>
-      <%= form.submit "送出訊息", class: "outline-none focus:outline-none mt-5", id: "send-btn" do %>
+      <%= form.submit "送出訊息", class: "outline-none focus:outline-none mt-5 btn bg-red-300 border-red-300 hover:bg-red-300", id: "send-btn" do %>
       <% end %>
     </div>
   <% end %>
